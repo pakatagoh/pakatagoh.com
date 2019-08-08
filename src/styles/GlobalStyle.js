@@ -7,6 +7,13 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 'bold';
     src: url(${fontFiles.BebasNeueBold}) format('truetype');
   }
+
+  @font-face {
+    font-family: 'Bebas Neue Book';
+    font-weight: 'normal';
+    src: url(${fontFiles.BebasNeueBook}) format('truetype');
+  }
+
   @font-face {
     font-family: 'Roboto';
     font-weight: 'bold';
