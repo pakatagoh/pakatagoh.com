@@ -7,7 +7,7 @@ const typography = new Typography({
   bodyFontFamily: ['Roboto', 'Georgia', 'serif'],
   overrideStyles: () => ({
     nav: {
-      fontFamily: ['Bebas Neue', 'Segoe UI', 'Arial', 'sans-serif'].join(','),
+      fontFamily: ['Bebas Neue Book', 'Segoe UI', 'Arial', 'sans-serif'].join(','),
     },
   }),
 });
