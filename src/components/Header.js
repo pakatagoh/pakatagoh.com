@@ -7,7 +7,6 @@ import { media } from '../styles/sizes';
 import logo from '../images/Logo.svg';
 
 const ACTIVE = 'active';
-const NAVLINKS = ['projects', 'blog', 'about', 'contact'];
 
 const StyledNav = styled.nav`
   height: 115px;
@@ -64,27 +63,31 @@ const StyledLink = styled(Link)`
   `}
 `;
 
-const Header = ({ siteTitle }) => (
-  <header>
-    <Container>
-      <StyledNav>
-        <StyledBrandLink to="/">
-          <StyledBrandLogo>
-            <StyledImg src={logo} alt={siteTitle} />
-          </StyledBrandLogo>
-          <StyledBrandTitle>{siteTitle}</StyledBrandTitle>
-        </StyledBrandLink>
-        <div>
-          {NAVLINKS.map(navlink => (
-            <StyledLink key={navlink} to={`/${navlink}`} activeClassName={ACTIVE}>
-              {navlink}
-            </StyledLink>
-          ))}
-        </div>
-      </StyledNav>
-    </Container>
-  </header>
-);
+const Header = ({ siteTitle }) => {
+  const NAVLINKS = ['projects', 'blog', 'about', 'contact'];
+
+  return (
+    <header>
+      <Container>
+        <StyledNav>
+          <StyledBrandLink to="/">
+            <StyledBrandLogo>
+              <StyledImg src={logo} alt={siteTitle} />
+            </StyledBrandLogo>
+            <StyledBrandTitle>{siteTitle}</StyledBrandTitle>
+          </StyledBrandLink>
+          <div>
+            {NAVLINKS.map(navlink => (
+              <StyledLink key={navlink} to={`/${navlink}`} activeClassName={ACTIVE}>
+                {navlink}
+              </StyledLink>
+            ))}
+          </div>
+        </StyledNav>
+      </Container>
+    </header>
+  );
+};
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
