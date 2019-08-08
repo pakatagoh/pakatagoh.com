@@ -16,10 +16,10 @@ const StyledNav = styled.nav`
   align-items: center;
 
   & a {
-    color: ${({ theme }) => theme.black};
     text-decoration: none;
   }
   & a.${ACTIVE} {
+    color: ${({ theme }) => theme.black};
     border-bottom: 5px solid ${({ theme }) => theme.secondary.base};
   }
 `;
@@ -42,6 +42,7 @@ const StyledBrandTitle = styled.span`
   font-family: 'Bebas Neue', 'Segoe UI', 'Arial', 'sans-serif';
   font-size: 38px;
   margin-left: 15px;
+  color: ${({ theme }) => theme.black};
   display: none;
 
   ${media.md`
@@ -53,15 +54,19 @@ const StyledLink = styled(Link)`
   font-size: 18px;
   padding-bottom: 6px;
   margin-left: 18px;
+  color: ${({ theme }) => theme.gray2};
+
+  &:hover {
+    color: ${({ theme }) => theme.black};
+  }
 
   ${media.sm`
     font-size: 24px;
     margin-left: 30px
-  `}
-
+  `};
   ${media.md`
     margin-left: 60px
-  `}
+  `};
 `;
 
 const Header = ({ siteTitle }) => {
