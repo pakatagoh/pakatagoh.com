@@ -13,11 +13,11 @@ const StyledNav = styled.nav`
   align-items: center;
 
   & a {
-    color: ${({ theme }) => theme.black};
+    color: black;
     text-decoration: none;
   }
   & a.active {
-    border-bottom: 5px solid ${({ theme }) => theme.secondary.base};
+    border-bottom: 5px solid blue;
   }
 `;
 
