@@ -4,32 +4,42 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const ACTIVE = 'active';
+const NAVLINKS = ['projects', 'blog', 'about', 'contact'];
 
 const StyledNav = styled.nav`
-  font-family: 'Bebas Neue';
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  & a {
+    padding-bottom: 6px;
+    color: ${({ theme }) => theme.black};
+    text-decoration: none;
+  }
+  & a.${ACTIVE} {
+    border-bottom: 5px solid ${({ theme }) => theme.secondary.base};
+  }
 `;
 
-const StyledBrand = styled(Link)`
-  color: black;
-  text-decoration: none;
+const StyledBrandLink = styled(Link)`
+  font-size: 38px;
 `;
 
 const StyledLink = styled(Link)`
-  color: black;
-  text-decoration: none;
-
-  &.${ACTIVE} {
-    border-bottom: 2px solid blue;
-  }
+  font-size: 24px;
 `;
 
 const Header = ({ siteTitle }) => (
   <header>
     <StyledNav>
-      <StyledBrand to="/">{siteTitle}</StyledBrand>
-      <StyledLink to="/page-2" activeClassName={ACTIVE}>
-        page2
-      </StyledLink>
+      <StyledBrandLink to="/">{siteTitle}</StyledBrandLink>
+      <div>
+        {NAVLINKS.map(navlink => (
+          <StyledLink key={navlink} to={`/${navlink}`} activeClassName={ACTIVE}>
+            {navlink}
+          </StyledLink>
+        ))}
+      </div>
     </StyledNav>
   </header>
 );
