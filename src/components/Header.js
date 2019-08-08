@@ -6,8 +6,6 @@ import Container from './Container';
 import { media } from '../styles/sizes';
 import logo from '../images/Logo.svg';
 
-const ACTIVE = 'active';
-
 const StyledNav = styled.nav`
   height: 115px;
   display: flex;
@@ -18,7 +16,7 @@ const StyledNav = styled.nav`
     color: ${({ theme }) => theme.black};
     text-decoration: none;
   }
-  & a.${ACTIVE} {
+  & a.active {
     border-bottom: 5px solid ${({ theme }) => theme.secondary.base};
   }
 `;
@@ -65,7 +63,7 @@ const StyledLink = styled(Link)`
 
 const Header = ({ siteTitle }) => {
   const NAVLINKS = ['projects', 'blog', 'about', 'contact'];
-
+  const ACTIVE = 'active';
   return (
     <header>
       <Container>
