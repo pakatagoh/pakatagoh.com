@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Container from './Container';
 import { media } from '../styles/sizes';
+import Container from './Container';
 
 const FOOTER_LINKS = [
   { name: 'LinkedIn', to: 'https://linkedin.com/in/pakata-goh/' },
@@ -12,27 +12,35 @@ const FOOTER_LINKS = [
 ];
 
 const StyledFooterWrapper = styled.div`
-  margin-bottom: 15px;
+  /* height of Footer */
+  height: 60px;
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: wrap-reverse;
 `;
 
-const StyledCopyright = styled.span`
+const StyledCopyright = styled.div`
   font-family: 'Bebas Neue Book', 'Segoe UI', 'Arial', 'sans-serif';
   font-size: 16px;
-  white-space: nowrap;
   color: ${({ theme }) => theme.gray1};
+  text-align: center;
+  flex: 0 0 100%;
+
+  ${media.sm`
+    flex: 0 0 auto;
+  `};
 `;
 
 const StyledFooterLinks = styled.ul`
   margin: 0;
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
+  justify-content: space-evenly;
   list-style: none;
+  flex: 0 0 100%;
 
   ${media.sm`
+    flex: 0 0 auto;
     margin: 0 0 0 30px;
   `};
 `;
@@ -42,9 +50,13 @@ const StyledLink = styled.li`
 
   & a {
     font-size: 13px;
-    margin: 0 15px 0 0;
+    margin: 0;
     color: ${({ theme }) => theme.gray1};
     text-decoration: none;
+
+    ${media.sm`
+      margin: 0 15px 0 0;
+    `}
   }
 
   & a:hover {
@@ -54,20 +66,22 @@ const StyledLink = styled.li`
 
 const Footer = () => {
   return (
-    <Container>
-      <StyledFooterWrapper>
-        <StyledCopyright>© {new Date().getFullYear()} Pakata Goh</StyledCopyright>
-        <StyledFooterLinks>
-          {FOOTER_LINKS.map(({ name, to }) => (
-            <StyledLink key={name} to={to}>
-              <a href={to} target="_blank" rel="noreferrer noopener">
-                {name}
-              </a>
-            </StyledLink>
-          ))}
-        </StyledFooterLinks>
-      </StyledFooterWrapper>
-    </Container>
+    <footer>
+      <Container>
+        <StyledFooterWrapper>
+          <StyledCopyright>© {new Date().getFullYear()} Pakata Goh</StyledCopyright>
+          <StyledFooterLinks>
+            {FOOTER_LINKS.map(({ name, to }) => (
+              <StyledLink key={name} to={to}>
+                <a href={to} target="_blank" rel="noreferrer noopener">
+                  {name}
+                </a>
+              </StyledLink>
+            ))}
+          </StyledFooterLinks>
+        </StyledFooterWrapper>
+      </Container>
+    </footer>
   );
 };
 
