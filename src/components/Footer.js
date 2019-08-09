@@ -62,6 +62,9 @@ const StyledLink = styled.li`
   & a:hover {
     color: ${({ theme }) => theme.secondary.base};
   }
+  & a:active {
+    color: ${({ theme }) => theme.secondary.pressed};
+  }
 `;
 
 const Footer = () => {
