@@ -7,14 +7,24 @@ import StyledTheme from '../styles/StyledTheme';
 import Header from './Header';
 import Footer from './Footer';
 
+/*
+ * @description: StyledPageWrapper and StyledMainWrapper are used to keep footer at the bottom of the screen
+ * @link: https://www.freecodecamp.org/news/how-to-keep-your-footer-where-it-belongs-59c6aa05c59c/
+ */
 const StyledPageWrapper = styled.div`
   position: relative;
   min-height: 100vh;
 
   & footer {
+    width: 100%;
     position: absolute;
     bottom: 0;
   }
+`;
+
+const StyledMainWrapper = styled.div`
+  /* height of Footer */
+  padding-bottom: 60px;
 `;
 
 const Layout = ({ children }) => {
@@ -24,10 +34,10 @@ const Layout = ({ children }) => {
       <StyledTheme>
         <StyledPageWrapper>
           <Header />
-          <main>{children}</main>
-          <footer>
-            <Footer />
-          </footer>
+          <StyledMainWrapper>
+            <main>{children}</main>
+          </StyledMainWrapper>
+          <Footer />
         </StyledPageWrapper>
       </StyledTheme>
     </>
