@@ -1,6 +1,5 @@
-import { Link } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import React from 'react';
 import Container from './Container';
 import { media } from '../styles/sizes';
@@ -69,7 +68,19 @@ const StyledLink = styled(Link)`
   `};
 `;
 
-const Header = ({ siteTitle }) => {
+const Header = () => {
+  const data = useStaticQuery(graphql`
+    query SiteTitleQuery {
+      site {
+        siteMetadata {
+          title
+        }
+      }
+    }
+  `);
+
+  const { title: siteTitle } = data.site.siteMetadata;
+
   return (
     <header>
       <Container>
@@ -91,14 +102,6 @@ const Header = ({ siteTitle }) => {
       </Container>
     </header>
   );
-};
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-};
-
-Header.defaultProps = {
-  siteTitle: ``,
 };
 
 export default Header;
