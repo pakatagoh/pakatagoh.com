@@ -1,51 +1,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { media } from '../styles/sizes';
 
-const StyledIconLink = styled.a`
-  width: 38px;
-  height: 38px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.secondary.hover};
-    box-shadow: ${({ theme }) => theme.shadow.hover};
-  }
-
-  &:active {
-    background-color: ${({ theme }) => theme.secondary.pressed};
-    box-shadow: ${({ theme }) => theme.shadow.pressed};
-  }
-`;
+const ICON_WRAPPER_SIZE = {
+  xs: '24px',
+  sm: '27px',
+};
 
 const StyledIconWrapper = styled.div`
-  width: 27px;
-  height: 27px;
+  width: ${ICON_WRAPPER_SIZE.xs};
+  height: ${ICON_WRAPPER_SIZE.xs};
+  display: inline-block;
+
+  ${media.sm`
+    width: ${ICON_WRAPPER_SIZE.sm};
+    height: ${ICON_WRAPPER_SIZE.sm};
+  `};
 `;
 
 const StyledIcon = styled.img`
   width: 100%;
   height: 100%;
+  object-position: center;
+  object-fit: contain;
+  margin: 0;
 `;
 
-const Icon = ({ icon }) => {
+const Icon = ({ src, alt }) => {
   return (
-    <StyledIconLink href={icon.to} target="_blank" rel="noreferrer noopener">
-      <StyledIconWrapper>
-        <StyledIcon src={icon.src} alt={icon.name} />
-      </StyledIconWrapper>
-    </StyledIconLink>
+    <StyledIconWrapper>
+      <StyledIcon src={src} alt={alt} />
+    </StyledIconWrapper>
   );
 };
 
 Icon.propTypes = {
-  icon: PropTypes.shape({
-    src: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    to: PropTypes.string.isRequired,
-  }),
+  src: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
 };
 
 export default Icon;
