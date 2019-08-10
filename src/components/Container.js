@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { media } from '../styles/sizes';
 
 const StyledWrapper = styled.div`
+  width: 100%;
   margin: 0 auto;
   padding: 0 15px;
   ${media.sm`max-width: 540px`}
