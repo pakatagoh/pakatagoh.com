@@ -31,8 +31,10 @@ const useCopy = () => {
       selection.removeAllRanges();
       window.document.body.removeChild(span);
       setCopyMessage('Copied!');
+      return 'Copied!';
     } catch (err) {
       setCopyMessage('Unable to copy');
+      return 'Unable to copy';
     }
   };
   return { handleCopy, copyMessage };
