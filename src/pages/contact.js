@@ -1,17 +1,25 @@
 /* eslint-disable camelcase */
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import { media } from '../styles/sizes';
 import Layout from '../components/Layout';
 import Container from '../components/Container';
 import Block from '../components/Block';
-import Icon from '../components/Icon';
+import IconLink from '../components/IconLink';
 import LayerImage from '../components/LayerImage';
+import Button from '../components/Button';
+import Icon from '../components/Icon';
+import PageTitle from '../components/PageTitle';
+import Row from '../components/Row';
+import useCopy from '../hooks/useCopy';
 
 import linkedIn_logo from '../images/linkedin_logo.svg';
 import github_logo from '../images/github_logo.svg';
 import twitter_logo from '../images/twitter_logo.svg';
 import instagram_logo from '../images/instagram_logo.svg';
 import typing_hands from '../images/typing-hands.jpg';
+import text_document_icon from '../images/text_document_icon.svg';
+import Col from '../components/Col';
 
 const SOCIAL_LINKS = [
   { name: 'LinkedIn', src: linkedIn_logo, to: 'https://linkedin.com/in/pakata-goh/' },
@@ -20,15 +28,21 @@ const SOCIAL_LINKS = [
   { name: 'Instagram', src: instagram_logo, to: 'https://instagram.com/paka.codes/' },
 ];
 const EMAIL = 'pakatagohlh@gmail.com';
+const RESUME_LINK = 'https://drive.google.com/open?id=185fdbe4ubRIuHuuCR_AtKHV7p7Zbrpvo';
 
-const StyledPageTitle = styled.h1`
-  margin: 0;
+const StyledSectionHeader = styled.h2`
+  margin-bottom: 30px;
+
+  ${media.sm`
+    margin-bottom: 50px;
+  `};
 `;
 
 const StyledEmail = styled.button`
   font-family: 'Roboto Condensed', 'Georgia', 'serif';
-  font-size: 24px;
+  font-size: 22px;
   padding: 0;
+  margin-bottom: 10px;
   border: none;
   background: none;
 
@@ -40,79 +54,106 @@ const StyledEmail = styled.button`
   &:focus {
     outline: none;
   }
+
+  ${media.sm`
+    font-size: 24px;
+    margin-bottom: 0;
+  `};
 `;
 
-const StyledIconList = styled.div`
-  display: flex;
-  align-items: center;
+const StyledButtonsRow = styled.div`
+  flex-wrap: wrap-reverse;
+
+  ${media.sm`
+    margin-top: 25px;
+  `};
 `;
 
-const StyledGetInTouchWrapper = styled.div`
-  display: flex;
-  align-items: center;
+const StyledResumeButtonWrapper = styled.div`
+  margin-right: 30px;
+
+  ${media.sm`
+    margin-right:40px;
+  `};
+`;
+
+const StyledButtonLink = styled.a`
+  text-decoration: none;
+  color: ${({ theme }) => theme.black};
+`;
+
+const StyledButtonText = styled.span`
+  font-size: 12px;
+  font-weight: bold;
+  margin-right: 10px;
+  text-transform: uppercase;
+
+  ${media.sm`
+    font-size: 14px;
+  `};
+`;
+
+const StyledSocialLinksWrapper = styled.div`
+  padding: 10px 0;
+
+  ${media.sm`
+    padding: 0;
+  `};
+`;
+
+const StyledLeftCol = styled(Col)`
+  flex: 1 1 ${(8 * 100) / 12}%;
+`;
+
+const StyledRightCol = styled(Col)`
+  flex: 1 1 ${(4 * 100) / 12}%;
+  display: none;
+
+  ${media.md`
+    display: block;
+  `};
 `;
 
 const Contact = () => {
-  const [copyMessage, setCopyMessage] = useState(null);
-
-  /*
-   * @description: Copy text to clipboard
-   * @link: https://github.com/feross/clipboard-copy/blob/master/index.js
-   */
-  const handleCopy = () => {
-    const span = document.createElement('span');
-    span.textContent = EMAIL;
-
-    // Preserve consecutive spaces and newlines
-    span.style.whiteSpace = 'pre';
-
-    // Add the <span> to the page
-    document.body.appendChild(span);
-
-    // Make a selection object representing the range of text selected by the user
-    const selection = window.getSelection();
-    const range = window.document.createRange();
-    selection.removeAllRanges();
-    range.selectNode(span);
-    selection.addRange(range);
-
-    // Copy text to the clipboard
-    try {
-      window.document.execCommand('copy');
-      // Cleanup
-      selection.removeAllRanges();
-      window.document.body.removeChild(span);
-      setCopyMessage('Copied!');
-    } catch (err) {
-      setCopyMessage('Unable to copy');
-    }
-  };
+  const { handleCopy, copyMessage } = useCopy();
 
   return (
     <Layout>
       <Container>
         <Block>
-          <StyledPageTitle>Contact</StyledPageTitle>
+          <PageTitle>Contact</PageTitle>
         </Block>
         <section>
           <Block>
-            <StyledGetInTouchWrapper>
-              <div>
-                <h2>GET IN TOUCH</h2>
-                <StyledEmail type="button" aria-label="Copy email to clipboard" onClick={handleCopy}>
+            <Row className="align-items-center">
+              <StyledLeftCol>
+                <StyledSectionHeader>GET IN TOUCH</StyledSectionHeader>
+                <StyledEmail type="button" aria-label="Copy email to clipboard" onClick={() => handleCopy(EMAIL)}>
                   {EMAIL}
                 </StyledEmail>
                 {<span>{copyMessage}</span> || null}
-                <StyledIconList>
-                  {SOCIAL_LINKS.map(socialLink => (
-                    <Icon key={socialLink.name} icon={socialLink} />
-                  ))}
-                </StyledIconList>
-              </div>
-              <div>
+                <StyledButtonsRow className="d-flex align-items-center">
+                  <StyledResumeButtonWrapper>
+                    <StyledButtonLink href={RESUME_LINK} target="_blank" rel="noreferrer noopener">
+                      <Button>
+                        <div className="d-flex align-items-center">
+                          <StyledButtonText>Resume</StyledButtonText>
+                          <Icon src={text_document_icon} alt="resume" />
+                        </div>
+                      </Button>
+                    </StyledButtonLink>
+                  </StyledResumeButtonWrapper>
+                  <StyledSocialLinksWrapper className="d-flex align-items-center">
+                    {SOCIAL_LINKS.map(socialLink => (
+                      <IconLink key={socialLink.name} icon={socialLink} />
+                    ))}
+                  </StyledSocialLinksWrapper>
+                </StyledButtonsRow>
+              </StyledLeftCol>
+              <StyledRightCol>
                 <LayerImage src={typing_hands} alt="Get in touch" />
-              </div>
-            </StyledGetInTouchWrapper>
+              </StyledRightCol>
+            </Row>
           </Block>
         </section>
       </Container>
