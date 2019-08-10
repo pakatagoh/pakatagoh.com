@@ -1,6 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { media } from '../styles/sizes';
+
+const IMAGE_SIZE = {
+  lg: '400px',
+  md: '250px',
+};
 
 const StyledWrapper = styled.div`
   padding-top: 15px;
@@ -8,15 +14,25 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledBackgroundLayer = styled.div`
-  width: 400px;
-  height: 400px;
+  width: ${IMAGE_SIZE.md};
+  height: ${IMAGE_SIZE.md};
   background-color: ${({ theme }) => theme.secondary.base};
+
+  ${media.lg`
+  width: ${IMAGE_SIZE.lg}
+  height: ${IMAGE_SIZE.lg}
+  `};
 `;
 
 const StyledImageWrapper = styled.div`
-  width: 400px;
-  height: 400px;
+  width: ${IMAGE_SIZE.md};
+  height: ${IMAGE_SIZE.md};
   transform: translate(-15px, -15px);
+
+  ${media.lg`
+  width: ${IMAGE_SIZE.lg}
+  height: ${IMAGE_SIZE.lg}
+  `};
 `;
 
 const StyledImage = styled.img`
