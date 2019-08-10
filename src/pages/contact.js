@@ -11,7 +11,6 @@ import Button from '../components/Button';
 import Icon from '../components/Icon';
 import PageTitle from '../components/PageTitle';
 import Row from '../components/Row';
-import useCopy from '../hooks/useCopy';
 
 import linkedIn_logo from '../images/linkedin_logo.svg';
 import github_logo from '../images/github_logo.svg';
@@ -20,6 +19,7 @@ import instagram_logo from '../images/instagram_logo.svg';
 import typing_hands from '../images/typing-hands.jpg';
 import text_document_icon from '../images/text_document_icon.svg';
 import Col from '../components/Col';
+import CopyButton from '../components/CopyButton';
 
 const SOCIAL_LINKS = [
   { name: 'LinkedIn', src: linkedIn_logo, to: 'https://linkedin.com/in/pakata-goh/' },
@@ -38,25 +38,10 @@ const StyledSectionHeader = styled.h2`
   `};
 `;
 
-const StyledEmail = styled.button`
-  font-family: 'Roboto Condensed', 'Georgia', 'serif';
-  font-size: 22px;
-  padding: 0;
+const StyledCopyButtonWrapper = styled.div`
   margin-bottom: 10px;
-  border: none;
-  background: none;
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  &:active,
-  &:focus {
-    outline: none;
-  }
 
   ${media.sm`
-    font-size: 24px;
     margin-bottom: 0;
   `};
 `;
@@ -115,8 +100,6 @@ const StyledRightCol = styled(Col)`
 `;
 
 const Contact = () => {
-  const { handleCopy, copyMessage } = useCopy();
-
   return (
     <Layout>
       <Container>
@@ -128,10 +111,9 @@ const Contact = () => {
             <Row className="align-items-center">
               <StyledLeftCol>
                 <StyledSectionHeader>GET IN TOUCH</StyledSectionHeader>
-                <StyledEmail type="button" aria-label="Copy email to clipboard" onClick={() => handleCopy(EMAIL)}>
-                  {EMAIL}
-                </StyledEmail>
-                {<span>{copyMessage}</span> || null}
+                <StyledCopyButtonWrapper>
+                  <CopyButton text={EMAIL} />
+                </StyledCopyButtonWrapper>
                 <StyledButtonsRow className="d-flex align-items-center">
                   <StyledResumeButtonWrapper>
                     <StyledButtonLink href={RESUME_LINK} target="_blank" rel="noreferrer noopener">
