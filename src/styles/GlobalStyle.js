@@ -14,6 +14,22 @@ const GlobalStyle = createGlobalStyle`
   *, *:before, *:after {
   box-sizing: inherit;
   }
+
+  .d-flex {
+    display: flex;
+  }
+
+  .align-items-center {
+    align-items: center;
+  }
+
+  .justify-content-center {
+    justify-content: center;
+  }
+
+  .justify-content-space-between {
+    justify-content: space-between;
+  }
 `;
 
 export default GlobalStyle;
