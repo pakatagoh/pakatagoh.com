@@ -1,5 +1,6 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
+import Img from 'gatsby-image';
 import styled from 'styled-components';
 import { media } from '../styles/sizes';
 import Layout from '../components/Layout';
@@ -58,11 +59,21 @@ const StyledSubtitle = styled.p`
   `}
 `;
 
-const StyledLeftCol = styled(Col)`
+const StyledGatsbyImageWide = styled(Img)`
+  & img {
+    margin-bottom: 0;
+  }
+
+  ${media.md`
+    display: none;
+  `};
+`;
+
+const StyledAboutLeftCol = styled(Col)`
   flex: 1 1 ${(8 * 100) / 12}%;
 `;
 
-const StyledRightCol = styled(Col)`
+const StyledAboutRightCol = styled(Col)`
   flex: 1 1 ${(4 * 100) / 12}%;
   display: none;
 
@@ -74,9 +85,16 @@ const StyledRightCol = styled(Col)`
 const About = () => {
   const data = useStaticQuery(graphql`
     query pgImageQuery {
-      pgImage: file(relativePath: { eq: "pg-headshot.jpg" }) {
+      pgImageSquare: file(relativePath: { eq: "pg-headshot.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 400) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      pgImageWide: file(relativePath: { eq: "pg-headshot16x9.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 768, quality: 70) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -84,14 +102,16 @@ const About = () => {
     }
   `);
 
-  const { fluid } = data.pgImage.childImageSharp;
+  const { fluid: fluidSquare } = data.pgImageSquare.childImageSharp;
+  const { fluid: fluidWide } = data.pgImageWide.childImageSharp;
+
   return (
     <Layout>
       <Container>
         <section>
           <Block>
             <Row className="align-items-center">
-              <StyledLeftCol>
+              <StyledAboutLeftCol>
                 <StyledH1>
                   Hey! I&apos;m <span>Pakata</span>
                 </StyledH1>
@@ -99,11 +119,12 @@ const About = () => {
                   A software developer from Singapore specializing in JavaScript. In this personal site, I write about
                   things I&apos;ve learnt and hopefully you&apos;ll learn a thing or two from me.
                 </StyledSubtitle>
+                <StyledGatsbyImageWide fluid={fluidWide} alt="Pakata Goh" />
                 <IconList />
-              </StyledLeftCol>
-              <StyledRightCol>
-                <LayerImage fluid={fluid} alt="Pakata Goh" />
-              </StyledRightCol>
+              </StyledAboutLeftCol>
+              <StyledAboutRightCol>
+                <LayerImage fluid={fluidSquare} alt="Pakata Goh" />
+              </StyledAboutRightCol>
             </Row>
           </Block>
         </section>
