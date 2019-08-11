@@ -82,6 +82,14 @@ const StyledAboutRightCol = styled(Col)`
   `};
 `;
 
+const StyledTechCol = styled(Col)`
+  flex: 1 1 100%;
+
+  ${media.sm`
+    flex: 1 1 ${(3 * 100) / 12}%;
+  `};
+`;
+
 const About = () => {
   const data = useStaticQuery(graphql`
     query pgImageQuery {
@@ -132,6 +140,13 @@ const About = () => {
           <Block>
             <StyledSectionHeader>TECHNOLOGIES</StyledSectionHeader>
             <StyledSubtitle>I build applications using the React and Node.js ecosystem</StyledSubtitle>
+            <Row>
+              <StyledTechCol>
+                <div style={{ textAlign: 'center' }}>Front-end</div>
+              </StyledTechCol>
+              <StyledTechCol>Back-end</StyledTechCol>
+              <StyledTechCol>Essentials</StyledTechCol>
+            </Row>
           </Block>
         </section>
       </Container>
