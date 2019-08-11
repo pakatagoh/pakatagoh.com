@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import '../styles/fonts.css';
+import '../styles/icons.css';
 import GlobalStyle from '../styles/GlobalStyle';
 import StyledTheme from '../styles/StyledTheme';
 import Header from './Header';
@@ -30,8 +31,8 @@ const StyledMainWrapper = styled.div`
 const Layout = ({ children }) => {
   return (
     <>
-      <GlobalStyle />
       <StyledTheme>
+        <GlobalStyle />
         <StyledPageWrapper>
           <Header />
           <StyledMainWrapper>
