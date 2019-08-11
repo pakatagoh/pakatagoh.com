@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Img from 'gatsby-image';
 import styled from 'styled-components';
 import { media } from '../styles/sizes';
 
@@ -35,20 +36,22 @@ const StyledImageWrapper = styled.div`
   `};
 `;
 
-const StyledImage = styled.img`
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  object-fit: cover;
-  object-position: center;
+const StyledGatsbyImage = styled(Img)`
+  & img {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    object-fit: cover;
+    object-position: center;
+  }
 `;
 
-const LayerImage = ({ src, alt }) => {
+const LayerImage = ({ fluid, alt }) => {
   return (
     <StyledWrapper>
       <StyledBackgroundLayer>
         <StyledImageWrapper>
-          <StyledImage src={src} alt={alt} />
+          <StyledGatsbyImage fluid={fluid} alt={alt} />
         </StyledImageWrapper>
       </StyledBackgroundLayer>
     </StyledWrapper>
@@ -56,7 +59,13 @@ const LayerImage = ({ src, alt }) => {
 };
 
 LayerImage.propTypes = {
-  src: PropTypes.string.isRequired,
+  fluid: PropTypes.shape({
+    base64: PropTypes.string,
+    aspectRatio: PropTypes.number,
+    src: PropTypes.string,
+    srcSet: PropTypes.string,
+    sizes: PropTypes.string,
+  }),
   alt: PropTypes.string.isRequired,
 };
 
