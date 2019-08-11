@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import React from 'react';
 import Container from './Container';
 import { media } from '../styles/sizes';
-import logo from '../images/Logo.svg';
+import logo from '../assets/icons/Logo.svg';
 
 const NAVLINKS = ['projects', 'blog', 'about', 'contact'];
 const ACTIVE = 'active';

@@ -13,10 +13,10 @@ import ButtonLink from '../components/ButtonLink';
 import SocialIconLink from '../components/SocialIconLink';
 import LayerImage from '../components/LayerImage';
 
-import linkedIn_logo from '../images/linkedin_logo.svg';
-import github_logo from '../images/github_logo.svg';
-import twitter_logo from '../images/twitter_logo.svg';
-import instagram_logo from '../images/instagram_logo.svg';
+import linkedIn_logo from '../assets/icons/linkedin_logo.svg';
+import github_logo from '../assets/icons/github_logo.svg';
+import twitter_logo from '../assets/icons/twitter_logo.svg';
+import instagram_logo from '../assets/icons/instagram_logo.svg';
 import typing_hands from '../images/typing-hands.jpg';
 
 const SOCIAL_LINKS = [
