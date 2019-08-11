@@ -95,7 +95,7 @@ const Contact = () => {
     query contactImageQuery {
       contactImage: file(relativePath: { eq: "typing-hands.jpg" }) {
         childImageSharp {
-          fluid(maxWidth: 400, quality: 100) {
+          fluid(maxWidth: 400) {
             ...GatsbyImageSharpFluid
           }
         }
