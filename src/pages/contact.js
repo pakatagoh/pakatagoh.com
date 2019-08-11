@@ -4,22 +4,20 @@ import styled from 'styled-components';
 import { media } from '../styles/sizes';
 import Layout from '../components/Layout';
 import Container from '../components/Container';
-import Block from '../components/Block';
-import IconLink from '../components/IconLink';
-import LayerImage from '../components/LayerImage';
-import Button from '../components/Button';
-import Icon from '../components/Icon';
-import PageTitle from '../components/PageTitle';
 import Row from '../components/Row';
+import Col from '../components/Col';
+import Block from '../components/Block';
+import PageTitle from '../components/PageTitle';
+import CopyButton from '../components/CopyButton';
+import ButtonLink from '../components/ButtonLink';
+import SocialIconLink from '../components/SocialIconLink';
+import LayerImage from '../components/LayerImage';
 
 import linkedIn_logo from '../images/linkedin_logo.svg';
 import github_logo from '../images/github_logo.svg';
 import twitter_logo from '../images/twitter_logo.svg';
 import instagram_logo from '../images/instagram_logo.svg';
 import typing_hands from '../images/typing-hands.jpg';
-import text_document_icon from '../images/text_document_icon.svg';
-import Col from '../components/Col';
-import CopyButton from '../components/CopyButton';
 
 const SOCIAL_LINKS = [
   { name: 'LinkedIn', src: linkedIn_logo, to: 'https://linkedin.com/in/pakata-goh/' },
@@ -62,27 +60,19 @@ const StyledResumeButtonWrapper = styled.div`
   `};
 `;
 
-const StyledButtonLink = styled.a`
-  text-decoration: none;
-  color: ${({ theme }) => theme.black};
-`;
-
-const StyledButtonText = styled.span`
-  font-size: 12px;
-  font-weight: bold;
-  margin-right: 10px;
-  text-transform: uppercase;
-
-  ${media.sm`
-    font-size: 14px;
-  `};
-`;
-
-const StyledSocialLinksWrapper = styled.div`
+const StyledSocialIconLinksWrapper = styled.div`
   padding: 10px 0;
 
   ${media.sm`
     padding: 0;
+  `};
+`;
+
+const StyledSocialIconLinkWrapper = styled.div`
+  margin-right: 20px;
+
+  ${media.sm`
+    margin: 0 15px;
   `};
 `;
 
@@ -116,20 +106,17 @@ const Contact = () => {
                 </StyledCopyButtonWrapper>
                 <StyledButtonsRow className="d-flex align-items-center">
                   <StyledResumeButtonWrapper>
-                    <StyledButtonLink href={RESUME_LINK} target="_blank" rel="noreferrer noopener">
-                      <Button>
-                        <div className="d-flex align-items-center">
-                          <StyledButtonText>Resume</StyledButtonText>
-                          <Icon src={text_document_icon} alt="resume" />
-                        </div>
-                      </Button>
-                    </StyledButtonLink>
+                    <ButtonLink href={RESUME_LINK} iconClassName="icon-text_document" iconSize="sm">
+                      RESUME
+                    </ButtonLink>
                   </StyledResumeButtonWrapper>
-                  <StyledSocialLinksWrapper className="d-flex align-items-center">
+                  <StyledSocialIconLinksWrapper className="d-flex align-items-center">
                     {SOCIAL_LINKS.map(socialLink => (
-                      <IconLink key={socialLink.name} icon={socialLink} />
+                      <StyledSocialIconLinkWrapper key={socialLink.name}>
+                        <SocialIconLink icon={socialLink} />
+                      </StyledSocialIconLinkWrapper>
                     ))}
-                  </StyledSocialLinksWrapper>
+                  </StyledSocialIconLinksWrapper>
                 </StyledButtonsRow>
               </StyledLeftCol>
               <StyledRightCol>
