@@ -2,11 +2,11 @@
 /* Rendered using Icomoon https://icomoon.io*/
 @font-face {
   font-family: 'pgIcon';
-  src: url('../assets/icons/pgIcon.eot?h10275');
-  src: url('../assets/icons/pgIcon.eot?h10275#iefix') format('embedded-opentype'),
-    url('../assets/icons/pgIcon.ttf?h10275') format('truetype'),
-    url('../assets/icons/pgIcon.woff?h10275') format('woff'),
-    url('../assets/icons/pgIcon.svg?h10275#pgIcon') format('svg');
+  src: url('../assets/icons/pgIcon.eot?9s3nib');
+  src: url('../assets/icons/pgIcon.eot?9s3nib#iefix') format('embedded-opentype'),
+    url('../assets/icons/pgIcon.ttf?9s3nib') format('truetype'),
+    url('../assets/icons/pgIcon.woff?9s3nib') format('woff'),
+    url('../assets/icons/pgIcon.svg?9s3nib#pgIcon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -26,6 +26,15 @@ i {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-checklist:before {
+  content: '\e905';
+}
+.icon-computer:before {
+  content: '\e906';
+}
+.icon-database:before {
+  content: '\e907';
+}
 .icon-github:before {
   content: '\e900';
 }
@@ -35,7 +44,7 @@ i {
 .icon-linkedin:before {
   content: '\e902';
 }
-.icon-text_document::before {
+.icon-text_document:before {
   content: '\e903';
 }
 .icon-twitter:before {
