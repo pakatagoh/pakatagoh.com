@@ -7,17 +7,44 @@ import { media } from '../styles/sizes';
 const IMAGE_SIZE = {
   lg: '400px',
   md: '250px',
+  sm: '175px',
+  xs: '100px',
 };
 
 const StyledWrapper = styled.div`
-  padding-top: 15px;
-  padding-left: 15px;
+  padding-top: 5px;
+  padding-left: 5px;
+
+  ${media.sm`
+    padding-top: 7px;
+    padding-left: 7px
+  `};
+
+  ${media.md`
+    padding-top: 10px;
+    padding-left: 10px
+  `};
+
+  ${media.lg`
+    padding-top: 15px;
+    padding-left: 15px
+  `};
 `;
 
 const StyledBackgroundLayer = styled.div`
-  width: ${IMAGE_SIZE.md};
-  height: ${IMAGE_SIZE.md};
+  width: ${IMAGE_SIZE.xs};
+  height: ${IMAGE_SIZE.xs};
   background-color: ${({ theme }) => theme.secondary.base};
+
+  ${media.sm`
+  width: ${IMAGE_SIZE.sm}
+  height: ${IMAGE_SIZE.sm}
+  `};
+
+  ${media.md`
+  width: ${IMAGE_SIZE.md}
+  height: ${IMAGE_SIZE.md}
+  `};
 
   ${media.lg`
   width: ${IMAGE_SIZE.lg}
@@ -26,24 +53,33 @@ const StyledBackgroundLayer = styled.div`
 `;
 
 const StyledImageWrapper = styled.div`
-  width: ${IMAGE_SIZE.md};
-  height: ${IMAGE_SIZE.md};
-  transform: translate(-15px, -15px);
+  width: ${IMAGE_SIZE.xs};
+  height: ${IMAGE_SIZE.xs};
+  transform: translate(-5px, -5px);
+
+  ${media.sm`
+  width: ${IMAGE_SIZE.sm}
+  height: ${IMAGE_SIZE.sm}
+  transform: translate(-7px, -7px);
+  `};
+
+  ${media.md`
+  width: ${IMAGE_SIZE.md}
+  height: ${IMAGE_SIZE.md}
+  transform: translate(-7px, -7px);
+  `};
+
+  ${media.md`
+  width: ${IMAGE_SIZE.md}
+  height: ${IMAGE_SIZE.md}
+  transform: translate(-10px, -10px);
+  `};
 
   ${media.lg`
   width: ${IMAGE_SIZE.lg}
   height: ${IMAGE_SIZE.lg}
+  transform: translate(-15px, -15px);
   `};
-`;
-
-const StyledGatsbyImage = styled(Img)`
-  & img {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    object-fit: cover;
-    object-position: center;
-  }
 `;
 
 const LayerImage = ({ fluid, alt }) => {
@@ -51,7 +87,7 @@ const LayerImage = ({ fluid, alt }) => {
     <StyledWrapper>
       <StyledBackgroundLayer>
         <StyledImageWrapper>
-          <StyledGatsbyImage fluid={fluid} alt={alt} />
+          <Img fluid={fluid} alt={alt} />
         </StyledImageWrapper>
       </StyledBackgroundLayer>
     </StyledWrapper>
