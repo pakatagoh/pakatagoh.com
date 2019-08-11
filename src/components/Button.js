@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { media } from '../styles/sizes';
 
 const StyledButton = styled.div`
-  padding: 8px 15px;
+  padding: 6px 12px;
   display: inline-block;
   border: none;
   background-color: ${({ color, theme }) => (theme[color] ? theme[color].base : theme.primary.base)};
@@ -17,6 +18,10 @@ const StyledButton = styled.div`
     background-color: ${({ color, theme }) => (theme[color] ? theme[color].pressed : theme.primary.pressed)};
     box-shadow: ${({ theme }) => theme.shadow.pressed};
   }
+
+  ${media.sm`
+    padding: 8px 15px;  
+  `};
 `;
 
 const Button = ({ children, color }) => {
