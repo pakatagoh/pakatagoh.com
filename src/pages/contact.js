@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 import React from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import { media } from '../styles/sizes';
 import Layout from '../components/Layout';
@@ -17,7 +18,7 @@ import linkedIn_logo from '../assets/icons/linkedin_logo.svg';
 import github_logo from '../assets/icons/github_logo.svg';
 import twitter_logo from '../assets/icons/twitter_logo.svg';
 import instagram_logo from '../assets/icons/instagram_logo.svg';
-import typing_hands from '../images/typing-hands.jpg';
+// import typing_hands from '../images/typing-hands.jpg';
 
 const SOCIAL_LINKS = [
   { name: 'LinkedIn', src: linkedIn_logo, to: 'https://linkedin.com/in/pakata-goh/' },
@@ -90,6 +91,20 @@ const StyledRightCol = styled(Col)`
 `;
 
 const Contact = () => {
+  const data = useStaticQuery(graphql`
+    query contactImageQuery {
+      contactImage: file(relativePath: { eq: "typing-hands.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 400, quality: 100) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  `);
+
+  const { fluid } = data.contactImage.childImageSharp;
+
   return (
     <Layout>
       <Container>
@@ -120,7 +135,7 @@ const Contact = () => {
                 </StyledButtonsRow>
               </StyledLeftCol>
               <StyledRightCol>
-                <LayerImage src={typing_hands} alt="Get in touch" />
+                <LayerImage fluid={fluid} alt="Get in touch" />
               </StyledRightCol>
             </Row>
           </Block>
