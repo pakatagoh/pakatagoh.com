@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { media } from './sizes';
 
 const GlobalStyle = createGlobalStyle`
 
@@ -15,6 +16,8 @@ const GlobalStyle = createGlobalStyle`
   box-sizing: inherit;
   }
 
+
+  /* Flex utlities */
   .d-flex {
     display: flex;
   }
@@ -29,6 +32,32 @@ const GlobalStyle = createGlobalStyle`
 
   .justify-content-space-between {
     justify-content: space-between;
+  }
+
+  /* icons */
+  i {
+    color: ${({ theme }) => theme.black};
+    font-size: 0.85rem;
+
+    ${media.sm`
+      font-size: 1rem;
+    `};
+  }
+
+  .icon-sm {
+    font-size: 1.05rem;
+
+    ${media.sm`
+      font-size: 1.25rem;
+    `};
+  }
+
+  .icon-md {
+    font-size: 1.3rem;
+
+    ${media.sm`
+      font-size: 1.5rem;
+    `};
   }
 `;
 
