@@ -12,6 +12,7 @@ import PageTitle from '../components/PageTitle';
 import CopyButton from '../components/CopyButton';
 import LayerImage from '../components/LayerImage';
 import IconList from '../components/IconList';
+import SEO from '../components/SEO';
 
 const EMAIL = 'pakatagohlh@gmail.com';
 
@@ -62,6 +63,7 @@ const Contact = () => {
 
   return (
     <Layout>
+      <SEO title="Contact" />
       <Container>
         <PageTitle>Contact</PageTitle>
         <section>

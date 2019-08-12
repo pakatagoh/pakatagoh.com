@@ -1,6 +1,7 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
+import SEO from '../components/SEO';
 import { media } from '../styles/sizes';
 import Layout from '../components/Layout';
 import Block from '../components/Block';
@@ -103,6 +104,7 @@ const IndexPage = () => {
 
   return (
     <Layout>
+      <SEO title="Home" />
       <Container>
         <section>
           <Block>
