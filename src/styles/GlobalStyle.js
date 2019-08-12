@@ -16,6 +16,24 @@ const GlobalStyle = createGlobalStyle`
   box-sizing: inherit;
   }
 
+  /* Display utlities */
+  .d-block {
+    display: block;
+  }
+
+  .d-none {
+    display: none;
+  }
+  
+  ${media.md`
+    .d-md-block {
+      display: block;
+    }
+
+    .d-md-none {
+      display: none;
+    }
+  `};
 
   /* Flex utlities */
   .d-flex {
