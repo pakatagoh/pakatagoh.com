@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Img from 'gatsby-image';
 import styled from 'styled-components';
 import { media } from '../styles/sizes';
+import Image from './Image';
 
 const IMAGE_SIZE = {
   lg: '400px',
@@ -88,7 +88,7 @@ const LayerImage = ({ fluid, alt }) => {
     <StyledWrapper>
       <StyledBackgroundLayer>
         <StyledImageWrapper>
-          <Img fluid={fluid} alt={alt} />
+          <Image fluid={fluid} alt={alt} />
         </StyledImageWrapper>
       </StyledBackgroundLayer>
     </StyledWrapper>
