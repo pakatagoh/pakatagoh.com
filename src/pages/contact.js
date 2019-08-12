@@ -63,9 +63,7 @@ const Contact = () => {
   return (
     <Layout>
       <Container>
-        <Block>
-          <PageTitle>Contact</PageTitle>
-        </Block>
+        <PageTitle>Contact</PageTitle>
         <section>
           <Block>
             <Row className="align-items-center">
