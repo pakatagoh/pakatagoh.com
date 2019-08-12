@@ -13,6 +13,7 @@ import IconList from '../components/IconList';
 import BorderList from '../components/BorderList';
 import Image from '../components/Image';
 import Subtitle from '../components/Subtitle';
+import UnderConstruction from '../components/UnderConstruction';
 
 const TECH_LISTS = [
   {
@@ -133,12 +134,7 @@ const IndexPage = () => {
           </StyledTechRow>
         </Section>
         <Section header="LATEST POSTS">
-          <p>
-            Under construction...
-            <span role="img" aria-label="sad face emoji">
-              😥
-            </span>
-          </p>
+          <UnderConstruction />
         </Section>
       </Container>
     </Layout>
