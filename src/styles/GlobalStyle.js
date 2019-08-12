@@ -22,6 +22,10 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
   }
 
+  .flex-row-wrap {
+    flex-wrap: wrap;
+  }
+
   .align-items-center {
     align-items: center;
   }
