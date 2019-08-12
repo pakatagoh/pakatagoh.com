@@ -35,6 +35,7 @@ const StyledBackgroundLayer = styled.div`
   width: ${IMAGE_SIZE.xs};
   height: ${IMAGE_SIZE.xs};
   background-color: ${({ theme }) => theme.secondary.base};
+  box-shadow: ${({ theme }) => theme.shadow.hover};
 
   ${media.sm`
   width: ${IMAGE_SIZE.sm}
