@@ -32,11 +32,12 @@ const StyledCopyButtonWrapper = styled.div`
 `;
 
 const StyledLeftCol = styled(Col)`
-  flex: 1 1 ${(8 * 100) / 12}%;
+  ${media.md`
+    flex: 1 1 auto;
+  `};
 `;
 
 const StyledRightCol = styled(Col)`
-  flex: 1 1 ${(4 * 100) / 12}%;
   display: none;
 
   ${media.md`
