@@ -1,15 +1,18 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import Img from 'gatsby-image';
 import styled from 'styled-components';
 import { media } from '../styles/sizes';
 import Layout from '../components/Layout';
 import Block from '../components/Block';
 import Container from '../components/Container';
+import Section from '../components/Section';
 import Row from '../components/Row';
 import Col from '../components/Col';
 import LayerImage from '../components/LayerImage';
 import IconList from '../components/IconList';
+import BorderList from '../components/BorderList';
+import Image from '../components/Image';
+import Subtitle from '../components/Subtitle';
 
 const TECH_LISTS = [
   {
@@ -51,92 +54,8 @@ const StyledH1 = styled.h1`
   `};
 `;
 
-const StyledSectionHeader = styled.h2`
-  margin-bottom: 0.6rem;
-
-  ${media.sm`
-    margin-bottom: 0.85rem;
-  `};
-`;
-
-const StyledSubtitle = styled.p`
-  font-size: 1.05rem;
-  line-height: 1.33;
-  margin-bottom: 1rem;
-
-  ${media.sm`
-    font-size: 1.25rem;
-    line-height: 1.45;
-    margin-bottom: 1.2rem;
-  `}
-
-  ${media.lg`
-    font-size: 1.33rem;
-    line-height: 1.6;
-    margin-bottom: 1.6rem;
-  `}
-`;
-
-const StyledListHeader = styled.h3`
-  font-family: 'Roboto Condensed', 'Georgia', 'serif';
-  font-size: 1.2rem;
-  font-weight: normal;
-  margin: 0;
-  text-align: center;
-
-  ${media.sm`
-    font-size: 1.3rem;
-  `};
-`;
-
-const StyledList = styled.ul`
-  margin: 1rem 0 0 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  list-style: none;
-
-  & li {
-    font-size: 0.8rem;
-    text-align: center;
-
-    &:last-of-type {
-      margin: 0;
-    }
-
-    ${media.sm`
-      font-size: 1rem;
-    `};
-  }
-`;
-
-const StyledGatsbyImageWide = styled(Img)`
-  & img {
-    margin-bottom: 0;
-  }
-
-  ${media.md`
-    display: none;
-  `};
-`;
-
-const StyledListWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  padding: 15px;
-  border: 1px solid ${({ theme }) => theme.gray3};
-`;
-
 const StyledAboutLeftCol = styled(Col)`
   flex: 1 1 auto;
-`;
-
-const StyledAboutRightCol = styled(Col)`
-  display: none;
-
-  ${media.md`
-    display: block;
-  `};
 `;
 
 const StyledTechRow = styled(Row)`
@@ -191,52 +110,36 @@ const IndexPage = () => {
                 <StyledH1>
                   Hey! I&apos;m <span>Pakata</span>
                 </StyledH1>
-                <StyledSubtitle>
+                <Subtitle>
                   A software developer from Singapore specializing in JavaScript. In this personal site, I write about
                   things I&apos;ve learnt and hopefully you&apos;ll learn a thing or two from me.
-                </StyledSubtitle>
-                <StyledGatsbyImageWide fluid={fluidWide} alt="Pakata Goh" />
+                </Subtitle>
+                <Image fluid={fluidWide} alt="Pakata Goh" className="d-md-none" />
                 <IconList />
               </StyledAboutLeftCol>
-              <StyledAboutRightCol>
+              <Col className="d-none d-md-block">
                 <LayerImage fluid={fluidSquare} alt="Pakata Goh" />
-              </StyledAboutRightCol>
+              </Col>
             </Row>
           </Block>
         </section>
-        <section>
-          <Block>
-            <StyledSectionHeader>TECHNOLOGIES</StyledSectionHeader>
-            <StyledSubtitle>I build applications using the React and Node.js ecosystem</StyledSubtitle>
-            <StyledTechRow>
-              {TECH_LISTS.map(({ listHeader, icon, items }) => (
-                <StyledTechCol key={listHeader}>
-                  <StyledListWrapper>
-                    <StyledListHeader>
-                      <i className={`${icon} icon-md`} /> {listHeader}
-                    </StyledListHeader>
-                    <StyledList>
-                      {items.map(item => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </StyledList>
-                  </StyledListWrapper>
-                </StyledTechCol>
-              ))}
-            </StyledTechRow>
-          </Block>
-        </section>
-        <section>
-          <Block>
-            <StyledSectionHeader>LATEST POSTS</StyledSectionHeader>
-            <p>
-              Under construction...
-              <span role="img" aria-label="sad face emoji">
-                😥
-              </span>
-            </p>
-          </Block>
-        </section>
+        <Section header="TECHNOLOGIES" subtitle="I build applications using the React and Node.js ecosystem">
+          <StyledTechRow>
+            {TECH_LISTS.map(({ listHeader, icon, items }) => (
+              <StyledTechCol key={listHeader}>
+                <BorderList header={listHeader} iconClassName={icon} items={items} />
+              </StyledTechCol>
+            ))}
+          </StyledTechRow>
+        </Section>
+        <Section header="LATEST POSTS">
+          <p>
+            Under construction...
+            <span role="img" aria-label="sad face emoji">
+              😥
+            </span>
+          </p>
+        </Section>
       </Container>
     </Layout>
   );
