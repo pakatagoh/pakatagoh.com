@@ -10,7 +10,7 @@ const NotFoundPage = () => (
     <Container>
       <PageTitle>NOT FOUND</PageTitle>
       <p>
-        The page you are searching for doesnt exist...{' '}
+        The page you are searching for does not exist...{' '}
         <span role="img" aria-label="shrugging emoji">
           🤷‍♂️
         </span>
