@@ -226,6 +226,17 @@ const IndexPage = () => {
             </StyledTechRow>
           </Block>
         </section>
+        <section>
+          <Block>
+            <StyledSectionHeader>LATEST POSTS</StyledSectionHeader>
+            <p>
+              Under construction...
+              <span role="img" aria-label="sad face emoji">
+                😥
+              </span>
+            </p>
+          </Block>
+        </section>
       </Container>
     </Layout>
   );
