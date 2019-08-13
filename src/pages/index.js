@@ -37,8 +37,8 @@ const TECH_LISTS = [
 
 const StyledH1 = styled.h1`
   font-family: 'Roboto', 'Georgia', 'serif';
-  ${scale(0.68)}
-  margin-bottom: ${rhythm(0.68)};
+  ${scale(7 / 10)}
+  margin-bottom: ${rhythm(4 / 10)};
   font-weight: medium;
 
   & span {
@@ -46,13 +46,13 @@ const StyledH1 = styled.h1`
   }
 
   ${media.sm`
-    ${scale(0.92)}
-    margin-bottom: ${rhythm(0.92)};
+    ${scale(9 / 10)}
+    margin-bottom: ${rhythm(6 / 10)};
   `};
 
   ${media.lg`
     ${scale(1)}
-    margin-bottom: ${rhythm(1)};
+    margin-bottom: ${rhythm(6 / 10)};
   `};
 `;
 
@@ -61,13 +61,12 @@ const StyledAboutLeftCol = styled(Col)`
 `;
 
 const StyledTechRow = styled(Row)`
-  padding-top: 1rem;
   flex-wrap: wrap;
 `;
 
 const StyledTechCol = styled(Col)`
   flex: 0 0 auto;
-  margin-bottom: 0.6rem;
+  margin-bottom: 1rem;
 
   &:last-of-type {
     margin-bottom: 0;
