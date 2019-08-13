@@ -12,4 +12,9 @@ const typography = new Typography({
     },
   }),
 });
+
+const { rhythm, scale, options } = typography;
+
+export { rhythm, scale, options };
+
 export default typography;
