@@ -2,14 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { media } from '../styles/sizes';
+import { rhythm, scale, baseHeaderScale } from '../utils/typography';
 import Block from './Block';
 import Subtitle from './Subtitle';
 
 const StyledSectionHeader = styled.h2`
-  margin-bottom: 0.6rem;
+  ${scale(baseHeaderScale.h2 * (9 / 10))};
+  margin-bottom: ${rhythm(1 / 5)};
 
   ${media.sm`
-    margin-bottom: 0.85rem;
+  ${scale(baseHeaderScale.h2 * (10 / 10))};
+    margin-bottom: ${rhythm(2 / 5)};
+    
   `};
 `;
 const Section = ({ header, subtitle, className, children }) => {
