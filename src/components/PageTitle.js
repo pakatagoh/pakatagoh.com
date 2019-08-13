@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { scale } from '../utils/typography';
 import { media } from '../styles/sizes';
 import Block from './Block';
 
 const StyledPageTitle = styled.h1`
-  font-size: 2.4rem;
+  ${scale(0.83)};
   margin: 0;
 
   ${media.sm`
-    font-size: 2.9rem;
+    ${scale(0.93)};
   `};
   ${media.md`
-    font-size: 3.3rem;
+    ${scale(1)};
   `};
 `;
 
