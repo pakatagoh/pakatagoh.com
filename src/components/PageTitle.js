@@ -6,14 +6,14 @@ import { media } from '../styles/sizes';
 import Block from './Block';
 
 const StyledPageTitle = styled.h1`
-  ${scale(0.83)};
+  ${scale(8 / 10)};
   margin: 0;
 
   ${media.sm`
-    ${scale(0.93)};
+    ${scale(9 / 10)};
   `};
   ${media.md`
-    ${scale(1)};
+    ${scale(10 / 10)};
   `};
 `;
 
