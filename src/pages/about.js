@@ -128,8 +128,7 @@ const About = () => {
         </StyledParagraph>
         <StyledParagraph>
           {`Yes, I'm a self-taught developer. I created this website to further
-          document my journey as a developer and to also share the knowledge I have gained, my learning methods and just
-          as importantly, the struggles I underwent.`}
+          document my journey as a developer and to also share the knowledge I have gained thus far`}
         </StyledParagraph>
         <StyledParagraph>
           {`In my free time, I dabble in a little photography. I love cars and
