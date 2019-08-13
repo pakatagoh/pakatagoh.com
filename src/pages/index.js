@@ -125,7 +125,8 @@ const IndexPage = () => {
             </Row>
           </Block>
         </section>
-        <Section header="TECHNOLOGIES" subtitle="I build applications using the React and Node.js ecosystem">
+        <Section header="TECHNOLOGIES">
+          <p>I build applications using the React and Node.js ecosystem</p>
           <StyledTechRow>
             {TECH_LISTS.map(({ listHeader, icon, items }) => (
               <StyledTechCol key={listHeader}>
