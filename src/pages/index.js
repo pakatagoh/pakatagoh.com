@@ -3,6 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import SEO from '../components/SEO';
 import { media } from '../styles/sizes';
+import { scale, rhythm } from '../utils/typography';
 import Layout from '../components/Layout';
 import Block from '../components/Block';
 import Container from '../components/Container';
@@ -36,8 +37,8 @@ const TECH_LISTS = [
 
 const StyledH1 = styled.h1`
   font-family: 'Roboto', 'Georgia', 'serif';
-  font-size: 2.3rem;
-  margin-bottom: 1rem;
+  ${scale(0.68)}
+  margin-bottom: ${rhythm(0.68)};
   font-weight: medium;
 
   & span {
@@ -45,14 +46,13 @@ const StyledH1 = styled.h1`
   }
 
   ${media.sm`
-    font-size: 2.8rem;
-    margin-bottom: 1.3rem;
+    ${scale(0.92)}
+    margin-bottom: ${rhythm(0.92)};
   `};
 
   ${media.lg`
-    font-size: 3.33rem;
-    margin-bottom: 1.5rem;
-
+    ${scale(1)}
+    margin-bottom: ${rhythm(1)};
   `};
 `;
 
