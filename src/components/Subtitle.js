@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { media } from '../styles/sizes';
+import { options } from '../utils/typography';
 
 const StyledSubtitle = styled.p`
   font-size: 1.05rem;
-  line-height: 1.33;
+  line-height: 1.38;
   margin-bottom: 1rem;
 
   ${media.sm`
@@ -16,8 +17,8 @@ const StyledSubtitle = styled.p`
 
   ${media.lg`
     font-size: 1.33rem;
-    line-height: 1.6;
-    margin-bottom: 1.6rem;
+    line-height: ${options.baseLineHeight};
+    margin-bottom: ${options.baseLineHeight}rem;
   `}
 `;
 
