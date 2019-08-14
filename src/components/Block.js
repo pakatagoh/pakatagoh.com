@@ -14,11 +14,12 @@ const StyledWrapper = styled.div`
   `};
 `;
 
-const Block = ({ children }) => {
-  return <StyledWrapper>{children}</StyledWrapper>;
+const Block = ({ children, className }) => {
+  return <StyledWrapper className={className}>{children}</StyledWrapper>;
 };
 
 Block.propTypes = {
+  className: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
 
