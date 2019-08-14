@@ -10,12 +10,12 @@ import Container from '../components/Container';
 import Row from '../components/Row';
 import Col from '../components/Col';
 import Section from '../components/Section';
+import Block from '../components/Block';
 import PageTitle from '../components/PageTitle';
 import Image from '../components/Image';
 import SocialIconLink from '../components/SocialIconLink';
 
 import instagram_logo from '../assets/icons/instagram_logo.svg';
-import Block from '../components/Block';
 
 const StyledParagraph = styled.p`
   &:last-of-type {
@@ -25,6 +25,17 @@ const StyledParagraph = styled.p`
 
 const StyledSpan = styled.span`
   margin-left: 10px;
+`;
+
+const StyledImage = styled(Image)`
+  &:hover {
+    transform: scale(1.01);
+    box-shadow: ${({ theme }) => theme.shadow.hoverHigh};
+  }
+
+  &:active {
+    box-shadow: ${({ theme }) => theme.shadow.pressedHigh};
+  }
 `;
 
 const StyledImageRow = styled(Row)`
@@ -151,7 +162,7 @@ const About = () => {
           <StyledImageRow>
             {imagesPakaCodes.map(image => (
               <StyledImageCol>
-                <Image fluid={image} />
+                <StyledImage fluid={image} />
               </StyledImageCol>
             ))}
           </StyledImageRow>
@@ -163,7 +174,7 @@ const About = () => {
           <StyledImageRow>
             {imagesPakataGoh.map(image => (
               <StyledImageCol>
-                <Image fluid={image} />
+                <StyledImage fluid={image} />
               </StyledImageCol>
             ))}
           </StyledImageRow>
