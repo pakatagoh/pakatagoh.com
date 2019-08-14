@@ -28,13 +28,18 @@ const StyledSpan = styled.span`
 `;
 
 const StyledImage = styled(Image)`
+  transform: scale(1);
+  box-shadow: none;
+  transition: all 0.15s linear;
+
   &:hover {
-    transform: scale(1.01);
-    box-shadow: ${({ theme }) => theme.shadow.hoverHigh};
+    transform: scale(1.02);
+    box-shadow: ${({ theme }) => theme.shadow.hover};
   }
 
   &:active {
-    box-shadow: ${({ theme }) => theme.shadow.pressedHigh};
+    transform: scale(1.01);
+    box-shadow: ${({ theme }) => theme.shadow.pressed};
   }
 `;
 
