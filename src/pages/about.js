@@ -15,6 +15,7 @@ import Image from '../components/Image';
 import SocialIconLink from '../components/SocialIconLink';
 
 import instagram_logo from '../assets/icons/instagram_logo.svg';
+import Block from '../components/Block';
 
 const StyledParagraph = styled.p`
   &:last-of-type {
@@ -117,23 +118,25 @@ const About = () => {
       <SEO title="About" />
       <Container>
         <PageTitle>ABOUT</PageTitle>
-        <StyledParagraph>
-          {`Hello! I'm Pakata`}
-          <span role="img" aria-label="peace yo">
-            ✌
-          </span>
-          {`I was born in 1990 and raised in the city of Singapore. Interesting fact, my name is a Buddhist name. I
+        <Block>
+          <StyledParagraph>
+            {`Hello! I'm Pakata`}
+            <span role="img" aria-label="peace yo">
+              ✌
+            </span>
+            {`I was born in 1990 and raised in the city of Singapore. Interesting fact, my name is a Buddhist name. I
           graduated with a degree in Mechanical Engineering back in 2015. In July 2018, I decided to leave my job to
           pursue software development as a career.`}
-        </StyledParagraph>
-        <StyledParagraph>
-          {`Yes, I'm a self-taught developer. I created this website to further
+          </StyledParagraph>
+          <StyledParagraph>
+            {`Yes, I'm a self-taught developer. I created this website to further
           document my journey as a developer and to also share the knowledge I have gained thus far`}
-        </StyledParagraph>
-        <StyledParagraph>
-          {`In my free time, I dabble in a little photography. I love cars and
+          </StyledParagraph>
+          <StyledParagraph>
+            {`In my free time, I dabble in a little photography. I love cars and
           I keep up with Formula 1 during race weekends.`}
-        </StyledParagraph>
+          </StyledParagraph>
+        </Block>
         <Section header="PHOTOGRAPHY">
           <p>
             {`Camera: Fujifilm X-H1`}
