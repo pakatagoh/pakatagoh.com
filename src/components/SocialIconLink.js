@@ -19,6 +19,8 @@ const StyledIconBackground = styled.div`
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  box-shadow: none;
+  transition: box-shadow 0.1s linear;
 
   ${media.sm`
     width: ${ICON_LINK_SIZE.sm};
