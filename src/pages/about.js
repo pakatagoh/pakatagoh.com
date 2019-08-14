@@ -69,50 +69,36 @@ const StyledImageCol = styled(Col)`
   `}
 `;
 
+export const fluidImage = graphql`
+  fragment fluidImage on File {
+    childImageSharp {
+      fluid(maxWidth: 576) {
+        ...GatsbyImageSharpFluid
+      }
+    }
+  }
+`;
+
 const About = () => {
   const data = useStaticQuery(graphql`
     query instagramImageQuery {
       pakaCodes_1: file(relativePath: { eq: "instagram-pakacodes-1.jpg" }) {
-        childImageSharp {
-          fluid(maxWidth: 576) {
-            ...GatsbyImageSharpFluid
-          }
-        }
+        ...fluidImage
       }
       pakaCodes_2: file(relativePath: { eq: "instagram-pakacodes-2.jpg" }) {
-        childImageSharp {
-          fluid(maxWidth: 576) {
-            ...GatsbyImageSharpFluid
-          }
-        }
+        ...fluidImage
       }
       pakaCodes_3: file(relativePath: { eq: "instagram-pakacodes-3.jpg" }) {
-        childImageSharp {
-          fluid(maxWidth: 576) {
-            ...GatsbyImageSharpFluid
-          }
-        }
+        ...fluidImage
       }
       pakatagoh_1: file(relativePath: { eq: "instagram-pakatagoh-1.jpg" }) {
-        childImageSharp {
-          fluid(maxWidth: 576) {
-            ...GatsbyImageSharpFluid
-          }
-        }
+        ...fluidImage
       }
       pakatagoh_2: file(relativePath: { eq: "instagram-pakatagoh-2.jpg" }) {
-        childImageSharp {
-          fluid(maxWidth: 576) {
-            ...GatsbyImageSharpFluid
-          }
-        }
+        ...fluidImage
       }
       pakatagoh_3: file(relativePath: { eq: "instagram-pakatagoh-3.jpg" }) {
-        childImageSharp {
-          fluid(maxWidth: 576) {
-            ...GatsbyImageSharpFluid
-          }
-        }
+        ...fluidImage
       }
     }
   `);
