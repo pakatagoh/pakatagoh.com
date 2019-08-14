@@ -8,6 +8,8 @@ const StyledButton = styled.div`
   display: inline-block;
   border: none;
   background-color: ${({ color, theme }) => (theme[color] ? theme[color].base : theme.primary.base)};
+  box-shadow: none;
+  transition: box-shadow 0.1s linear;
 
   &:hover {
     background-color: ${({ color, theme }) => (theme[color] ? theme[color].hover : theme.primary.hover)};
