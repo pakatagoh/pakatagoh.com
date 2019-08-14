@@ -23,7 +23,9 @@ export const theme = {
   },
   shadow: {
     hover: '0 3px 6px 0 rgba(0, 0, 0, 0.16)',
+    hoverHigh: '0px 15px 15px 1px rgba(0, 0, 0, 0.25)',
     pressed: '0 1px 2px 0 rgba(0, 0, 0, 0.39)',
+    pressedHigh: '0 4px 6px 0px rgba(0, 0, 0, 0.45)',
   },
 };
 
