@@ -185,8 +185,8 @@ const About = () => {
         <Section header="TALKS">
           <StyledList>
             {TALKS.map(({ href, name }) => (
-              <StyledListItem>
-                <StyledLink key={name} href={href} target="_blank" rel="noopener noreferrer" aria-label={name}>
+              <StyledListItem key={name}>
+                <StyledLink href={href} target="_blank" rel="noopener noreferrer" aria-label={name}>
                   {name}
                 </StyledLink>
               </StyledListItem>
