@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, css } from 'styled-components';
 import { media } from './sizes';
 
 const GlobalStyle = createGlobalStyle`
@@ -97,6 +97,19 @@ const GlobalStyle = createGlobalStyle`
       border-bottom: 1px solid ${({ theme }) => theme.primary.pressed};
       color: ${({ theme }) => theme.primary.pressed};
     }
+  }
+`;
+
+export const StyledCSSLinkReset = css`
+  &:hover {
+    color: inherit;
+    border-bottom: none;
+    background: none;
+  }
+  &:active {
+    color: inherit;
+    border-bottom: none;
+    background: none;
   }
 `;
 
