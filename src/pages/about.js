@@ -34,12 +34,6 @@ const SETUP = [
   { label: 'Theme', name: 'Monokai++ or Andromeda(Colorizer), depends on my mood' },
 ];
 
-const StyledParagraph = styled.p`
-  &:last-of-type {
-    margin-bottom: 0;
-  }
-`;
-
 const StyledSpan = styled.span`
   margin-left: 10px;
 `;
@@ -82,12 +76,46 @@ const StyledImageRow = styled(Row)`
     flex-wrap: nowrap;
   `}
 `;
+
+const StyledAboutImageCol = styled(Col)`
+  flex: 0 0 100%;
+
+  &:last-of-type {
+    display: none;
+  }
+
+  ${media.sm`
+    flex: 1 1 auto;
+    &:last-of-type {
+      display: none;
+    }
+  `};
+
+  ${media.md`
+    &:last-of-type {
+      display: block;
+    }
+  `};
+`;
+
 const StyledImageCol = styled(Col)`
   flex: 0 0 100%;
   margin-bottom: ${rhythm(1)};
 
+  &:nth-last-of-type(2) {
+    margin-bottom: 0;
+  }
+
+  &:last-of-type {
+    display: none;
+  }
+
   ${media.sm`
     flex: 0 0 50%;
+    &:last-of-type {
+      display: block;
+      margin-bottom: 0;
+    }
   `};
 
   ${media.md`
@@ -136,8 +164,10 @@ const About = () => {
     }
   `);
 
-  const talkImage = data.pg_talk.childImageSharp.fluid;
-  const fsaeImage = data.pg_fsae.childImageSharp.fluid;
+  const aboutImages = [
+    { fluid: data.pg_talk.childImageSharp.fluid, alt: 'Giving software talk' },
+    { fluid: data.pg_fsae.childImageSharp.fluid, alt: 'Win 7th place formula student' },
+  ];
 
   const imagesPakataGoh = [
     { fluid: data.pakatagoh_1.childImageSharp.fluid, alt: 'pakatagoh_1' },
@@ -157,30 +187,41 @@ const About = () => {
       <Container>
         <PageTitle>ABOUT</PageTitle>
         <Block>
-          <StyledParagraph>
+          <p>
             {`Hello! I'm Pakata`}
             <span role="img" aria-label="peace yo">
               ✌
             </span>
-            {`I was born in 1990 and raised in the city of Singapore. My name is a Buddhist name if you're wondering. I attended the National University of Singapore (NUS)
-           and graduated with a degree in mechanical engineering in 2015. During that time I was also involved with the formula student competiton.  In July 2018, I decided to leave my job sales and application engineer in the heavy industry to
+            {`I was born in 1990 and raised in the city of Singapore. My name is a Buddhist name if you're wondering. I attended the `}
+            <a href="https://nus.edu.sg/" target="_blank" rel="noopener noreferrer">
+              National University of Singapore (NUS){' '}
+            </a>
+
+            {`and graduated with a degree in mechanical engineering in 2015. During university, I was part of the Formula Student team competing in the `}
+            <a
+              href="https://www.sae.org/attend/student-events/formula-sae-michigan/about"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Formula Student (FSAE) Michigan{' '}
+            </a>
+            {`competiton.  In July 2018, I decided to leave my job as a technical sales engineer in the heavy industry to
           pursue software development as a career.`}
-          </StyledParagraph>
-          <StyledParagraph>
+          </p>
+          <p>
             {`Yes, I'm a self-taught developer. I created this website to further
           document my journey as a developer and to also share the knowledge I have gained thus far`}
-          </StyledParagraph>
-          <StyledParagraph>
+          </p>
+          <p>
             {`In my free time, I dabble in a little photography. I love cars and
           I keep up with Formula 1 during race weekends.`}
-          </StyledParagraph>
-          <StyledImageRow>
-            <StyledImageCol>
-              <Image fluid={talkImage} alt="pakata talking" />
-            </StyledImageCol>
-            <StyledImageCol>
-              <Image fluid={fsaeImage} alt="pakata fsae" />
-            </StyledImageCol>
+          </p>
+          <StyledImageRow className="justify-content-center">
+            {aboutImages.map(({ fluid, alt }) => (
+              <StyledAboutImageCol key={alt}>
+                <StyledImage fluid={fluid} alt={alt} />
+              </StyledAboutImageCol>
+            ))}
           </StyledImageRow>
         </Block>
         <Section header="TALKS">
