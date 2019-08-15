@@ -20,7 +20,7 @@ const StyledNav = styled.nav`
   }
   & a.${ACTIVE} {
     color: ${({ theme }) => theme.black};
-    /* border-bottom: 5px solid ${({ theme }) => theme.secondary.base}; */
+    border-bottom: 5px solid ${({ theme }) => theme.secondary.base};
   }
 `;
 
@@ -53,7 +53,7 @@ const StyledBrandTitle = styled.span`
 
 const StyledLink = styled(Link)`
   font-size: 1.1rem;
-  /* padding: ${rhythm(1 / 5)} 0; */
+  padding: ${rhythm(1 / 5)} 0;
   margin-left: ${rhythm(3 / 5)};
   color: ${({ theme }) => theme.gray2};
 
