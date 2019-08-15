@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { media } from '../styles/sizes';
+import { rhythm } from '../utils/typography';
 import Container from './Container';
 
 const FOOTER_LINKS = [
@@ -22,7 +23,7 @@ const StyledFooterWrapper = styled.div`
 
 const StyledCopyright = styled.div`
   font-family: 'Bebas Neue Book', 'Segoe UI', 'Arial', 'sans-serif';
-  font-size: 16px;
+  font-size: 0.9rem;
   color: ${({ theme }) => theme.gray1};
   text-align: center;
   flex: 0 0 100%;
@@ -42,7 +43,7 @@ const StyledFooterLinks = styled.ul`
 
   ${media.sm`
     flex: 0 0 auto;
-    margin: 0 0 0 30px;
+    margin: 0 0 0 ${rhythm(1)};
   `};
 `;
 
@@ -50,13 +51,13 @@ const StyledLink = styled.li`
   margin: 0;
 
   & a {
-    font-size: 13px;
+    font-size: 0.7rem;
     margin: 0;
     color: ${({ theme }) => theme.gray1};
     text-decoration: none;
 
     ${media.sm`
-      margin: 0 15px 0 0;
+      margin: 0 ${rhythm(3 / 5)} 0 0;
     `}
   }
 
