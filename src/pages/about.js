@@ -219,7 +219,7 @@ const About = () => {
           <StyledImageRow className="justify-content-center">
             {aboutImages.map(({ fluid, alt }) => (
               <StyledAboutImageCol key={alt}>
-                <StyledImage fluid={fluid} alt={alt} />
+                <Image fluid={fluid} alt={alt} />
               </StyledAboutImageCol>
             ))}
           </StyledImageRow>
