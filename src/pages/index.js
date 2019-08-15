@@ -36,8 +36,7 @@ const TECH_LISTS = [
 ];
 
 const StyledH1 = styled.h1`
-  font-family: 'Roboto', 'Georgia', 'serif';
-  ${scale(7 / 10)}
+  ${scale(8 / 10)}
   margin-bottom: ${rhythm(4 / 10)};
   font-weight: medium;
 
