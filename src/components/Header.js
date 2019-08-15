@@ -41,7 +41,7 @@ const StyledImg = styled.img`
 const StyledBrandTitle = styled.span`
   font-family: 'Bebas Neue', 'Segoe UI', 'Arial', 'sans-serif';
   font-size: 2.1rem;
-  margin-bottom: -3px;
+  margin-bottom: -6px;
   margin-left: ${rhythm(3 / 5)};
   color: ${({ theme }) => theme.black};
   display: none;
