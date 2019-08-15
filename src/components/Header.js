@@ -53,7 +53,7 @@ const StyledBrandTitle = styled.span`
 
 const StyledLink = styled(Link)`
   font-size: 1.1rem;
-  padding-bottom: ${rhythm(1 / 5)};
+  padding: ${rhythm(1 / 5)} 0;
   margin-left: ${rhythm(3 / 5)};
   color: ${({ theme }) => theme.gray2};
 
@@ -66,7 +66,10 @@ const StyledLink = styled(Link)`
     margin-left: ${rhythm(4 / 5)};
   `};
   ${media.md`
-    margin-left: ${rhythm(5 / 5)};
+    margin-left: ${rhythm(6 / 5)};
+  `};
+  ${media.lg`
+    margin-left: ${rhythm(8 / 5)};
   `};
 `;
 
