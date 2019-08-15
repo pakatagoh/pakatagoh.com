@@ -25,7 +25,8 @@ const StyledPageWrapper = styled.div`
 
 const StyledMainWrapper = styled.div`
   /* height of Footer */
-  padding-bottom: 60px;
+  /* see Footer component */
+  padding-bottom: 3rem;
 `;
 
 const Layout = ({ children }) => {

@@ -13,7 +13,8 @@ const FOOTER_LINKS = [
 
 const StyledFooterWrapper = styled.div`
   /* height of Footer */
-  height: 60px;
+  /* see Layout component */
+  height: 3rem;
   display: flex;
   align-items: center;
   flex-wrap: wrap-reverse;
