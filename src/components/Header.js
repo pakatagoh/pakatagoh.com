@@ -5,7 +5,7 @@ import Container from './Container';
 import { media } from '../styles/sizes';
 import logo from '../assets/icons/Logo.svg';
 
-const NAVLINKS = ['projects', 'blog', 'about', 'contact'];
+const NAVLINKS = ['blog', 'about', 'contact'];
 const ACTIVE = 'active';
 
 const StyledNav = styled.nav`
