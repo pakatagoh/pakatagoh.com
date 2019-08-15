@@ -43,6 +43,9 @@ const StyledSocialIconLinksWrapper = styled.div`
 `;
 
 const StyledSocialIconLinkWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-right: 20px;
 
   ${media.sm`
