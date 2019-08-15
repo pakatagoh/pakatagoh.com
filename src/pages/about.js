@@ -169,8 +169,8 @@ const About = () => {
             <span role="img" aria-label="peace yo">
               ✌
             </span>
-            {`I was born in 1990 and raised in the city of Singapore. Interesting fact, my name is a Buddhist name. I
-          graduated with a degree in Mechanical Engineering back in 2015. In July 2018, I decided to leave my job to
+            {`I was born in 1990 and raised in the city of Singapore. My name is a Buddhist name if you're wondering. I
+          graduated with a degree in Mechanical Engineering back in 2015. In July 2018, I decided to leave my job sales and application engineer in the heavy industry to
           pursue software development as a career.`}
           </StyledParagraph>
           <StyledParagraph>
