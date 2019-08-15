@@ -3,13 +3,14 @@ import styled from 'styled-components';
 import React from 'react';
 import Container from './Container';
 import { media } from '../styles/sizes';
+import { rhythm } from '../utils/typography';
 import logo from '../assets/icons/Logo.svg';
 
 const NAVLINKS = ['blog', 'about', 'contact'];
 const ACTIVE = 'active';
 
 const StyledNav = styled.nav`
-  height: 115px;
+  padding: ${rhythm(1)} 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -39,8 +40,9 @@ const StyledImg = styled.img`
 
 const StyledBrandTitle = styled.span`
   font-family: 'Bebas Neue', 'Segoe UI', 'Arial', 'sans-serif';
-  font-size: 38px;
-  margin-left: 15px;
+  font-size: 2.1rem;
+  margin-bottom: -3px;
+  margin-left: ${rhythm(3 / 5)};
   color: ${({ theme }) => theme.black};
   display: none;
 
@@ -50,9 +52,9 @@ const StyledBrandTitle = styled.span`
 `;
 
 const StyledLink = styled(Link)`
-  font-size: 18px;
-  padding-bottom: 6px;
-  margin-left: 18px;
+  font-size: 1.1rem;
+  padding-bottom: ${rhythm(1 / 5)};
+  margin-left: ${rhythm(3 / 5)};
   color: ${({ theme }) => theme.gray2};
 
   &:hover {
@@ -60,11 +62,11 @@ const StyledLink = styled(Link)`
   }
 
   ${media.sm`
-    font-size: 24px;
-    margin-left: 30px
+    font-size: 1.4rem;
+    margin-left: ${rhythm(4 / 5)};
   `};
   ${media.md`
-    margin-left: 60px
+    margin-left: ${rhythm(5 / 5)};
   `};
 `;
 
