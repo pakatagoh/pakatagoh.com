@@ -5,7 +5,8 @@ import { media } from '../styles/sizes';
 
 const StyledButton = styled.div`
   padding: 6px 12px;
-  display: inline-block;
+  display: flex;
+  align-items: center;
   border: none;
   background-color: ${({ color, theme }) => (theme[color] ? theme[color].base : theme.primary.base)};
   box-shadow: none;
