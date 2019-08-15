@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { media } from '../styles/sizes';
 import Button from './Button';
+import { StyledCSSLinkReset } from '../styles/GlobalStyle';
 
 const StyledButtonLink = styled.a`
   text-decoration: none;
   color: ${({ theme }) => theme.black};
+
+  ${StyledCSSLinkReset};
 `;
 
 const StyledButtonText = styled.span`
