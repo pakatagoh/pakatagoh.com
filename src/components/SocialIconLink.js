@@ -33,22 +33,22 @@ const StyledIconLink = styled.a`
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: ${({ theme }) => theme.black};
+  color: ${({ color, theme }) => (theme[color] ? theme[color].base : theme.black)};
 
   &:hover {
-    color: ${({ theme }) => theme.secondary.hover};
+    color: ${({ color, theme }) => (theme[color] ? theme[color].hover : theme.secondary.hover)};
 
     ${StyledIconBackground} {
-      background-color: ${({ theme }) => theme.secondary.hover};
+      background-color: ${({ color, theme }) => (theme[color] ? theme[color].hover : theme.secondary.hover)};
       box-shadow: ${({ theme }) => theme.shadow.hover};
     }
   }
 
   &:active {
-    color: ${({ theme }) => theme.secondary.pressed};
+    color: ${({ color, theme }) => (theme[color] ? theme[color].pressed : theme.secondary.pressed)};
 
     ${StyledIconBackground} {
-      background-color: ${({ theme }) => theme.secondary.pressed};
+      background-color: ${({ color, theme }) => (theme[color] ? theme[color].pressed : theme.secondary.pressed)};
       box-shadow: ${({ theme }) => theme.shadow.pressed};
     }
   }
@@ -73,9 +73,9 @@ const StyledIcon = styled.img`
   margin: 0;
 `;
 
-const SocialIconLink = ({ icon, children }) => {
+const SocialIconLink = ({ icon, color, children }) => {
   return (
-    <StyledIconLink href={icon.to} target="_blank" rel="noreferrer noopener" aria-label={icon.name}>
+    <StyledIconLink color={color} href={icon.to} target="_blank" rel="noreferrer noopener" aria-label={icon.name}>
       <StyledIconBackground>
         <StyledIconWrapper>
           <StyledIcon src={icon.src} alt={icon.name} />
@@ -87,6 +87,7 @@ const SocialIconLink = ({ icon, children }) => {
 };
 
 SocialIconLink.propTypes = {
+  color: PropTypes.string,
   children: PropTypes.node,
   icon: PropTypes.shape({
     src: PropTypes.string.isRequired,
