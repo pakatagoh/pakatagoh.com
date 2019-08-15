@@ -17,6 +17,23 @@ import SocialIconLink from '../components/SocialIconLink';
 
 import instagram_logo from '../assets/icons/instagram_logo.svg';
 
+const TALKS = [
+  {
+    name: 'Hooked on Hooks: Intro to React Hooks',
+    href: 'https://www.youtube.com/watch?v=7tcf20ItkA0',
+  },
+];
+
+const SETUP = [
+  { label: 'Computer', name: 'Dell XPS 15' },
+  { label: 'Monitor', name: 'LG 27UD88-W' },
+  { label: 'Keyboard', name: 'Anne Pro2 / Logitech K780' },
+  { label: 'Mouse', name: 'Logitech MX Master 2' },
+  { label: 'Code Editor', name: 'Visual Studio Code' },
+  { label: 'Font', name: 'Fira Code (with ligatures)' },
+  { label: 'Theme', name: 'Monokai++ or Andromeda(Colorizer), depends on my mood' },
+];
+
 const StyledParagraph = styled.p`
   &:last-of-type {
     margin-bottom: 0;
@@ -25,6 +42,32 @@ const StyledParagraph = styled.p`
 
 const StyledSpan = styled.span`
   margin-left: 10px;
+`;
+
+const StyledList = styled.ul`
+  margin-bottom: 0;
+`;
+
+const StyledListItem = styled.li`
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+`;
+
+const StyledLink = styled.a`
+  color: ${({ theme }) => theme.primary.base};
+  text-decoration: none;
+
+  &:hover {
+    color: ${({ theme }) => theme.primary.hover};
+    border-bottom: 1px solid ${({ theme }) => theme.primary.hover};
+    background-color: ${({ theme }) => theme.white2};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.white};
+    border-bottom: 1px solid ${({ theme }) => theme.primary.pressed};
+    color: ${({ theme }) => theme.primary.pressed};
+  }
 `;
 
 const StyledImage = styled(Image)`
@@ -104,15 +147,15 @@ const About = () => {
   `);
 
   const imagesPakataGoh = [
-    data.pakatagoh_1.childImageSharp.fluid,
-    data.pakatagoh_2.childImageSharp.fluid,
-    data.pakatagoh_3.childImageSharp.fluid,
+    { fluid: data.pakatagoh_1.childImageSharp.fluid, alt: 'pakatagoh_1' },
+    { fluid: data.pakatagoh_2.childImageSharp.fluid, alt: 'pakatagoh_2' },
+    { fluid: data.pakatagoh_3.childImageSharp.fluid, alt: 'pakatagoh_3' },
   ];
 
   const imagesPakaCodes = [
-    data.pakaCodes_1.childImageSharp.fluid,
-    data.pakaCodes_2.childImageSharp.fluid,
-    data.pakaCodes_3.childImageSharp.fluid,
+    { fluid: data.pakaCodes_1.childImageSharp.fluid, alt: 'pakaCodes_1' },
+    { fluid: data.pakaCodes_2.childImageSharp.fluid, alt: 'pakaCodes_2' },
+    { fluid: data.pakaCodes_3.childImageSharp.fluid, alt: 'pakaCodes_3' },
   ];
 
   return (
@@ -139,6 +182,17 @@ const About = () => {
           I keep up with Formula 1 during race weekends.`}
           </StyledParagraph>
         </Block>
+        <Section header="TALKS">
+          <StyledList>
+            {TALKS.map(({ href, name }) => (
+              <StyledListItem>
+                <StyledLink key={name} href={href} target="_blank" rel="noopener noreferrer" aria-label={name}>
+                  {name}
+                </StyledLink>
+              </StyledListItem>
+            ))}
+          </StyledList>
+        </Section>
         <Section header="PHOTOGRAPHY">
           <p>
             {`Camera: Fujifilm X-H1`}
@@ -146,54 +200,40 @@ const About = () => {
             {`Lenses: XF 16-55mm F2.8, XF 16mm F1.4, XF 35mm F2`}
           </p>
           <SocialIconLink
+            color="primary"
             icon={{ src: instagram_logo, name: 'pakata codes instagram', to: 'https://instagram.com/paka.codes/' }}
           >
             <StyledSpan>@paka.codes</StyledSpan>
           </SocialIconLink>
           <StyledImageRow>
-            {imagesPakaCodes.map(image => (
-              <StyledImageCol>
-                <StyledImage fluid={image} />
+            {imagesPakaCodes.map(({ fluid, alt }) => (
+              <StyledImageCol key={alt}>
+                <StyledImage fluid={fluid} alt={alt} />
               </StyledImageCol>
             ))}
           </StyledImageRow>
           <SocialIconLink
+            color="primary"
             icon={{ src: instagram_logo, name: 'pakata goh instagram', to: 'https://instagram.com/pakatagoh/' }}
           >
             <StyledSpan>@pakatagoh</StyledSpan>
           </SocialIconLink>
           <StyledImageRow>
-            {imagesPakataGoh.map(image => (
-              <StyledImageCol>
-                <StyledImage fluid={image} />
+            {imagesPakataGoh.map(({ fluid, alt }) => (
+              <StyledImageCol key={alt}>
+                <StyledImage fluid={fluid} alt={alt} />
               </StyledImageCol>
             ))}
           </StyledImageRow>
         </Section>
         <Section header="SETUP">
-          <ul>
-            <li>
-              <strong>Computer:</strong> Dell XPS 15
-            </li>
-            <li>
-              <strong>Monitor:</strong> LG 27UD88-W
-            </li>
-            <li>
-              <strong>Keyboard:</strong> Anne Pro2 / Logitech K780
-            </li>
-            <li>
-              <strong>Mouse:</strong> Logitech MX Master 2
-            </li>
-            <li>
-              <strong>Code Editor:</strong> Visual Studio Code
-            </li>
-            <li>
-              <strong>Font:</strong> Fire Code (with ligatures)
-            </li>
-            <li>
-              <strong>Theme:</strong> Monokai++ or Andromeda(Colorizer), depends on my mood
-            </li>
-          </ul>
+          <StyledList>
+            {SETUP.map(({ label, name }) => (
+              <StyledListItem key={label}>
+                <strong>{label}:</strong> {name}
+              </StyledListItem>
+            ))}
+          </StyledList>
         </Section>
       </Container>
     </Layout>
