@@ -54,22 +54,6 @@ const StyledListItem = styled.li`
   }
 `;
 
-const StyledLink = styled.a`
-  color: ${({ theme }) => theme.primary.base};
-  text-decoration: none;
-
-  &:hover {
-    color: ${({ theme }) => theme.primary.hover};
-    border-bottom: 1px solid ${({ theme }) => theme.primary.hover};
-    background-color: ${({ theme }) => theme.white2};
-  }
-  &:active {
-    background-color: ${({ theme }) => theme.white};
-    border-bottom: 1px solid ${({ theme }) => theme.primary.pressed};
-    color: ${({ theme }) => theme.primary.pressed};
-  }
-`;
-
 const StyledImage = styled(Image)`
   transform: scale(1);
   box-shadow: none;
@@ -124,7 +108,7 @@ export const fluidImage = graphql`
 
 const About = () => {
   const data = useStaticQuery(graphql`
-    query instagramImageQuery {
+    query aboutPageImageQuery {
       pakaCodes_1: file(relativePath: { eq: "instagram-pakacodes-1.jpg" }) {
         ...fluidImage
       }
@@ -143,8 +127,17 @@ const About = () => {
       pakatagoh_3: file(relativePath: { eq: "instagram-pakatagoh-3.jpg" }) {
         ...fluidImage
       }
+      pg_talk: file(relativePath: { eq: "pg-talk.jpg" }) {
+        ...fluidImage
+      }
+      pg_fsae: file(relativePath: { eq: "pg-fsae.jpg" }) {
+        ...fluidImage
+      }
     }
   `);
+
+  const talkImage = data.pg_talk.childImageSharp.fluid;
+  const fsaeImage = data.pg_fsae.childImageSharp.fluid;
 
   const imagesPakataGoh = [
     { fluid: data.pakatagoh_1.childImageSharp.fluid, alt: 'pakatagoh_1' },
@@ -169,8 +162,8 @@ const About = () => {
             <span role="img" aria-label="peace yo">
               ✌
             </span>
-            {`I was born in 1990 and raised in the city of Singapore. My name is a Buddhist name if you're wondering. I
-          graduated with a degree in Mechanical Engineering back in 2015. In July 2018, I decided to leave my job sales and application engineer in the heavy industry to
+            {`I was born in 1990 and raised in the city of Singapore. My name is a Buddhist name if you're wondering. I attended the National University of Singapore (NUS)
+           and graduated with a degree in mechanical engineering in 2015. During that time I was also involved with the formula student competiton.  In July 2018, I decided to leave my job sales and application engineer in the heavy industry to
           pursue software development as a career.`}
           </StyledParagraph>
           <StyledParagraph>
@@ -181,14 +174,22 @@ const About = () => {
             {`In my free time, I dabble in a little photography. I love cars and
           I keep up with Formula 1 during race weekends.`}
           </StyledParagraph>
+          <StyledImageRow>
+            <StyledImageCol>
+              <Image fluid={talkImage} alt="pakata talking" />
+            </StyledImageCol>
+            <StyledImageCol>
+              <Image fluid={fsaeImage} alt="pakata fsae" />
+            </StyledImageCol>
+          </StyledImageRow>
         </Block>
         <Section header="TALKS">
           <StyledList>
             {TALKS.map(({ href, name }) => (
               <StyledListItem key={name}>
-                <StyledLink href={href} target="_blank" rel="noopener noreferrer" aria-label={name}>
+                <a href={href} target="_blank" rel="noopener noreferrer" aria-label={name}>
                   {name}
-                </StyledLink>
+                </a>
               </StyledListItem>
             ))}
           </StyledList>
