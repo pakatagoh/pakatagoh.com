@@ -100,7 +100,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export const StyledCSSLinkReset = css`
+export const StyledCSSAnchorReset = css`
   &:hover {
     color: inherit;
     border-bottom: none;

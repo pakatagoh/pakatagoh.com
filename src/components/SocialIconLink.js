@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { media } from '../styles/sizes';
-import { StyledCSSLinkReset } from '../styles/GlobalStyle';
+import { StyledCSSAnchorReset } from '../styles/GlobalStyle';
 
 const ICON_LINK_SIZE = {
   xs: '32px',
@@ -37,7 +37,7 @@ const StyledIconLink = styled.a`
   text-decoration: none;
   color: ${({ color, theme }) => (theme[color] ? theme[color].base : theme.black)};
 
-  ${StyledCSSLinkReset}
+  ${StyledCSSAnchorReset}
 
   &:hover {
     color: ${({ color, theme }) => (theme[color] ? theme[color].hover : theme.secondary.hover)};
