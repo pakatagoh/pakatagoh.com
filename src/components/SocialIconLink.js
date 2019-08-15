@@ -19,6 +19,7 @@ const StyledIconBackground = styled.div`
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  background-color: ${({ color, theme }) => (theme[color] ? theme[color].base : theme.secondary.base)};
   box-shadow: none;
   transition: box-shadow 0.1s linear;
 
