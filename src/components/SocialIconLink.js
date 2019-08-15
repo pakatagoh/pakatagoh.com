@@ -77,7 +77,7 @@ const StyledIcon = styled.img`
 const SocialIconLink = ({ icon, color, children }) => {
   return (
     <StyledIconLink color={color} href={icon.to} target="_blank" rel="noreferrer noopener" aria-label={icon.name}>
-      <StyledIconBackground>
+      <StyledIconBackground color={color}>
         <StyledIconWrapper>
           <StyledIcon src={icon.src} alt={icon.name} />
         </StyledIconWrapper>
