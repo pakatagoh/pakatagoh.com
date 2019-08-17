@@ -26,6 +26,12 @@ const GlobalStyle = createGlobalStyle`
     display: none;
   }
   
+  ${media.sm`
+    .d-sm-block {
+      display: block;
+    }
+  `};
+  
   ${media.md`
     .d-md-block {
       display: block;
@@ -36,6 +42,11 @@ const GlobalStyle = createGlobalStyle`
     }
   `};
 
+  /* Spacing utilities  */
+  .m-0 {
+    margin: 0;
+  }
+
   /* Flex utlities */
   .d-flex {
     display: flex;
@@ -45,16 +56,30 @@ const GlobalStyle = createGlobalStyle`
     flex-wrap: wrap;
   }
 
+  .align-items-start {
+    align-items: flex-start;
+  }
+
   .align-items-center {
     align-items: center;
   }
 
+  ${media.sm`
+    .align-items-sm-center{
+      align-items: center;
+    }
+  `};
+  
   .justify-content-center {
     justify-content: center;
   }
 
   .justify-content-space-between {
     justify-content: space-between;
+  }
+
+  .justify-content-end {
+    justify-content: flex-end;
   }
 
   /* icons */
@@ -83,6 +108,7 @@ const GlobalStyle = createGlobalStyle`
     `};
   }
 
+  /* Element tags */
   p,a{
     font-size: ${9.5 / 10}rem;
     line-height: ${options.baseLineHeight * (9.5 / 10)};
