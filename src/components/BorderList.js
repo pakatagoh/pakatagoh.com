@@ -30,16 +30,11 @@ const StyledList = styled.ul`
   list-style: none;
 
   & li {
-    font-size: 0.8rem;
     text-align: center;
 
     &:last-of-type {
       margin: 0;
     }
-
-    ${media.sm`
-      font-size: 1rem;
-    `};
   }
 `;
 
