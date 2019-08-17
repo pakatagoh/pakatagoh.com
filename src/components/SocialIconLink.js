@@ -30,6 +30,7 @@ const StyledIconBackground = styled.div`
 `;
 
 const StyledIconLink = styled.a`
+  margin-bottom: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
