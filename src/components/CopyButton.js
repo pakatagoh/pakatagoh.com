@@ -7,7 +7,7 @@ import useCopy from '../hooks/useCopy';
 
 const StyledCopyButton = styled.button`
   font-family: 'Roboto Condensed', 'Georgia', 'serif';
-  font-size: 22px;
+  font-size: 1.22rem;
   padding: 0;
   border: none;
   background: none;
@@ -22,7 +22,7 @@ const StyledCopyButton = styled.button`
   }
 
   ${media.sm`
-    font-size: 24px;
+    font-size: 1.33rem;
   `};
 `;
 
@@ -41,7 +41,7 @@ const goTransparent = keyframes`
 `;
 
 const StyledCopyMessage = styled.span`
-  font-size: 16px;
+  font-size: 0.88rem;
   animation: ${goTransparent} 1.5s linear;
 `;
 
@@ -57,7 +57,7 @@ class CopyMessage extends React.Component {
   }
 }
 
-const CopyButton = ({ text }) => {
+const CopyButton = ({ text, ...rest }) => {
   const { handleCopy } = useCopy();
   const copyMessageRef = React.createRef();
 
@@ -71,7 +71,7 @@ const CopyButton = ({ text }) => {
 
   return (
     <>
-      <StyledCopyButton type="button" aria-label="Copy email to clipboard" onClick={handleClick}>
+      <StyledCopyButton type="button" aria-label="Copy email to clipboard" onClick={handleClick} {...rest}>
         {text}
       </StyledCopyButton>
       <StyledCopyMessageWrapper ref={copyMessageRef} id="copy-message" />
