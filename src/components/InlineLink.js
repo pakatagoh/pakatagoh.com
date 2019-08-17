@@ -18,8 +18,8 @@ const StyledAnchor = styled.a`
   }
 `;
 
-const InlineLink = ({ children }) => {
-  return <StyledAnchor>{children}</StyledAnchor>;
+const InlineLink = ({ children, ...rest }) => {
+  return <StyledAnchor {...rest}>{children}</StyledAnchor>;
 };
 
 InlineLink.propTypes = {
