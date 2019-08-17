@@ -11,23 +11,30 @@ const IMAGE_SIZE = {
   xs: '100px',
 };
 
+export const OFFSET_PADDING = {
+  xs: 5,
+  sm: 7,
+  md: 10,
+  lg: 15,
+};
+
 const StyledWrapper = styled.div`
-  padding-top: 5px;
-  padding-left: 5px;
+  padding-top: ${OFFSET_PADDING.xs}px;
+  padding-left: ${OFFSET_PADDING.xs}px;
 
   ${media.sm`
-    padding-top: 7px;
-    padding-left: 7px
+    padding-top: ${OFFSET_PADDING.sm}px;
+    padding-left: ${OFFSET_PADDING.sm}px
   `};
 
   ${media.md`
-    padding-top: 10px;
-    padding-left: 10px
+    padding-top: ${OFFSET_PADDING.md}px;
+    padding-left: ${OFFSET_PADDING.md}px
   `};
 
   ${media.lg`
-    padding-top: 15px;
-    padding-left: 15px
+    padding-top: ${OFFSET_PADDING.lg}px;
+    padding-left: ${OFFSET_PADDING.lg}px
   `};
 `;
 
@@ -56,30 +63,30 @@ const StyledBackgroundLayer = styled.div`
 const StyledImageWrapper = styled.div`
   width: ${IMAGE_SIZE.xs};
   height: ${IMAGE_SIZE.xs};
-  transform: translate(-5px, -5px);
+  transform: translate(-${OFFSET_PADDING.xs}px, -${OFFSET_PADDING.xs}px);
 
   ${media.sm`
   width: ${IMAGE_SIZE.sm}
   height: ${IMAGE_SIZE.sm}
-  transform: translate(-7px, -7px);
+  transform: translate(-${OFFSET_PADDING.sm}px, -${OFFSET_PADDING.sm}px);
   `};
 
   ${media.md`
   width: ${IMAGE_SIZE.md}
   height: ${IMAGE_SIZE.md}
-  transform: translate(-7px, -7px);
+  transform: translate(-${OFFSET_PADDING.sm}px, -${OFFSET_PADDING.sm}px);
   `};
 
   ${media.md`
   width: ${IMAGE_SIZE.md}
   height: ${IMAGE_SIZE.md}
-  transform: translate(-10px, -10px);
+  transform: translate(-${OFFSET_PADDING.md}px, -${OFFSET_PADDING.md}px);
   `};
 
   ${media.lg`
   width: ${IMAGE_SIZE.lg}
   height: ${IMAGE_SIZE.lg}
-  transform: translate(-15px, -15px);
+  transform: translate(-${OFFSET_PADDING.lg}px, -${OFFSET_PADDING.lg}px);
   `};
 `;
 
