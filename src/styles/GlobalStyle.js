@@ -1,4 +1,4 @@
-import { createGlobalStyle, css } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import { media } from './sizes';
 
 const GlobalStyle = createGlobalStyle`
@@ -80,36 +80,6 @@ const GlobalStyle = createGlobalStyle`
     ${media.sm`
       font-size: 1.5rem;
     `};
-  }
-
-  /* Links */
-  a {
-    color: ${({ theme }) => theme.primary.base};
-    text-decoration: none;
-
-    &:hover {
-      color: ${({ theme }) => theme.primary.hover};
-      border-bottom: 1px solid ${({ theme }) => theme.primary.hover};
-      background-color: ${({ theme }) => theme.white2};
-    }
-    &:active {
-      background-color: ${({ theme }) => theme.white};
-      border-bottom: 1px solid ${({ theme }) => theme.primary.pressed};
-      color: ${({ theme }) => theme.primary.pressed};
-    }
-  }
-`;
-
-export const StyledCSSAnchorReset = css`
-  &:hover {
-    color: inherit;
-    border-bottom: none;
-    background: none;
-  }
-  &:active {
-    color: inherit;
-    border-bottom: none;
-    background: none;
   }
 `;
 

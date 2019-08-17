@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { media } from '../styles/sizes';
 import { rhythm } from '../utils/typography';
 import Container from './Container';
-import { StyledCSSAnchorReset } from '../styles/GlobalStyle';
 
 const FOOTER_LINKS = [
   { name: 'LinkedIn', to: 'https://linkedin.com/in/pakata-goh/' },
@@ -56,7 +55,6 @@ const StyledLink = styled.li`
     margin: 0;
     color: ${({ theme }) => theme.gray1};
     text-decoration: none;
-    ${StyledCSSAnchorReset}
 
     ${media.sm`
       margin: 0 ${rhythm(3 / 5)} 0 0;

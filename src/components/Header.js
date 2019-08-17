@@ -5,7 +5,6 @@ import Container from './Container';
 import { media } from '../styles/sizes';
 import { rhythm } from '../utils/typography';
 import logo from '../assets/icons/Logo.svg';
-import { StyledCSSAnchorReset } from '../styles/GlobalStyle';
 
 const NAVLINKS = ['blog', 'about', 'contact'];
 const ACTIVE = 'active';
@@ -28,7 +27,6 @@ const StyledNav = styled.nav`
 const StyledBrandLink = styled(Link)`
   display: flex;
   align-items: center;
-  ${StyledCSSAnchorReset}
 `;
 
 const StyledBrandLogo = styled.div`
@@ -58,7 +56,6 @@ const StyledLink = styled(Link)`
   padding: ${rhythm(1 / 5)} 0;
   margin-left: ${rhythm(3 / 5)};
   color: ${({ theme }) => theme.gray2};
-  ${StyledCSSAnchorReset}
 
   &:hover {
     color: ${({ theme }) => theme.black};
