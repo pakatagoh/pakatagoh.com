@@ -14,6 +14,7 @@ import Block from '../components/Block';
 import PageTitle from '../components/PageTitle';
 import Image from '../components/Image';
 import SocialIconLink from '../components/SocialIconLink';
+import InlineLink from '../components/InlineLink';
 
 import instagram_logo from '../assets/icons/instagram_logo.svg';
 
@@ -193,19 +194,19 @@ const About = () => {
               ✌
             </span>
             {`I was born in 1990 and raised in the city of Singapore. My name is a Buddhist name if you're wondering. I attended the `}
-            <a href="https://nus.edu.sg/" target="_blank" rel="noopener noreferrer">
-              National University of Singapore (NUS){' '}
-            </a>
+            <InlineLink href="https://nus.edu.sg/" target="_blank" rel="noopener noreferrer">
+              National University of Singapore (NUS)
+            </InlineLink>
 
-            {`and graduated with a degree in mechanical engineering in 2015. During university, I was part of the Formula Student team competing in the `}
-            <a
+            {` and graduated with a degree in mechanical engineering in 2015. During university, I was part of the Formula Student team competing in the `}
+            <InlineLink
               href="https://www.sae.org/attend/student-events/formula-sae-michigan/about"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Formula Student (FSAE) Michigan{' '}
-            </a>
-            {`competiton.  In July 2018, I decided to leave my job as a technical sales engineer in the heavy industry to
+              Formula Student (FSAE) Michigan
+            </InlineLink>
+            {` competiton.  In July 2018, I decided to leave my job as a technical sales engineer in the heavy industry to
           pursue software development as a career.`}
           </p>
           <p>
@@ -228,9 +229,9 @@ const About = () => {
           <StyledList>
             {TALKS.map(({ href, name }) => (
               <StyledListItem key={name}>
-                <a href={href} target="_blank" rel="noopener noreferrer" aria-label={name}>
+                <InlineLink href={href} target="_blank" rel="noopener noreferrer" aria-label={name}>
                   {name}
-                </a>
+                </InlineLink>
               </StyledListItem>
             ))}
           </StyledList>
