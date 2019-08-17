@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import { media } from './sizes';
+import { options } from '../utils/typography';
 
 const GlobalStyle = createGlobalStyle`
 
@@ -80,6 +81,52 @@ const GlobalStyle = createGlobalStyle`
     ${media.sm`
       font-size: 1.5rem;
     `};
+  }
+
+  p,a{
+    font-size: ${9.5 / 10}rem;
+    line-height: ${options.baseLineHeight * (9.5 / 10)};
+    margin-bottom: ${options.baseLineHeight * (9.5 / 10)}rem;
+
+    ${media.sm`
+      font-size: 1rem;
+      line-height: ${options.baseLineHeight};
+      margin-bottom: ${options.baseLineHeight}rem;
+    `}
+  }
+
+  ul {
+    margin-left: ${options.baseLineHeight * (9.5 / 10)}rem;
+    margin-bottom: ${(options.baseLineHeight * (9.5 / 10)) / 2}rem;
+    
+    ${media.sm`
+      margin-left: ${options.baseLineHeight}rem;
+      margin-bottom: ${options.baseLineHeight}rem;
+    `}
+  }
+
+  li {
+    font-size: ${9.5 / 10}rem;
+    line-height: ${options.baseLineHeight * (9.5 / 10)};
+    margin-bottom: ${(options.baseLineHeight * (9.5 / 10)) / 2}rem;
+
+    ${media.sm`
+      font-size: 1rem;
+      line-height: ${options.baseLineHeight};
+      margin-bottom: ${options.baseLineHeight / 2}rem;
+    `}
+
+    & > ul, & > ol {
+      margin-left: ${options.baseLineHeight * (9.5 / 10)}rem;
+      margin-top: ${(options.baseLineHeight * (9.5 / 10)) / 2}rem;
+      margin-bottom: ${(options.baseLineHeight * (9.5 / 10)) / 2}rem;
+      
+      ${media.sm`
+        margin-left: ${options.baseLineHeight}rem;
+        margin-top: ${options.baseLineHeight / 2}rem;
+        margin-bottom: ${options.baseLineHeight / 2}rem;
+      `}
+    }
   }
 `;
 
