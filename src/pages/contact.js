@@ -13,16 +13,9 @@ import CopyButton from '../components/CopyButton';
 import LayerImage from '../components/LayerImage';
 import IconList from '../components/IconList';
 import SEO from '../components/SEO';
+import SectionHeader from '../components/SectionHeader';
 
 const EMAIL = 'pakatagohlh@gmail.com';
-
-const StyledSectionHeader = styled.h2`
-  margin-bottom: 30px;
-
-  ${media.sm`
-    margin-bottom: 50px;
-  `};
-`;
 
 const StyledCopyButtonWrapper = styled.div`
   margin-bottom: 10px;
@@ -70,7 +63,7 @@ const Contact = () => {
           <Block>
             <Row className="align-items-center">
               <StyledLeftCol>
-                <StyledSectionHeader>GET IN TOUCH</StyledSectionHeader>
+                <SectionHeader>GET IN TOUCH</SectionHeader>
                 <StyledCopyButtonWrapper>
                   <CopyButton text={EMAIL} />
                 </StyledCopyButtonWrapper>
