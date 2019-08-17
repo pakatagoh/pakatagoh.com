@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { MDXProvider } from '@mdx-js/react';
 import { media } from '../styles/sizes';
+import { rhythm } from '../utils/typography';
 import Layout from '../components/Layout';
 import Container from '../components/Container';
 import Section from '../components/Section';
@@ -12,6 +13,7 @@ import PageTitle from '../components/PageTitle';
 import InlineLink from '../components/InlineLink';
 import TableOfContents from '../components/TableOfContents';
 import SectionHeader from '../components/SectionHeader';
+import Callout from '../components/Callout';
 
 const REPO = 'https://github.com/pakatagoh/pakatagoh.com';
 const GITHUB_BLOG = '/blob/master/content';
@@ -27,6 +29,14 @@ const StyledSectionHeader = styled(SectionHeader)`
   border-bottom: 1px solid ${({ theme }) => theme.secondary.base};
 `;
 
+const StyledBlockQuote = styled.blockquote`
+  margin-right: 0;
+  margin-left: 0;
+  padding: ${rhythm(1 / 2)} ${rhythm(1)};
+  border: 2px solid ${({ theme }) => theme.secondary.base};
+  background-color: ${({ theme }) => theme.secondary.disabled};
+`;
+
 const SectionHeaderH2 = props => <StyledSectionHeader {...props} />;
 const SectionHeaderH3 = props => <SectionHeader as="h3" {...props} />;
 const SectionHeaderH4 = props => <SectionHeader as="h4" {...props} />;
@@ -38,6 +48,7 @@ const components = {
   h3: SectionHeaderH3,
   h4: SectionHeaderH4,
   a: PostLink,
+  blockquote: StyledBlockQuote,
 };
 
 const PostTemplate = ({ data }) => {
@@ -55,7 +66,7 @@ const PostTemplate = ({ data }) => {
           </>
         )}
         <InlineLink
-          href={`${REPO}${GITHUB_BLOG}${frontmatter.path}/index.md`}
+          href={`${REPO}${GITHUB_BLOG}${frontmatter.path}/index.mdx`}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -67,7 +78,28 @@ const PostTemplate = ({ data }) => {
         <MDXProvider components={components}>
           <MDXRenderer>{mdx.body}</MDXRenderer>
         </MDXProvider>
+        <div className="d-flex justify-content-end">
+          <InlineLink
+            href={`${REPO}${GITHUB_BLOG}${frontmatter.path}/index.mdx`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="m-0"
+          >
+            Edit on GitHub
+          </InlineLink>
+          <InlineLink
+            href={`https://twitter.com/intent/tweet?text=${frontmatter.title}&url=https://pakatagoh.com${frontmatter.path}&via=GohPakata`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="m-0"
+          >
+            Tweet
+          </InlineLink>
+        </div>
       </Container>
+      <section>
+        <Callout />
+      </section>
     </Layout>
   );
 };
