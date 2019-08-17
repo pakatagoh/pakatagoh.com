@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { media } from '../styles/sizes';
 
-const ICON_WRAPPER_SIZE = {
-  xs: '24px',
-  sm: '27px',
+export const ICON_SIZE = {
+  xs: 19,
+  sm: 24,
 };
 
 const StyledIconWrapper = styled.div`
-  width: ${ICON_WRAPPER_SIZE.xs};
-  height: ${ICON_WRAPPER_SIZE.xs};
+  width: ${ICON_SIZE.xs}px;
+  height: ${ICON_SIZE.xs}px;
   display: inline-block;
 
   ${media.sm`
-    width: ${ICON_WRAPPER_SIZE.sm};
-    height: ${ICON_WRAPPER_SIZE.sm};
+    width: ${ICON_SIZE.sm}px;
+    height: ${ICON_SIZE.sm}px;
   `};
 `;
 
