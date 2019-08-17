@@ -1,20 +1,29 @@
 import React from 'react';
 import PropType from 'prop-types';
 import { graphql } from 'gatsby';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
+import { MDXProvider } from '@mdx-js/react';
 import Layout from '../components/Layout';
 import Container from '../components/Container';
 import PageTitle from '../components/PageTitle';
+import InlineLink from '../components/InlineLink';
+
+const components = {
+  h1: PageTitle,
+  a: InlineLink,
+};
 
 const PostTemplate = ({ data }) => {
-  const { markdownRemark } = data; // data.markdownRemark holds our post data
-  const { frontmatter, html } = markdownRemark;
+  const { mdx } = data;
+  const { frontmatter } = mdx;
   return (
     <Layout>
       <Container>
         <PageTitle>{frontmatter.title}</PageTitle>
         <h2>{frontmatter.date}</h2>
-        {/* eslint-disable-next-line react/no-danger */}
-        <div dangerouslySetInnerHTML={{ __html: html }} />
+        <MDXProvider components={components}>
+          <MDXRenderer>{mdx.body}</MDXRenderer>
+        </MDXProvider>
       </Container>
     </Layout>
   );
@@ -22,25 +31,25 @@ const PostTemplate = ({ data }) => {
 
 PostTemplate.propTypes = {
   data: PropType.shape({
-    markdownRemark: PropType.shape({
+    mdx: PropType.shape({
       frontmatter: PropType.shape({
         title: PropType.string,
         date: PropType.string,
         path: PropType.string,
       }),
-      html: PropType.string,
+      body: PropType.string,
     }),
   }),
 };
 
 export const postQuery = graphql`
-  query($path: String!) {
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
-      html
+  query BlogPostQuery($id: String) {
+    mdx(id: { eq: $id }) {
+      id
+      body
       frontmatter {
-        date(formatString: "MMMM DD, YYYY")
-        path
         title
+        date
       }
     }
   }
