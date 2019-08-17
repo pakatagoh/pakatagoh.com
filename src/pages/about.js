@@ -186,7 +186,7 @@ const About = () => {
     <Layout>
       <SEO title="About" />
       <Container>
-        <PageTitle>ABOUT</PageTitle>
+        <PageTitle block>ABOUT</PageTitle>
         <Block>
           <p>
             {`Hello! I'm Pakata`}

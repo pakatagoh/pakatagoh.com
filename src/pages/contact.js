@@ -65,7 +65,7 @@ const Contact = () => {
     <Layout>
       <SEO title="Contact" />
       <Container>
-        <PageTitle>Contact</PageTitle>
+        <PageTitle block>Contact</PageTitle>
         <section>
           <Block>
             <Row className="align-items-center">

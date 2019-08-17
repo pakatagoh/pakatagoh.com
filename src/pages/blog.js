@@ -10,7 +10,7 @@ const Blog = () => {
     <Layout>
       <SEO title="Blog" />
       <Container>
-        <PageTitle>BLOG</PageTitle>
+        <PageTitle block>BLOG</PageTitle>
         <UnderConstruction />
       </Container>
     </Layout>

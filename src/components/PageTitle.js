@@ -17,16 +17,21 @@ const StyledPageTitle = styled.h1`
   `};
 `;
 
-const PageTitle = ({ children, as }) => {
-  return (
-    <Block>
-      <StyledPageTitle as={as}>{children}</StyledPageTitle>
-    </Block>
-  );
+const PageTitle = ({ block, as, children }) => {
+  if (block) {
+    return (
+      <Block>
+        <StyledPageTitle as={as}>{children}</StyledPageTitle>
+      </Block>
+    );
+  }
+
+  return <StyledPageTitle as={as}>{children}</StyledPageTitle>;
 };
 
 PageTitle.propTypes = {
   children: PropTypes.node.isRequired,
+  block: PropTypes.bool,
   as: PropTypes.string,
 };
 
