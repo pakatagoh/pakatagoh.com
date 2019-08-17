@@ -13,13 +13,13 @@ export const theme = {
     base: '#ffb148',
     hover: '#ff980e',
     pressed: '#f2900c',
-    disabled: '#ffd7a1',
+    disabled: '#ffeed7',
   },
   secondary: {
     base: '#94defa',
     hover: '#5dcaf3',
     pressed: '#58bfe6',
-    disabled: '#b9e3f3',
+    disabled: '#eaf9ff',
   },
   shadow: {
     hover: '0px 7px 7px 2px rgba(0, 0, 0, 0.20)',
