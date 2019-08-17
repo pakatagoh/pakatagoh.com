@@ -13,8 +13,8 @@ const StyledWrapper = styled.div`
   ${media.xl`max-width: 1200px`}
 `;
 
-const Container = ({ children }) => {
-  return <StyledWrapper>{children}</StyledWrapper>;
+const Container = ({ children, ...rest }) => {
+  return <StyledWrapper {...rest}>{children}</StyledWrapper>;
 };
 
 Container.propTypes = {
