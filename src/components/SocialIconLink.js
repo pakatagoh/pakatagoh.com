@@ -2,20 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { media } from '../styles/sizes';
+import Icon, { ICON_SIZE } from './Icon';
 
-const ICON_LINK_SIZE = {
-  xs: '32px',
-  sm: '38px',
-};
-
-const ICON_WRAPPER_SIZE = {
-  xs: '24px',
-  sm: '27px',
+const ICON_BACKGROUND_SIZE = {
+  xs: ICON_SIZE.xs + 9,
+  sm: ICON_SIZE.sm + 9,
 };
 
 const StyledIconBackground = styled.div`
-  width: ${ICON_LINK_SIZE.xs};
-  height: ${ICON_LINK_SIZE.xs};
+  width: ${ICON_BACKGROUND_SIZE.xs}px;
+  height: ${ICON_BACKGROUND_SIZE.xs}px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -24,8 +20,8 @@ const StyledIconBackground = styled.div`
   transition: box-shadow 0.1s linear;
 
   ${media.sm`
-    width: ${ICON_LINK_SIZE.sm};
-    height:${ICON_LINK_SIZE.sm};
+    width: ${ICON_BACKGROUND_SIZE.sm}px;
+    height:${ICON_BACKGROUND_SIZE.sm}px;
   `};
 `;
 
@@ -56,32 +52,11 @@ const StyledIconLink = styled.a`
   }
 `;
 
-const StyledIconWrapper = styled.div`
-  width: ${ICON_WRAPPER_SIZE.xs};
-  height: ${ICON_WRAPPER_SIZE.xs};
-  display: inline-block;
-
-  ${media.sm`
-    width: ${ICON_WRAPPER_SIZE.sm};
-    height: ${ICON_WRAPPER_SIZE.sm};
-  `};
-`;
-
-const StyledIcon = styled.img`
-  width: 100%;
-  height: 100%;
-  object-position: center;
-  object-fit: contain;
-  margin: 0;
-`;
-
 const SocialIconLink = ({ icon, color, children }) => {
   return (
     <StyledIconLink color={color} href={icon.to} target="_blank" rel="noreferrer noopener" aria-label={icon.name}>
       <StyledIconBackground color={color}>
-        <StyledIconWrapper>
-          <StyledIcon src={icon.src} alt={icon.name} />
-        </StyledIconWrapper>
+        <Icon src={icon.src} alt={icon.name} />
       </StyledIconBackground>
       {children}
     </StyledIconLink>
