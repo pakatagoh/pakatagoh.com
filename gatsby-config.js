@@ -1,9 +1,13 @@
 module.exports = {
   siteMetadata: {
     title: `Pakata Goh`,
+    canonicalUrl: 'https://www.pakatagoh.com',
     description: `Hey! I'm Pakata
     A software developer from Singapore specializing in JavaScript. In this personal site, I write about things I've learnt and hopefully you'll learn a thing or two from me.`,
     author: `Pakata Goh`,
+    social: {
+      twitter: '@GohPakata',
+    },
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
