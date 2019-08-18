@@ -4,8 +4,10 @@ import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { MDXProvider } from '@mdx-js/react';
+import format from 'date-fns/format';
 import { media } from '../styles/sizes';
 import { rhythm } from '../utils/typography';
+import SEO from '../components/SEO';
 import Layout from '../components/Layout';
 import Container from '../components/Container';
 import Section from '../components/Section';
@@ -18,7 +20,18 @@ import Callout from '../components/Callout';
 const REPO = 'https://github.com/pakatagoh/pakatagoh.com';
 const GITHUB_BLOG = '/blob/master/content';
 
+const StyledArticle = styled.article`
+  margin-bottom: ${rhythm(1)};
+`;
+
 const StyledSmall = styled.small`
+  font-size: 65%;
+  ${media.sm`
+    font-size: 80%;
+  `};
+`;
+
+const StyledTime = styled.time`
   font-size: 65%;
   ${media.sm`
     font-size: 80%;
@@ -35,6 +48,15 @@ const StyledBlockQuote = styled.blockquote`
   padding: ${rhythm(1 / 2)} ${rhythm(1)};
   border: 2px solid ${({ theme }) => theme.secondary.base};
   background-color: ${({ theme }) => theme.secondary.disabled};
+`;
+
+const StyledInlineLink = styled(InlineLink)`
+  margin-left: ${rhythm(1 / 2)};
+  margin-right: ${rhythm(1 / 2)};
+
+  &:last-of-type {
+    margin-right: 0;
+  }
 `;
 
 const SectionHeaderH2 = props => <StyledSectionHeader {...props} />;
@@ -55,46 +77,50 @@ const PostTemplate = ({ data }) => {
   const { mdx } = data;
   const { frontmatter, tableOfContents } = mdx;
 
+  const formatDate = date => format(date, 'DD MMM YYYY');
+
   return (
     <Layout>
+      <SEO title={frontmatter.title} description={frontmatter.description} />
       <Container>
-        <PageTitle>{frontmatter.title}</PageTitle>
-        <StyledSmall>Posted: {frontmatter.createdAt} / </StyledSmall>
-        {frontmatter.updatedAt && (
-          <>
-            <StyledSmall>Updated: {frontmatter.updatedAt} / </StyledSmall>
-          </>
-        )}
-        <InlineLink
-          href={`${REPO}${GITHUB_BLOG}${frontmatter.path}/index.mdx`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <StyledSmall>Edit on GitHub</StyledSmall>
-        </InlineLink>
-        <Section header="Table of Contents">
-          <TableOfContents items={tableOfContents.items} path={frontmatter.path} />
-        </Section>
-        <MDXProvider components={components}>
-          <MDXRenderer>{mdx.body}</MDXRenderer>
-        </MDXProvider>
-        <div className="d-flex justify-content-end">
+        <StyledArticle>
+          <PageTitle>{frontmatter.title}</PageTitle>
+          <StyledTime dateTime={frontmatter.createdAt}>Posted: {formatDate(frontmatter.createdAt)} / </StyledTime>
+          {frontmatter.updatedAt && (
+            <>
+              <StyledTime dateTime={frontmatter.updatedAt}>Updated: {formatDate(frontmatter.updatedAt)} / </StyledTime>
+            </>
+          )}
           <InlineLink
             href={`${REPO}${GITHUB_BLOG}${frontmatter.path}/index.mdx`}
             target="_blank"
             rel="noopener noreferrer"
-            className="m-0"
+          >
+            <StyledSmall>Edit on GitHub</StyledSmall>
+          </InlineLink>
+          <Section header="Table of Contents">
+            <TableOfContents items={tableOfContents.items} path={frontmatter.path} />
+          </Section>
+          <MDXProvider components={components}>
+            <MDXRenderer>{mdx.body}</MDXRenderer>
+          </MDXProvider>
+        </StyledArticle>
+        <div className="d-flex justify-content-end">
+          <StyledInlineLink
+            href={`${REPO}${GITHUB_BLOG}${frontmatter.path}/index.mdx`}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Edit on GitHub
-          </InlineLink>
-          <InlineLink
+          </StyledInlineLink>
+          /
+          <StyledInlineLink
             href={`https://twitter.com/intent/tweet?text=${frontmatter.title}&url=https://pakatagoh.com${frontmatter.path}&via=GohPakata`}
             target="_blank"
             rel="noopener noreferrer"
-            className="m-0"
           >
             Tweet
-          </InlineLink>
+          </StyledInlineLink>
         </div>
       </Container>
       <section>
@@ -108,8 +134,9 @@ PostTemplate.propTypes = {
   data: PropType.shape({
     mdx: PropType.shape({
       frontmatter: PropType.shape({
-        title: PropType.string,
-        createdAt: PropType.string,
+        title: PropType.string.isRequired,
+        description: PropType.string,
+        createdAt: PropType.string.isRequired,
         updatedAt: PropType.string,
         path: PropType.string,
       }),
@@ -128,8 +155,9 @@ export const postQuery = graphql`
       body
       frontmatter {
         title
-        createdAt(formatString: "DD MMM YYYY")
-        updatedAt(formatString: "DD MMM YYYY")
+        description
+        createdAt(formatString: "YYYY-MM-DD")
+        updatedAt(formatString: "YYYY-MM-DD")
         path
       }
       tableOfContents
