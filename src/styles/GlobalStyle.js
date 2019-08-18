@@ -201,6 +201,7 @@ const GlobalStyle = createGlobalStyle`
   /* Adjust the position of the line numbers if using line numbers css*/
   .gatsby-highlight pre[class*='language-'].line-numbers {
     padding-left: 2.8em;
+    padding-right: 1rem;
   }
 
   pre[class*='language-'] {
