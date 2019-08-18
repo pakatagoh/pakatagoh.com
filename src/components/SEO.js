@@ -53,6 +53,7 @@ function SEO({ isBlogPost, description, lang, title, image, slug }) {
       <meta name="image" content={metaImage} />
       {/* Open Graph Tags */}
       <meta property="og:url" content={metaUrl} />
+      <meta property="og:image" content={metaImage} />
       <meta property="og:title" content={metaTitle} />
       <meta property="og:description" content={metaDescription} />
       {isBlogPost ? <meta property="og:type" content="article" /> : null}
