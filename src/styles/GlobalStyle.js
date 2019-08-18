@@ -154,6 +154,15 @@ const GlobalStyle = createGlobalStyle`
       `}
     }
   }
+
+  pre[class*='language-'] {
+    font-size: ${9.5 / 10}rem;
+
+    ${media.sm`
+      font-size: ${10 / 10}rem;
+    `}
+  }
+
 `;
 
 export default GlobalStyle;
