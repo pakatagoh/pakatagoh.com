@@ -82,7 +82,7 @@ const PostTemplate = ({ data }) => {
 
   return (
     <Layout>
-      <SEO title={frontmatter.title} description={frontmatter.description} />
+      <SEO isBlogPost title={frontmatter.title} description={frontmatter.description} slug={slug} />
       <Container>
         <StyledArticle>
           <PageTitle>{frontmatter.title}</PageTitle>
