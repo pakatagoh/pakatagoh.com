@@ -10,8 +10,8 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
-function SEO({ description, lang, meta, title }) {
-  const { site } = useStaticQuery(
+function SEO({ isBlogPost, description, lang, title, image, slug }) {
+  const { site, defaultImage } = useStaticQuery(
     graphql`
       query {
         site {
@@ -19,70 +19,65 @@ function SEO({ description, lang, meta, title }) {
             title
             description
             author
+            canonicalUrl
+            social {
+              twitter
+            }
+          }
+        }
+        defaultImage: file(relativePath: { eq: "pg-headshot.jpg" }) {
+          childImageSharp {
+            fluid(maxWidth: 400) {
+              ...GatsbyImageSharpFluid
+            }
           }
         }
       }
     `
   );
-
+  const { canonicalUrl } = site.siteMetadata;
+  const metaUrl = slug ? `${canonicalUrl}${slug}` : canonicalUrl;
   const metaDescription = description || site.siteMetadata.description;
-
+  const metaImage = `${canonicalUrl}${image || defaultImage.childImageSharp.fluid.src}`;
+  const metaTitle = title || site.siteMetadata.title;
   return (
     <Helmet
       htmlAttributes={{
         lang,
       }}
-      title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
-      meta={[
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata.author,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-      ].concat(meta)}
-    />
+      title={metaTitle}
+      titleTemplate={`%s | ${site.siteMetadata.author}`}
+    >
+      {/* general meta tags */}
+      <meta name="description" content={metaDescription} />
+      <meta name="image" content={metaImage} />
+      {/* Open Graph Tags */}
+      <meta property="og:url" content={metaUrl} />
+      <meta property="og:title" content={metaTitle} />
+      <meta property="og:description" content={metaDescription} />
+      {isBlogPost ? <meta property="og:type" content="article" /> : null}
+      {/* Twitter tags */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:creator" content={site.siteMetadata.social.twitter} />
+      <meta name="twitter:title" content={metaTitle} />
+      <meta name="twitter:description" content={metaDescription} />
+      <meta name="twitter:image" content={metaImage} />
+    </Helmet>
   );
 }
 
 SEO.defaultProps = {
   lang: `en`,
-  meta: [],
   description: ``,
 };
 
 SEO.propTypes = {
+  isBlogPost: PropTypes.bool,
   description: PropTypes.string,
   lang: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.object),
+  image: PropTypes.string,
   title: PropTypes.string.isRequired,
+  slug: PropTypes.string,
 };
 
 export default SEO;
