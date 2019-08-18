@@ -1,4 +1,5 @@
 const path = require('path');
+const { createFilePath } = require('gatsby-source-filesystem');
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   // Destructure the createPage function from the actions object
@@ -10,8 +11,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         edges {
           node {
             id
-            frontmatter {
-              path
+            fields {
+              slug
             }
           }
         }
@@ -26,17 +27,40 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // Create blog post pages.
   const posts = result.data.allMdx.edges;
 
-  // We'll call `createPage` for each result
   posts.forEach(({ node }) => {
     createPage({
-      // This is the slug we created before
-      // (or `node.frontmatter.slug`)
-      path: node.frontmatter.path,
-      // This component will wrap our MDX content
+      path: node.fields.slug,
       component: path.resolve(`./src/templates/PostTemplate.js`),
-      // We can use the values in this context in
-      // our page layout component
       context: { id: node.id },
     });
   });
+};
+
+/*
+ * @description: how to programmatically create slugs for mdx
+ * @link: https://www.gatsbyjs.org/docs/mdx/programmatically-creating-pages/
+ */
+exports.onCreateNode = ({ node, actions, getNode }) => {
+  const { createNodeField } = actions;
+  // We only want to operate on `Mdx` nodes. If we had content from a
+  // remote CMS we could also check to see if the parent node was a
+  // `File` node here
+  if (node.internal.type === 'Mdx') {
+    let slug = node.frontmatter.slug || createFilePath({ node, getNode });
+
+    if (node.fileAbsolutePath.includes('content/blog/')) {
+      slug = `/blog/${node.frontmatter.slug}`;
+    }
+
+    createNodeField({
+      // Name of the field you are adding
+      name: 'slug',
+      // Individual MDX node
+      node,
+      // Generated value based on filepath with "blog" prefix. We
+      // don't need a separating "/" before the value because
+      // createFilePath returns a path with the leading "/".
+      value: slug,
+    });
+  }
 };
