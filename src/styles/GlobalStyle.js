@@ -155,6 +155,54 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  /* https://www.gatsbyjs.org/packages/gatsby-remark-prismjs/?=prismjs#optional-add-line-highlighting-styles */
+  .gatsby-highlight-code-line {
+    background-color: rgb(70, 70, 70);
+    display: block;
+    margin-right: -1em;
+    margin-left: -1em;
+    padding-right: 1em;
+    padding-left: 0.75em;
+    border-left: 0.25em solid rgb(107, 107, 107);
+  }
+
+  /**
+  * Add back the container background-color, border-radius, padding, margin
+  * and overflow that we removed from <pre>.
+  */
+  .gatsby-highlight {
+    background-color: #2d2d2d;
+    margin: ${options.baseLineHeight * (9.5 / 10)}rem 0;
+    padding: 1em;
+    overflow: auto;
+
+    ${media.sm`
+      margin: ${options.baseLineHeight}rem 0;
+    `}
+  }
+
+  /**
+  * Remove the default PrismJS theme background-color, border-radius, margin,
+  * padding and overflow.
+  * 1. Make the element just wide enough to fit its content.
+  * 2. Always fill the visible space in .gatsby-highlight.
+  * 3. Adjust the position of the line numbers
+  */
+  .gatsby-highlight pre[class*='language-'] {
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    overflow: initial;
+    float: left; /* 1 */
+    min-width: 100%; /* 2 */
+  }
+
+  /* https://www.gatsbyjs.org/packages/gatsby-remark-prismjs/?=prismjs#optional-add-line-numbering */
+  /* Adjust the position of the line numbers if using line numbers css*/
+  .gatsby-highlight pre[class*='language-'].line-numbers {
+    padding-left: 2.8em;
+  }
+
   pre[class*='language-'] {
     font-size: ${9.5 / 10}rem;
 
@@ -162,6 +210,15 @@ const GlobalStyle = createGlobalStyle`
       font-size: ${10 / 10}rem;
     `}
   }
+
+  
+  /* inline code */
+  :not(pre) > code[class*='language-'] {
+  background-color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.black};
+  padding: 2px 4px;
+  white-space: normal;
+}
 
 `;
 
