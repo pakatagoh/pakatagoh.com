@@ -45,10 +45,9 @@ function SEO({ isBlogPost, description, lang, title, image, slug }) {
       htmlAttributes={{
         lang,
       }}
-      title={metaTitle}
-      titleTemplate={`%s | ${site.siteMetadata.author}`}
     >
       {/* general meta tags */}
+      <title>{metaTitle === site.siteMetadata.author ? metaTitle : `${metaTitle} | ${site.siteMetadata.author}`}</title>
       <meta name="description" content={metaDescription} />
       <meta name="image" content={metaImage} />
       {/* Open Graph Tags */}
