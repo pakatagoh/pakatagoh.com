@@ -21,12 +21,23 @@ module.exports = {
         path: `${__dirname}/content/blog`,
       },
     },
-    'gatsby-transformer-remark',
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
         extensions: [`.mdx`, `.md`],
+        /*
+         * @description: https://github.com/gatsbyjs/gatsby/issues/15486
+         * @workaround: https://github.com/gatsbyjs/gatsby/issues/15486#issuecomment-510153237
+         */
+        plugins: [`gatsby-remark-images`],
         gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1170,
+              linkImagesToOriginal: false,
+            },
+          },
           {
             resolve: `gatsby-remark-autolink-headers`,
             options: {
