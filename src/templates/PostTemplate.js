@@ -172,7 +172,7 @@ export const postQuery = graphql`
         updatedAt(formatString: "YYYY-MM-DD")
       }
     }
-    postImage: file(relativePath: { eq: "Logo.png" }) {
+    postImage: file(relativePath: { eq: "Logo.jpg" }) {
       childImageSharp {
         fluid(maxWidth: 400) {
           ...GatsbyImageSharpFluid
