@@ -70,12 +70,12 @@ const CopyButton = ({ text, ...rest }) => {
   };
 
   return (
-    <>
-      <StyledCopyButton type="button" aria-label="Copy email to clipboard" onClick={handleClick} {...rest}>
+    <div {...rest}>
+      <StyledCopyButton type="button" aria-label="Copy email to clipboard" onClick={handleClick}>
         {text}
       </StyledCopyButton>
       <StyledCopyMessageWrapper ref={copyMessageRef} id="copy-message" />
-    </>
+    </div>
   );
 };
 
