@@ -5,17 +5,17 @@ import { media } from '../styles/sizes';
 import Image from './Image';
 
 const IMAGE_SIZE = {
-  lg: '400px',
-  md: '250px',
-  sm: '175px',
-  xs: '100px',
+  lg: '300px',
+  md: '230px',
+  sm: '125px',
+  xs: '90px',
 };
 
 export const OFFSET_PADDING = {
   xs: 5,
   sm: 7,
-  md: 10,
-  lg: 15,
+  md: 9,
+  lg: 12,
 };
 
 const StyledWrapper = styled.div`
