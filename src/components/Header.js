@@ -27,6 +27,7 @@ const StyledNav = styled.nav`
 const StyledBrandLink = styled(Link)`
   display: flex;
   align-items: center;
+  margin-bottom: 0;
 `;
 
 const StyledBrandLogo = styled.div`
