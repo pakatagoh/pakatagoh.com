@@ -44,6 +44,13 @@ module.exports = {
               icon: false,
             },
           },
+          {
+            resolve: 'gatsby-remark-prismjs',
+            options: {
+              noInlineHighlight: true,
+              showLineNumbers: true,
+            },
+          },
         ],
       },
     },
