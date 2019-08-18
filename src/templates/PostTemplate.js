@@ -18,7 +18,7 @@ import SectionHeader from '../components/SectionHeader';
 import Callout from '../components/Callout';
 
 const REPO = 'https://github.com/pakatagoh/pakatagoh.com';
-const GITHUB_BLOG = '/blob/master/content';
+const GITHUB_BLOB = '/blob/master/content';
 
 const StyledArticle = styled.article`
   margin-bottom: ${rhythm(1)};
@@ -75,7 +75,8 @@ const components = {
 
 const PostTemplate = ({ data }) => {
   const { mdx } = data;
-  const { frontmatter, tableOfContents } = mdx;
+  const { frontmatter, tableOfContents, fields } = mdx;
+  const { slug } = fields;
 
   const formatDate = date => format(date, 'DD MMM YYYY');
 
@@ -91,31 +92,23 @@ const PostTemplate = ({ data }) => {
               <StyledTime dateTime={frontmatter.updatedAt}>Updated: {formatDate(frontmatter.updatedAt)} / </StyledTime>
             </>
           )}
-          <InlineLink
-            href={`${REPO}${GITHUB_BLOG}${frontmatter.path}/index.mdx`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <InlineLink href={`${REPO}${GITHUB_BLOB}${slug}/index.mdx`} target="_blank" rel="noopener noreferrer">
             <StyledSmall>Edit on GitHub</StyledSmall>
           </InlineLink>
           <Section header="Table of Contents">
-            <TableOfContents items={tableOfContents.items} path={frontmatter.path} />
+            <TableOfContents items={tableOfContents.items} path={slug} />
           </Section>
           <MDXProvider components={components}>
             <MDXRenderer>{mdx.body}</MDXRenderer>
           </MDXProvider>
         </StyledArticle>
         <div className="d-flex justify-content-end">
-          <StyledInlineLink
-            href={`${REPO}${GITHUB_BLOG}${frontmatter.path}/index.mdx`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <StyledInlineLink href={`${REPO}${GITHUB_BLOB}${slug}/index.mdx`} target="_blank" rel="noopener noreferrer">
             Edit on GitHub
           </StyledInlineLink>
           /
           <StyledInlineLink
-            href={`https://twitter.com/intent/tweet?text=${frontmatter.title}&url=https://pakatagoh.com${frontmatter.path}&via=GohPakata`}
+            href={`https://twitter.com/intent/tweet?text=${frontmatter.title}&url=https://pakatagoh.com${slug}&via=GohPakata`}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -138,11 +131,13 @@ PostTemplate.propTypes = {
         description: PropType.string,
         createdAt: PropType.string.isRequired,
         updatedAt: PropType.string,
-        path: PropType.string,
       }),
       body: PropType.string,
       tableOfContents: PropType.shape({
         items: PropType.array,
+      }),
+      fields: PropType.shape({
+        slug: PropType.string,
       }),
     }),
   }),
@@ -153,14 +148,16 @@ export const postQuery = graphql`
     mdx(id: { eq: $id }) {
       id
       body
+      tableOfContents
+      fields {
+        slug
+      }
       frontmatter {
         title
         description
         createdAt(formatString: "YYYY-MM-DD")
         updatedAt(formatString: "YYYY-MM-DD")
-        path
       }
-      tableOfContents
     }
   }
 `;
