@@ -6,11 +6,11 @@ import { scale, rhythm, baseHeaderScale } from '../utils/typography';
 
 const StyledSectionHeader = styled.h2`
   ${({ as }) => (as ? scale(baseHeaderScale[as] * (9 / 10)) : scale(baseHeaderScale.h2 * (9 / 10)))};
-  margin-bottom: ${rhythm(1 / 5)};
+  margin-bottom: ${rhythm(2 / 5)};
 
   ${media.sm`
   ${({ as }) => (as ? scale(baseHeaderScale[as] * (10 / 10)) : scale(baseHeaderScale.h2 * (10 / 10)))};
-    margin-bottom: ${rhythm(2 / 5)};
+    margin-bottom: ${rhythm(3 / 5)};
     
   `};
 `;
