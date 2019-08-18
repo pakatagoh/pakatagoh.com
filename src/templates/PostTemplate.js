@@ -74,7 +74,7 @@ const components = {
 };
 
 const PostTemplate = ({ data }) => {
-  const { mdx } = data;
+  const { mdx, postImage } = data;
   const { frontmatter, tableOfContents, fields } = mdx;
   const { slug } = fields;
 
@@ -82,7 +82,13 @@ const PostTemplate = ({ data }) => {
 
   return (
     <Layout>
-      <SEO isBlogPost title={frontmatter.title} description={frontmatter.description} slug={slug} />
+      <SEO
+        isBlogPost
+        title={frontmatter.title}
+        description={frontmatter.description}
+        slug={slug}
+        image={postImage.childImageSharp.fluid.src}
+      />
       <Container>
         <StyledArticle>
           <PageTitle>{frontmatter.title}</PageTitle>
@@ -140,6 +146,13 @@ PostTemplate.propTypes = {
         slug: PropType.string,
       }),
     }),
+    postImage: PropType.shape({
+      childImageSharp: PropType.shape({
+        fluid: PropType.shape({
+          src: PropType.string,
+        }),
+      }),
+    }),
   }),
 };
 
@@ -157,6 +170,13 @@ export const postQuery = graphql`
         description
         createdAt(formatString: "YYYY-MM-DD")
         updatedAt(formatString: "YYYY-MM-DD")
+      }
+    }
+    postImage: file(relativePath: { eq: "Logo.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 400) {
+          ...GatsbyImageSharpFluid
+        }
       }
     }
   }
