@@ -9,7 +9,6 @@ import Container from './Container';
 import Row from './Row';
 import Col from './Col';
 import CopyButton from './CopyButton';
-import SocialIconList from './SocialIconList';
 import Block from './Block';
 
 const IMAGE_SIZE = {
@@ -110,7 +109,6 @@ const Callout = () => {
                 site, I write about things I&apos;ve learnt and hopefully you&apos;ll learn a thing or two from me.
               </StyledParagraph>
               <div className="d-flex flex-row-wrap align-items-center">
-                <SocialIconList className="flex-row-wrap" />
                 <StyledCopyButton text="pakatagohlh@gmail.com" />
               </div>
             </StyledCol>
