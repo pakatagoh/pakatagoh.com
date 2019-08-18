@@ -5,7 +5,34 @@ createdAt: '2019-08-16'
 updatedAt: '2019-08-17'
 ---
 
+```jsx
+import React from 'react';
+import PropType from 'prop-types';
+import { graphql } from 'gatsby';
+import styled from 'styled-components';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
+import { MDXProvider } from '@mdx-js/react';
+import { media } from '../styles/sizes';
+import { rhythm } from '../utils/typography';
+import Layout from '../components/Layout';
+import Container from '../components/Container';
+```
+
+```javascript
+const hello = () => 'world';
+
+const obj = {
+  key: 'value',
+};
+
+const arr = [{ obj }, 2, 3, 'hello'];
+
+hello();
+```
+
 ## TLDR
+
+`this is some inline code... blah blah npm install`
 
 this is some paragraph here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum placerat a enim ac dignissim. Nulla facilisi. Vivamus lacinia augue dolor, sit amet luctus libero aliquam quis. Maecenas placerat, dui quis varius dapibus, diam erat fringilla purus, in feugiat neque ligula vel nunc. Vestibulum id leo suscipit, convallis turpis in, aliquet erat.
 
@@ -30,27 +57,12 @@ Nulla facilisi. Vivamus lacinia augue dolor, sit amet luctus libero aliquam quis
 [this is a link to pakatagoh.com](pakatagoh.com)
 
 > This is some blockquote here
->
-> > This is a nested blockquote
-
-> This is a blockquote with a codeblock inside
->
-> ```lang-js
-> // this is a codeblock
-> const hehe = 'hoohoo'
-> function sayIt (hehe) {
->  console.log(hehe);
-> }
-> sayIt(hehe)
->
-> ```
 
 **This is some bold text**
 
 ## This is another H2
 
 ![fsae](./images/pg-fsae.jpg)
-`this is some inline code... blah blah npm install`
 
 ```lang-js
 // This is a code block
