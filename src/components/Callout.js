@@ -28,17 +28,13 @@ const StyledParagraph = styled.p`
 `;
 
 const StyledCopyButton = styled(CopyButton)`
-  font-size: ${10 / 10}rem;
-  margin-top: ${options.baseLineHeight * (3 / 10)}rem;
-  margin-bottom: ${options.baseLineHeight * (3 / 10)}rem;
-  margin-right: ${options.baseLineHeight * (3 / 10)}rem;
+  & button {
+    font-size: ${10 / 10}rem;
 
-  ${media.sm`
-    font-size: ${12 / 10}rem;
-  margin-top: ${options.baseLineHeight * (4 / 10)}rem;
-  margin-bottom: ${options.baseLineHeight * (4 / 10)}rem;
-    margin-right: ${options.baseLineHeight * (4 / 10)}rem;
+    ${media.sm`
+      font-size: ${12 / 10}rem;
   `};
+  }
 `;
 
 const StyledWrapper = styled.div`
@@ -114,8 +110,8 @@ const Callout = () => {
                 site, I write about things I&apos;ve learnt and hopefully you&apos;ll learn a thing or two from me.
               </StyledParagraph>
               <div className="d-flex flex-row-wrap align-items-center">
-                <StyledCopyButton text="pakatagohlh@gmail.com" />
                 <SocialIconList className="flex-row-wrap" />
+                <StyledCopyButton text="pakatagohlh@gmail.com" />
               </div>
             </StyledCol>
           </Row>
