@@ -102,7 +102,7 @@ const IndexPage = () => {
 
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO />
       <Container>
         <section>
           <Block>
