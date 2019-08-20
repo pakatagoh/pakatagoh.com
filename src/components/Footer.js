@@ -11,7 +11,7 @@ const FOOTER_LINKS = [
   { name: 'Github', to: config.github.link },
   { name: 'Twitter', to: config.twitter.link },
   { name: 'Instagram', to: config.instagram_coding.link },
-  { name: 'View Source', to: `${config.github.link}/pakatagoh.com` },
+  { name: 'View Source', to: config.repo.link },
 ];
 
 const StyledFooterWrapper = styled.div`
