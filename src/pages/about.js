@@ -15,6 +15,7 @@ import PageTitle from '../components/PageTitle';
 import Image from '../components/Image';
 import SocialIconLink from '../components/SocialIconLink';
 import InlineLink from '../components/InlineLink';
+import config from '../../config';
 
 import instagram_logo from '../assets/icons/instagram_logo.svg';
 
@@ -244,7 +245,7 @@ const About = () => {
           </p>
           <SocialIconLink
             color="primary"
-            icon={{ src: instagram_logo, name: 'pakata codes instagram', to: 'https://instagram.com/paka.codes/' }}
+            icon={{ src: instagram_logo, name: 'pakata codes instagram', to: config.instagram_coding.link }}
           >
             <StyledSpan>@paka.codes</StyledSpan>
           </SocialIconLink>
@@ -257,7 +258,7 @@ const About = () => {
           </StyledImageRow>
           <SocialIconLink
             color="primary"
-            icon={{ src: instagram_logo, name: 'pakata goh instagram', to: 'https://instagram.com/pakatagoh/' }}
+            icon={{ src: instagram_logo, name: 'pakata goh instagram', to: config.instagram_personal.link }}
           >
             <StyledSpan>@pakatagoh</StyledSpan>
           </SocialIconLink>
