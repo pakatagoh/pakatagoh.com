@@ -99,7 +99,7 @@ const Callout = () => {
               <StyledWrapper>
                 <StyledBackgroundLayer>
                   <StyledImageWrapper>
-                    <Image fluid={fluid} alt="pakata goh" />
+                    <Image fluid={fluid} alt={config.name} />
                   </StyledImageWrapper>
                 </StyledBackgroundLayer>
               </StyledWrapper>
