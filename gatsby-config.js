@@ -1,11 +1,13 @@
+const config = require('./config');
+
 module.exports = {
   siteMetadata: {
-    title: `Pakata Goh`,
-    canonicalUrl: 'https://www.pakatagoh.com',
-    description: `Pakata is a software developer from Singapore specializing in JavaScript. In this personal site, he writes about things he's learnt and hopefully you'll learn a thing or two from it.`,
-    author: `Pakata Goh`,
+    title: config.site.title,
+    canonicalUrl: config.site.url,
+    description: config.site.description,
+    author: config.name,
     social: {
-      twitter: '@GohPakata',
+      twitter: config.twitter.handle,
     },
   },
   plugins: [
@@ -61,7 +63,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Pakata Goh`,
+        name: config.name,
         short_name: `Pakata`,
         start_url: `/`,
         background_color: `#663399`,
@@ -82,7 +84,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: 'UA-146042974-1',
+        trackingId: config.googleAnalytics.trackingId,
       },
     },
   ],
