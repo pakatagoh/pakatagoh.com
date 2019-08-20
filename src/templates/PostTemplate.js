@@ -4,7 +4,6 @@ import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { MDXProvider } from '@mdx-js/react';
-import format from 'date-fns/format';
 import { media } from '../styles/sizes';
 import { rhythm } from '../utils/typography';
 import SEO from '../components/SEO';
@@ -17,6 +16,7 @@ import TableOfContents from '../components/TableOfContents';
 import SectionHeader from '../components/SectionHeader';
 import Callout from '../components/Callout';
 import config from '../../config';
+import formatDate from '../utils/formatDate';
 
 const GITHUB_BLOB = '/blob/master/content';
 
@@ -77,8 +77,6 @@ const PostTemplate = ({ data }) => {
   const { mdx, postImage } = data;
   const { frontmatter, tableOfContents, fields } = mdx;
   const { slug } = fields;
-
-  const formatDate = date => format(date, 'DD MMM YYYY');
 
   return (
     <Layout>
