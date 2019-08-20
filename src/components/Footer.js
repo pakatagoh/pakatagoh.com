@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import { media } from '../styles/sizes';
 import { rhythm } from '../utils/typography';
 import Container from './Container';
@@ -47,7 +48,7 @@ const StyledFooterLinks = styled.ul`
   `};
 `;
 
-const StyledLink = styled.li`
+const StyledListItem = styled.li`
   margin: 0;
 
   & a {
@@ -77,11 +78,11 @@ const Footer = () => {
           <StyledCopyright>© {new Date().getFullYear()} Pakata Goh</StyledCopyright>
           <StyledFooterLinks>
             {FOOTER_LINKS.map(({ name, to }) => (
-              <StyledLink key={name} to={to}>
-                <a href={to} target="_blank" rel="noreferrer noopener">
+              <StyledListItem key={name}>
+                <OutboundLink href={to} target="_blank" rel="noreferrer noopener">
                   {name}
-                </a>
-              </StyledLink>
+                </OutboundLink>
+              </StyledListItem>
             ))}
           </StyledFooterLinks>
         </StyledFooterWrapper>
