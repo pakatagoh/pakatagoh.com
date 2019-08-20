@@ -64,10 +64,10 @@ module.exports = {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: config.name,
-        short_name: `Pakata`,
+        short_name: `Pakata Goh`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: config.site.theme_color,
+        theme_color: config.site.theme_color,
         display: `minimal-ui`,
         icon: `src/images/Logo.jpg`, // This path is relative to the root of the site.
       },
