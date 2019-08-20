@@ -16,6 +16,7 @@ import BorderList from '../components/BorderList';
 import Image from '../components/Image';
 import Subtitle from '../components/Subtitle';
 import UnderConstruction from '../components/UnderConstruction';
+import config from '../../config';
 
 const TECH_LISTS = [
   {
@@ -115,11 +116,11 @@ const IndexPage = () => {
                   A software developer from Singapore specializing in JavaScript. In this personal site, I write about
                   things I&apos;ve learnt and hopefully you&apos;ll learn a thing or two from me.
                 </Subtitle>
-                <Image fluid={fluidWide} alt="Pakata Goh" className="d-md-none" />
+                <Image fluid={fluidWide} alt={config.name} className="d-md-none" />
                 <IconList />
               </StyledAboutLeftCol>
               <Col className="d-none d-md-block">
-                <LayerImage fluid={fluidSquare} alt="Pakata Goh" />
+                <LayerImage fluid={fluidSquare} alt={config.name} />
               </Col>
             </Row>
           </Block>
