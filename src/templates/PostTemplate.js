@@ -16,8 +16,8 @@ import InlineLink from '../components/InlineLink';
 import TableOfContents from '../components/TableOfContents';
 import SectionHeader from '../components/SectionHeader';
 import Callout from '../components/Callout';
+import config from '../../config';
 
-const REPO = 'https://github.com/pakatagoh/pakatagoh.com';
 const GITHUB_BLOB = '/blob/master/content';
 
 const StyledArticle = styled.article`
@@ -98,7 +98,7 @@ const PostTemplate = ({ data }) => {
               <StyledTime dateTime={frontmatter.updatedAt}>Updated: {formatDate(frontmatter.updatedAt)} / </StyledTime>
             </>
           )}
-          <InlineLink href={`${REPO}${GITHUB_BLOB}${slug}/index.mdx`} target="_blank" rel="noopener noreferrer">
+          <InlineLink href={`${config.repo.link}${GITHUB_BLOB}${slug}`} target="_blank" rel="noopener noreferrer">
             <StyledSmall>Edit on GitHub</StyledSmall>
           </InlineLink>
           <Section header="Table of Contents">
@@ -109,12 +109,12 @@ const PostTemplate = ({ data }) => {
           </MDXProvider>
         </StyledArticle>
         <div className="d-flex justify-content-end">
-          <StyledInlineLink href={`${REPO}${GITHUB_BLOB}${slug}/index.mdx`} target="_blank" rel="noopener noreferrer">
+          <StyledInlineLink href={`${config.repo.link}${GITHUB_BLOB}${slug}`} target="_blank" rel="noopener noreferrer">
             Edit on GitHub
           </StyledInlineLink>
           /
           <StyledInlineLink
-            href={`https://twitter.com/intent/tweet?text=${frontmatter.title}&url=https://pakatagoh.com${slug}&via=GohPakata`}
+            href={`https://twitter.com/intent/tweet?text=${frontmatter.title}&url=${config.site.url}${slug}&via=${config.twitter.handle}`}
             target="_blank"
             rel="noopener noreferrer"
           >
