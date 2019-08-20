@@ -1,7 +1,7 @@
 const config = {
   name: 'Pakata Goh',
-  github: 'https://github.com/pakatagoh',
-  linkedin: 'https://www.linkedin.com/in/pakata-goh/',
+  github: { link: 'https://github.com/pakatagoh' },
+  linkedin: { link: 'https://www.linkedin.com/in/pakata-goh/' },
   instagram_personal: {
     handle: '@pakatagoh',
     link: 'https://www.instagram.com/pakatagoh/',
