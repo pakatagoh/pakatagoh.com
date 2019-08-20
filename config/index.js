@@ -11,7 +11,7 @@ const config = {
     link: 'https://www.instagram.com/paka.codes/',
   },
   twitter: {
-    handle: '@GohPakata',
+    handle: 'GohPakata',
     link: 'https://twitter.com/gohpakata',
   },
   site: {
@@ -19,6 +19,9 @@ const config = {
     url: 'https://pakatagoh.com',
     description:
       "Pakata is a software developer from Singapore specializing in JavaScript. In this personal site, he writes about things he's learnt and hopefully you'll learn a thing or two from it.",
+  },
+  repo: {
+    link: 'https://github.com/pakatagoh/pakatagoh.com',
   },
   googleAnalytics: {
     trackingId: 'UA-146042974-1',
