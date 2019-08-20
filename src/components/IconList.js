@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import { media } from '../styles/sizes';
 import ButtonLink from './ButtonLink';
 import SocialIconList from './SocialIconList';
-
-const RESUME_LINK = 'https://drive.google.com/open?id=185fdbe4ubRIuHuuCR_AtKHV7p7Zbrpvo';
+import config from '../../config';
 
 const StyledButtonsRow = styled.div`
   flex-wrap: wrap-reverse;
@@ -26,7 +25,7 @@ const IconList = () => {
   return (
     <StyledButtonsRow className="d-flex align-items-center">
       <StyledResumeButtonWrapper>
-        <ButtonLink href={RESUME_LINK} iconClassName="icon-text_document" iconSize="sm">
+        <ButtonLink href={config.resume.link} iconClassName="icon-text_document" iconSize="sm">
           RESUME
         </ButtonLink>
       </StyledResumeButtonWrapper>
