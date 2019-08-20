@@ -21,6 +21,7 @@ const config = {
     url: 'https://pakatagoh.com',
     description:
       "Pakata is a software developer from Singapore specializing in JavaScript. In this personal site, he writes about things he's learnt and hopefully you'll learn a thing or two from it.",
+    theme_color: '#ffb148',
   },
   repo: {
     link: 'https://github.com/pakatagoh/pakatagoh.com',
