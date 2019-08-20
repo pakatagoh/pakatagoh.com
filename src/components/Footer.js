@@ -76,7 +76,9 @@ const Footer = () => {
     <footer>
       <Container>
         <StyledFooterWrapper>
-          <StyledCopyright>© {new Date().getFullYear()} Pakata Goh</StyledCopyright>
+          <StyledCopyright>
+            © {new Date().getFullYear()} {config.name}
+          </StyledCopyright>
           <StyledFooterLinks>
             {FOOTER_LINKS.map(({ name, to }) => (
               <StyledListItem key={name}>
