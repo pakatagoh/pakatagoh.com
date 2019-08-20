@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { media } from '../styles/sizes';
 import SocialIconLink from './SocialIconLink';
+import config from '../../config';
 
 import linkedIn_logo from '../assets/icons/linkedin_logo.svg';
 import github_logo from '../assets/icons/github_logo.svg';
@@ -11,10 +12,10 @@ import twitter_logo from '../assets/icons/twitter_logo.svg';
 import instagram_logo from '../assets/icons/instagram_logo.svg';
 
 const SOCIAL_LINKS = [
-  { name: 'LinkedIn', src: linkedIn_logo, to: 'https://linkedin.com/in/pakata-goh/' },
-  { name: 'Github', src: github_logo, to: 'https://github.com/pakatagoh' },
-  { name: 'Twitter', src: twitter_logo, to: 'https://twitter.com/GohPakata' },
-  { name: 'Instagram', src: instagram_logo, to: 'https://instagram.com/paka.codes/' },
+  { name: 'LinkedIn', src: linkedIn_logo, to: config.linkedin.link },
+  { name: 'Github', src: github_logo, to: config.github.link },
+  { name: 'Twitter', src: twitter_logo, to: config.twitter.link },
+  { name: 'Instagram', src: instagram_logo, to: config.instagram_coding.link },
 ];
 
 const StyledSocialIconLinksWrapper = styled.div`
