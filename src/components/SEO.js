@@ -76,7 +76,7 @@ SEO.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   image: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   slug: PropTypes.string,
 };
 
