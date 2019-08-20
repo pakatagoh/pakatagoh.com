@@ -14,8 +14,7 @@ import LayerImage from '../components/LayerImage';
 import IconList from '../components/IconList';
 import SEO from '../components/SEO';
 import SectionHeader from '../components/SectionHeader';
-
-const EMAIL = 'pakatagohlh@gmail.com';
+import config from '../../config';
 
 const StyledCopyButtonWrapper = styled.div`
   margin-bottom: 10px;
@@ -65,7 +64,7 @@ const Contact = () => {
               <StyledLeftCol>
                 <SectionHeader>GET IN TOUCH</SectionHeader>
                 <StyledCopyButtonWrapper>
-                  <CopyButton text={EMAIL} />
+                  <CopyButton text={config.email} />
                 </StyledCopyButtonWrapper>
                 <IconList />
               </StyledLeftCol>
