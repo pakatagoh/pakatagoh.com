@@ -10,6 +10,7 @@ import Row from './Row';
 import Col from './Col';
 import CopyButton from './CopyButton';
 import Block from './Block';
+import config from '../../config';
 
 const IMAGE_SIZE = {
   sm: '125px',
@@ -109,7 +110,7 @@ const Callout = () => {
                 site, I write about things I&apos;ve learnt and hopefully you&apos;ll learn a thing or two from me.
               </StyledParagraph>
               <div className="d-flex flex-row-wrap align-items-center">
-                <StyledCopyButton text="pakatagohlh@gmail.com" />
+                <StyledCopyButton text={config.email} />
               </div>
             </StyledCol>
           </Row>
