@@ -1,5 +1,5 @@
 import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql, Link } from 'gatsby';
 import styled from 'styled-components';
 import SEO from '../components/SEO';
 import { media } from '../styles/sizes';
@@ -15,8 +15,8 @@ import IconList from '../components/IconList';
 import BorderList from '../components/BorderList';
 import Image from '../components/Image';
 import Subtitle from '../components/Subtitle';
-import UnderConstruction from '../components/UnderConstruction';
 import config from '../../config';
+import formatDate from '../utils/formatDate';
 
 const TECH_LISTS = [
   {
@@ -78,9 +78,44 @@ const StyledTechCol = styled(Col)`
   `};
 `;
 
+const StyledLink = styled(Link)`
+  color: ${({ theme }) => theme.primary.base};
+  text-decoration: none;
+
+  &:hover {
+    color: ${({ theme }) => theme.primary.hover};
+    border-bottom: 1px solid ${({ theme }) => theme.primary.hover};
+    background-color: ${({ theme }) => theme.white2};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.white};
+    border-bottom: 1px solid ${({ theme }) => theme.primary.pressed};
+    color: ${({ theme }) => theme.primary.pressed};
+  }
+`;
+
+const StyledPostTitle = styled.h3`
+  & a {
+    font-size: 1em;
+    color: ${({ theme }) => theme.black};
+    text-decoration: none;
+
+    &:hover {
+      color: ${({ theme }) => theme.primary.hover};
+      border-bottom: 1px solid ${({ theme }) => theme.primary.hover};
+      background-color: ${({ theme }) => theme.white2};
+    }
+    &:active {
+      background-color: ${({ theme }) => theme.white};
+      border-bottom: 1px solid ${({ theme }) => theme.primary.pressed};
+      color: ${({ theme }) => theme.primary.pressed};
+    }
+  }
+`;
+
 const IndexPage = () => {
   const data = useStaticQuery(graphql`
-    query pgImageQuery {
+    query indexPageQuery {
       pgImageSquare: file(relativePath: { eq: "pg-headshot.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 400) {
@@ -95,12 +130,15 @@ const IndexPage = () => {
           }
         }
       }
+      allMdx(sort: { order: DESC, fields: frontmatter___createdAt }, limit: 5) {
+        ...BlogInfo
+      }
     }
   `);
 
   const { fluid: fluidSquare } = data.pgImageSquare.childImageSharp;
   const { fluid: fluidWide } = data.pgImageWide.childImageSharp;
-
+  const { edges: posts } = data.allMdx;
   return (
     <Layout>
       <SEO />
@@ -136,7 +174,24 @@ const IndexPage = () => {
           </StyledTechRow>
         </Section>
         <Section header="LATEST POSTS">
-          <UnderConstruction />
+          {posts.map(({ node: post }) => {
+            const { excerpt, fields, id, frontmatter } = post;
+            const { slug } = fields;
+            const { title, createdAt, updatedAt } = frontmatter;
+
+            return (
+              <article key={id}>
+                <StyledPostTitle>
+                  <Link to={slug}>{title}</Link>
+                </StyledPostTitle>
+                <p>
+                  {formatDate(createdAt)} {formatDate(updatedAt)}
+                </p>
+                <p>{excerpt}</p>
+                <StyledLink to={slug}>Read post</StyledLink>
+              </article>
+            );
+          })}
         </Section>
       </Container>
     </Layout>
