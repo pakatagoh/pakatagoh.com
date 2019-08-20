@@ -3,14 +3,15 @@ import styled from 'styled-components';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import { media } from '../styles/sizes';
 import { rhythm } from '../utils/typography';
+import config from '../../config';
 import Container from './Container';
 
 const FOOTER_LINKS = [
-  { name: 'LinkedIn', to: 'https://linkedin.com/in/pakata-goh/' },
-  { name: 'Github', to: 'https://github.com/pakatagoh' },
-  { name: 'Twitter', to: 'https://twitter.com/GohPakata' },
-  { name: 'Instagram', to: 'https://instagram.com/paka.codes/' },
-  { name: 'View Source', to: 'https://github.com/pakatagoh/pakatagoh.com' },
+  { name: 'LinkedIn', to: config.linkedin.link },
+  { name: 'Github', to: config.github.link },
+  { name: 'Twitter', to: config.twitter.link },
+  { name: 'Instagram', to: config.instagram_coding.link },
+  { name: 'View Source', to: `${config.github.link}/pakatagoh.com` },
 ];
 
 const StyledFooterWrapper = styled.div`
