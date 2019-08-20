@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import { media } from '../styles/sizes';
 import Icon, { ICON_SIZE } from './Icon';
 
@@ -25,7 +26,7 @@ const StyledIconBackground = styled.div`
   `};
 `;
 
-const StyledIconLink = styled.a`
+const StyledIconLink = styled(OutboundLink)`
   margin-bottom: 0;
   display: inline-flex;
   align-items: center;

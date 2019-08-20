@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import { media } from '../styles/sizes';
 import Button from './Button';
 
-const StyledButtonLink = styled.a`
+const StyledButtonLink = styled(OutboundLink)`
   text-decoration: none;
   color: ${({ theme }) => theme.black};
 `;

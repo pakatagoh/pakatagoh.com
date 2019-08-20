@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { OutboundLink } from 'gatsby-plugin-google-analytics';
 
-const StyledAnchor = styled.a`
+const StyledAnchor = styled(OutboundLink)`
   color: ${({ theme }) => theme.primary.base};
   text-decoration: none;
 
