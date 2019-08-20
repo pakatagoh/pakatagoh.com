@@ -71,7 +71,7 @@ const CopyButton = ({ text, ...rest }) => {
 
   return (
     <div {...rest}>
-      <StyledCopyButton type="button" aria-label="Copy email to clipboard" onClick={handleClick}>
+      <StyledCopyButton type="button" aria-label={`Copy ${text} to clipboard`} onClick={handleClick}>
         {text}
       </StyledCopyButton>
       <StyledCopyMessageWrapper ref={copyMessageRef} id="copy-message" />
