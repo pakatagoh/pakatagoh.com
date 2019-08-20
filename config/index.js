@@ -1,13 +1,14 @@
 const config = {
   name: 'Pakata Goh',
+  email: 'pakatagohlh@gmail.com',
   github: { link: 'https://github.com/pakatagoh' },
   linkedin: { link: 'https://www.linkedin.com/in/pakata-goh/' },
   instagram_personal: {
-    handle: '@pakatagoh',
+    handle: 'pakatagoh',
     link: 'https://www.instagram.com/pakatagoh/',
   },
   instagram_coding: {
-    handle: '@paka.codes',
+    handle: 'paka.codes',
     link: 'https://www.instagram.com/paka.codes/',
   },
   twitter: {
