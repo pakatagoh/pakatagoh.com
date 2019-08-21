@@ -112,9 +112,9 @@ const PostTemplate = ({ data }) => {
           </StyledInlineLink>
         </div>
       </Container>
-      <section>
+      <aside>
         <Callout />
-      </section>
+      </aside>
     </Layout>
   );
 };
