@@ -67,6 +67,7 @@ const StyledImage = styled(Image)`
 `;
 
 const StyledImageRow = styled(Row)`
+  justify-content: center;
   flex-wrap: wrap;
   margin-bottom: ${rhythm(1)};
 
@@ -218,7 +219,7 @@ const About = () => {
             {`In my free time, I dabble in a little photography. I love cars and
           I keep up with Formula 1 during race weekends.`}
           </p>
-          <StyledImageRow className="justify-content-center">
+          <StyledImageRow>
             {aboutImages.map(({ fluid, alt }) => (
               <StyledAboutImageCol key={alt}>
                 <Image fluid={fluid} alt={alt} />
