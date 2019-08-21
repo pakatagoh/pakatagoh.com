@@ -130,7 +130,11 @@ const IndexPage = () => {
           }
         }
       }
-      allMdx(sort: { order: DESC, fields: frontmatter___createdAt }, limit: 5) {
+      allMdx(
+        sort: { order: DESC, fields: frontmatter___createdAt }
+        limit: 5
+        filter: { frontmatter: { isPublished: { eq: true } } }
+      ) {
         ...BlogInfo
       }
     }
