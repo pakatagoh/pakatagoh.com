@@ -37,6 +37,14 @@ const StyledMainWrapper = styled.div`
   padding-bottom: 3rem;
 `;
 
+const StyledMain = styled.main`
+  padding-bottom: 2rem;
+
+  ${media.sm`
+    padding-bottom: 0;
+  `}
+`;
+
 const Layout = ({ children }) => {
   return (
     <>
@@ -45,7 +53,7 @@ const Layout = ({ children }) => {
         <StyledPageWrapper>
           <Header />
           <StyledMainWrapper>
-            <main>{children}</main>
+            <StyledMain>{children}</StyledMain>
           </StyledMainWrapper>
           <Footer />
         </StyledPageWrapper>
