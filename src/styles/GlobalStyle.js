@@ -212,15 +212,6 @@ const GlobalStyle = createGlobalStyle`
     `}
   }
 
-  
-  /* inline code */
-  :not(pre) > code[class*='language-'] {
-  background-color: ${({ theme }) => theme.white};
-  color: ${({ theme }) => theme.black};
-  padding: 2px 4px;
-  white-space: normal;
-}
-
 `;
 
 export default GlobalStyle;
