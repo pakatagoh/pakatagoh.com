@@ -18,25 +18,34 @@ const Blog = () => {
     }
   `);
 
-  const { edges } = data.allMdx;
+  const { edges: posts } = data.allMdx;
   return (
     <Layout>
       <SEO title="Blog" />
       <Container>
         <PageTitle block>BLOG</PageTitle>
-        {edges.map(({ node: post }) => {
-          const { excerpt, fields, id, frontmatter } = post;
-          const { slug } = fields;
-          const { title, createdAt, updatedAt } = frontmatter;
-          const blogListItemProps = {
-            excerpt,
-            slug,
-            title,
-            createdAt,
-            updatedAt,
-          };
-          return <BlogListItem key={id} {...blogListItemProps} />;
-        })}
+        {posts.length > 0 ? (
+          posts.map(({ node: post }) => {
+            const { excerpt, fields, id, frontmatter } = post;
+            const { slug } = fields;
+            const { title, createdAt, updatedAt } = frontmatter;
+            const blogListItemProps = {
+              excerpt,
+              slug,
+              title,
+              createdAt,
+              updatedAt,
+            };
+            return <BlogListItem key={id} {...blogListItemProps} />;
+          })
+        ) : (
+          <p>
+            No posts to show at the moment{' '}
+            <span role="img" aria-label="sad face">
+              😭
+            </span>
+          </p>
+        )}
       </Container>
     </Layout>
   );

@@ -144,17 +144,26 @@ const IndexPage = () => {
           </StyledTechRow>
         </Section>
         <Section header="LATEST POSTS">
-          {posts.map(({ node: post }) => {
-            const { excerpt, fields, id, frontmatter } = post;
-            const { slug } = fields;
-            const { title } = frontmatter;
-            const blogListItemProps = {
-              excerpt,
-              slug,
-              title,
-            };
-            return <BlogListItem key={id} {...blogListItemProps} postTitleAs="h3" />;
-          })}
+          {posts.length > 0 ? (
+            posts.map(({ node: post }) => {
+              const { excerpt, fields, id, frontmatter } = post;
+              const { slug } = fields;
+              const { title } = frontmatter;
+              const blogListItemProps = {
+                excerpt,
+                slug,
+                title,
+              };
+              return <BlogListItem key={id} {...blogListItemProps} postTitleAs="h3" />;
+            })
+          ) : (
+            <p>
+              No posts to show at the moment{' '}
+              <span role="img" aria-label="sad face">
+                😭
+              </span>
+            </p>
+          )}
           <ButtonGatsbyLink to="/blog" iconClassName="icon-arrow_right_solid">
             ALL POSTS
           </ButtonGatsbyLink>
