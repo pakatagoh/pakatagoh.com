@@ -84,19 +84,19 @@ const GlobalStyle = createGlobalStyle`
 
   /* icons */
   i {
-    color: ${({ theme }) => theme.black};
-    font-size: 0.85rem;
+    color: inherit;
+    font-size: 0.75rem;
 
     ${media.sm`
-      font-size: 1rem;
+      font-size: 0.85rem;
     `};
   }
 
   .icon-sm {
-    font-size: 1.05rem;
+    font-size: 0.95rem;
 
     ${media.sm`
-      font-size: 1.25rem;
+      font-size: 1.15rem;
     `};
   }
 
