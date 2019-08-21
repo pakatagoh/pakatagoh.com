@@ -6,6 +6,7 @@ import Container from '../components/Container';
 import PageTitle from '../components/PageTitle';
 import SEO from '../components/SEO';
 import formatDate from '../utils/formatDate';
+import Small from '../components/Small';
 
 const StyledPostTitle = styled.h2`
   & a {
@@ -67,9 +68,20 @@ const Blog = () => {
               <StyledPostTitle>
                 <Link to={slug}>{title}</Link>
               </StyledPostTitle>
-              <p>
-                {formatDate(createdAt)} {formatDate(updatedAt)}
-              </p>
+              <div>
+                <Small>Posted:</Small>
+                <Small as="time" dateTime={updatedAt}>
+                  {formatDate(createdAt)}{' '}
+                </Small>
+                {updatedAt && (
+                  <>
+                    <Small> / Updated: </Small>
+                    <Small as="time" dateTime={updatedAt}>
+                      {formatDate(updatedAt)}
+                    </Small>
+                  </>
+                )}
+              </div>
               <p>{excerpt}</p>
               <StyledLink to={slug}>Read post</StyledLink>
             </article>
