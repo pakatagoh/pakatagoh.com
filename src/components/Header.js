@@ -1,6 +1,6 @@
+import React, { useEffect } from 'react';
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
-import React from 'react';
 import Container from './Container';
 import { media } from '../styles/sizes';
 import { rhythm } from '../utils/typography';
@@ -8,12 +8,31 @@ import logo from '../assets/icons/Logo.svg';
 
 const NAVLINKS = ['blog', 'about', 'contact'];
 const ACTIVE = 'active';
+const SCROLL = 'scroll';
+
+const StyledHeader = styled.header`
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: white;
+  box-shadow: none;
+  transition: box-shadow 0.1s linear;
+
+  &.${SCROLL} {
+    box-shadow: ${({ theme }) => theme.shadow.hover};
+  }
+`;
 
 const StyledNav = styled.nav`
-  padding: ${rhythm(1)} 0;
+  /* height of header */
+  /* see Layout component */
+  height: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: height 0.1s linear;
 
   & a {
     text-decoration: none;
@@ -22,6 +41,10 @@ const StyledNav = styled.nav`
     color: ${({ theme }) => theme.black};
     border-bottom: 5px solid ${({ theme }) => theme.secondary.base};
   }
+
+  ${media.sm`
+    height: 100px;
+  `};
 `;
 
 const StyledBrandLink = styled(Link)`
@@ -85,10 +108,26 @@ const Header = () => {
     }
   `);
 
+  useEffect(() => {
+    const headerElement = document.querySelector('header');
+    const toggleScroll = () => {
+      if (window.pageYOffset > 0) {
+        headerElement.classList.add(SCROLL);
+        return;
+      }
+      headerElement.classList.remove(SCROLL);
+    };
+    window.addEventListener('scroll', toggleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', toggleScroll);
+    };
+  }, []);
+
   const { title: siteTitle } = data.site.siteMetadata;
 
   return (
-    <header>
+    <StyledHeader>
       <Container>
         <StyledNav>
           <StyledBrandLink to="/">
@@ -106,7 +145,7 @@ const Header = () => {
           </div>
         </StyledNav>
       </Container>
-    </header>
+    </StyledHeader>
   );
 };
 
