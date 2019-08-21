@@ -4,7 +4,6 @@ import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { MDXProvider } from '@mdx-js/react';
-import { media } from '../styles/sizes';
 import { rhythm } from '../utils/typography';
 import SEO from '../components/SEO';
 import Layout from '../components/Layout';
@@ -17,25 +16,12 @@ import SectionHeader from '../components/SectionHeader';
 import Callout from '../components/Callout';
 import config from '../../config';
 import formatDate from '../utils/formatDate';
+import Small from '../components/Small';
 
 const GITHUB_BLOB = '/blob/master/content';
 
 const StyledArticle = styled.article`
   margin-bottom: ${rhythm(1)};
-`;
-
-const StyledSmall = styled.small`
-  font-size: 65%;
-  ${media.sm`
-    font-size: 80%;
-  `};
-`;
-
-const StyledTime = styled.time`
-  font-size: 65%;
-  ${media.sm`
-    font-size: 80%;
-  `};
 `;
 
 const StyledSectionHeader = styled(SectionHeader)`
@@ -90,14 +76,20 @@ const PostTemplate = ({ data }) => {
       <Container>
         <StyledArticle>
           <PageTitle>{frontmatter.title}</PageTitle>
-          <StyledTime dateTime={frontmatter.createdAt}>Posted: {formatDate(frontmatter.createdAt)} / </StyledTime>
+          <Small>Posted: </Small>
+          <Small as="time" dateTime={frontmatter.createdAt}>
+            {formatDate(frontmatter.createdAt)} /{' '}
+          </Small>
           {frontmatter.updatedAt && (
             <>
-              <StyledTime dateTime={frontmatter.updatedAt}>Updated: {formatDate(frontmatter.updatedAt)} / </StyledTime>
+              <Small>Updated: </Small>
+              <Small as="time" dateTime={frontmatter.updatedAt}>
+                {formatDate(frontmatter.updatedAt)} /{' '}
+              </Small>
             </>
           )}
           <InlineLink href={`${config.repo.link}${GITHUB_BLOB}${slug}`} target="_blank" rel="noopener noreferrer">
-            <StyledSmall>Edit on GitHub</StyledSmall>
+            <Small>Edit on GitHub</Small>
           </InlineLink>
           <Section header="Table of Contents">
             <TableOfContents items={tableOfContents.items} path={slug} />
