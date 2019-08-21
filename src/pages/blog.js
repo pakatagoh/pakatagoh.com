@@ -1,6 +1,7 @@
 import React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import styled from 'styled-components';
+import { rhythm } from '../utils/typography';
 import Layout from '../components/Layout';
 import Container from '../components/Container';
 import PageTitle from '../components/PageTitle';
@@ -8,7 +9,17 @@ import SEO from '../components/SEO';
 import formatDate from '../utils/formatDate';
 import Small from '../components/Small';
 
+const StyledArticle = styled.article`
+  margin-bottom: ${rhythm(1)};
+`;
+
+const StyledSmall = styled(Small)`
+  color: ${({ theme }) => theme.gray2};
+`;
+
 const StyledPostTitle = styled.h2`
+  margin-bottom: ${rhythm(1 / 5)};
+
   & a {
     font-size: 1em;
     color: ${({ theme }) => theme.black};
@@ -43,10 +54,17 @@ const StyledLink = styled(Link)`
   }
 `;
 
+const StyledExcerpt = styled.p`
+  margin-bottom: 0;
+`;
+
 const Blog = () => {
   const data = useStaticQuery(graphql`
     query blogListQuery {
-      allMdx(sort: { order: DESC, fields: frontmatter___createdAt }) {
+      allMdx(
+        sort: { order: DESC, fields: frontmatter___createdAt }
+        filter: { frontmatter: { isPublished: { eq: true } } }
+      ) {
         ...BlogInfo
       }
     }
@@ -64,27 +82,31 @@ const Blog = () => {
           const { title, createdAt, updatedAt } = frontmatter;
 
           return (
-            <article key={id}>
+            <StyledArticle key={id}>
               <StyledPostTitle>
                 <Link to={slug}>{title}</Link>
               </StyledPostTitle>
+              <StyledExcerpt>
+                {excerpt}
+                <StyledLink to={slug}>
+                  READ POST <i className="icon-arrow_right_solid" />
+                </StyledLink>
+              </StyledExcerpt>
               <div>
-                <Small>Posted:</Small>
-                <Small as="time" dateTime={updatedAt}>
-                  {formatDate(createdAt)}{' '}
-                </Small>
+                <StyledSmall>Posted: </StyledSmall>
+                <StyledSmall forwardedAs="time" dateTime={updatedAt}>
+                  {formatDate(createdAt)}
+                </StyledSmall>
                 {updatedAt && (
                   <>
-                    <Small> / Updated: </Small>
-                    <Small as="time" dateTime={updatedAt}>
+                    <StyledSmall> / Updated: </StyledSmall>
+                    <StyledSmall forwardedAs="time" dateTime={updatedAt}>
                       {formatDate(updatedAt)}
-                    </Small>
+                    </StyledSmall>
                   </>
                 )}
               </div>
-              <p>{excerpt}</p>
-              <StyledLink to={slug}>Read post</StyledLink>
-            </article>
+            </StyledArticle>
           );
         })}
       </Container>
