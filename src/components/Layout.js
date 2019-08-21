@@ -7,6 +7,7 @@ import GlobalStyle from '../styles/GlobalStyle';
 import StyledTheme from '../styles/StyledTheme';
 import Header from './Header';
 import Footer from './Footer';
+import { media } from '../styles/sizes';
 
 /*
  * @description: StyledPageWrapper and StyledMainWrapper are used to keep footer at the bottom of the screen
@@ -24,6 +25,13 @@ const StyledPageWrapper = styled.div`
 `;
 
 const StyledMainWrapper = styled.div`
+  /* height of sticky nav */
+  /* see Header component */
+  padding-top: 4rem;
+
+  ${media.sm`
+  padding-top: 7rem;
+  `};
   /* height of Footer */
   /* see Footer component */
   padding-bottom: 3rem;
