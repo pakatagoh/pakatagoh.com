@@ -6,7 +6,7 @@ export const query = graphql`
     edges {
       node {
         id
-        excerpt(pruneLength: 150)
+        excerpt(pruneLength: 200)
         fields {
           slug
         }
@@ -14,6 +14,7 @@ export const query = graphql`
           createdAt(formatString: "YYYY-MM-DD")
           title
           updatedAt(formatString: "YYYY-MM-DD")
+          keywords
         }
       }
     }
