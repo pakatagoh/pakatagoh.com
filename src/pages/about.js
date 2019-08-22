@@ -52,6 +52,7 @@ const StyledListItem = styled.li`
 
 const StyledImage = styled(Image)`
   transform: scale(1);
+  transform-origin: center;
   box-shadow: none;
   transition: all 0.15s linear;
 
@@ -104,6 +105,7 @@ const StyledAboutImageCol = styled(Col)`
 const StyledImageCol = styled(Col)`
   flex: 0 0 100%;
   margin-bottom: ${rhythm(1)};
+  overflow: hidden;
 
   &:nth-last-of-type(2) {
     margin-bottom: 0;
