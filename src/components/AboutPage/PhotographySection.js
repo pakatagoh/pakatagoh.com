@@ -17,23 +17,6 @@ const StyledSpan = styled.span`
   margin-left: 10px;
 `;
 
-const StyledImage = styled(Image)`
-  transform: scale(1);
-  transform-origin: center;
-  box-shadow: none;
-  transition: all 0.15s linear;
-
-  &:hover {
-    transform: scale(1.02);
-    box-shadow: ${({ theme }) => theme.shadow.hover};
-  }
-
-  &:active {
-    transform: scale(1.01);
-    box-shadow: ${({ theme }) => theme.shadow.pressed};
-  }
-`;
-
 const StyledImageCol = styled(Col)`
   flex: 0 0 100%;
   margin-bottom: ${rhythm(1)};
@@ -115,7 +98,7 @@ const PhotographySection = () => {
       <StyledImageRow>
         {imagesPakaCodes.map(({ fluid, alt }) => (
           <StyledImageCol key={alt}>
-            <StyledImage fluid={fluid} alt={alt} />
+            <Image fluid={fluid} alt={alt} />
           </StyledImageCol>
         ))}
       </StyledImageRow>
@@ -128,7 +111,7 @@ const PhotographySection = () => {
       <StyledImageRow>
         {imagesPakataGoh.map(({ fluid, alt }) => (
           <StyledImageCol key={alt}>
-            <StyledImage fluid={fluid} alt={alt} />
+            <Image fluid={fluid} alt={alt} />
           </StyledImageCol>
         ))}
       </StyledImageRow>
