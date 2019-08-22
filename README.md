@@ -24,6 +24,10 @@ This site is built using [Gatsby](https://www.gatsbyjs.org) with the help of the
   - [Getting started with MDX in Gatsby](https://www.gatsbyjs.org/docs/mdx/)
   - [MDX](https://mdxjs.com/)
 
+## Contributions
+
+I'll be flattered if you'd like to help amend any errors or contribute to certain posts. Just put up a PR or issue and I'll look through it!
+
 ## Contact me
 
 - [LinkedIn](https://www.linkedin.com/in/pakata-goh/)
