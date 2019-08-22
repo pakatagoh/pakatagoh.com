@@ -6,7 +6,7 @@ import StyledListItem from './StyledListItem';
 const SETUP = [
   { label: 'Computer', name: 'Dell XPS 15' },
   { label: 'Monitor', name: 'LG 27UD88-W' },
-  { label: 'Keyboard', name: 'Anne Pro2 / Logitech K780' },
+  { label: 'Keyboard', name: 'Anne Pro2' },
   { label: 'Mouse', name: 'Logitech MX Master 2' },
   { label: 'Code Editor', name: 'Visual Studio Code' },
   { label: 'Font', name: 'Fira Code (with ligatures)' },
