@@ -132,8 +132,9 @@ const IndexPage = () => {
                   Hey! I&apos;m <span>Pakata</span>
                 </StyledH1>
                 <Subtitle>
-                  A software developer from Singapore specializing in JavaScript. In this personal site, I write about
-                  things I&apos;ve learnt and hopefully you&apos;ll learn a thing or two from me.
+                  A software developer from Singapore specializing in JavaScript. In this personal site, I&apos;m
+                  documenting what I&apos;ve learnt during my software development journey and hopefully you&apos;ll
+                  find it useful.
                 </Subtitle>
                 <Image fluid={fluidWide} alt={config.name} className="d-md-none" />
                 <IconList />
