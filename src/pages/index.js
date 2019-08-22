@@ -108,7 +108,18 @@ const IndexPage = () => {
 
   const { fluid: fluidSquare } = data.pgImageSquare.childImageSharp;
   const { fluid: fluidWide } = data.pgImageWide.childImageSharp;
-  const { edges: posts } = data.allMdx;
+  const { edges } = data.allMdx;
+  const blogPosts = edges.map(({ node: post }) => {
+    const { id, excerpt, frontmatter, fields } = post;
+    const { slug } = fields;
+    const { title } = frontmatter;
+    return {
+      id,
+      excerpt,
+      title,
+      slug,
+    };
+  });
   return (
     <Layout>
       <SEO />
@@ -144,17 +155,9 @@ const IndexPage = () => {
           </StyledTechRow>
         </Section>
         <Section header="LATEST POSTS">
-          {posts.length > 0 ? (
-            posts.map(({ node: post }) => {
-              const { excerpt, fields, id, frontmatter } = post;
-              const { slug } = fields;
-              const { title } = frontmatter;
-              const blogListItemProps = {
-                excerpt,
-                slug,
-                title,
-              };
-              return <BlogListItem key={id} {...blogListItemProps} postTitleAs="h3" />;
+          {blogPosts.length > 0 ? (
+            blogPosts.map(({ id, ...rest }) => {
+              return <BlogListItem key={id} {...rest} postTitleAs="h3" />;
             })
           ) : (
             <p>
