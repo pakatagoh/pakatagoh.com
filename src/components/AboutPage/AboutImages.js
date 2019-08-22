@@ -5,6 +5,15 @@ import { media } from '../../styles/sizes';
 import StyledImageRow from './StyledImageRow';
 import Col from '../Col';
 import Image from '../Image';
+import Small from '../Small';
+
+const StyledFigure = styled.figure`
+  margin-bottom: 0;
+`;
+
+const StyledFigCaption = styled.figcaption`
+  text-align: center;
+`;
 
 const StyledAboutImageCol = styled(Col)`
   flex: 0 0 100%;
@@ -40,15 +49,20 @@ const AboutImages = () => {
   );
 
   const aboutImages = [
-    { fluid: data.pg_talk.childImageSharp.fluid, alt: 'Giving software talk' },
-    { fluid: data.pg_fsae.childImageSharp.fluid, alt: 'Win 7th place formula student' },
+    { fluid: data.pg_talk.childImageSharp.fluid, alt: 'Talking about React Hooks @ ThoughtWorks Singapore' },
+    { fluid: data.pg_fsae.childImageSharp.fluid, alt: 'R-15 winning 7th place at FSAE Michigan 2015' },
   ];
 
   return (
     <StyledImageRow>
       {aboutImages.map(({ fluid, alt }) => (
         <StyledAboutImageCol key={alt}>
-          <Image fluid={fluid} alt={alt} />
+          <StyledFigure>
+            <Image fluid={fluid} alt={alt} />
+            <StyledFigCaption>
+              <Small>{alt}</Small>
+            </StyledFigCaption>
+          </StyledFigure>
         </StyledAboutImageCol>
       ))}
     </StyledImageRow>
