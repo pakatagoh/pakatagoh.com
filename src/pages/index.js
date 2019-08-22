@@ -133,8 +133,7 @@ const IndexPage = () => {
                 </StyledH1>
                 <Subtitle>
                   A software developer from Singapore specializing in JavaScript. In this personal site, I&apos;m
-                  documenting what I&apos;ve learnt during my software development journey and hopefully you&apos;ll
-                  find it useful.
+                  documenting what I&apos;ve learnt during my software development journey. Let&apos;s connect!
                 </Subtitle>
                 <Image fluid={fluidWide} alt={config.name} className="d-md-none" />
                 <IconList />
