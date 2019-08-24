@@ -1,8 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 import InlineLink from './InlineLink';
+
+const StyledList = styled.ul`
+  margin-bottom: 0;
+
+  & li:last-of-type {
+    margin-bottom: 0;
+  }
+`;
 
 const TableOfContents = ({ items, path }) => {
   const renderLi = item => {
@@ -24,7 +32,7 @@ const TableOfContents = ({ items, path }) => {
     }
     return <li key={item.url}>{renderLi(item)}</li>;
   };
-  return <ul>{items.map(createTOC)}</ul>;
+  return <StyledList>{items.map(createTOC)}</StyledList>;
 };
 
 TableOfContents.propTypes = {
