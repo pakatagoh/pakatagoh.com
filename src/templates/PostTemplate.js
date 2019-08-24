@@ -61,30 +61,24 @@ const components = {
 
 const PostTemplate = ({ data }) => {
   const { mdx, postImage } = data;
-  const { frontmatter, tableOfContents, fields } = mdx;
-  const { slug } = fields;
+  const { tableOfContents, fields } = mdx;
+  const { slug, title, description, createdAt, updatedAt } = fields;
 
   return (
     <Layout>
-      <SEO
-        isBlogPost
-        title={frontmatter.title}
-        description={frontmatter.description}
-        slug={slug}
-        image={postImage.childImageSharp.fluid.src}
-      />
+      <SEO isBlogPost title={title} description={description} slug={slug} image={postImage.childImageSharp.fluid.src} />
       <Container>
         <StyledArticle>
-          <PageTitle>{frontmatter.title}</PageTitle>
+          <PageTitle>{title}</PageTitle>
           <Small>Posted: </Small>
-          <Small as="time" dateTime={frontmatter.createdAt}>
-            {formatDate(frontmatter.createdAt)} /{' '}
+          <Small as="time" dateTime={createdAt}>
+            {formatDate(createdAt)} /{' '}
           </Small>
-          {frontmatter.updatedAt && (
+          {updatedAt && (
             <>
               <Small>Updated: </Small>
-              <Small as="time" dateTime={frontmatter.updatedAt}>
-                {formatDate(frontmatter.updatedAt)} /{' '}
+              <Small as="time" dateTime={updatedAt}>
+                {formatDate(updatedAt)} /{' '}
               </Small>
             </>
           )}
@@ -104,7 +98,7 @@ const PostTemplate = ({ data }) => {
           </StyledInlineLink>
           /
           <StyledInlineLink
-            href={`https://twitter.com/intent/tweet?text=${frontmatter.title}&url=${config.site.url}${slug}&via=${config.twitter.handle}`}
+            href={`https://twitter.com/intent/tweet?text=${title}&url=${config.site.url}${slug}&via=${config.twitter.handle}`}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -122,18 +116,17 @@ const PostTemplate = ({ data }) => {
 PostTemplate.propTypes = {
   data: PropType.shape({
     mdx: PropType.shape({
-      frontmatter: PropType.shape({
-        title: PropType.string.isRequired,
-        description: PropType.string,
-        createdAt: PropType.string.isRequired,
-        updatedAt: PropType.string,
-      }),
       body: PropType.string,
       tableOfContents: PropType.shape({
         items: PropType.array,
       }),
       fields: PropType.shape({
-        slug: PropType.string,
+        slug: PropType.string.isRequired,
+        title: PropType.string.isRequired,
+        description: PropType.string,
+        createdAt: PropType.string.isRequired,
+        updatedAt: PropType.string,
+        isPublished: PropType.bool,
       }),
     }),
     postImage: PropType.shape({
@@ -154,12 +147,10 @@ export const postQuery = graphql`
       tableOfContents
       fields {
         slug
-      }
-      frontmatter {
         title
         description
-        createdAt(formatString: "YYYY-MM-DD")
-        updatedAt(formatString: "YYYY-MM-DD")
+        createdAt
+        updatedAt
       }
     }
     postImage: file(relativePath: { eq: "Logo.jpg" }) {
