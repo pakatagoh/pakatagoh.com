@@ -9,11 +9,9 @@ export const query = graphql`
         excerpt(pruneLength: 200)
         fields {
           slug
-        }
-        frontmatter {
-          createdAt(formatString: "YYYY-MM-DD")
           title
-          updatedAt(formatString: "YYYY-MM-DD")
+          createdAt
+          updatedAt
           keywords
         }
       }
