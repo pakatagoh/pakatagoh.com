@@ -1,5 +1,7 @@
 const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
+const slugify = require('slugify');
+const format = require('date-fns/format');
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   // Destructure the createPage function from the actions object
@@ -42,25 +44,53 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
  */
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
-  // We only want to operate on `Mdx` nodes. If we had content from a
-  // remote CMS we could also check to see if the parent node was a
-  // `File` node here
+
   if (node.internal.type === 'Mdx') {
-    let slug = node.frontmatter.slug || createFilePath({ node, getNode });
+    const { frontmatter } = node;
+    let slug = frontmatter.slug || slugify(frontmatter.title, { lower: true }) || createFilePath({ node, getNode });
 
     if (node.fileAbsolutePath.includes('content/blog/')) {
-      slug = `/blog/${node.frontmatter.slug}`;
+      slug = `/blog/${slug}`;
     }
 
     createNodeField({
-      // Name of the field you are adding
       name: 'slug',
-      // Individual MDX node
       node,
-      // Generated value based on filepath with "blog" prefix. We
-      // don't need a separating "/" before the value because
-      // createFilePath returns a path with the leading "/".
       value: slug,
+    });
+
+    createNodeField({
+      name: 'title',
+      node,
+      value: frontmatter.title,
+    });
+
+    createNodeField({
+      name: 'updatedAt',
+      node,
+      value: frontmatter.updatedAt ? format(new Date(frontmatter.updatedAt), 'y-MM-dd') : '',
+    });
+
+    createNodeField({
+      name: 'createdAt',
+      node,
+      value: frontmatter.createdAt,
+    });
+
+    createNodeField({
+      name: 'description',
+      node,
+      value: frontmatter.description || '',
+    });
+    createNodeField({
+      name: 'keywords',
+      node,
+      value: frontmatter.keywords ? frontmatter.keywords : [],
+    });
+    createNodeField({
+      name: 'isPublished',
+      node,
+      value: frontmatter.isPublished,
     });
   }
 };
