@@ -110,9 +110,8 @@ const IndexPage = () => {
   const { fluid: fluidWide } = data.pgImageWide.childImageSharp;
   const { edges } = data.allMdx;
   const blogPosts = edges.map(({ node: post }) => {
-    const { id, excerpt, frontmatter, fields } = post;
-    const { slug } = fields;
-    const { title } = frontmatter;
+    const { id, excerpt, fields } = post;
+    const { slug, title } = fields;
     return {
       id,
       excerpt,
