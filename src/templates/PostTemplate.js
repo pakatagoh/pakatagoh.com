@@ -18,8 +18,6 @@ import config from '../../config';
 import formatDate from '../utils/formatDate';
 import Small from '../components/Small';
 
-const GITHUB_BLOB = '/blob/master/content';
-
 const StyledArticle = styled.article`
   margin-bottom: ${rhythm(1)};
 `;
@@ -62,7 +60,7 @@ const components = {
 const PostTemplate = ({ data }) => {
   const { mdx, postImage } = data;
   const { tableOfContents, fields } = mdx;
-  const { slug, title, description, createdAt, updatedAt } = fields;
+  const { slug, title, description, createdAt, updatedAt, editOnGithubLink } = fields;
 
   return (
     <Layout>
@@ -82,7 +80,7 @@ const PostTemplate = ({ data }) => {
               </Small>
             </>
           )}
-          <InlineLink href={`${config.repo.link}${GITHUB_BLOB}${slug}`} target="_blank" rel="noopener noreferrer">
+          <InlineLink href={editOnGithubLink} target="_blank" rel="noopener noreferrer">
             <Small>Edit on GitHub</Small>
           </InlineLink>
           <Section header="Table of Contents">
@@ -93,7 +91,7 @@ const PostTemplate = ({ data }) => {
           </MDXProvider>
         </StyledArticle>
         <div className="d-flex justify-content-end">
-          <StyledInlineLink href={`${config.repo.link}${GITHUB_BLOB}${slug}`} target="_blank" rel="noopener noreferrer">
+          <StyledInlineLink href={editOnGithubLink} target="_blank" rel="noopener noreferrer">
             Edit on GitHub
           </StyledInlineLink>
           /
@@ -127,6 +125,7 @@ PostTemplate.propTypes = {
         createdAt: PropType.string.isRequired,
         updatedAt: PropType.string,
         isPublished: PropType.bool,
+        editOnGithubLink: PropType.string.isRequired,
       }),
     }),
     postImage: PropType.shape({
@@ -151,6 +150,7 @@ export const postQuery = graphql`
         description
         createdAt
         updatedAt
+        editOnGithubLink
       }
     }
     postImage: file(relativePath: { eq: "Logo.jpg" }) {

@@ -2,6 +2,8 @@ const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 const slugify = require('slugify');
 const format = require('date-fns/format');
+const slash = require('slash');
+const config = require('./config');
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   // Destructure the createPage function from the actions object
@@ -82,15 +84,23 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       node,
       value: frontmatter.description || '',
     });
+
     createNodeField({
       name: 'keywords',
       node,
       value: frontmatter.keywords ? frontmatter.keywords : [],
     });
+
     createNodeField({
       name: 'isPublished',
       node,
       value: frontmatter.isPublished,
+    });
+
+    createNodeField({
+      name: 'editOnGithubLink',
+      node,
+      value: `${config.repo.link}/blob/master${node.fileAbsolutePath.replace(slash(__dirname), '')}`,
     });
   }
 };
