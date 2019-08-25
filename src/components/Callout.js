@@ -107,7 +107,8 @@ const Callout = () => {
             <StyledCol>
               <StyledParagraph>
                 Hey! I&apos;m Pakata, a software developer from Singapore specializing in JavaScript. In this personal
-                site, I write about things I&apos;ve learnt and hopefully you&apos;ll learn a thing or two from me.
+                site, I&apos;m documenting what I&apos;ve learnt during my software development journey. Let&apos;s
+                connect!
               </StyledParagraph>
               <div className="d-flex flex-row-wrap align-items-center">
                 <StyledCopyButton text={config.email} />
