@@ -4,7 +4,7 @@ import { media } from '../../styles/sizes';
 import { rhythm } from '../../utils/typography';
 
 const StyledImageRow = styled(Row)`
-  justify-content: center;
+  /* justify-content: center; */
   flex-wrap: wrap;
   margin-bottom: ${rhythm(1)};
 
