@@ -8,7 +8,7 @@ Hello! I'm is a software developer from Singapore specializing in JavaScript. In
 
 Learn more about me: https://pakatagoh.com/about
 
-## The Tech behind the site
+## The Tech Behind the Site
 
 This site is built using [Gatsby](https://www.gatsbyjs.org) with the help of the [gatsby-default-starter](https://www.gatsbyjs.org/starters/gatsbyjs/gatsby-starter-default/)
 
