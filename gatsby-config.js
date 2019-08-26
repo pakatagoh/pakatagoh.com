@@ -87,5 +87,6 @@ module.exports = {
         trackingId: config.googleAnalytics.trackingId,
       },
     },
+    `gatsby-plugin-netlify`,
   ],
 };
