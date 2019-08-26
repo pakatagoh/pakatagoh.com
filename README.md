@@ -8,11 +8,11 @@ Hello! I'm is a software developer from Singapore specializing in JavaScript. In
 
 Learn more about me: https://pakatagoh.com/about
 
-## About This Site
+## About This Site(tech wise)
 
 This site is built using [Gatsby](https://www.gatsbyjs.org) with the help of the [gatsby-default-starter](https://www.gatsbyjs.org/starters/gatsbyjs/gatsby-starter-default/)
 
-### Tech
+### The Tech
 
 - Styling with [styled-components](https://www.styled-components.com) (CSS-in-JS)
 
@@ -24,11 +24,13 @@ This site is built using [Gatsby](https://www.gatsbyjs.org) with the help of the
   - [Getting started with MDX in Gatsby](https://www.gatsbyjs.org/docs/mdx/)
   - [MDX](https://mdxjs.com/)
 
-## Contributions
+## Issues/Contributions
 
-I'll be flattered if you'd like to help amend any errors or contribute to certain posts. Just put up a PR or issue and I'll look through it!
+I'm already flattered if you're reading this.
 
-## Contact me
+I'll be even more flattered if you'd like to help amend any errors or contribute to certain posts. Just put up a PR or issue and I'll look through it! 🙏🏻
+
+## Get In Touch
 
 - [LinkedIn](https://www.linkedin.com/in/pakata-goh/)
 
