@@ -8,11 +8,9 @@ Hello! I'm is a software developer from Singapore specializing in JavaScript. In
 
 Learn more about me: https://pakatagoh.com/about
 
-## About This Site(tech wise)
+## The Tech behind the site
 
 This site is built using [Gatsby](https://www.gatsbyjs.org) with the help of the [gatsby-default-starter](https://www.gatsbyjs.org/starters/gatsbyjs/gatsby-starter-default/)
-
-### The Tech
 
 - Styling with [styled-components](https://www.styled-components.com) (CSS-in-JS)
 
@@ -28,7 +26,7 @@ This site is built using [Gatsby](https://www.gatsbyjs.org) with the help of the
 
 I'm already flattered if you're reading this.
 
-I'll be even more flattered if you'd like to help amend any errors or contribute to certain posts. Just put up a PR or issue and I'll look through it! 🙏🏻
+I'll be even more flattered if you'd like to help amend any errors or contribute. Just put up a PR or issue and I'll look through it! 🙏🏻
 
 ## Get In Touch
 
