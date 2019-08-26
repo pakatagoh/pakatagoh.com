@@ -18,7 +18,7 @@ This site is built using [Gatsby](https://www.gatsbyjs.org) with the help of the
 
   - Syntax theme is a customized version of the [tomorrow-night theme](https://github.com/PrismJS/prism/blob/master/themes/prism-tomorrow.css)
 
-- Posts made with MDX (JSX embedded in Markdown! 🤯).
+- Posts made with MDX (JSX embedded in Markdown! 🤯) and ❤.
   - [Getting started with MDX in Gatsby](https://www.gatsbyjs.org/docs/mdx/)
   - [MDX](https://mdxjs.com/)
 
