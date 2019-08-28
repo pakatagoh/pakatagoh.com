@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
-import { Link, useStaticQuery, graphql } from 'gatsby';
+import { Link } from 'gatsby';
 import styled from 'styled-components';
 import Container from './Container';
 import { media } from '../styles/sizes';
 import { rhythm } from '../utils/typography';
 import logo from '../assets/icons/Logo.svg';
+import useSiteMetaQuery from '../hooks/useSiteMetaQuery';
 
 const NAVLINKS = ['blog', 'about', 'contact'];
 const ACTIVE = 'active';
@@ -98,15 +99,7 @@ const StyledLink = styled(Link)`
 `;
 
 const Header = () => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `);
+  const data = useSiteMetaQuery();
 
   useEffect(() => {
     const headerElement = document.querySelector('header');
