@@ -1,33 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import { useStaticQuery, graphql } from 'gatsby';
+import useSeoQuery from '../hooks/useSeoQuery';
 
 function SEO({ isBlogPost, description, lang, title, image, slug }) {
-  const { site, defaultImage } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-            canonicalUrl
-            social {
-              twitter
-            }
-          }
-        }
-        defaultImage: file(relativePath: { eq: "pg-headshot.jpg" }) {
-          childImageSharp {
-            fluid(maxWidth: 400) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-      }
-    `
-  );
+  const { site, defaultImage } = useSeoQuery();
   const { canonicalUrl } = site.siteMetadata;
   const metaUrl = slug ? `${canonicalUrl}${slug}` : canonicalUrl;
   const metaDescription = description || site.siteMetadata.description;
