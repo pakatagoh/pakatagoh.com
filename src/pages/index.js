@@ -1,5 +1,4 @@
 import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import SEO from '../components/SEO';
 import { media } from '../styles/sizes';
@@ -17,6 +16,7 @@ import Image from '../components/Image';
 import Subtitle from '../components/Subtitle';
 import BlogListItem from '../components/BlogListItem';
 import ButtonGatsbyLink from '../components/ButtonGatsbyLink';
+import useHomePageQuery from '../hooks/useHomePageQuery';
 import config from '../../config';
 
 const TECH_LISTS = [
@@ -80,32 +80,7 @@ const StyledTechCol = styled(Col)`
 `;
 
 const IndexPage = () => {
-  const data = useStaticQuery(graphql`
-    query indexPageQuery {
-      pgImageSquare: file(relativePath: { eq: "pg-headshot.jpg" }) {
-        childImageSharp {
-          fluid(maxWidth: 400) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-      pgImageWide: file(relativePath: { eq: "pg-headshot16x9.jpg" }) {
-        childImageSharp {
-          fluid(maxWidth: 768, quality: 70) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-      allMdx(
-        sort: { order: DESC, fields: frontmatter___createdAt }
-        limit: 5
-        filter: { frontmatter: { isPublished: { eq: true } } }
-      ) {
-        ...BlogInfo
-      }
-    }
-  `);
-
+  const data = useHomePageQuery();
   const { fluid: fluidSquare } = data.pgImageSquare.childImageSharp;
   const { fluid: fluidWide } = data.pgImageWide.childImageSharp;
   const { edges } = data.allMdx;
