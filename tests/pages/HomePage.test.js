@@ -1,13 +1,13 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import HomePage from '../src/pages/index';
-import useSiteMetaQuery from '../src/hooks/useSiteMetaQuery';
-import useHomePageQuery from '../src/hooks/useHomePageQuery';
-import useSeoQuery from '../src/hooks/useSeoQuery';
+import HomePage from '../../src/pages/index';
+import useSiteMetaQuery from '../../src/hooks/useSiteMetaQuery';
+import useHomePageQuery from '../../src/hooks/useHomePageQuery';
+import useSeoQuery from '../../src/hooks/useSeoQuery';
 
-jest.mock('../src/hooks/useSiteMetaQuery.js');
-jest.mock('../src/hooks/useHomePageQuery.js');
-jest.mock('../src/hooks/useSeoQuery.js');
+jest.mock('../../src/hooks/useHomePageQuery.js');
+jest.mock('../../src/hooks/useSeoQuery.js');
+jest.mock('../../src/hooks/useSiteMetaQuery.js');
 
 describe('Home Page', () => {
   beforeEach(() => {
