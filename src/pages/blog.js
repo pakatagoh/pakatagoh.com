@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import matchSorter from 'match-sorter';
 import Layout from '../components/Layout';
@@ -7,6 +6,7 @@ import Container from '../components/Container';
 import PageTitle from '../components/PageTitle';
 import BlogListItem from '../components/BlogListItem';
 import SEO from '../components/SEO';
+import useBlogPageQuery from '../hooks/useBlogPageQuery';
 
 const StyledInput = styled.input`
   width: 100%;
@@ -36,16 +36,7 @@ const StyledInput = styled.input`
 `;
 
 const Blog = () => {
-  const data = useStaticQuery(graphql`
-    query blogListQuery {
-      allMdx(
-        sort: { order: DESC, fields: frontmatter___createdAt }
-        filter: { frontmatter: { isPublished: { eq: true } } }
-      ) {
-        ...BlogInfo
-      }
-    }
-  `);
+  const data = useBlogPageQuery();
 
   const { edges } = data.allMdx;
   const blogPosts = React.useMemo(() => {
