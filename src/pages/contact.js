@@ -1,6 +1,5 @@
 /* eslint-disable camelcase */
 import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import { media } from '../styles/sizes';
 import Layout from '../components/Layout';
@@ -14,6 +13,7 @@ import LayerImage from '../components/LayerImage';
 import IconList from '../components/IconList';
 import SEO from '../components/SEO';
 import SectionHeader from '../components/SectionHeader';
+import useContactPageQuery from '../hooks/useContactPageQuery';
 import config from '../../config';
 
 const StyledCopyButtonWrapper = styled.div`
@@ -39,17 +39,7 @@ const StyledRightCol = styled(Col)`
 `;
 
 const Contact = () => {
-  const data = useStaticQuery(graphql`
-    query contactImageQuery {
-      contactImage: file(relativePath: { eq: "typing-hands.jpg" }) {
-        childImageSharp {
-          fluid(maxWidth: 400) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-    }
-  `);
+  const data = useContactPageQuery();
 
   const { fluid } = data.contactImage.childImageSharp;
 
