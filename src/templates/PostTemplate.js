@@ -15,8 +15,8 @@ import TableOfContents from '../components/TableOfContents';
 import SectionHeader from '../components/SectionHeader';
 import Callout from '../components/Callout';
 import config from '../../config';
-import formatDate from '../utils/formatDate';
 import Small from '../components/Small';
+import PostDates from '../components/PostDates';
 
 const StyledArticle = styled.article`
   margin-bottom: ${rhythm(1)};
@@ -68,18 +68,7 @@ const PostTemplate = ({ data }) => {
       <Container>
         <StyledArticle>
           <PageTitle>{title}</PageTitle>
-          <Small>Posted: </Small>
-          <Small as="time" dateTime={createdAt}>
-            {formatDate(createdAt)} /{' '}
-          </Small>
-          {updatedAt && (
-            <>
-              <Small>Updated: </Small>
-              <Small as="time" dateTime={updatedAt}>
-                {formatDate(updatedAt)} /{' '}
-              </Small>
-            </>
-          )}
+          <PostDates createdAt={createdAt} updatedAt={updatedAt} />
           <InlineLink href={editOnGithubLink} target="_blank" rel="noopener noreferrer">
             <Small>Edit on GitHub</Small>
           </InlineLink>
