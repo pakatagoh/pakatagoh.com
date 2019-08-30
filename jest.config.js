@@ -16,6 +16,7 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/setup-test-env.js'],
   collectCoverageFrom: [
     '**/src/**/*.{js,jsx}',
+    '!**/src/pages/{404,contact}.{js,jsx}',
     '!**/src/{graphql,hooks,styles}/**',
     '!**/typography.js',
     '!**/node_modules/**',
