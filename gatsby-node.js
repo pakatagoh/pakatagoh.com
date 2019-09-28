@@ -11,7 +11,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const result = await graphql(`
     query {
-      allMdx(filter: { frontmatter: { isPublished: { eq: true } } }) {
+      allMdx(filter: { fields: { isPublished: { eq: true } } }) {
         edges {
           node {
             id
@@ -94,7 +94,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     createNodeField({
       name: 'isPublished',
       node,
-      value: frontmatter.isPublished,
+      value: process.env.NODE_ENV === 'development' ? true : frontmatter.isPublished,
     });
 
     createNodeField({

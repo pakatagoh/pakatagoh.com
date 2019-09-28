@@ -5,7 +5,7 @@ const useBlogPageQuery = () => {
     query blogListQuery {
       allMdx(
         sort: { order: DESC, fields: frontmatter___createdAt }
-        filter: { frontmatter: { isPublished: { eq: true } } }
+        filter: { fields: { isPublished: { eq: true } } }
       ) {
         ...BlogInfo
       }

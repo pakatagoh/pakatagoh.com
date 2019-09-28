@@ -20,7 +20,7 @@ const useHomePageQuery = () => {
       allMdx(
         sort: { order: DESC, fields: frontmatter___createdAt }
         limit: 5
-        filter: { frontmatter: { isPublished: { eq: true } } }
+        filter: { fields: { isPublished: { eq: true } } }
       ) {
         ...BlogInfo
       }
