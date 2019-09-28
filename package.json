@@ -69,7 +69,8 @@
     "build": "gatsby build",
     "dev": "gatsby develop",
     "format": "prettier --write src/**/*.{js,jsx}",
-    "lint": "eslint --fix src/**/*.{js,jsx}",
+    "lint": "eslint src/**/*.{js,jsx}",
+    "lint:fix": "eslint --fix src/**/*.{js,jsx}",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "jest",
@@ -87,7 +88,7 @@
   },
   "lint-staged": {
     "*.{js,jsx}": [
-      "eslint --fix"
+      "npm run lint:fix"
     ]
   }
 }
