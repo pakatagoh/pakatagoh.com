@@ -17,6 +17,7 @@ import Callout from '../components/Callout';
 import config from '../../config';
 import Small from '../components/Small';
 import PostDates from '../components/PostDates';
+import BlockQuote from '../components/BlockQuote';
 
 const StyledArticle = styled.article`
   margin-bottom: ${rhythm(1)};
@@ -24,14 +25,6 @@ const StyledArticle = styled.article`
 
 const StyledSectionHeader = styled(SectionHeader)`
   border-bottom: 1px solid ${({ theme }) => theme.secondary.base};
-`;
-
-const StyledBlockQuote = styled.blockquote`
-  margin-right: 0;
-  margin-left: 0;
-  padding: ${rhythm(1 / 2)} ${rhythm(1)};
-  border: 2px solid ${({ theme }) => theme.secondary.base};
-  background-color: ${({ theme }) => theme.secondary.disabled};
 `;
 
 const StyledInlineLink = styled(InlineLink)`
@@ -54,7 +47,7 @@ const components = {
   h3: SectionHeaderH3,
   h4: SectionHeaderH4,
   a: PostLink,
-  blockquote: StyledBlockQuote,
+  blockquote: BlockQuote,
 };
 
 const PostTemplate = ({ data }) => {
