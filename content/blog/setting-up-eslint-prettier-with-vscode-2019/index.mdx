@@ -1,0 +1,54 @@
+---
+title: 'Setting up eslint and prettier with VS Code in 2019'
+description: 'Setting up eslint and prettier was can be confusing at first, especially with VS Code. It was for me when I first started out. Here is a short tutorial on how to get setup right away!'
+createdAt: '2019-10-06'
+isPublished: false
+keywords:
+  - 'eslint'
+  - 'prettier'
+  - 'configuration'
+  - 'setup'
+  - 'lint'
+  - 'vs code'
+  - 'visual studio code'
+---
+
+Setting up eslint and prettier can be confusing at first, especially with VS Code. It was for me when I first started out. I was confused by the eslint and prettier plugins in vscode and how they integrated with the linters, but things have been much more simplified in 2019. I was also confused by `eslint-plugin-prettier` and `eslint-config-prettier`..what is the difference? And when you setup the eslint config file, what is being used where?
+
+Hopefully this short tutorial will help clear up some confusion and point you in the right direction if you're just starting out.
+
+## Getting started
+
+You can clone the following repository:
+
+- https://github.com/pakatagoh/setup-eslint-prettier
+
+and then run `npm install`
+
+or you can just use your own.
+
+## Eslint
+
+Install `eslint` with the following command
+
+`npm install --save-dev eslint`
+
+## Prettier
+
+Install `prettier` with the following command
+
+`npm install --save-dev prettier`
+
+Some of the recommended rules by eslint are formatting rules that clash with prettier. Since we are using prettier for our formatting, we want it to have priority in determining the format.
+
+The `eslint-config-prettier` is a config by prettier that turns off/overrides the recommended eslint rules and applies the prettier's own.
+
+`eslint-plugin-prettier` is a plugin that allows eslint to run prettier.
+
+## VS Code Settings
+
+## Eslint with Create React App
+
+## Bonus - Integrating husky and lint-staged
+
+## Conclusion
