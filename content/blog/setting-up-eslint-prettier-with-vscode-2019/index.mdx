@@ -1,13 +1,11 @@
 ---
 title: 'Setting up eslint and prettier with VS Code in 2019'
 description: 'Setting up eslint and prettier was can be confusing at first, especially with VS Code. It was for me when I first started out. Here is a short tutorial on how to get setup right away!'
-createdAt: '2019-10-06'
+createdAt: '2019-10-07'
 isPublished: false
 keywords:
   - 'eslint'
   - 'prettier'
-  - 'configuration'
-  - 'setup'
   - 'lint'
   - 'vs code'
   - 'visual studio code'
@@ -23,8 +21,6 @@ You can clone the following repository:
 
 - https://github.com/pakatagoh/setup-eslint-prettier
 
-and then run `npm install`
-
 or you can just use your own.
 
 ## Eslint
@@ -33,22 +29,115 @@ Install `eslint` with the following command
 
 `npm install --save-dev eslint`
 
+Create a `.eslintrc.js` file in the root of your repository.
+
+```javascript
+module.exports = {
+  //empty
+};
+```
+
 ## Prettier
 
 Install `prettier` with the following command
 
 `npm install --save-dev prettier`
 
-Some of the recommended rules by eslint are formatting rules that clash with prettier. Since we are using prettier for our formatting, we want it to have priority in determining the format.
+Create a `.prettierrc.js` file in the root of your directory. This is where we will include all our desired prettier rules.
 
-The `eslint-config-prettier` is a config by prettier that turns off/overrides the recommended eslint rules and applies the prettier's own.
+```javascript
+module.exports = {
+  printWidth: 120,
+  trailingComma: 'es5',
+  tabWidth: 2,
+  semi: false,
+  singleQuote: true,
+};
+```
 
-`eslint-plugin-prettier` is a plugin that allows eslint to run prettier.
+See more configuration options at [prettier's site](https://prettier.io/docs/en/options.html)
+
+### Prettier plugin
+
+`eslint-plugin-prettier` is a plugin that allows eslint to run prettier as a rule.
+
+Add this plugin to your `.eslintrc.js` in the `plugins` array.
+
+```javascript
+module.exports = {
+  plugins: ['prettier'], //highlight-line
+  rules: {
+    'prettier/prettier': 'error',
+  },
+};
+```
+
+The reason why we use `prettier` here and not `eslint-plugin-prettier` is because eslint recognizes the `eslint-plugin-` prefix automatically.
+
+If a prettier rule is broken, there will be an eslint error under the name `prettier/prettier` because we are running prettier as a rule in eslint.
+
+In VS Code, you'll see it in this form:
+
+INSERT IMAGE HERE
+
+### Prettier config
+
+Some of the recommended rules by eslint are code formatting rules that clash with prettier. For example, max length of lines or usage of double/single quotes. Since we are using prettier for our formatting, we want it to have priority in determining the format.
+
+The `eslint-config-prettier` is a config by prettier that turns off/overrides the clashing eslint rules.
+
+To add this, insert `prettier` into the `extends` array. Add this at the end of the `extends` array in order for it to override all other configs.
+
+```javascript
+module.exports = {
+  plugins: ['prettier'],
+  extends: [
+    'some-other-config-you-use',
+    'prettier', //highlight-line
+  ],
+  rules: {
+    'prettier/prettier': 'error',
+  },
+};
+```
+
+Just like the `plugin` field, we can use `prettier` in the `extends` field because eslint recognizes the `eslint-config-` prefix automatically.
 
 ## VS Code Settings
 
+To integrate eslint and prettier into your VS Code workflow, you should install the [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) and [Eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) VS Code extensions
+
+Configure the settings as follows:
+
+```json
+{
+  "something": "something"
+}
+```
+
 ## Eslint with Create React App
 
+Create React App(CRA) now allows you to extend the eslint config built into it. (At the moment of writing this post, I'm referring to CRA 3.2.0. I believe this feature was first introduced in 3.1 but has been slowly iterated over since. But chose a version that works for you and refer to the docs for it)
+
 ## Bonus - Integrating husky and lint-staged
+
+Husky is a tool that helps to create git hooks easily while lint-staged allows us to run scripts on files that have been staged in git.
+
+In this bonus section, we will use husky to create a `pre-commit` git hook that runs lint-staged which in turns runs eslint to lint our staged files before they are committed.
+
+Install husky and lint-staged with the following command.
+
+`npm install --save-dev husky lint-staged`
+
+In your `package.json`, add the following lines:
+
+```json
+{
+  "lint-staged": { ".{js, jsx}": ["npm run lint:fix", "git add"] },
+  "husky": {
+    "pre-commit": "lint-staged"
+  }
+}
+```
 
 ## Conclusion
