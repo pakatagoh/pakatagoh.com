@@ -1,7 +1,7 @@
 ---
 title: 'Setting up eslint and prettier with VS Code in 2019'
 description: 'Setting up eslint and prettier was can be confusing at first, especially with VS Code. It was for me when I first started out. Here is a short tutorial on how to get setup right away!'
-createdAt: '2019-10-07'
+createdAt: '2019-10-08'
 isPublished: false
 keywords:
   - 'eslint'
@@ -31,11 +31,40 @@ Install `eslint` with the following command
 
 Create a `.eslintrc.js` file in the root of your repository.
 
+An example of a eslint config is as below.
+
 ```javascript
 module.exports = {
-  //empty
+  parser: 'specify parser type here',
+  parserOptions: {
+    option1: 'some option setting',
+    option2: 'some option setting 2',
+  },
+  env: {
+    'some env': true,
+    'another': true,
+  }
+  plugins: ['plugin1', 'plugin2'],
+  extends: ['config1', 'config2'],
+  rules: {
+    someRule1: 'off',
+    someRule2: 'error'
+  }
 };
 ```
+
+The most common configuration keys you'll use are:
+
+- `parser`
+- `parserOptions`
+- `env`
+- `plugins`
+- `extends`
+- `rules`
+
+You can [read more about configuring eslint and the various options in the docs](https://eslint.org/docs/user-guide/configuring)
+
+In this simple tutorial, we will only be configuring `plugins`, `extends` and `rules`
 
 ## Prettier
 
@@ -84,7 +113,7 @@ INSERT IMAGE HERE
 
 Some of the recommended rules by eslint are code formatting rules that clash with prettier. For example, max length of lines or usage of double/single quotes. Since we are using prettier for our formatting, we want it to have priority in determining the format.
 
-The `eslint-config-prettier` is a config by prettier that turns off/overrides the clashing eslint rules.
+The `eslint-config-prettier` is a config by prettier that contains a set of rules which turns off/overrides the clashing eslint rules.
 
 To add this, insert `prettier` into the `extends` array. Add this at the end of the `extends` array in order for it to override all other configs.
 
@@ -133,11 +162,20 @@ In your `package.json`, add the following lines:
 
 ```json
 {
-  "lint-staged": { ".{js, jsx}": ["npm run lint:fix", "git add"] },
+  "script": {
+    "lint:fix": "eslint --fix"
+  },
+  "lint-staged": { "*.{js, jsx}": ["npm run lint:fix", "git add"] },
   "husky": {
     "pre-commit": "lint-staged"
   }
 }
 ```
+
+The `husky` setting will create a `pre-commit` hook that runs `lint-staged`
+
+The `lint-staged` setting will run the `lint:fix` script on any staged `*.js` or `*.jsx` file. Once all the files have been fixed, the fixes will be added to staging via `git add`. Next, all staged files will be committed.
+
+Now try making some changes to a `.js` file, stage it and commit, You will see lint-stage being executed.
 
 ## Conclusion
