@@ -35,20 +35,22 @@ An example of a eslint config is as below.
 
 ```javascript
 module.exports = {
-  parser: 'specify parser type here',
+  parser: 'esprima',
   parserOptions: {
-    option1: 'some option setting',
-    option2: 'some option setting 2',
+    ecmaVersion: 10,
+    ecmaFeatures: {
+      jsx: true
+    },
   },
   env: {
-    'some env': true,
-    'another': true,
+    browser: true,
+    jest: true,
   }
-  plugins: ['plugin1', 'plugin2'],
-  extends: ['config1', 'config2'],
+  plugins: ['react', 'prettier'],
+  extends: ['prettier', 'react-app'],
   rules: {
-    someRule1: 'off',
-    someRule2: 'error'
+    no-unreachable: 'error',
+    no-console: 'error'
   }
 };
 ```
