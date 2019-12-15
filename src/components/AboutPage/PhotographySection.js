@@ -85,9 +85,9 @@ const PhotographySection = () => {
   return (
     <Section header="PHOTOGRAPHY">
       <p>
-        {`Camera: Fujifilm X-H1`}
+        Camera: Fujifilm X-H1
         <br />
-        {`Lenses: XF 16-55mm F2.8, XF 16mm F1.4, XF 35mm F2`}
+        Lenses: XF 16-55mm F2.8, XF 16mm F1.4, XF 35mm F2
       </p>
       <SocialIconLink
         color="primary"
