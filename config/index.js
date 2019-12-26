@@ -16,6 +16,10 @@ const config = {
     handle: 'GohPakata',
     link: 'https://twitter.com/gohpakata',
   },
+  unsplash: {
+    handle: 'pakata',
+    link: 'https://unsplash.com/@pakata',
+  },
   site: {
     title: 'Pakata Goh',
     url: 'https://pakatagoh.com',
