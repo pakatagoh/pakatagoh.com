@@ -16,7 +16,6 @@ const StyledIconBackground = styled.div`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: ${({ color, theme }) => (theme[color] ? theme[color].base : theme.secondary.base)};
   box-shadow: none;
   transition: box-shadow 0.1s linear;
 
@@ -38,7 +37,6 @@ const StyledIconLink = styled(OutboundLink)`
     color: ${({ color, theme }) => (theme[color] ? theme[color].hover : theme.secondary.hover)};
 
     ${StyledIconBackground} {
-      background-color: ${({ color, theme }) => (theme[color] ? theme[color].hover : theme.secondary.hover)};
       box-shadow: ${({ theme }) => theme.shadow.hover};
     }
   }
@@ -47,7 +45,6 @@ const StyledIconLink = styled(OutboundLink)`
     color: ${({ color, theme }) => (theme[color] ? theme[color].pressed : theme.secondary.pressed)};
 
     ${StyledIconBackground} {
-      background-color: ${({ color, theme }) => (theme[color] ? theme[color].pressed : theme.secondary.pressed)};
       box-shadow: ${({ theme }) => theme.shadow.pressed};
     }
   }
