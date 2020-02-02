@@ -23,7 +23,16 @@ const TECH_LISTS = [
   {
     listHeader: 'Front',
     icon: 'icon-computer',
-    items: ['React', 'styled-components', 'Bootstrap 4', 'Gatsby.js', 'testing-library/react'],
+    items: [
+      'React',
+      'Redux',
+      'styled-components',
+      'emotion',
+      'Storybook',
+      'Bootstrap 4',
+      'Gatsby.js',
+      'testing-library/react',
+    ],
   },
   {
     listHeader: 'Back',
@@ -33,7 +42,7 @@ const TECH_LISTS = [
   {
     listHeader: 'Others',
     icon: 'icon-checklist',
-    items: ['Git', 'Jest', 'Cypress', 'TDD', 'CI/CD', 'Pair Programming', 'Agile workflows'],
+    items: ['TypeScript', 'Ramda', 'Lerna', 'Jest', 'Cypress', 'TDD', 'CI/CD', 'Pair Programming', 'Agile workflows'],
   },
 ];
 
