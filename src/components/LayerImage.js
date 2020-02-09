@@ -34,7 +34,7 @@ const StyledWrapper = styled.div`
 
   ${media.lg`
     padding-top: ${OFFSET_PADDING.lg}px;
-    padding-left: ${OFFSET_PADDING.lg}px
+    padding-left: ${OFFSET_PADDING.lg}px;
   `};
 `;
 
@@ -45,18 +45,18 @@ const StyledBackgroundLayer = styled.div`
   box-shadow: ${({ theme }) => theme.shadow.hover};
 
   ${media.sm`
-  width: ${IMAGE_SIZE.sm}
-  height: ${IMAGE_SIZE.sm}
+  width: ${IMAGE_SIZE.sm};
+  height: ${IMAGE_SIZE.sm};
   `};
 
   ${media.md`
-  width: ${IMAGE_SIZE.md}
-  height: ${IMAGE_SIZE.md}
+  width: ${IMAGE_SIZE.md};
+  height: ${IMAGE_SIZE.md};
   `};
 
   ${media.lg`
-  width: ${IMAGE_SIZE.lg}
-  height: ${IMAGE_SIZE.lg}
+  width: ${IMAGE_SIZE.lg};
+  height: ${IMAGE_SIZE.lg};
   `};
 `;
 
@@ -66,26 +66,26 @@ const StyledImageWrapper = styled.div`
   transform: translate(-${OFFSET_PADDING.xs}px, -${OFFSET_PADDING.xs}px);
 
   ${media.sm`
-  width: ${IMAGE_SIZE.sm}
-  height: ${IMAGE_SIZE.sm}
+  width: ${IMAGE_SIZE.sm};
+  height: ${IMAGE_SIZE.sm};
   transform: translate(-${OFFSET_PADDING.sm}px, -${OFFSET_PADDING.sm}px);
   `};
 
   ${media.md`
-  width: ${IMAGE_SIZE.md}
-  height: ${IMAGE_SIZE.md}
+  width: ${IMAGE_SIZE.md};
+  height: ${IMAGE_SIZE.md};
   transform: translate(-${OFFSET_PADDING.sm}px, -${OFFSET_PADDING.sm}px);
   `};
 
   ${media.md`
-  width: ${IMAGE_SIZE.md}
-  height: ${IMAGE_SIZE.md}
+  width: ${IMAGE_SIZE.md};
+  height: ${IMAGE_SIZE.md};
   transform: translate(-${OFFSET_PADDING.md}px, -${OFFSET_PADDING.md}px);
   `};
 
   ${media.lg`
-  width: ${IMAGE_SIZE.lg}
-  height: ${IMAGE_SIZE.lg}
+  width: ${IMAGE_SIZE.lg};
+  height: ${IMAGE_SIZE.lg};
   transform: translate(-${OFFSET_PADDING.lg}px, -${OFFSET_PADDING.lg}px);
   `};
 `;
