@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 import { media } from '../styles/sizes';
 import isMobile from '../utils/isMobile';
 
-const StyledButton = styled.div`
+const StyledButton = styled.button`
   padding: 6px 12px;
   display: inline-flex;
   align-items: center;
