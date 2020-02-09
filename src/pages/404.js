@@ -1,11 +1,10 @@
 import React from 'react';
 import SEO from '../components/SEO';
-import Layout from '../components/Layout';
 import Container from '../components/Container';
 import PageTitle from '../components/PageTitle';
 
 const NotFoundPage = () => (
-  <Layout>
+  <>
     <SEO title="404: Not found" />
     <Container>
       <PageTitle block>404: NOT FOUND</PageTitle>
@@ -16,7 +15,7 @@ const NotFoundPage = () => (
         </span>
       </p>
     </Container>
-  </Layout>
+  </>
 );
 
 export default NotFoundPage;

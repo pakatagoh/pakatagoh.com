@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { MDXProvider } from '@mdx-js/react';
 import SEO from '../SEO';
-import Layout from '../Layout';
 import Container from '../Container';
 import PageTitle from '../PageTitle';
 import InlineLink from '../InlineLink';
@@ -15,13 +14,13 @@ const components = {
 
 const AboutLayout = ({ children }) => {
   return (
-    <Layout>
+    <>
       <SEO title="About" />
       <Container>
         <PageTitle block>ABOUT</PageTitle>
         <MDXProvider components={components}>{children}</MDXProvider>
       </Container>
-    </Layout>
+    </>
   );
 };
 

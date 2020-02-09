@@ -27,13 +27,18 @@ const StyledButton = styled.div`
   `};
 `;
 
-const Button = ({ children, color }) => {
-  return <StyledButton color={color}>{children}</StyledButton>;
+const Button = ({ children, color, onClick }) => {
+  return (
+    <StyledButton color={color} onClick={onClick}>
+      {children}
+    </StyledButton>
+  );
 };
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
   color: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 export default Button;

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import SEO from '../components/SEO';
 import { media } from '../styles/sizes';
 import { scale, rhythm } from '../utils/typography';
-import Layout from '../components/Layout';
 import Block from '../components/Block';
 import Container from '../components/Container';
 import Section from '../components/Section';
@@ -104,7 +103,7 @@ const IndexPage = () => {
     };
   });
   return (
-    <Layout>
+    <>
       <SEO />
       <Container>
         <section>
@@ -155,7 +154,7 @@ const IndexPage = () => {
           </ButtonGatsbyLink>
         </Section>
       </Container>
-    </Layout>
+    </>
   );
 };
 

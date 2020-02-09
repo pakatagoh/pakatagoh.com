@@ -6,7 +6,6 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { MDXProvider } from '@mdx-js/react';
 import { rhythm } from '../utils/typography';
 import SEO from '../components/SEO';
-import Layout from '../components/Layout';
 import Container from '../components/Container';
 import Section from '../components/Section';
 import PageTitle from '../components/PageTitle';
@@ -56,7 +55,7 @@ const PostTemplate = ({ data }) => {
   const { slug, title, description, createdAt, updatedAt, editOnGithubLink } = fields;
 
   return (
-    <Layout>
+    <>
       <SEO isBlogPost title={title} description={description} slug={slug} image={postImage.childImageSharp.fluid.src} />
       <Container>
         <StyledArticle>
@@ -89,7 +88,7 @@ const PostTemplate = ({ data }) => {
       <aside>
         <Callout />
       </aside>
-    </Layout>
+    </>
   );
 };
 

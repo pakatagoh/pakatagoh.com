@@ -2,7 +2,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { media } from '../styles/sizes';
-import Layout from '../components/Layout';
 import Container from '../components/Container';
 import Row from '../components/Row';
 import Col from '../components/Col';
@@ -44,7 +43,7 @@ const Contact = () => {
   const { fluid } = data.contactImage.childImageSharp;
 
   return (
-    <Layout>
+    <>
       <SEO title="Contact" />
       <Container>
         <PageTitle block>Contact</PageTitle>
@@ -65,7 +64,7 @@ const Contact = () => {
           </Block>
         </section>
       </Container>
-    </Layout>
+    </>
   );
 };
 

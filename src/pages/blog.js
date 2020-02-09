@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import matchSorter from 'match-sorter';
-import Layout from '../components/Layout';
 import Container from '../components/Container';
 import PageTitle from '../components/PageTitle';
 import BlogListItem from '../components/BlogListItem';
@@ -69,7 +68,7 @@ const Blog = () => {
   };
 
   return (
-    <Layout>
+    <>
       <SEO title="Blog" />
       <Container>
         <PageTitle block>BLOG</PageTitle>
@@ -94,7 +93,7 @@ const Blog = () => {
           </p>
         )}
       </Container>
-    </Layout>
+    </>
   );
 };
 
