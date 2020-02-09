@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { media } from '../styles/sizes';
+import isMobile from '../utils/isMobile';
 
 const StyledButton = styled.div`
   padding: 6px 12px;
@@ -12,10 +13,13 @@ const StyledButton = styled.div`
   box-shadow: none;
   transition: box-shadow 0.1s linear;
 
-  &:hover {
-    background-color: ${({ color, theme }) => (theme[color] ? theme[color].hover : theme.primary.hover)};
-    box-shadow: ${({ theme }) => theme.shadow.hover};
-  }
+  ${!isMobile() &&
+    css`
+      &:hover {
+        background-color: ${({ color, theme }) => (theme[color] ? theme[color].hover : theme.primary.hover)};
+        box-shadow: ${({ theme }) => theme.shadow.hover};
+      }
+    `}
 
   &:active {
     background-color: ${({ color, theme }) => (theme[color] ? theme[color].pressed : theme.primary.pressed)};
