@@ -1,7 +1,7 @@
 const config = {
   name: 'Pakata Goh',
   email: 'pakatagohlh@gmail.com',
-  resume: { link: 'https://drive.google.com/open?id=185fdbe4ubRIuHuuCR_AtKHV7p7Zbrpvo' },
+  resume: { link: 'https://drive.google.com/open?id=1cOIAXVd5Pq5cPVLAa7WSWTHDj0moCTE6' },
   github: { link: 'https://github.com/pakatagoh' },
   linkedin: { link: 'https://www.linkedin.com/in/pakata-goh/' },
   instagram_personal: {
