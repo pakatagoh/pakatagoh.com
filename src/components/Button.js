@@ -11,19 +11,19 @@ const StyledButton = styled(animated.button)`
   align-items: center;
   border: none;
   ${!isMobile() &&
-    css`
-      background-color: ${({ color, theme }) => (theme[color] ? theme[color].base : theme.primary.base)};
-      box-shadow: none;
-      transition: box-shadow 0.1s linear;
-      &:hover {
-        background-color: ${({ color, theme }) => (theme[color] ? theme[color].hover : theme.primary.hover)};
-        box-shadow: ${({ theme }) => theme.shadow.hover};
-      }
-      &:active {
-        background-color: ${({ color, theme }) => (theme[color] ? theme[color].pressed : theme.primary.pressed)};
-        box-shadow: ${({ theme }) => theme.shadow.pressed};
-      }
-    `}
+  css`
+    background-color: ${({ color, theme }) => (theme[color] ? theme[color].base : theme.primary.base)};
+    box-shadow: none;
+    transition: box-shadow 0.1s linear;
+    &:hover {
+      background-color: ${({ color, theme }) => (theme[color] ? theme[color].hover : theme.primary.hover)};
+      box-shadow: ${({ theme }) => theme.shadow.hover};
+    }
+    &:active {
+      background-color: ${({ color, theme }) => (theme[color] ? theme[color].pressed : theme.primary.pressed)};
+      box-shadow: ${({ theme }) => theme.shadow.pressed};
+    }
+  `}
 
   ${media.sm`
     padding: 8px 15px;  

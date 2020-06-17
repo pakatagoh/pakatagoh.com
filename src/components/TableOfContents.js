@@ -13,7 +13,7 @@ const StyledList = styled.ul`
 `;
 
 const TableOfContents = ({ items, path }) => {
-  const renderLi = item => {
+  const renderLi = (item) => {
     return (
       <InlineLink as={Link} to={`${path}${item.url}`}>
         {item.title}
@@ -21,7 +21,7 @@ const TableOfContents = ({ items, path }) => {
     );
   };
 
-  const createTOC = item => {
+  const createTOC = (item) => {
     if (item.items) {
       return (
         <li key={item.url}>

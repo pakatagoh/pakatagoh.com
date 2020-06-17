@@ -38,7 +38,7 @@ const StyledSocialIconLinkWrapper = styled.div`
 const SocialIconList = ({ className, ...rest }) => {
   return (
     <StyledSocialIconLinksWrapper className={`d-flex align-items-center ${className}`} {...rest}>
-      {SOCIAL_LINKS.map(socialLink => (
+      {SOCIAL_LINKS.map((socialLink) => (
         <StyledSocialIconLinkWrapper key={socialLink.name}>
           <SocialIconLink icon={socialLink} />
         </StyledSocialIconLinkWrapper>

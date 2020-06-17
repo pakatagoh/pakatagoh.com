@@ -52,7 +52,7 @@ const Blog = () => {
   const [posts, setPosts] = useState(blogPosts);
   const [filterVal, setFilterVal] = useState('');
 
-  const handleInputChange = e => {
+  const handleInputChange = (e) => {
     const searchTerm = e.target.value;
     setFilterVal(searchTerm);
 

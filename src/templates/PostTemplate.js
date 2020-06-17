@@ -35,10 +35,10 @@ const StyledInlineLink = styled(InlineLink)`
   }
 `;
 
-const SectionHeaderH2 = props => <StyledSectionHeader {...props} />;
-const SectionHeaderH3 = props => <SectionHeader as="h3" {...props} />;
-const SectionHeaderH4 = props => <SectionHeader as="h4" {...props} />;
-const PostLink = props => <InlineLink target="_blank" rel="noopener noreferrer" {...props} />;
+const SectionHeaderH2 = (props) => <StyledSectionHeader {...props} />;
+const SectionHeaderH3 = (props) => <SectionHeader as="h3" {...props} />;
+const SectionHeaderH4 = (props) => <SectionHeader as="h4" {...props} />;
+const PostLink = (props) => <InlineLink target="_blank" rel="noopener noreferrer" {...props} />;
 
 const components = {
   h1: PageTitle,

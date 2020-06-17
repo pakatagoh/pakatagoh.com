@@ -130,7 +130,7 @@ const Header = () => {
             <StyledBrandTitle>{siteTitle}</StyledBrandTitle>
           </StyledBrandLink>
           <div>
-            {NAVLINKS.map(navlink => (
+            {NAVLINKS.map((navlink) => (
               <StyledLink key={navlink} to={`/${navlink}`} activeClassName={ACTIVE}>
                 {navlink}
               </StyledLink>

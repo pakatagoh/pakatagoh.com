@@ -7,7 +7,7 @@ const useCopy = () => {
    * @description: Copy text to clipboard
    * @link: https://github.com/feross/clipboard-copy/blob/master/index.js
    */
-  const handleCopy = copyText => {
+  const handleCopy = (copyText) => {
     const span = document.createElement('span');
     span.textContent = copyText;
 

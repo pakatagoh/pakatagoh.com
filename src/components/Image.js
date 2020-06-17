@@ -8,7 +8,7 @@ const StyledGatsbyImg = styled(Img)`
   }
 `;
 
-const Image = props => {
+const Image = (props) => {
   return <StyledGatsbyImg {...props} />;
 };
 

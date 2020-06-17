@@ -9,7 +9,7 @@ const StyledSmall = styled.small`
   `};
 `;
 
-const Small = props => {
+const Small = (props) => {
   return <StyledSmall {...props} />;
 };
 

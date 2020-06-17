@@ -45,7 +45,7 @@ const BorderList = ({ header, iconClassName, items }) => {
         {iconClassName && <i className={`${iconClassName} icon-md`} />} {header}
       </StyledListHeader>
       <StyledList>
-        {items.map(item => (
+        {items.map((item) => (
           <li key={item}>{item}</li>
         ))}
       </StyledList>

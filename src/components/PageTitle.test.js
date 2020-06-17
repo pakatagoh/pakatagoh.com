@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import StyledTheme from '../styles/StyledTheme';
 import PageTitle from './PageTitle';
 
-const renderWithTheme = component => {
+const renderWithTheme = (component) => {
   return { ...render(<StyledTheme>{component}</StyledTheme>) };
 };
 
