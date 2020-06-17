@@ -1,11 +1,16 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import HomePage from '../../src/pages/index';
+import Layout from '../../src/components/Layout';
 import useHomePageQuery from '../../src/hooks/useHomePageQuery';
 
 jest.mock('../../src/hooks/useHomePageQuery');
 jest.mock('../../src/hooks/useSeoQuery');
 jest.mock('../../src/hooks/useSiteMetaQuery');
+
+const renderWithLayout = component => {
+  return { ...render(<Layout>{component}</Layout>) };
+};
 
 describe('Home Page', () => {
   test("should show Hey I'm pakata in h1 tag", () => {
@@ -54,7 +59,7 @@ describe('Home Page', () => {
       },
     });
 
-    const { getByText } = render(<HomePage />);
+    const { getByText } = renderWithLayout(<HomePage />);
 
     const h1 = getByText(/Hey! I'm/i);
     expect(h1).toBeInTheDocument();
@@ -89,7 +94,7 @@ describe('Home Page', () => {
       },
     });
 
-    const { getByText } = render(<HomePage />);
+    const { getByText } = renderWithLayout(<HomePage />);
 
     const noPostsText = getByText(/No posts to show/i);
     expect(noPostsText).toBeInTheDocument();

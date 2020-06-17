@@ -1,11 +1,16 @@
 import React from 'react';
-import { render, fireEvent, wait } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import Blog from '../../src/pages/blog';
+import Layout from '../../src/components/Layout';
 import useBlogPageQuery from '../../src/hooks/useBlogPageQuery';
 
 jest.mock('../../src/hooks/useSeoQuery');
 jest.mock('../../src/hooks/useSiteMetaQuery');
 jest.mock('../../src/hooks/useBlogPageQuery');
+
+const renderWithLayout = component => {
+  return { ...render(<Layout>{component}</Layout>) };
+};
 
 describe('Blog Page', () => {
   beforeEach(() => {
@@ -52,7 +57,7 @@ describe('Blog Page', () => {
     const expectedText1 = /some title1/i;
     const expectedText2 = /some title2/i;
 
-    const { getByText } = render(<Blog />);
+    const { getByText } = renderWithLayout(<Blog />);
 
     expect(getByText(expectedText1)).toBeInTheDocument();
     expect(getByText(expectedText2)).toBeInTheDocument();
@@ -66,37 +71,37 @@ describe('Blog Page', () => {
     });
     const expectedText = /no posts to show/i;
 
-    const { getByText } = render(<Blog />);
+    const { getByText } = renderWithLayout(<Blog />);
 
     expect(getByText(expectedText)).toBeInTheDocument();
   });
 
   test('only show some title2 after typing some title2 in input', async () => {
-    const { queryByText, getByText, getByPlaceholderText } = render(<Blog />);
+    const { queryByText, getByText, getByPlaceholderText } = renderWithLayout(<Blog />);
 
     const searchInput = getByPlaceholderText(/search posts/i);
     fireEvent.change(searchInput, { target: { value: 'some title2' } });
 
-    await wait(() => {
+    await waitFor(() => {
       expect(getByText(/some title2/i)).toBeInTheDocument();
       expect(queryByText(/some title1/i)).not.toBeInTheDocument();
     });
   });
 
   test('show all posts after deleting text from input', async () => {
-    const { queryByText, getByText, getByPlaceholderText } = render(<Blog />);
+    const { queryByText, getByText, getByPlaceholderText } = renderWithLayout(<Blog />);
 
     const searchInput = getByPlaceholderText(/search posts/i);
     fireEvent.change(searchInput, { target: { value: 'some title2' } });
 
-    await wait(() => {
+    await waitFor(() => {
       expect(getByText(/some title2/i)).toBeInTheDocument();
       expect(queryByText(/some title1/i)).not.toBeInTheDocument();
     });
 
     fireEvent.change(searchInput, { target: { value: '' } });
 
-    await wait(() => {
+    await waitFor(() => {
       expect(getByText(/some title1/i)).toBeInTheDocument();
       expect(getByText(/some title2/i)).toBeInTheDocument();
     });
