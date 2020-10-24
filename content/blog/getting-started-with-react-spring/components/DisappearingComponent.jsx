@@ -28,7 +28,7 @@ const DisappearingComponent = () => {
     config: config.molasses,
   });
 
-  const getComputedTranslationValue = element => {
+  const getComputedTranslationValue = (element) => {
     const barsContainerWidth = parseFloat(animatedDiv.current.getBoundingClientRect().width);
 
     const cs = getComputedStyle(element);
@@ -60,7 +60,7 @@ const DisappearingComponent = () => {
       <Button
         type="button"
         onClick={() => {
-          setIsDisplay(prevState => !prevState);
+          setIsDisplay((prevState) => !prevState);
         }}
       >
         Click to Animate

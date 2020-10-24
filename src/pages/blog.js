@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import matchSorter from 'match-sorter';
+import { matchSorter } from 'match-sorter';
 import Container from '../components/Container';
 import PageTitle from '../components/PageTitle';
 import BlogListItem from '../components/BlogListItem';

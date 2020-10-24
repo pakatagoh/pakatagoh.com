@@ -47,7 +47,7 @@ const TranslateStaggeredBars = () => {
     reverse: !expanded,
   });
 
-  const getComputedTranslationValue = element => {
+  const getComputedTranslationValue = (element) => {
     const barsContainerWidth = parseFloat(animatedBarsContainerRef.current.getBoundingClientRect().width);
 
     const cs = getComputedStyle(element);
@@ -86,7 +86,7 @@ const TranslateStaggeredBars = () => {
         <Button
           type="button"
           onClick={() => {
-            setExpanded(prevState => !prevState);
+            setExpanded((prevState) => !prevState);
           }}
         >
           Click to Animate

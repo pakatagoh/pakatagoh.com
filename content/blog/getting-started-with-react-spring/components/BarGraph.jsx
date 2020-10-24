@@ -79,7 +79,7 @@ const BarGraph = () => {
       <Button
         type="button"
         onClick={() => {
-          setExpanded(prevState => !prevState);
+          setExpanded((prevState) => !prevState);
         }}
       >
         Click to Animate

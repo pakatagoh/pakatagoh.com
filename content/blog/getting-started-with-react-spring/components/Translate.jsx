@@ -30,7 +30,7 @@ const Translate = ({ children }) => {
     reverse: translated,
   });
 
-  const getComputedTranslationValue = element => {
+  const getComputedTranslationValue = (element) => {
     const styledBorderWidth = parseFloat(animatedDivRef.current.getBoundingClientRect().width);
 
     const cs = getComputedStyle(element);
@@ -56,7 +56,7 @@ const Translate = ({ children }) => {
         <Button
           type="button"
           onClick={() => {
-            setTranslated(prevState => !prevState);
+            setTranslated((prevState) => !prevState);
           }}
         >
           Click to Translate

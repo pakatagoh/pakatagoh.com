@@ -97,6 +97,7 @@ PostTemplate.propTypes = {
     mdx: PropType.shape({
       body: PropType.string,
       tableOfContents: PropType.shape({
+        // eslint-disable-next-line react/forbid-prop-types
         items: PropType.array,
       }),
       fields: PropType.shape({

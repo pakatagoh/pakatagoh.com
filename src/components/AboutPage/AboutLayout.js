@@ -6,7 +6,7 @@ import Container from '../Container';
 import PageTitle from '../PageTitle';
 import InlineLink from '../InlineLink';
 
-const AnchorElement = props => <InlineLink {...props} target="_blank" rel="noopener noreferrer" />;
+const AnchorElement = (props) => <InlineLink {...props} target="_blank" rel="noopener noreferrer" />;
 
 const components = {
   a: AnchorElement,
