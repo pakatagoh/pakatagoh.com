@@ -1,4 +1,0 @@
-This is a Brave Rewards publisher verification file.
-
-Domain: pakatagoh.com
-Token: babc3104fffcdf80df13b6f009978cde8a27b1c941b4418775dd11f22e05f0e8
