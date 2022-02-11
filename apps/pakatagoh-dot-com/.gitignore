@@ -9,3 +9,5 @@ api/_build
 api/index.js
 
 app/styles
+
+.env
