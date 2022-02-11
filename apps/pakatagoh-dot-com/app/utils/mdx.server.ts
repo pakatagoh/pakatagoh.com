@@ -1,21 +1,21 @@
-import path from 'path';
-import fs from 'fs/promises';
-import { bundleMDX } from 'mdx-bundler';
+import path from "path";
+import fs from "fs/promises";
+import { bundleMDX } from "mdx-bundler";
 
 export const getComponentFilesWithContentMap = async (basePath: string) => {
   const directory = await fs.readdir(basePath, { withFileTypes: true });
   const hasComponentsFolder = directory.find(
-    (d) => d.name === 'components' && d.isDirectory()
+    (d) => d.name === "components" && d.isDirectory()
   );
 
   if (!hasComponentsFolder) return {};
 
   const componentFileNames = await fs.readdir(
-    path.join(basePath, 'components')
+    path.join(basePath, "components")
   );
   const componentFilesWithContentPromises = componentFileNames.map(
     async (file) => {
-      const filePath = path.join(basePath, 'components', file);
+      const filePath = path.join(basePath, "components", file);
       const fileData = await fs.readFile(filePath);
 
       const content = fileData.toString();
@@ -35,11 +35,11 @@ export const getComponentFilesWithContentMap = async (basePath: string) => {
   return componentFilesWithContentMap;
 };
 
-const pathToPosts = path.join(__dirname, '../../content/blog');
+const pathToPosts = path.join(__dirname, "../../content/blog");
 
 export const getBundledMdx = async (slug: string) => {
   const basePath = path.join(pathToPosts, slug);
-  const fullPath = path.join(basePath, 'index.mdx');
+  const fullPath = path.join(basePath, "index.mdx");
 
   const componentFilesWithContentMap = await getComponentFilesWithContentMap(
     basePath
