@@ -7,7 +7,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "turbo run build --scope=pakatagoh-dot-com",
+    "build": "turbo run build --scope=pakatagoh-dot-com --force",
     "dev": "turbo run dev --parallel",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
