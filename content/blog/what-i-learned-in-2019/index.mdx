@@ -1,0 +1,99 @@
+---
+title: "What I learned in 2019 and what I plan to learn in 2020"
+description: "Like any junior developer starting out their first year in tech, there is a lot to take in. In this post I like to reflect and talk about the technologies I have been exposed to and what I would like to focus on in 2020"
+createdAt: "2019-12-15"
+isPublished: true
+keywords:
+  - "learning"
+  - "self-learning"
+  - "self-improvement"
+  - "technologies"
+---
+
+Like any junior developer starting out their first year in tech, there's lots to take in. Talk about information overload. However, with struggle came the learning opportunities. In this post, I want to reflect on two main things. First, the technologies I was exposed to/currently use and what I currently know about them. Second is to note down what I want to focus on for the rest of 2019 and what I want to work on starting in 2020. (I work with React so whatever that follows below has a bias towards it)
+
+## What I learnt/was exposed to in 2019
+
+### Testing/TDD with Jest and react-testing-library
+
+Whether you practice test driven development(TDD) or not, having tests definitely allows you to sleep better at night after a day of refactoring or writing new code.
+
+I had the opportunity to be able to write lots of new (front-end) code at my current job. When it came to implementing a new version of the UI, refactoring/reusing some logic without breaking production, tests definitely saved my ass countless times.
+
+I'm using Jest at the moment with react-testing-library. For anyone using React and thinking of getting into testing, the Jest + react-testing-library + jest-dom combo is a great one.
+
+- Jest - https://jestjs.io/
+- react-testing-library (part of the testing-library suite) - https://testing-library.com/docs/react-testing-library/intro
+- jest-dom - https://testing-library.com/docs/ecosystem-jest-dom
+
+### TypeScript
+
+I worked a little with TypeScript(TS) for about a month back in December 2018 but have been using it a lot with React for a good 3-4 months. Many people have opinions of what they think of TS. My opinion is that it feels like you're using "protection" when writing your JavaScript(JS) and it feels good 😂. When compiling TS code to JS, errors occur if types don't match. This helps to catch bugs early before deploying to production.
+
+It has great integration with VS Code, nice autocomplete suggestions for props (yes, prop-types does the same thing) and other functions in general, super useful syntax helpers/features like [Optional Chaining](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#optional-chaining) (available in typescript 3.7).
+
+But I'll say TS does have a steep learning curve. I started by diving straight into code that has already been written in TS and just figured out what I should do from there. Of course, it'll be better if you start off with some basic tutorials from YouTube or whatever resource you prefer. I'm still far off from understanding all of it. For example, I'm still having trouble with understanding topics like Generics, Namespaces etc.
+
+Also, there's a another set of configurations you'll need to do to make TS work. For example, you'll have to setup a `tsconfig.json` file, setup babel or webpack if you have your own custom tool chain.
+
+- TypeScript docs - https://www.typescriptlang.org/index.html
+- React-TypeScript cheatsheet - https://github.com/typescript-cheatsheets/react-typescript-cheatsheet
+- Martin Hochel articles on React-Typescript best practices are super awesome - https://medium.com/@martin_hotell
+
+### Redux Saga
+
+I believe anyone who has used Redux before has definitely heard of `redux-thunk` and that's what I used as a middleware in tutorials and side projects. Then along came Redux Saga which was the middleware of choice at work. Working with it briefly has shown me that it is a powerful tool to help structure side effects.
+
+Redux Saga makes use of Generator functions in JS. I'm no expert on Generators but the syntax is makes it feel like you're writing async/await-ish code. You'll declare an `async` function by writing `async function () {...}`. In Generators-land, you write `function* () {...}`. When using Generators, the keyword `yield` is kinda analogous to `await` when working with async functions.
+
+- redux-thunk - https://github.com/reduxjs/redux-thunk
+- what is a thunk? - https://daveceddia.com/what-is-a-thunk/
+- Redux Saga - https://redux-saga.js.org/
+- Iterators and Generators - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators
+
+### Functional Programming and Ramda.js
+
+I thought functional programming was just creating pure functions with no side effects, done. But it's a much bigger world than that. From learning about function arity to compose/pipe and identity functions among others. In the world of functional programming, the data is the source of truth and functions are written declaratively. Functions are written like they are mathematical in nature. You take an input and pass it through a function and you get your output, `y = f(x)`. As a mechanical engineer, this speaks to me more as compared to OOP.
+
+Ramda.js is what I currently use at work as a library of "functional" helper functions. You might be using Lodash and that's fine. Lodash has a subset of functional programming friendly functions under `lodash/fp`.
+
+How you wish to build your app is up to you. But personally, I'm gonna dive deeper into the functional programming and see how I can take it further.
+
+I personally like this video about why functional programming isn't the norm by Richard Feldman - https://www.youtube.com/watch?v=QyJZzq0v7Z4
+
+- Functional-Light Javascript by Kyle Simpson (I'd recommend this if you're just starting out) - https://github.com/getify/Functional-Light-JS
+- Professor Frisby's Mostly Adequate Guide to Functional Programming (More advanced book that dives deeper into more textbook style functional programming concepts) - https://mostly-adequate.gitbooks.io/mostly-adequate-guide/
+- Ramda.js docs - https://ramdajs.com/
+- Favoring Curry - https://fr.umio.us/favoring-curry/
+- Hey Underscore, You're Doing it Wrong - https://www.youtube.com/watch?v=m3svKOdZijA&app=desktop
+
+### Storybook.js
+
+Storybook is such a helpful tool if you're building or documenting a design system. You can visualize your components in isolation by writing "stories". There's a whole ecosystem around storybook that takes it to a whole new level. You can run visual tests against components and also test for accessibility and have the reports write there in the storybook interface. If you have written docs/READMEs for that component, you can even attach it to storybook.
+
+I'd definitely recommend this for anyone looking to start some form of documentation on their components.
+
+- Storybook - https://storybook.js.org/
+- Component Story Format, a new way to write Stories - https://medium.com/storybookjs/component-story-format-66f4c32366df
+
+## What I want to learn/focus more on in 2020
+
+- More Functional Programming
+
+I'm not done with learning about functional programming. From what I can see, it takes years to get comfortable or become an expert in this paradigm. I'll be digging more into Professor Frisby's Guide to Functional Programming to learn the textbook stuff and to build more applications with the help of functional libraries along they way for example, fp-ts ([functional programming-typescript](https://www.npmjs.com/package/fp-ts))
+
+- GraphQL with Apollo
+
+Probably something I can no longer avoid is looking to get deeper into GraphQL. So far my experience with GraphQL is limited to some dabbling during an internship and also using it with Gatsby. I hope to have some projects up with Apollo in the coming year.
+
+- Next.js
+
+I'd like to pick up a new framework and Next.js is in my sights. I've heard of a couple of friends at companies that are using Next.js and judging from Next.js's showcase page, many other big brand companies are using it as well. Probably a good way for me to get a peek into server-side rendering.
+
+- React Spring / D3
+
+Mainly because I just want to learn these libraries as they are popular and and I'd like to be able build some charts to up my game as a front-end dev.
+
+## Bye 2019
+
+2019 has been a great year of learning I got my first job as a web developer 🎉. I hope that you can take a little something away from this post to help you plan your learning journey for 2020.
