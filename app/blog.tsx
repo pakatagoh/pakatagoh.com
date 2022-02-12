@@ -73,14 +73,7 @@ export const getOneBlogPost = async (slug: string) => {
       source: rawString,
       esbuildOptions(options) {
         options.minify = false;
-        options.target = [
-          "es2020",
-          "chrome58",
-          "firefox57",
-          "safari11",
-          "edge16",
-          "node12",
-        ];
+        options.target = ["es2020", "chrome58", "firefox57", "safari11"];
 
         return options;
       },
