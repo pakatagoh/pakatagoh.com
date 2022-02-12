@@ -1,6 +1,6 @@
-import { Outlet } from 'remix';
-import { Layout } from '../components/layout/Layout';
-import { Nav } from '../components/Nav';
+import { Outlet } from "remix";
+import { Layout } from "../components/layout/Layout";
+import { Nav } from "../components/Nav";
 
 const BlogRoot = () => {
   return (
