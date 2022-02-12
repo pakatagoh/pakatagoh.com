@@ -64,35 +64,43 @@ export const getBlogPosts = async () => {
 };
 
 export const getOneBlogPost = async (slug: string) => {
+  console.log("the slug:", slug);
   const { rawString } = await getOneBlogContent(slug);
-  const { frontmatter, code } = await bundleMDX({
-    source: rawString,
-    esbuildOptions(options) {
-      options.minify = false;
-      options.target = [
-        "es2020",
-        "chrome58",
-        "firefox57",
-        "safari11",
-        "edge16",
-        "node12",
-      ];
+  console.log("the raw string:", rawString);
 
-      return options;
-    },
-    // files: componentFilesWithContentMap,
-  });
-  // const { code, frontmatter } = await getBundledMdx(rawString);
+  try {
+    const { frontmatter, code } = await bundleMDX({
+      source: rawString,
+      esbuildOptions(options) {
+        options.minify = false;
+        options.target = [
+          "es2020",
+          "chrome58",
+          "firefox57",
+          "safari11",
+          "edge16",
+          "node12",
+        ];
 
-  invariant(
-    validatePostAttributes(frontmatter),
-    `Invalid post attributes for ${slug}`
-  );
+        return options;
+      },
+      // files: componentFilesWithContentMap,
+    });
+    // const { code, frontmatter } = await getBundledMdx(rawString);
 
-  return {
-    slug,
-    title: frontmatter.title,
-    description: frontmatter.description,
-    code,
-  };
+    invariant(
+      validatePostAttributes(frontmatter),
+      `Invalid post attributes for ${slug}`
+    );
+
+    return {
+      slug,
+      title: frontmatter.title,
+      description: frontmatter.description,
+      code,
+    };
+  } catch (error) {
+    console.error(error);
+    throw new Error("Error bundling MDX");
+  }
 };
