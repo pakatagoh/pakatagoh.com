@@ -1,4 +1,13 @@
 node_modules
-build
-dist
-.turbo
+
+.cache
+.vercel
+.output
+
+public/build
+api/_build
+api/index.js
+
+app/styles
+
+.env
