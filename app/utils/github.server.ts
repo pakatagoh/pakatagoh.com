@@ -10,7 +10,7 @@ export const getBlogContentList = async () => {
   const foundBlogContentList = await octokit.repos.getContent({
     owner: "pakatagoh",
     repo: "pakatagoh.com",
-    path: "apps/pakatagoh-dot-com/content/blog",
+    path: "content/blog",
     ref: "pakatagoh-dot-com/v2", // TODO: remove for after first deployment
     // ref: process.env.VERCEL_GIT_COMMIT_REF,
   });
@@ -52,7 +52,7 @@ export const getOneBlogContent = async (slug: string) => {
   const foundBlogIndex = await octokit.repos.getContent({
     owner: "pakatagoh",
     repo: "pakatagoh.com",
-    path: `apps/pakatagoh-dot-com/content/blog/${slug}/index.mdx`,
+    path: `content/blog/${slug}/index.mdx`,
     ref: "pakatagoh-dot-com/v2", // TODO: remove for after first deployment
     // ref: process.env.VERCEL_GIT_COMMIT_REF,
   });
