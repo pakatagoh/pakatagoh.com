@@ -6,13 +6,14 @@ export default {
   input: "api/api.js",
   output: {
     file: "api/index.js",
-    format: "cjs"
+    format: "cjs",
+    inlineDynamicImports: true,
   },
   plugins: [
     commonJs(),
     resolve({
-      moduleDirectories: ["node_modules"]
+      moduleDirectories: ["node_modules"],
     }),
-    jsonPlugin()
-  ]
+    jsonPlugin(),
+  ],
 };
