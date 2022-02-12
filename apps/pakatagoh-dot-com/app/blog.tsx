@@ -1,13 +1,23 @@
-import path from 'path';
-import fs from 'fs/promises';
-import parseFrontMatter from 'front-matter';
-import invariant from 'tiny-invariant';
-import { getBundledMdx } from './utils/mdx.server';
+import path from "path";
+import fs from "fs/promises";
+import parseFrontMatter from "front-matter";
+import invariant from "tiny-invariant";
+import dayjs from "dayjs";
+import { getBundledMdx } from "./utils/mdx.server";
+// import { client } from "~/utils/sanity.server";
+import { getBlogContentList } from "./utils/github.server";
+
+type FilePath = {
+  path: string;
+};
 
 type PostMarkdownAttributes = {
   title: string;
   description?: string;
   createdAt: string;
+  slug: string;
+  isPublished?: boolean;
+  filePaths?: FilePath[];
 };
 
 const validatePostAttributes = (
@@ -16,56 +26,56 @@ const validatePostAttributes = (
   return attributes?.title && attributes?.createdAt;
 };
 
-const isProduction = process.env.NODE_ENV === 'production';
+// const isProduction = process.env.NODE_ENV === "production";
 
-const pathToPosts = path.join(__dirname, '/routes/blog');
-
-console.log(pathToPosts);
+type PostData = {
+  body: string;
+  title: string;
+};
 
 export const getBlogPosts = async () => {
-  const files = await fs.readdir(pathToPosts, { withFileTypes: true });
-  const filteredFiles = files.filter((file) => file.isDirectory());
+  const foundBlogContentList = await getBlogContentList();
 
-  const posts = filteredFiles.map(async (file) => {
-    const fileData = await fs.readFile(
-      path.join(pathToPosts, file.name, 'index.mdx')
-    );
-    const markdown = fileData.toString();
-    const { attributes, body } = parseFrontMatter(markdown);
+  const blogPosts = foundBlogContentList
+    .map((contentItem) => {
+      const { slug, rawString } = contentItem;
 
-    invariant(
-      validatePostAttributes(attributes),
-      `Invalid post attributes for ${file}. Attributes: ${JSON.stringify(
-        attributes
-      )}`
-    );
+      const { attributes } = parseFrontMatter(rawString);
 
-    return {
-      slug: file,
-      createdAt: attributes.createdAt,
-      title: attributes.title,
-    };
-  });
+      invariant(
+        validatePostAttributes(attributes),
+        `Invalid post attributes for ${slug}. Attributes: ${JSON.stringify(
+          attributes
+        )}`
+      );
 
-  const allPosts = await Promise.all(posts);
-  const sortedPosts = allPosts.sort((a, b) => {
-    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-  });
+      return {
+        slug,
+        description: attributes.description,
+        createdAt: dayjs(attributes.createdAt).format("DD/MM/YYYY"),
+        isPublished: attributes.isPublished,
+        title: attributes.title,
+      };
+    })
+    .filter((contentItem) => contentItem.isPublished)
+    .sort((a, b) => {
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    });
 
-  return sortedPosts;
+  return blogPosts;
 };
 
-export const getOneBlogPost = async (slug: string) => {
-  const { frontmatter, code } = await getBundledMdx(slug);
+// export const getOneBlogPost = async (slug: string) => {
+//   const { frontmatter, code } = await getBundledMdx(slug);
 
-  invariant(
-    validatePostAttributes(frontmatter),
-    `Invalid post attributes for ${slug}`
-  );
+//   invariant(
+//     validatePostAttributes(frontmatter),
+//     `Invalid post attributes for ${slug}`
+//   );
 
-  return {
-    title: frontmatter.title,
-    description: frontmatter.description,
-    code,
-  };
-};
+//   return {
+//     title: frontmatter.title,
+//     description: frontmatter.description,
+//     code,
+//   };
+// };
