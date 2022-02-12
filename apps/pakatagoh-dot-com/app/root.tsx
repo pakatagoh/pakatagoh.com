@@ -7,22 +7,23 @@ import {
   ScrollRestoration,
   LinksFunction,
   useCatch,
-} from 'remix';
-import type { MetaFunction } from 'remix';
-import styles from './styles/app.css';
+} from "remix";
+import type { MetaFunction } from "remix";
+import styles from "./styles/app.css";
 
 export const meta: MetaFunction = () => {
-  return { title: 'Pakata Goh' };
+  return { title: "Pakata Goh" };
 };
 
 export const links: LinksFunction = () => {
-  return [{ rel: 'stylesheet', href: styles }];
+  return [{ rel: "stylesheet", href: styles }];
 };
 
 export default function App() {
   return (
     <html lang="en">
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charSet="utf-8" />
         <Meta />
         <Links />
@@ -31,7 +32,7 @@ export default function App() {
         <Outlet />
         <ScrollRestoration />
         <Scripts />
-        {process.env.NODE_ENV === 'development' && <LiveReload />}
+        {process.env.NODE_ENV === "development" && <LiveReload />}
       </body>
     </html>
   );
@@ -44,6 +45,7 @@ export function CatchBoundary({ error }: { error: Error }) {
   return (
     <html lang="en">
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charSet="utf-8" />
         <title>Not Found</title>
         <Meta />
@@ -67,7 +69,7 @@ export function CatchBoundary({ error }: { error: Error }) {
         </div>
         <ScrollRestoration />
         <Scripts />
-        {process.env.NODE_ENV === 'development' && <LiveReload />}
+        {process.env.NODE_ENV === "development" && <LiveReload />}
       </body>
     </html>
   );
@@ -77,6 +79,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
   return (
     <html lang="en">
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charSet="utf-8" />
         <title>Uh-oh!</title>
         <Meta />
@@ -89,7 +92,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
         </div>
         <ScrollRestoration />
         <Scripts />
-        {process.env.NODE_ENV === 'development' && <LiveReload />}
+        {process.env.NODE_ENV === "development" && <LiveReload />}
       </body>
     </html>
   );
