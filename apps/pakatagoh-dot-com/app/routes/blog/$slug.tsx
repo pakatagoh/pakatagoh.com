@@ -56,7 +56,7 @@ const BlogDetail = () => {
   const Component = useMemo(() => getMDXComponent(code), [code]);
 
   return (
-    <div className="prose prose-sm md:prose-base max-w-none">
+    <div className="prose w-full max-w-none">
       <h1>{title}</h1>
       <Component />
     </div>
