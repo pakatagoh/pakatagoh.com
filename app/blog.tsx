@@ -1,7 +1,9 @@
 import parseFrontMatter from "front-matter";
 import invariant from "tiny-invariant";
 import dayjs from "dayjs";
-import { getBundledMdx } from "./utils/mdx.server";
+// import { getBundledMdx } from "./utils/mdx.server";
+import mdxBundler from "mdx-bundler";
+
 import { getBlogContentList, getOneBlogContent } from "./utils/github.server";
 
 type FilePath = {
@@ -64,7 +66,11 @@ export const getBlogPosts = async () => {
 
 export const getOneBlogPost = async (slug: string) => {
   const { rawString } = await getOneBlogContent(slug);
-  const { code, frontmatter } = await getBundledMdx(rawString);
+  const { frontmatter, code } = await mdxBundler.bundleMDX({
+    source: rawString,
+    // files: componentFilesWithContentMap,
+  });
+  // const { code, frontmatter } = await getBundledMdx(rawString);
 
   invariant(
     validatePostAttributes(frontmatter),

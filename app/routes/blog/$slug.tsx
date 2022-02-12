@@ -1,6 +1,7 @@
-import { useCatch, useLoaderData, useParams, json } from "remix";
+import { useCatch, useLoaderData, json } from "remix";
 import type {
   ErrorBoundaryComponent,
+  HeadersFunction,
   LoaderFunction,
   MetaFunction,
 } from "remix";
@@ -13,6 +14,13 @@ type LoaderData = {
   title: string;
   description?: string;
   code: string;
+};
+
+export const headers: HeadersFunction = () => {
+  return {
+    "cache-control":
+      "max-age=1800, s-maxage=3600, stale-while-revalidate=31536000",
+  };
 };
 
 export const meta: MetaFunction = ({ data }) => {
