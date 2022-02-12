@@ -1,8 +1,7 @@
 import parseFrontMatter from "front-matter";
 import invariant from "tiny-invariant";
 import dayjs from "dayjs";
-// import { getBundledMdx } from "./utils/mdx.server";
-import mdxBundler from "mdx-bundler";
+import { bundleMDX } from "./utils/mdx.server";
 
 import { getBlogContentList, getOneBlogContent } from "./utils/github.server";
 
@@ -66,8 +65,21 @@ export const getBlogPosts = async () => {
 
 export const getOneBlogPost = async (slug: string) => {
   const { rawString } = await getOneBlogContent(slug);
-  const { frontmatter, code } = await mdxBundler.bundleMDX({
+  const { frontmatter, code } = await bundleMDX({
     source: rawString,
+    esbuildOptions(options) {
+      options.minify = false;
+      options.target = [
+        "es2020",
+        "chrome58",
+        "firefox57",
+        "safari11",
+        "edge16",
+        "node12",
+      ];
+
+      return options;
+    },
     // files: componentFilesWithContentMap,
   });
   // const { code, frontmatter } = await getBundledMdx(rawString);
