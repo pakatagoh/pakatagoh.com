@@ -27,9 +27,7 @@ const CustomLink = ({ to, ...rest }: PropsWithChildren<RemixNavLinkProps>) => {
     <NavLink
       to={to}
       className={({ isActive }) =>
-        `text-lg md:text-base ${
-          isActive ? `opacity-100 ` : `opacity-60 hover:opacity-100`
-        }`
+        `${isActive ? `opacity-100 ` : `opacity-60 hover:opacity-100`}`
       }
       {...rest}
     >
