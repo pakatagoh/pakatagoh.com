@@ -49,29 +49,34 @@ export const getBlogContentList = async () => {
 };
 
 export const getOneBlogContent = async (slug: string) => {
-  const foundBlogIndex = await octokit.repos.getContent({
-    owner: "pakatagoh",
-    repo: "pakatagoh.com",
-    path: `content/blog/${slug}/index.mdx`,
-    ref: "pakatagoh-dot-com/v2", // TODO: remove for after first deployment
-    // ref: process.env.VERCEL_GIT_COMMIT_REF,
-  });
+  try {
+    const foundBlogIndex = await octokit.repos.getContent({
+      owner: "pakatagoh",
+      repo: "pakatagoh.com",
+      path: `content/blog/${slug}/index.mdx`,
+      ref: "pakatagoh-dot-com/v2", // TODO: remove for after first deployment
+      // ref: process.env.VERCEL_GIT_COMMIT_REF,
+    });
 
-  if (!foundBlogIndex.data) {
-    throw new Error(`No such post`);
+    if (!foundBlogIndex.data) {
+      throw new Error(`No such post`);
+    }
+
+    const blogDetail = foundBlogIndex.data as {
+      content: string;
+      encoding: BufferEncoding;
+    };
+
+    const blogContentString = Buffer.from(
+      blogDetail.content,
+      blogDetail.encoding
+    ).toString();
+
+    return {
+      rawString: blogContentString,
+    };
+  } catch (error) {
+    console.error(error);
+    throw new Error("error getting blog data");
   }
-
-  const blogDetail = foundBlogIndex.data as {
-    content: string;
-    encoding: BufferEncoding;
-  };
-
-  const blogContentString = Buffer.from(
-    blogDetail.content,
-    blogDetail.encoding
-  ).toString();
-
-  return {
-    rawString: blogContentString,
-  };
 };
