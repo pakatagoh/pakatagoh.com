@@ -12,6 +12,7 @@
     "postinstall": "remix setup node"
   },
   "dependencies": {
+    "@octokit/core": "^3.5.1",
     "@remix-run/react": "^1.1.1",
     "@remix-run/serve": "^1.1.1",
     "@remix-run/vercel": "^1.1.1",
