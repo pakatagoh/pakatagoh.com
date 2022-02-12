@@ -3,10 +3,6 @@
   "project": {
     "name": "pakatagoh.com"
   },
-  "api": {
-    "projectId": "06m8wl6i",
-    "dataset": "production"
-  },
   "plugins": [
     "@sanity/base",
     "@sanity/default-layout",
@@ -17,9 +13,7 @@
   ],
   "env": {
     "development": {
-      "plugins": [
-        "@sanity/vision"
-      ]
+      "plugins": ["@sanity/vision"]
     }
   },
   "parts": [

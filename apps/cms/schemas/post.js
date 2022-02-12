@@ -17,6 +17,17 @@ export default {
       },
     },
     {
+      name: "filePaths",
+      title: "File Paths",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "filePath" }],
+        },
+      ],
+    },
+    {
       name: "body",
       title: "Body",
       type: "markdown",
