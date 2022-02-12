@@ -4,7 +4,7 @@ import { NavLink } from "remix";
 
 export const Nav = () => {
   return (
-    <nav className="mb-3">
+    <nav className="mb-6">
       <ul className="flex gap-4">
         <li>
           <CustomLink to="/" end>
