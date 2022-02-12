@@ -1,10 +1,7 @@
-import path from "path";
-import fs from "fs/promises";
 import parseFrontMatter from "front-matter";
 import invariant from "tiny-invariant";
 import dayjs from "dayjs";
 import { getBundledMdx } from "./utils/mdx.server";
-// import { client } from "~/utils/sanity.server";
 import { getBlogContentList, getOneBlogContent } from "./utils/github.server";
 
 type FilePath = {
