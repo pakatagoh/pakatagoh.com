@@ -5,7 +5,7 @@ import invariant from "tiny-invariant";
 import dayjs from "dayjs";
 import { getBundledMdx } from "./utils/mdx.server";
 // import { client } from "~/utils/sanity.server";
-import { getBlogContentList } from "./utils/github.server";
+import { getBlogContentList, getOneBlogContent } from "./utils/github.server";
 
 type FilePath = {
   path: string;
@@ -65,17 +65,19 @@ export const getBlogPosts = async () => {
   return blogPosts;
 };
 
-// export const getOneBlogPost = async (slug: string) => {
-//   const { frontmatter, code } = await getBundledMdx(slug);
+export const getOneBlogPost = async (slug: string) => {
+  const { rawString } = await getOneBlogContent(slug);
+  const { code, frontmatter } = await getBundledMdx(rawString);
 
-//   invariant(
-//     validatePostAttributes(frontmatter),
-//     `Invalid post attributes for ${slug}`
-//   );
+  invariant(
+    validatePostAttributes(frontmatter),
+    `Invalid post attributes for ${slug}`
+  );
 
-//   return {
-//     title: frontmatter.title,
-//     description: frontmatter.description,
-//     code,
-//   };
-// };
+  return {
+    slug,
+    title: frontmatter.title,
+    description: frontmatter.description,
+    code,
+  };
+};

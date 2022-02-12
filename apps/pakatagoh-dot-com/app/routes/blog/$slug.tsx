@@ -1,12 +1,12 @@
-import { useCatch, useLoaderData, useParams, json } from 'remix';
+import { useCatch, useLoaderData, useParams, json } from "remix";
 import type {
   ErrorBoundaryComponent,
   LoaderFunction,
   MetaFunction,
-} from 'remix';
-import { getOneBlogPost } from '../../blog';
-// import { useMemo } from 'react';
-// import { getMDXComponent } from 'mdx-bundler/client';
+} from "remix";
+import { getOneBlogPost } from "../../blog";
+import { useMemo } from "react";
+import { getMDXComponent } from "mdx-bundler/client";
 
 type LoaderData = {
   slug: string;
@@ -15,52 +15,51 @@ type LoaderData = {
   code: string;
 };
 
-// export const meta: MetaFunction = ({ data }) => {
-//   return {
-//     title: data.title,
-//     description: data.description,
-//   };
-// };
+export const meta: MetaFunction = ({ data }) => {
+  return {
+    title: data.title,
+    description: data.description,
+  };
+};
 
-// export const loader: LoaderFunction = async ({ params }) => {
-//   const slug = params.slug;
+export const loader: LoaderFunction = async ({ params }) => {
+  const slug = params.slug;
 
-//   if (!slug) {
-//     throw new Response('Slug must be provided', {
-//       status: 400,
-//     });
-//   }
+  if (!slug) {
+    throw new Response("Slug must be provided", {
+      status: 400,
+    });
+  }
 
-//   const { description, title, code } = await getOneBlogPost(slug);
+  const { description, title, code } = await getOneBlogPost(slug);
 
-//   return json(
-//     {
-//       slug,
-//       title,
-//       description,
-//       code,
-//     },
-//     {
-//       status: 200,
-//       headers: {
-//         'cache-control':
-//           'max-age=1800, s-maxage=3600, stale-while-revalidate=31536000',
-//       },
-//     }
-//   );
-// };
+  return json(
+    {
+      slug,
+      title,
+      description,
+      code,
+    },
+    {
+      status: 200,
+      headers: {
+        "cache-control":
+          "max-age=1800, s-maxage=3600, stale-while-revalidate=31536000",
+      },
+    }
+  );
+};
 
 const BlogDetail = () => {
-  // const { code, title, description } = useLoaderData<LoaderData>();
+  const { code, title } = useLoaderData<LoaderData>();
 
-  // const Component = useMemo(() => getMDXComponent(code), [code]);
+  const Component = useMemo(() => getMDXComponent(code), [code]);
 
   return (
-    <>
-      hi from blog detail page
-      {/* <h1>{title}</h1> */}
-      {/* <Component /> */}
-    </>
+    <div className="prose prose-sm md:prose-base max-w-none">
+      <h1>{title}</h1>
+      <Component />
+    </div>
   );
 };
 

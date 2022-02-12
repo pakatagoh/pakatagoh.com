@@ -5,7 +5,7 @@ import { NavLink } from "remix";
 export const Nav = () => {
   return (
     <nav className="mb-3">
-      <ul className="flex gap-2">
+      <ul className="flex gap-4">
         <li>
           <CustomLink to="/" end>
             Home
@@ -27,7 +27,9 @@ const CustomLink = ({ to, ...rest }: PropsWithChildren<RemixNavLinkProps>) => {
     <NavLink
       to={to}
       className={({ isActive }) =>
-        isActive ? `opacity-100 ` : `opacity-60 hover:opacity-100`
+        `text-lg md:text-base ${
+          isActive ? `opacity-100 ` : `opacity-60 hover:opacity-100`
+        }`
       }
       {...rest}
     >
