@@ -1,25 +1,37 @@
-import { Link } from "remix";
+import { RemixNavLinkProps } from "@remix-run/react/components";
+import { PropsWithChildren } from "react";
+import { NavLink } from "remix";
 
 export const Nav = () => {
   return (
     <nav className="mb-3">
       <ul className="flex gap-2">
         <li>
-          <Link to="/" className="opacity-60 hover:opacity-100">
+          <CustomLink to="/" end>
             Home
-          </Link>
+          </CustomLink>
         </li>
         <li>
-          <Link to="/blog" className="opacity-60 hover:opacity-100">
-            Blog
-          </Link>
+          <CustomLink to="/blog">Blog</CustomLink>
         </li>
         <li>
-          <Link to="/about" className="opacity-60 hover:opacity-100">
-            About
-          </Link>
+          <CustomLink to="/about">About</CustomLink>
         </li>
       </ul>
     </nav>
+  );
+};
+
+const CustomLink = ({ to, ...rest }: PropsWithChildren<RemixNavLinkProps>) => {
+  return (
+    <NavLink
+      to={to}
+      className={({ isActive }) =>
+        isActive ? `opacity-100 ` : `opacity-60 hover:opacity-100`
+      }
+      {...rest}
+    >
+      {rest.children}
+    </NavLink>
   );
 };
