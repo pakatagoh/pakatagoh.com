@@ -72,9 +72,7 @@ export const getOneBlogPost = async (slug: string) => {
     const { frontmatter, code } = await bundleMDX({
       source: rawString,
       esbuildOptions(options) {
-        options.minify = false;
         options.target = ["es2020", "chrome58", "firefox57", "safari11"];
-
         return options;
       },
       // files: componentFilesWithContentMap,
