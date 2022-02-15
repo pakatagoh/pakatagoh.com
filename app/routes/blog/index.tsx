@@ -40,24 +40,28 @@ const BlogIndex = () => {
 
   return (
     <main>
-      <h1 className="text-xl font-bold">Blog</h1>
-      <div className="mt-6 flex flex-col gap-4">
+      <h1 className="text-xl font-bold text-red-400 dark:text-blue-400">
+        Blog
+      </h1>
+      <div className="mt-6 flex flex-col gap-6">
         {data.map((postItem) => {
           return (
-            <div key={postItem.slug}>
+            <Link
+              key={postItem.slug}
+              to={postItem.slug}
+              className="rounded-lg border border-gray-200 border-opacity-40 py-3 px-4 shadow-lg transition-shadow hover:shadow-md dark:border-gray-700 dark:border-opacity-30 dark:shadow-gray-900 sm:py-3 sm:px-4"
+            >
               <div className="flex items-center gap-3">
-                <Link to={postItem.slug} className="font-medium">
-                  {postItem.title}
-                </Link>
+                <h4 className="font-medium ">{postItem.title}</h4>
                 <span> - </span>
-                <span className="text-sm text-gray-700">
+                <span className="text-sm text-gray-700 dark:text-gray-400">
                   {postItem.createdAt}
                 </span>
               </div>
-              <p className="mt-1 text-sm text-gray-700">
+              <p className="mt-1 text-sm text-gray-700 dark:text-gray-400">
                 {postItem.description}
               </p>
-            </div>
+            </Link>
           );
         })}
       </div>

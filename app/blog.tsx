@@ -64,9 +64,7 @@ export const getBlogPosts = async () => {
 };
 
 export const getOneBlogPost = async (slug: string) => {
-  console.log("the slug:", slug);
   const { rawString } = await getOneBlogContent(slug);
-  console.log("the raw string:", rawString);
 
   try {
     const { frontmatter, code } = await bundleMDX({

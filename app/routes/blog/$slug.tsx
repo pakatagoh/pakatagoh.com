@@ -66,7 +66,13 @@ const BlogDetail = () => {
   return (
     <div className="prose w-full max-w-none">
       <h1>{title}</h1>
-      <Component />
+      <Component
+        components={{
+          a: (props) => {
+            return <a className="text-red-500" {...props}></a>;
+          },
+        }}
+      />
     </div>
   );
 };
