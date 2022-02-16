@@ -4,10 +4,12 @@ import type {
   HeadersFunction,
   LoaderFunction,
   MetaFunction,
+  LinksFunction,
 } from "remix";
 import { getOneBlogPost } from "../../blog";
 import React, { forwardRef, useMemo } from "react";
 import { getMDXComponent } from "mdx-bundler/client";
+import highlightStyles from "highlight.js/styles/nord.css";
 
 type LoaderData = {
   slug: string;
@@ -23,6 +25,9 @@ export const headers: HeadersFunction = () => {
   };
 };
 
+export const links: LinksFunction = () => {
+  return [{ rel: "stylesheet", href: highlightStyles }];
+};
 export const meta: MetaFunction = ({ data }) => {
   return {
     title: data.title,
@@ -86,7 +91,7 @@ const BlogDetail = () => {
             if (isHeaderLink) {
               return (
                 <a
-                  className="text-orange-300 no-underline hover:underline"
+                  className="text-blue-700 no-underline hover:underline dark:text-orange-200"
                   href={href}
                   {...rest}
                   ref={ref}
@@ -99,7 +104,7 @@ const BlogDetail = () => {
             if (isUseInternalLink) {
               return (
                 <Link
-                  className="text-orange-400 no-underline hover:underline"
+                  className="text-blue-600 no-underline hover:underline dark:text-orange-300"
                   to={href ?? ""}
                   {...rest}
                   ref={ref}
@@ -111,7 +116,7 @@ const BlogDetail = () => {
 
             return (
               <a
-                className="text-orange-400 no-underline hover:underline"
+                className="text-blue-600 no-underline hover:underline dark:text-orange-300"
                 href={href}
                 {...rest}
                 ref={ref}

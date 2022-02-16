@@ -1,11 +1,16 @@
 import { bundleMDX } from "mdx-bundler";
-// @ts-ignore
-import { importRehypeAutolinkHeadings, importRehypeSlug } from "../es-modules";
+import {
+  importRehypeAutolinkHeadings,
+  importRehypeSlug,
+  importRehypeHighlight,
+  // @ts-ignore
+} from "../es-modules";
 
 export const getBundleMdx = async (rawString: string) => {
   const { default: rehypeAutolinkHeadings } =
     await importRehypeAutolinkHeadings();
   const { default: rehypeSlug } = await importRehypeSlug();
+  const { default: rehypeHighlight } = await importRehypeHighlight();
 
   const bundleResult = await bundleMDX({
     source: rawString,
@@ -17,8 +22,12 @@ export const getBundleMdx = async (rawString: string) => {
       const myRehypePlugins = [
         rehypeSlug,
         [rehypeAutolinkHeadings, { behavior: "wrap" }],
+        rehypeHighlight,
       ];
-      // options.remarkPlugins = [...(options.remarkPlugins ?? []), myRemarkPlugin]
+      // options.remarkPlugins = [
+      //   ...(options.remarkPlugins ?? []),
+      //   ...myRemarkPlugins,
+      // ];
       options.rehypePlugins = [
         ...(options.rehypePlugins ?? []),
         ...myRehypePlugins,
