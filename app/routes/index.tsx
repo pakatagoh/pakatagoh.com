@@ -1,5 +1,4 @@
 import { HeadersFunction } from "remix";
-import { Layout } from "../components/layout/Layout";
 import { Nav } from "../components/Nav";
 
 export const headers: HeadersFunction = () => {
@@ -11,15 +10,15 @@ export const headers: HeadersFunction = () => {
 
 export default function Index() {
   return (
-    <Layout>
+    <div className="flex h-screen flex-col px-4 py-3 md:mx-auto md:max-w-3xl">
       <Nav />
-      <main>
-        <h1 className="text-2xl font-bold">Pakata Goh</h1>
-        <p>Fullstack developer at Pixibo Pte Ltd</p>
-        <p>
-          Documenting my journey as a software developer from sunny Singapore
-        </p>
+      <main className="flex flex-1 items-center justify-center">
+        <div className="w-full text-lg">
+          <h1 className="mb-3 text-6xl font-bold leading-tight">Pakata Goh</h1>
+          <p>Software developer from sunny Singapore</p>
+          <p>Currently working as a Fullstack Developer at Pixibo Pte Ltd</p>
+        </div>
       </main>
-    </Layout>
+    </div>
   );
 }
