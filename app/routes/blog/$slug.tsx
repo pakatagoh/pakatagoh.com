@@ -1,4 +1,4 @@
-import { useCatch, useLoaderData, json } from "remix";
+import { useCatch, useLoaderData, json, Link } from "remix";
 import type {
   ErrorBoundaryComponent,
   HeadersFunction,
@@ -6,7 +6,7 @@ import type {
   MetaFunction,
 } from "remix";
 import { getOneBlogPost } from "../../blog";
-import { useMemo } from "react";
+import React, { forwardRef, useMemo } from "react";
 import { getMDXComponent } from "mdx-bundler/client";
 
 type LoaderData = {
@@ -58,19 +58,68 @@ export const loader: LoaderFunction = async ({ params }) => {
   );
 };
 
+type AnchorProps = React.DetailedHTMLProps<
+  React.AnchorHTMLAttributes<HTMLAnchorElement>,
+  HTMLAnchorElement
+>;
+
 const BlogDetail = () => {
   const { code, title } = useLoaderData<LoaderData>();
 
   const Component = useMemo(() => getMDXComponent(code), [code]);
 
   return (
-    <div className="prose w-full max-w-none">
+    <div className="prose w-full max-w-none dark:prose-invert">
       <h1>{title}</h1>
       <Component
         components={{
-          a: (props) => {
-            return <a className="text-red-500" {...props}></a>;
-          },
+          // @ts-ignore
+          a: forwardRef<HTMLAnchorElement, AnchorProps>(function AnchorOrLink(
+            props,
+            ref
+          ) {
+            const { href, children, ...rest } = props;
+
+            const isUseInternalLink = href?.startsWith("/");
+            const isHeaderLink = href?.startsWith("#");
+
+            if (isHeaderLink) {
+              return (
+                <a
+                  className="text-orange-300 no-underline hover:underline"
+                  href={href}
+                  {...rest}
+                  ref={ref}
+                >
+                  {children}
+                </a>
+              );
+            }
+
+            if (isUseInternalLink) {
+              return (
+                <Link
+                  className="text-orange-400 no-underline hover:underline"
+                  to={href ?? ""}
+                  {...rest}
+                  ref={ref}
+                >
+                  {children}
+                </Link>
+              );
+            }
+
+            return (
+              <a
+                className="text-orange-400 no-underline hover:underline"
+                href={href}
+                {...rest}
+                ref={ref}
+              >
+                {children}
+              </a>
+            );
+          }),
         }}
       />
     </div>
