@@ -66,7 +66,7 @@ export const getOneBlogPost = async (slug: string) => {
   const { rawString } = await getOneBlogContent(slug);
 
   try {
-    const { frontmatter, code } = await getBundleMdx(rawString);
+    const { frontmatter, code } = await getBundleMdx({ rawString, slug });
 
     invariant(
       validatePostAttributes(frontmatter),

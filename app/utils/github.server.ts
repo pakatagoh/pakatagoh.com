@@ -2,7 +2,9 @@ import { Octokit } from "@octokit/rest";
 
 const authToken = process.env.GITHUB_PERSONAL_ACCESS_TOKEN ?? "";
 
-const octokit = new Octokit({ auth: authToken });
+export const getOctokit = () => new Octokit({ auth: authToken });
+
+const octokit = getOctokit();
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -50,6 +52,13 @@ export const getBlogContentList = async () => {
 
 export const getOneBlogContent = async (slug: string) => {
   try {
+    // const foundBlogImages = await octokit.repos.getContent({
+    //   owner: "pakatagoh",
+    //   repo: "pakatagoh.com",
+    //   path: `content/blog/${slug}/images`,
+    //   ref: "pakatagoh-dot-com/v2", // TODO: remove for after first deployment
+    //   // ref: process.env.VERCEL_GIT_COMMIT_REF,
+    // });
     const foundBlogIndex = await octokit.repos.getContent({
       owner: "pakatagoh",
       repo: "pakatagoh.com",
@@ -61,6 +70,8 @@ export const getOneBlogContent = async (slug: string) => {
     if (!foundBlogIndex.data) {
       throw new Error(`No such post`);
     }
+
+    // console.log("blogimages:", foundBlogImages.data);
 
     const blogDetail = foundBlogIndex.data as {
       content: string;
@@ -74,6 +85,38 @@ export const getOneBlogContent = async (slug: string) => {
 
     return {
       rawString: blogContentString,
+    };
+  } catch (error) {
+    console.error(error);
+    throw new Error("error getting blog data");
+  }
+};
+
+export const getOneBlogImages = async ({
+  slug,
+  fileName,
+}: {
+  slug: string;
+  fileName: string;
+}) => {
+  try {
+    const foundBlogImage = await octokit.repos.getContent({
+      owner: "pakatagoh",
+      repo: "pakatagoh.com",
+      path: `content/blog/${slug}/images/${fileName}`,
+      ref: "pakatagoh-dot-com/v2", // TODO: remove for after first deployment
+      // ref: process.env.VERCEL_GIT_COMMIT_REF,
+    });
+
+    if (!foundBlogImage.data) {
+      throw new Error(`No image found`);
+    }
+
+    const imageDownloadUrl = (foundBlogImage.data as { download_url: string })
+      ?.download_url;
+
+    return {
+      imageDownloadUrl,
     };
   } catch (error) {
     console.error(error);

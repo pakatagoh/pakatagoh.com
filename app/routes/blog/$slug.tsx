@@ -1,4 +1,4 @@
-import { useCatch, useLoaderData, json, Link } from "remix";
+import { useCatch, useLoaderData, json, useParams } from "remix";
 import type {
   ErrorBoundaryComponent,
   HeadersFunction,
@@ -7,9 +7,8 @@ import type {
   LinksFunction,
 } from "remix";
 import { getOneBlogPost } from "../../blog";
-import React, { forwardRef, useMemo } from "react";
-import { getMDXComponent } from "mdx-bundler/client";
 import highlightStyles from "highlight.js/styles/nord.css";
+import { useMdxComponent } from "../../hooks/useMdxComponent";
 
 type LoaderData = {
   slug: string;
@@ -63,70 +62,16 @@ export const loader: LoaderFunction = async ({ params }) => {
   );
 };
 
-type AnchorProps = React.DetailedHTMLProps<
-  React.AnchorHTMLAttributes<HTMLAnchorElement>,
-  HTMLAnchorElement
->;
-
 const BlogDetail = () => {
   const { code, title } = useLoaderData<LoaderData>();
+  const { slug } = useParams();
 
-  const Component = useMemo(() => getMDXComponent(code), [code]);
+  const Component = useMdxComponent({ slug: slug ?? "", code });
 
   return (
     <div className="prose w-full max-w-none dark:prose-invert">
       <h1>{title}</h1>
-      <Component
-        components={{
-          // @ts-ignore
-          a: forwardRef<HTMLAnchorElement, AnchorProps>(function AnchorOrLink(
-            props,
-            ref
-          ) {
-            const { href, children, ...rest } = props;
-
-            const isUseInternalLink = href?.startsWith("/");
-            const isHeaderLink = href?.startsWith("#");
-
-            if (isHeaderLink) {
-              return (
-                <a
-                  className="text-blue-700 no-underline hover:underline dark:text-orange-200"
-                  href={href}
-                  {...rest}
-                  ref={ref}
-                >
-                  {children}
-                </a>
-              );
-            }
-
-            if (isUseInternalLink) {
-              return (
-                <Link
-                  className="text-blue-600 no-underline hover:underline dark:text-orange-300"
-                  to={href ?? ""}
-                  {...rest}
-                  ref={ref}
-                >
-                  {children}
-                </Link>
-              );
-            }
-
-            return (
-              <a
-                className="text-blue-600 no-underline hover:underline dark:text-orange-300"
-                href={href}
-                {...rest}
-                ref={ref}
-              >
-                {children}
-              </a>
-            );
-          }),
-        }}
-      />
+      <Component />
     </div>
   );
 };
