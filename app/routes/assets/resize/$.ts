@@ -118,7 +118,7 @@ function streamingResize(
     //   quality: 80,
     // })
     .png({
-      quality: 1,
+      quality: 80,
     });
   // .webp({
   //   quality: 80,
