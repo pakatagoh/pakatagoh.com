@@ -64,9 +64,8 @@ export const loader: LoaderFunction = async ({ params }) => {
 
 const BlogDetail = () => {
   const { code, title } = useLoaderData<LoaderData>();
-  const { slug } = useParams();
 
-  const Component = useMdxComponent({ slug: slug ?? "", code });
+  const Component = useMdxComponent({ code });
 
   return (
     <div className="prose w-full max-w-none dark:prose-invert">
