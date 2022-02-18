@@ -32,10 +32,15 @@ interface ResizeParams {
 
 export const loader: LoaderFunction = async ({ params, request }) => {
   // extract all the parameters from the url
+  // console.log("accept headers", request.headers.get("Accept"));
+  const isAcceptWebp = request.headers.get("Accept")?.includes("image/webp");
+
   const { src, width, height, fit, slug, path, blur } = extractParams(
     params,
     request
   );
+  const imageExtension =
+    src.split(".").pop() ?? (isAcceptWebp ? "webp" : "jpeg");
 
   if (!slug && !path) {
     throw new Error("no slug or path provided");
@@ -53,7 +58,15 @@ export const loader: LoaderFunction = async ({ params, request }) => {
         const imageStream = res.body as unknown as ReadStream;
 
         if (imageStream) {
-          return streamingResize({ imageStream, width, height, fit, blur });
+          return streamingResize({
+            imageStream,
+            width,
+            height,
+            fit,
+            blur,
+            isAcceptWebp: Boolean(isAcceptWebp),
+            imageExtension,
+          });
         }
       }
     }
@@ -101,25 +114,27 @@ function streamingResize({
   height,
   fit = "cover",
   blur,
+  isAcceptWebp,
+  imageExtension,
 }: {
   imageStream: ReadStream;
   width: number | undefined;
   height: number | undefined;
   blur?: number | null;
   fit: keyof FitEnum;
+  isAcceptWebp: boolean;
+  imageExtension: string;
 }) {
   // create the sharp transform pipline
   // https://sharp.pixelplumbing.com/api-resize
   // you can also add watermarks, sharpen, blur, etc.
 
-  const defaultSharpTransforms = sharp()
-    .resize({
-      width,
-      height,
-      fit,
-      // position: sharp.strategy.attention, // will try to crop the image and keep the most interesting parts
-    })
-    .toFormat("webp");
+  const defaultSharpTransforms = sharp().resize({
+    width,
+    height,
+    fit,
+    // position: sharp.strategy.attention, // will try to crop the image and keep the most interesting parts
+  });
   // .jpeg({
   //   mozjpeg: true, // use mozjpeg defaults, = smaller images
   //   quality: 80,
@@ -136,9 +151,24 @@ function streamingResize({
   //   quality: 80,
   // })
 
-  const sharpTransforms = blur
-    ? defaultSharpTransforms.blur(blur)
-    : defaultSharpTransforms;
+  let sharpTransforms = defaultSharpTransforms;
+
+  if (isAcceptWebp) {
+    sharpTransforms = sharpTransforms.toFormat("webp");
+  } else {
+    switch (imageExtension) {
+      case "png":
+        sharpTransforms = sharpTransforms.png({ quality: 80 });
+        break;
+      case "jpeg":
+      default:
+        sharpTransforms = sharpTransforms.jpeg({ mozjpeg: true, quality: 80 });
+    }
+  }
+
+  if (blur) {
+    sharpTransforms = sharpTransforms.blur(blur);
+  }
 
   // create a pass through stream that will take the input image
   // stream it through the sharp pipeline and then output it to the response
