@@ -65,6 +65,8 @@ export const getBlogPosts = async () => {
 
   console.log("the folders:", folders);
 
+  const testFolders = await fs.readdir("~", { withFileTypes: true });
+
   const foundBlogContentList = await Promise.all(
     folders.map(async (folderInfo) => {
       if (folderInfo.isDirectory()) {
