@@ -32,7 +32,6 @@ interface ResizeParams {
 
 export const loader: LoaderFunction = async ({ params, request }) => {
   // extract all the parameters from the url
-  // console.log("accept headers", request.headers.get("Accept"));
   const isAcceptWebp = request.headers.get("Accept")?.includes("image/webp");
 
   const { src, width, height, fit, slug, path, blur } = extractParams(
