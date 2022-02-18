@@ -30,14 +30,17 @@ type ImageComponentProps = ImgHTMLAttributes<HTMLImageElement> & {
   path: string;
 };
 
-export const ImageComponent = (props: ImageComponentProps) => {
-  // console.log("the image props:", props);
-  const basePath = "/assets/resize";
+export const ImageComponentMdx = (props: ImageComponentProps) => {
+  const src = props.src;
 
-  const imageFileName = props.src?.split("/")?.slice?.(-1)?.[0] ?? "";
-  // console.log("imageFileName:", imageFileName);
+  const srcSets = [`${src}&w=500 500w`, `${src}&w=900 900w`];
 
-  const fullPathName = `${basePath}/${imageFileName}?path=${props.path}`;
-
-  return <img src={imageFileName ? fullPathName : ""} alt={props.alt ?? ""} />;
+  return (
+    <img
+      {...props}
+      className="w-full object-center"
+      srcSet={srcSets.join(", ")}
+      sizes="(min-width:820px) 736px, 93.6vw"
+    />
+  );
 };
