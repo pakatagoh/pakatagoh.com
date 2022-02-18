@@ -14,10 +14,8 @@
 
 import type { LoaderFunction } from "remix";
 import type { Params } from "react-router";
-
 import type { ReadStream } from "fs";
 import { PassThrough } from "stream";
-
 import type { FitEnum } from "sharp";
 import sharp from "sharp";
 import { getOneBlogImages } from "../../../utils/github.server";
@@ -27,13 +25,14 @@ interface ResizeParams {
   width: number | undefined;
   height: number | undefined;
   fit: keyof FitEnum;
+  blur?: number | null;
   slug?: string | null;
   path?: string | null;
 }
 
 export const loader: LoaderFunction = async ({ params, request }) => {
   // extract all the parameters from the url
-  const { src, width, height, fit, slug, path } = extractParams(
+  const { src, width, height, fit, slug, path, blur } = extractParams(
     params,
     request
   );
@@ -54,7 +53,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
         const imageStream = res.body as unknown as ReadStream;
 
         if (imageStream) {
-          return streamingResize(imageStream, width, height, fit);
+          return streamingResize({ imageStream, width, height, fit, blur });
         }
       }
     }
@@ -79,6 +78,9 @@ function extractParams(params: Params<string>, request: Request): ResizeParams {
   const height = searchParams.has("h")
     ? Number.parseInt(searchParams.get("h") ?? "0")
     : undefined;
+  const blur = searchParams.has("blur")
+    ? Number.parseInt(searchParams.get("blur") ?? "0")
+    : undefined;
   const slug = searchParams.has("slug") ? searchParams.get("slug") : undefined;
   const path = searchParams.has("path") ? searchParams.get("path") : undefined;
 
@@ -90,39 +92,53 @@ function extractParams(params: Params<string>, request: Request): ResizeParams {
       fit = fitParam as keyof FitEnum;
     }
   }
-  return { src, width, height, fit, slug, path };
+  return { src, width, height, fit, slug, path, blur };
 }
 
-function streamingResize(
-  imageStream: ReadStream,
-  width: number | undefined,
-  height: number | undefined,
-  fit: keyof FitEnum = "cover"
-) {
+function streamingResize({
+  imageStream,
+  width,
+  height,
+  fit = "cover",
+  blur,
+}: {
+  imageStream: ReadStream;
+  width: number | undefined;
+  height: number | undefined;
+  blur?: number | null;
+  fit: keyof FitEnum;
+}) {
   // create the sharp transform pipline
   // https://sharp.pixelplumbing.com/api-resize
   // you can also add watermarks, sharpen, blur, etc.
-  const sharpTransforms = sharp()
+
+  const defaultSharpTransforms = sharp()
     .resize({
       width,
       height,
       fit,
       // position: sharp.strategy.attention, // will try to crop the image and keep the most interesting parts
     })
-    // .jpeg({
-    //   mozjpeg: true, // use mozjpeg defaults, = smaller images
-    //   quality: 80,
-    // });
-    // sharp also has other image formats, just comment out .jpeg and make sure to change the Content-Type header below
-    // .avif({
-    //   quality: 80,
-    // })
-    .png({
-      quality: 80,
-    });
+    .toFormat("webp");
+  // .jpeg({
+  //   mozjpeg: true, // use mozjpeg defaults, = smaller images
+  //   quality: 80,
+  // });
+  // sharp also has other image formats, just comment out .jpeg and make sure to change the Content-Type header below
+  // .avif({
+  //   quality: 80,
+  // })
+  // .png({
+  //   quality: 80,
+  // });
+
   // .webp({
   //   quality: 80,
   // })
+
+  const sharpTransforms = blur
+    ? defaultSharpTransforms.blur(blur)
+    : defaultSharpTransforms;
 
   // create a pass through stream that will take the input image
   // stream it through the sharp pipeline and then output it to the response
@@ -133,7 +149,7 @@ function streamingResize(
 
   return new Response(passthroughStream as any, {
     headers: {
-      "Content-Type": "image/png",
+      "Content-Type": "image/webp",
       "Cache-Control": "public, max-age=31536000, immutable",
     },
   });
