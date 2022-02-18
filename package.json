@@ -5,10 +5,11 @@
   "license": "",
   "version": "1.0.0",
   "scripts": {
-    "build": "yarn build:css && remix build",
+    "build": "yarn build:css && remix build && yarn copy:blog-contents",
     "build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
     "dev": "concurrently \"yarn dev:css\" \"node -r dotenv/config node_modules/.bin/remix dev\"",
     "dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css",
+    "copy:blog-contents": "cp -a ./content/. public/build/content/",
     "postinstall": "remix setup node"
   },
   "dependencies": {
