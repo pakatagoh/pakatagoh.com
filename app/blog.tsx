@@ -56,6 +56,10 @@ function postFromModule(mod: any) {
 }
 
 export const getBlogPosts = async () => {
+  const testFolders = await fs.readdir("~", { withFileTypes: true });
+
+  console.log("testFolders:", testFolders);
+
   const folders = await fs.readdir(
     path.resolve(__dirname, "../../content/blog"),
     {
@@ -64,8 +68,6 @@ export const getBlogPosts = async () => {
   );
 
   console.log("the folders:", folders);
-
-  const testFolders = await fs.readdir("~", { withFileTypes: true });
 
   const foundBlogContentList = await Promise.all(
     folders.map(async (folderInfo) => {
