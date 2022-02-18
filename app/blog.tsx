@@ -36,14 +36,14 @@ type PostData = {
 // import * as postB from "./posts/b.md";
 // import * as postC from "./posts/c.md";
 // import * as post1 from "./routes/blog/getting-started-with-react-spring/index.mdx";
-// import * as post2 from "./routes/blog/content/setting-up-eslint-prettier-with-vscode-2019/index.mdx";
-// import * as post3 from "./routes/blog/content/switching-to-software-development-as-a-career/index.mdx";
-// import * as post4 from "./routes/blog/content/what-i-did-to-become-a-developer-in-a-year/index.mdx";
-// import * as post5 from "./routes/blog/content/what-i-learned-in-2019/index.mdx";
-import * as post2 from "../content/blog/setting-up-eslint-prettier-with-vscode-2019/index.mdx";
-import * as post3 from "../content/blog/switching-to-software-development-as-a-career/index.mdx";
-import * as post4 from "../content/blog/what-i-did-to-become-a-developer-in-a-year/index.mdx";
-import * as post5 from "../content/blog/what-i-learned-in-2019/index.mdx";
+import * as post2 from "./routes/blog/content/setting-up-eslint-prettier-with-vscode-2019.mdx";
+import * as post3 from "./routes/blog/content/switching-to-software-development-as-a-career.mdx";
+import * as post4 from "./routes/blog/content/what-i-did-to-become-a-developer-in-a-year.mdx";
+import * as post5 from "./routes/blog/content/what-i-learned-in-2019.mdx";
+// import * as post2 from "../content/blog/setting-up-eslint-prettier-with-vscode-2019/index.mdx";
+// import * as post3 from "../content/blog/switching-to-software-development-as-a-career/index.mdx";
+// import * as post4 from "../content/blog/what-i-did-to-become-a-developer-in-a-year/index.mdx";
+// import * as post5 from "../content/blog/what-i-learned-in-2019/index.mdx";
 
 const allPosts = [post2, post3, post4, post5].map(postFromModule);
 
@@ -51,6 +51,7 @@ function postFromModule(mod: any) {
   return {
     slug: mod.filename.replace(/\.mdx?$/, ""),
     ...mod.attributes,
+    component: mod.default,
   };
 }
 
@@ -128,24 +129,23 @@ export const getBlogPosts = async () => {
 };
 
 export const getOneBlogPost = async (slug: string) => {
-  const { rawString } = await getOneBlogContent(slug);
+  const foundPost = allPosts.find((post) => {
+    return post.slug === slug;
+  });
+
+  console.log("the foundPost: ", foundPost);
 
   try {
-    const { frontmatter, code } = await getBundleMdx({ rawString, slug });
+    // const { frontmatter, code } = await getBundleMdx({ rawString, slug });
 
-    invariant(
-      validatePostAttributes(frontmatter),
-      `Invalid post attributes for ${slug}`
-    );
+    // invariant(
+    //   validatePostAttributes(frontmatter),
+    //   `Invalid post attributes for ${slug}`
+    // );
 
-    return {
-      slug,
-      title: frontmatter.title,
-      description: frontmatter.description,
-      code,
-    };
+    return foundPost;
   } catch (error) {
     console.error(error);
-    throw new Error("Error bundling MDX");
+    throw new Error("new error yo");
   }
 };
