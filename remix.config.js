@@ -7,5 +7,12 @@ module.exports = {
   assetsBuildDirectory: "public/build",
   publicPath: "/build/",
   serverBuildDirectory: "api/_build",
-  ignoredRouteFiles: [".*"],
+  ignoredRouteFiles: [
+    ".*",
+    "**/.DS_Store",
+    "**/*.{png, jpeg}",
+    "**/*.test.*",
+    "**/*.mdx",
+    "**/blog/content/*",
+  ],
 };
