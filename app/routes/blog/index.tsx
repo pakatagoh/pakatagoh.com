@@ -40,9 +40,7 @@ const BlogIndex = () => {
 
   return (
     <main>
-      <h1 className="text-xl font-bold text-red-400 dark:text-blue-400">
-        Blog
-      </h1>
+      <h1 className="text-3xl font-bold">Blog</h1>
       <div className="mt-6 flex flex-col gap-6">
         {data.map((postItem) => {
           return (

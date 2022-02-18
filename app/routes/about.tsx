@@ -14,7 +14,7 @@ const About = () => {
     <Layout>
       <Nav />
       <main>
-        <h1 className="text-2xl font-bold">About me</h1>
+        <h1 className="text-3xl font-bold">About me</h1>
         <p>Pakata Goh</p>
         <p>Singaporean</p>
       </main>
