@@ -15,8 +15,8 @@ type LoaderData = {
   slug: string;
   title: string;
   description?: string;
-  // code?: string;
-  component: any;
+  code: string;
+  // component: any;
 };
 
 export const headers: HeadersFunction = () => {
@@ -45,16 +45,16 @@ export const loader: LoaderFunction = async ({ params }) => {
     });
   }
 
-  const { description, title, component } = await getOneBlogPost(slug);
+  const { description, title, code } = await getOneBlogPost(slug);
 
-  console.log("the component in loader: ", component);
+  // console.log("the component in loader: ", component);
 
   return json(
     {
       slug,
       title,
       description,
-      component,
+      code,
     },
     {
       status: 200,
@@ -67,12 +67,12 @@ export const loader: LoaderFunction = async ({ params }) => {
 };
 
 const BlogDetail = () => {
-  const { component: Component, title } = useLoaderData<LoaderData>();
+  const { code, title } = useLoaderData<LoaderData>();
 
-  // const Component = useMdxComponent({ code });
+  const Component = useMdxComponent({ code });
 
-  console.log("the component type", typeof Component);
-  console.log("the component", Component);
+  // console.log("the component type", typeof Component);
+  // console.log("the component", Component);
 
   return (
     <div className="prose w-full max-w-none dark:prose-invert">

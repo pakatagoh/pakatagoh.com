@@ -1,22 +1,13 @@
 {
   "private": true,
-  "name": "pakatagoh-dot-com",
+  "name": "remix-app-template",
   "description": "",
   "license": "",
-  "version": "1.0.0",
-  "scripts": {
-    "build": "yarn build:css && remix build && yarn copy:blog-contents",
-    "build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
-    "dev": "concurrently \"yarn dev:css\" \"node -r dotenv/config node_modules/.bin/remix dev\"",
-    "dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css",
-    "copy:blog-contents": "cp -a ./content/. public/content/",
-    "postinstall": "remix setup node"
-  },
   "dependencies": {
     "@octokit/rest": "^18.12.0",
     "@remix-run/react": "^1.2.1",
     "@remix-run/serve": "^1.2.1",
-    "@remix-run/vercel": "^1.2.1",
+    "cross-env": "^7.0.3",
     "dayjs": "^1.10.7",
     "esbuild": "^0.12.9",
     "front-matter": "^4.0.2",
@@ -29,7 +20,7 @@
     "rehype-highlight": "^5.0.2",
     "rehype-slug": "^5.0.1",
     "remark-unwrap-images": "^3.0.1",
-    "remix": "^1.1.1",
+    "remix": "^1.2.1",
     "sharp": "^0.30.1",
     "tiny-invariant": "^1.2.0",
     "unified": "^10.1.1",
@@ -59,5 +50,15 @@
   },
   "engines": {
     "node": ">=14"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "postinstall": "remix setup node",
+    "build": "yarn build:css && cross-env NODE_ENV=production remix build",
+    "build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
+    "dev": "concurrently \"yarn dev:css\" \"cross-env NODE_ENV=development node -r dotenv/config node_modules/.bin/remix dev\"",
+    "dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css",
+    "deploy": "fly deploy --remote-only",
+    "start": "cross-env NODE_ENV=production remix-serve build"
   }
 }

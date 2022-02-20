@@ -1,21 +1,41 @@
-# Remix Turborepo Vercel
+# Welcome to Remix!
 
-Example of setting up a Remix app that will be deployed to Vercel from inside a Turborepo monorepo.
+- [Remix Docs](https://remix.run/docs)
 
-## Preview
+## Fly Setup
 
-Open this example on [CodeSandbox](https://codesandbox.com):
+1. [Install `flyctl`](https://fly.io/docs/getting-started/installing-flyctl/)
 
-<!-- TODO: update this link to the path for your example: -->
+2. Sign up and log in to Fly
 
-[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/remix-run/remix/tree/main/examples/turbo-vercel)
+```sh
+flyctl auth signup
+```
 
-## Example
+3. Setup Fly. It might ask if you want to deploy, say no since you haven't built the app yet.
 
-What makes this different from deploying a normal remix app to Vercel,
-is that Vercel doesn't include files from the root `node_modules` when deploying the app.
-In order to work around this, we take the server build output from `remix` and
-bundle it using `rollup` so that all the necessary dependencies are present when deployed.
+```sh
+flyctl launch
+```
 
-Another important thing to note is that the `ui` package needs to be built.
-Many turborepo examples don't build the `ui` package, but if we don't, remix is not able to use it.
+## Development
+
+From your terminal:
+
+```sh
+npm run dev
+```
+
+This starts your app in development mode, rebuilding assets on file changes.
+
+## Deployment
+
+If you've followed the setup instructions already, all you need to do is run this:
+
+```sh
+npm run deploy
+```
+
+You can run `flyctl info` to get the url and ip address of your server.
+
+Check out the [fly docs](https://fly.io/docs/getting-started/node/) for more information.

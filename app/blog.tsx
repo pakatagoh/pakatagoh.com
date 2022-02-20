@@ -51,21 +51,18 @@ function postFromModule(mod: any) {
   return {
     slug: mod.filename.replace(/\.mdx?$/, ""),
     ...mod.attributes,
-    component: mod.default,
+    // component: mod.default,
   };
 }
 
 export const getBlogPosts = async () => {
-  const testFolders = await fs.readdir("~", { withFileTypes: true });
+  // const testFolders = await fs.readdir("~", { withFileTypes: true });
 
-  console.log("testFolders:", testFolders);
+  // console.log("testFolders:", testFolders);
 
-  const folders = await fs.readdir(
-    path.resolve(__dirname, "../../content/blog"),
-    {
-      withFileTypes: true,
-    }
-  );
+  const folders = await fs.readdir(path.resolve(__dirname, "../content/blog"), {
+    withFileTypes: true,
+  });
 
   console.log("the folders:", folders);
 
@@ -75,7 +72,7 @@ export const getBlogPosts = async () => {
         const folderName = folderInfo.name;
         const indexFilePath = path.resolve(
           __dirname,
-          "../../content/blog",
+          "../content/blog",
           folderName,
           "index.mdx"
         );
@@ -139,15 +136,31 @@ export const getOneBlogPost = async (slug: string) => {
 
   console.log("the foundPost: ", foundPost);
 
+  const folderName = foundPost.slug;
+  const indexFilePath = path.resolve(
+    __dirname,
+    "../content/blog",
+    folderName,
+    "index.mdx"
+  );
+  const file = await fs.readFile(indexFilePath, { encoding: "utf-8" });
+
   try {
-    // const { frontmatter, code } = await getBundleMdx({ rawString, slug });
+    const { frontmatter, code } = await getBundleMdx({
+      rawString: file,
+      slug: folderName,
+    });
 
-    // invariant(
-    //   validatePostAttributes(frontmatter),
-    //   `Invalid post attributes for ${slug}`
-    // );
+    invariant(
+      validatePostAttributes(frontmatter),
+      `Invalid post attributes for ${slug}`
+    );
 
-    return foundPost;
+    return {
+      ...frontmatter,
+      slug,
+      code,
+    };
   } catch (error) {
     console.error(error);
     throw new Error("new error yo");
