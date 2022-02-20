@@ -10,7 +10,7 @@ FROM base as deps
 RUN mkdir /app
 WORKDIR /app
 
-ADD package.json package-lock.json ./
+ADD package.json yarn.lock ./
 RUN yarn install --production=false
 
 # Setup production node_modules
