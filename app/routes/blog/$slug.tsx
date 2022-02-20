@@ -9,14 +9,12 @@ import type {
 import { getOneBlogPost } from "../../blog";
 import highlightStyles from "highlight.js/styles/nord.css";
 import { useMdxComponent } from "../../hooks/useMdxComponent";
-import { components } from "../../components/mdx";
 
 type LoaderData = {
   slug: string;
   title: string;
   description?: string;
   code: string;
-  // component: any;
 };
 
 export const headers: HeadersFunction = () => {
@@ -47,8 +45,6 @@ export const loader: LoaderFunction = async ({ params }) => {
 
   const { description, title, code } = await getOneBlogPost(slug);
 
-  // console.log("the component in loader: ", component);
-
   return json(
     {
       slug,
@@ -71,16 +67,10 @@ const BlogDetail = () => {
 
   const Component = useMdxComponent({ code });
 
-  // console.log("the component type", typeof Component);
-  // console.log("the component", Component);
-
   return (
     <div className="prose w-full max-w-none dark:prose-invert">
       <h1>{title}</h1>
-      <Component
-        // @ts-ignore
-        components={{ ...components }}
-      />
+      <Component />
     </div>
   );
 };
