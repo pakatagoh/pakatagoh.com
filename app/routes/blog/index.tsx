@@ -6,15 +6,15 @@ import type {
 } from "remix";
 import { getBlogPosts } from "../../blog";
 
-// export const headers: HeadersFunction = ({ loaderHeaders }) => {
-//   // console.log('loaderHeaders: ', loaderHeaders.get('cache-control'));
+export const headers: HeadersFunction = ({ loaderHeaders }) => {
+  // console.log('loaderHeaders: ', loaderHeaders.get('cache-control'));
 
-//   // BUG: loader headers aren't working
-//   return {
-//     'cache-control':
-//       'max-age=1800, s-maxage=86400, stale-while-revalidate=31536000',
-//   };
-// };
+  // BUG: loader headers aren't working
+  return {
+    "cache-control":
+      "max-age=1800, s-maxage=86400, stale-while-revalidate=31536000",
+  };
+};
 
 type LoaderData = {
   slug: string;
