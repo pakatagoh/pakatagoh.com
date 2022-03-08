@@ -37,7 +37,9 @@ function massageImageUrl({ slug }: { slug: string }) {
 export const getBundleMdx = async ({
   rawString,
   slug,
+  files,
 }: {
+  files: Record<string, string>;
   rawString: string;
   slug: string;
 }) => {
@@ -49,6 +51,7 @@ export const getBundleMdx = async ({
 
   const bundleResult = await bundleMDX({
     source: rawString,
+    files: files,
     esbuildOptions(options) {
       options.target = ["es2020", "chrome58", "firefox57", "safari11"];
       return options;

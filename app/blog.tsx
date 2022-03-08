@@ -2,7 +2,11 @@ import parseFrontMatter from "front-matter";
 import invariant from "tiny-invariant";
 import dayjs from "dayjs";
 import { getBundleMdx } from "./utils/mdx.server";
-import { getBlogContentList, getOneBlogContent } from "./utils/github.server";
+import {
+  getBlogContentList,
+  getOneBlogComponentContent,
+  getOneBlogContent,
+} from "./utils/github.server";
 
 type FilePath = {
   path: string;
@@ -63,6 +67,7 @@ export const getBlogPosts = async () => {
 };
 
 export const getOneBlogPost = async (slug: string) => {
+  const files = await getOneBlogComponentContent(slug);
   const blogContent = await getOneBlogContent(slug);
 
   if (!blogContent?.rawString) {
@@ -74,6 +79,7 @@ export const getOneBlogPost = async (slug: string) => {
   const { frontmatter, code } = await getBundleMdx({
     rawString: blogContent.rawString,
     slug,
+    files: files,
   });
 
   invariant(

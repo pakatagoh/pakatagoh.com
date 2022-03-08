@@ -15,7 +15,6 @@ export const getBlogContentList = async () => {
     repo: "pakatagoh.com",
     path: "content/blog",
     ref: "pakatagoh-dot-com/v2", // TODO: remove for after first deployment
-    // ref: process.env.VERCEL_GIT_COMMIT_REF,
   });
 
   if (!Array.isArray(foundBlogContentList.data)) {
@@ -58,11 +57,10 @@ export const getOneBlogContent = async (slug: string) => {
       repo: "pakatagoh.com",
       path: `content/blog/${slug}/index.mdx`,
       ref: "pakatagoh-dot-com/v2", // TODO: remove for after first deployment
-      // ref: process.env.VERCEL_GIT_COMMIT_REF,
     });
 
     if (!foundBlogIndex.data) {
-      throw new Error(`No such post`);
+      throw json(`${slug}`, { status: 404 });
     }
 
     const blogDetail = foundBlogIndex.data as {
@@ -81,6 +79,58 @@ export const getOneBlogContent = async (slug: string) => {
   } catch (error: any) {
     if (error.status === 404) {
       return;
+    }
+    console.error(error);
+    throw json(`error getting blog data for ${slug}`, { status: 500 });
+  }
+};
+
+export const getOneBlogComponentContent = async (slug: string) => {
+  try {
+    const foundBlogComponentContentList = await octokit.repos.getContent({
+      owner: "pakatagoh",
+      repo: "pakatagoh.com",
+      path: `content/blog/${slug}/components`,
+      ref: "pakatagoh-dot-com/v2", // TODO: remove for after first deployment
+    });
+
+    if (!Array.isArray(foundBlogComponentContentList.data)) {
+      return {};
+    }
+
+    const blogListDetail = await Promise.all(
+      foundBlogComponentContentList.data.map(async (blogContent) => {
+        const blogDetailResponse = (await octokit.repos.getContent({
+          owner: "pakatagoh",
+          repo: "pakatagoh.com",
+          path: `${blogContent.path}`,
+          ref: "pakatagoh-dot-com/v2", // TODO: remove for after first deployment
+          // ref: process.env.VERCEL_GIT_COMMIT_REF,
+        })) as { data: { content: string; encoding: BufferEncoding } };
+
+        const blogDetail = blogDetailResponse.data;
+
+        const blogContentString = Buffer.from(
+          blogDetail.content,
+          blogDetail.encoding
+        ).toString();
+
+        return {
+          file: `.${blogContent.path.split(`content/blog/${slug}`)[1]}`,
+          rawString: blogContentString,
+        };
+      })
+    );
+
+    return blogListDetail.reduce<Record<string, string>>((accum, current) => {
+      accum[current.file] = current.rawString;
+
+      return accum;
+    }, {});
+  } catch (error: any) {
+    console.log("in the error:", error);
+    if (error.status === 404) {
+      return {};
     }
     console.error(error);
     throw json(`error getting blog data for ${slug}`, { status: 500 });
