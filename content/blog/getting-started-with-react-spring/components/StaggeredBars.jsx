@@ -1,23 +1,5 @@
 import React, { useState } from "react";
-// import styled, { css } from "styled-components";
 import { useTrail, animated } from "react-spring";
-import Button from "../../../../src/components/Button";
-// import { rhythm } from "../../../../src/utils/typography";
-
-// const StyledBorder = styled.div(
-//   ({ theme }) => css`
-//     border: 1px solid ${theme.secondary.base};
-//     padding: ${rhythm(1)};
-//     margin-bottom: ${rhythm(1)};
-//   `
-// );
-
-// const BarsContainer = styled.div`
-//   height: 100px;
-//   display: flex;
-//   align-items: flex-end;
-//   margin-bottom: 15px;
-// `;
 
 const colors = ["red", "green", "blue", "orange", "purple", "yellow"];
 
@@ -44,14 +26,14 @@ const StaggeredBars = () => {
           />
         ))}
       </div>
-      <Button
+      <button
         type="button"
         onClick={() => {
           setExpanded((prevState) => !prevState);
         }}
       >
         Click to Animate
-      </Button>
+      </button>
     </div>
   );
 };

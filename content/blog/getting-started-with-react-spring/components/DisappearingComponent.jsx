@@ -1,17 +1,6 @@
 import React, { useState, useRef, useLayoutEffect } from "react";
-// import styled, { css } from "styled-components";
 import { useTransition, animated, config } from "react-spring";
-import Button from "../../../../src/components/Button";
-// import { rhythm } from "../../../../src/utils/typography";
-import useWindowSize from "../../../../src/hooks/useWindowResize";
-
-// const StyledBorder = styled.div(
-//   ({ theme }) => css`
-//     border: 1px solid ${theme.secondary.base};
-//     padding: ${rhythm(1)};
-//     margin-bottom: ${rhythm(1)};
-//   `
-// );
+import useWindowSize from "./useWindowResize";
 
 const DisappearingComponent = () => {
   const styledBorderRef = useRef();
@@ -68,14 +57,14 @@ const DisappearingComponent = () => {
             )
         )}
       </div>
-      <Button
+      <button
         type="button"
         onClick={() => {
           setIsDisplay((prevState) => !prevState);
         }}
       >
         Click to Animate
-      </Button>
+      </button>
     </div>
   );
 };

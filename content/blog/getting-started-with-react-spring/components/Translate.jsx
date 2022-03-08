@@ -1,17 +1,6 @@
 import React, { useState, useRef, useLayoutEffect } from "react";
-// import styled, { css } from "styled-components";
 import { useSpring, animated, config } from "react-spring";
-import Button from "../../../../src/components/Button";
-// import { rhythm } from "../../../../src/utils/typography";
-import useWindowResize from "../../../../src/hooks/useWindowResize";
-
-// const StyledBorder = styled.div(
-//   ({ theme }) => css`
-//     border: 1px solid ${theme.secondary.base};
-//     padding: ${rhythm(1)};
-//     margin-bottom: ${rhythm(1)};
-//   `
-// );
+import useWindowResize from "./useWindowResize";
 
 const Translate = ({ children }) => {
   const styledBorderRef = useRef();
@@ -70,14 +59,14 @@ const Translate = ({ children }) => {
         {children}
       </animated.div>
       <div>
-        <Button
+        <button
           type="button"
           onClick={() => {
             setTranslated((prevState) => !prevState);
           }}
         >
           Click to Translate
-        </Button>
+        </button>
       </div>
     </div>
   );

@@ -1,24 +1,6 @@
 import React, { useState, useRef, useLayoutEffect } from "react";
-// import styled, { css } from "styled-components";
 import { useTrail, animated, useSpring, useChain, config } from "react-spring";
-import Button from "../../../../src/components/Button";
-import useWindowSize from "../../../../src/hooks/useWindowResize";
-// import { rhythm } from "../../../../src/utils/typography";
-
-// const StyledBorder = styled.div(
-//   ({ theme }) => css`
-//     border: 1px solid ${theme.secondary.base};
-//     padding: ${rhythm(1)};
-//     margin-bottom: ${rhythm(1)};
-//   `
-// );
-
-// const AnimatedBarsContainer = styled(animated.div)`
-//   height: 100px;
-//   display: inline-flex;
-//   align-items: flex-end;
-//   margin-bottom: 15px;
-// `;
+import useWindowSize from "./useWindowResize";
 
 const colors = ["red", "green", "blue", "orange", "purple", "yellow"];
 
@@ -95,14 +77,14 @@ const TranslateStaggeredBars = () => {
       </animated.div>
 
       <div>
-        <Button
+        <button
           type="button"
           onClick={() => {
             setExpanded((prevState) => !prevState);
           }}
         >
           Click to Animate
-        </Button>
+        </button>
       </div>
     </div>
   );
