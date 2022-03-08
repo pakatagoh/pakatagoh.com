@@ -1,28 +1,28 @@
-import React, { useState } from 'react';
-import styled, { css } from 'styled-components';
-import { useSprings, animated } from 'react-spring';
-import Button from '../../../../src/components/Button';
-import { rhythm } from '../../../../src/utils/typography';
+import React, { useState } from "react";
+// import styled, { css } from "styled-components";
+import { useSprings, animated } from "react-spring";
+import Button from "../../../../src/components/Button";
+// import { rhythm } from "../../../../src/utils/typography";
 
-const StyledBorder = styled.div(
-  ({ theme }) => css`
-    border: 1px solid ${theme.secondary.base};
-    padding: ${rhythm(1)};
-    margin-bottom: ${rhythm(1)};
-  `
-);
+// const StyledBorder = styled.div(
+//   ({ theme }) => css`
+//     border: 1px solid ${theme.secondary.base};
+//     padding: ${rhythm(1)};
+//     margin-bottom: ${rhythm(1)};
+//   `
+// );
 
 const BarGraph = () => {
   const [expanded, setExpanded] = useState(true);
   const bars = [
     {
-      key: 'bar1',
-      color: 'green',
+      key: "bar1",
+      color: "green",
       from: {
-        width: expanded ? `100px` : '5px',
+        width: expanded ? `100px` : "5px",
       },
       to: {
-        width: expanded ? `5px` : '100px',
+        width: expanded ? `5px` : "100px",
       },
       config: {
         mass: 20,
@@ -30,13 +30,13 @@ const BarGraph = () => {
       },
     },
     {
-      key: 'bar2',
-      color: 'blue',
+      key: "bar2",
+      color: "blue",
       from: {
-        width: expanded ? `250px` : '5px',
+        width: expanded ? `250px` : "5px",
       },
       to: {
-        width: expanded ? `5px` : '250px',
+        width: expanded ? `5px` : "250px",
       },
       config: {
         mass: 5,
@@ -44,13 +44,13 @@ const BarGraph = () => {
       },
     },
     {
-      key: 'bar3',
-      color: 'red',
+      key: "bar3",
+      color: "red",
       from: {
-        width: expanded ? `150px` : '5px',
+        width: expanded ? `150px` : "5px",
       },
       to: {
-        width: expanded ? `5px` : '150px',
+        width: expanded ? `5px` : "150px",
       },
       config: {
         mass: 13,
@@ -63,15 +63,19 @@ const BarGraph = () => {
     bars.map(({ color, key, ...config }) => config)
   );
 
+  // border: 1px solid ${theme.secondary.base};
+  //   padding: ${rhythm(1)};
+  //   margin-bottom: ${rhythm(1)};
+
   return (
-    <StyledBorder>
+    <div className="mb-3 border border-black p-3 dark:border-white">
       {springs.map((spring, index) => (
         <animated.div
           key={bars[index].key}
           style={{
             ...spring,
-            height: '20px',
-            marginBottom: '10px',
+            height: "20px",
+            marginBottom: "10px",
             backgroundColor: bars[index].color,
           }}
         />
@@ -84,7 +88,7 @@ const BarGraph = () => {
       >
         Click to Animate
       </Button>
-    </StyledBorder>
+    </div>
   );
 };
 
