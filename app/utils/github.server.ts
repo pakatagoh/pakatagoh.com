@@ -1,4 +1,5 @@
 import { Octokit } from "@octokit/rest";
+import { json } from "remix";
 
 const authToken = process.env.GITHUB_PERSONAL_ACCESS_TOKEN ?? "";
 
@@ -52,13 +53,6 @@ export const getBlogContentList = async () => {
 
 export const getOneBlogContent = async (slug: string) => {
   try {
-    // const foundBlogImages = await octokit.repos.getContent({
-    //   owner: "pakatagoh",
-    //   repo: "pakatagoh.com",
-    //   path: `content/blog/${slug}/images`,
-    //   ref: "pakatagoh-dot-com/v2", // TODO: remove for after first deployment
-    //   // ref: process.env.VERCEL_GIT_COMMIT_REF,
-    // });
     const foundBlogIndex = await octokit.repos.getContent({
       owner: "pakatagoh",
       repo: "pakatagoh.com",
@@ -70,8 +64,6 @@ export const getOneBlogContent = async (slug: string) => {
     if (!foundBlogIndex.data) {
       throw new Error(`No such post`);
     }
-
-    // console.log("blogimages:", foundBlogImages.data);
 
     const blogDetail = foundBlogIndex.data as {
       content: string;
@@ -86,9 +78,12 @@ export const getOneBlogContent = async (slug: string) => {
     return {
       rawString: blogContentString,
     };
-  } catch (error) {
+  } catch (error: any) {
+    if (error.status === 404) {
+      return;
+    }
     console.error(error);
-    throw new Error("error getting blog data");
+    throw json(`error getting blog data for ${slug}`, { status: 500 });
   }
 };
 

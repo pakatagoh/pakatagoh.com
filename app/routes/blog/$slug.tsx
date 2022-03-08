@@ -1,4 +1,4 @@
-import { useCatch, useLoaderData, json, useParams } from "remix";
+import { useCatch, useLoaderData, json } from "remix";
 import type {
   ErrorBoundaryComponent,
   HeadersFunction,
@@ -29,8 +29,8 @@ export const links: LinksFunction = () => {
 };
 export const meta: MetaFunction = ({ data }) => {
   return {
-    title: data.title,
-    description: data.description,
+    title: data?.title ?? "Not Found",
+    ...(data?.description ? { description: data.description } : {}),
   };
 };
 
@@ -43,14 +43,14 @@ export const loader: LoaderFunction = async ({ params }) => {
     });
   }
 
-  const { description, title, code } = await getOneBlogPost(slug);
+  const blogPostData = await getOneBlogPost(slug);
 
   return json(
     {
       slug,
-      title,
-      description,
-      code,
+      title: blogPostData.title,
+      description: blogPostData.description,
+      code: blogPostData.code,
     },
     {
       status: 200,
@@ -83,7 +83,12 @@ export const CatchBoundary = () => {
 
   switch (caughtStatus) {
     case 404:
-      return <div>No such blog post</div>;
+      return (
+        <div className="prose dark:prose-invert">
+          <h1>Not Found</h1>
+          <p>Unfortunately, /blog/{caught.data} doesn&apos;t exist</p>
+        </div>
+      );
     default:
       throw new Error(`Unhandled Error: ${caughtStatus}`);
   }

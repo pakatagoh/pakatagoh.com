@@ -63,24 +63,28 @@ export const getBlogPosts = async () => {
 };
 
 export const getOneBlogPost = async (slug: string) => {
-  const { rawString } = await getOneBlogContent(slug);
+  const blogContent = await getOneBlogContent(slug);
 
-  try {
-    const { frontmatter, code } = await getBundleMdx({ rawString, slug });
-
-    invariant(
-      validatePostAttributes(frontmatter),
-      `Invalid post attributes for ${slug}`
-    );
-
-    return {
-      slug,
-      title: frontmatter.title,
-      description: frontmatter.description,
-      code,
-    };
-  } catch (error) {
-    console.error(error);
-    throw new Error("Error bundling MDX");
+  if (!blogContent?.rawString) {
+    throw new Response(slug, {
+      status: 404,
+    });
   }
+
+  const { frontmatter, code } = await getBundleMdx({
+    rawString: blogContent.rawString,
+    slug,
+  });
+
+  invariant(
+    validatePostAttributes(frontmatter),
+    `Invalid post attributes for ${slug}`
+  );
+
+  return {
+    slug,
+    title: frontmatter.title,
+    description: frontmatter.description,
+    code,
+  };
 };
