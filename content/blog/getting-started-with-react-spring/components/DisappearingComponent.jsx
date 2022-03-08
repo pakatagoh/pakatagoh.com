@@ -42,7 +42,10 @@ const DisappearingComponent = () => {
   }, [size]);
 
   return (
-    <div className="mb-3 border border-black p-3 dark:border-white">
+    <div
+      className="mb-3 border border-black p-3 dark:border-white"
+      ref={styledBorderRef}
+    >
       <div style={{ width: "50px", height: "40px" }}>
         {transitions.map(
           ({ item, key, props }) =>

@@ -56,7 +56,10 @@ const TranslateStaggeredBars = () => {
   useChain(expanded ? [springRef, trailRef] : [trailRef, springRef]);
 
   return (
-    <div className="mb-3 border border-black p-3 dark:border-white">
+    <div
+      className="mb-3 border border-black p-3 dark:border-white"
+      ref={styledBorderRef}
+    >
       <animated.div
         className="mb-4 flex h-[100px] items-end"
         style={spring}
