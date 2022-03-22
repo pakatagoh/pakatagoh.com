@@ -1,10 +1,15 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-undef */
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   content: ["./app/**/*.{js,ts,jsx,tsx}", "./content/**/*.{js,ts,jsx,tsx}"],
   darkMode: "class",
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Helvetica", ...defaultTheme.fontFamily.sans],
+      },
       typography: (theme) => ({
         DEFAULT: {
           css: [
