@@ -18,6 +18,7 @@ import {
   useTheme,
 } from "./utils/theme-provider";
 import { getThemeSession } from "./utils/theme.server";
+import NavNotification from "./components/NavNotification";
 
 export const meta: MetaFunction = () => {
   return { title: "Pakata Goh" };
@@ -43,7 +44,6 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 function App() {
   const { theme } = useTheme();
-
   const isDark = theme === Theme.DARK;
 
   return (
@@ -60,6 +60,7 @@ function App() {
         <ScrollRestoration />
         <Scripts />
         {process.env.NODE_ENV === "development" && <LiveReload />}
+        <NavNotification />
       </body>
     </html>
   );
