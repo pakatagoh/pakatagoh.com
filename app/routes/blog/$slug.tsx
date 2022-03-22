@@ -29,7 +29,7 @@ export const links: LinksFunction = () => {
 };
 export const meta: MetaFunction = ({ data }) => {
   return {
-    title: data?.title ?? "Not Found",
+    title: data?.title ? `${data.title} - Pakata Goh` : "Not Found",
     ...(data?.description ? { description: data.description } : {}),
   };
 };

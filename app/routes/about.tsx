@@ -1,6 +1,12 @@
-import type { HeadersFunction } from "remix";
+import type { HeadersFunction, MetaFunction } from "remix";
 import { Layout } from "../components/layout/Layout";
 import { Nav } from "../components/Nav";
+
+export const meta: MetaFunction = () => {
+  return {
+    title: `About - Pakata Goh`,
+  };
+};
 
 export const headers: HeadersFunction = () => {
   return {

@@ -3,8 +3,15 @@ import type {
   HeadersFunction,
   LoaderFunction,
   ErrorBoundaryComponent,
+  MetaFunction,
 } from "remix";
 import { getBlogPosts } from "../../blog";
+
+export const meta: MetaFunction = () => {
+  return {
+    title: `Blog - Pakata Goh`,
+  };
+};
 
 export const headers: HeadersFunction = ({ loaderHeaders }) => {
   // console.log('loaderHeaders: ', loaderHeaders.get('cache-control'));

@@ -128,7 +128,6 @@ export const getOneBlogComponentContent = async (slug: string) => {
       return accum;
     }, {});
   } catch (error: any) {
-    console.log("in the error:", error);
     if (error.status === 404) {
       return {};
     }
