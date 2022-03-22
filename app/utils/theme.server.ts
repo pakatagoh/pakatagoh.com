@@ -9,6 +9,7 @@ const themeStorage = createCookieSessionStorage({
     path: "/",
     expires: new Date("2090-12-13"),
     httpOnly: true,
+    secrets: ["boomz"],
   },
 });
 
