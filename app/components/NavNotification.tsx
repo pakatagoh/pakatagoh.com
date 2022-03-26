@@ -26,7 +26,7 @@ const NavNotification = () => {
     transition.state === "loading" && transition.type === "normalLoad";
 
   const isSpinDelayActive = useSpinDelay(isNavigating, {
-    delay: 400,
+    delay: 1000,
     minDuration: 2000,
   });
 

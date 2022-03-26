@@ -48,6 +48,7 @@ export const Nav = () => {
 const CustomLink = ({ to, ...rest }: PropsWithChildren<RemixNavLinkProps>) => {
   return (
     <NavLink
+      prefetch="intent"
       to={to}
       className={({ isActive }) =>
         `${isActive ? `opacity-100 ` : `opacity-60 hover:opacity-100`}`

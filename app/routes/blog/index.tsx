@@ -52,6 +52,7 @@ const BlogIndex = () => {
         {data.map((postItem) => {
           return (
             <Link
+              prefetch="intent"
               key={postItem.slug}
               to={postItem.slug}
               className="rounded-lg border border-gray-200 border-opacity-40 py-3 px-4 shadow-lg transition-shadow hover:shadow-md dark:border-gray-700 dark:border-opacity-30 dark:shadow-gray-900 sm:py-3 sm:px-4"
