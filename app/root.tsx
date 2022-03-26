@@ -24,7 +24,7 @@ const isProduction = process.env.NODE_ENV !== "development";
 
 export const meta: MetaFunction = ({ location }) => {
   const host = isProduction
-    ? "https://pakata-goh.com"
+    ? "https://dev.pakatagoh.com" // TODO: change this to https://pakatagoh.com when live
     : "http://localhost:3000";
 
   return {
