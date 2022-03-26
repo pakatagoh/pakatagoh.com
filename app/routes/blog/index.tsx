@@ -13,7 +13,7 @@ export const meta: MetaFunction = () => {
   };
 };
 
-export const headers: HeadersFunction = ({ loaderHeaders }) => {
+export const headers: HeadersFunction = () => {
   // console.log('loaderHeaders: ', loaderHeaders.get('cache-control'));
 
   // BUG: loader headers aren't working
@@ -58,10 +58,10 @@ const BlogIndex = () => {
             >
               <div className="flex items-center gap-3">
                 <h4 className="font-medium ">{postItem.title}</h4>
-                <span> - </span>
-                <span className="text-sm text-gray-700 dark:text-gray-400">
-                  {postItem.createdAt}
-                </span>
+                <div className="flex items-center gap-3 text-sm text-gray-700 dark:text-gray-400">
+                  <span> - </span>
+                  <span>{postItem.createdAt}</span>
+                </div>
               </div>
               <p className="mt-1 text-sm text-gray-700 dark:text-gray-400">
                 {postItem.description}
