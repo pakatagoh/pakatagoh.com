@@ -18,6 +18,7 @@ type PostMarkdownAttributes = {
   createdAt: string;
   slug: string;
   isPublished?: boolean;
+  keywords?: string[];
   filePaths?: FilePath[];
 };
 
@@ -25,13 +26,6 @@ const validatePostAttributes = (
   attributes: any
 ): attributes is PostMarkdownAttributes => {
   return attributes?.title && attributes?.createdAt;
-};
-
-// const isProduction = process.env.NODE_ENV === "production";
-
-type PostData = {
-  body: string;
-  title: string;
 };
 
 export const getBlogPosts = async () => {
@@ -95,8 +89,10 @@ export const getOneBlogPost = async (slug: string) => {
 
   return {
     slug,
+    code,
     title: frontmatter.title,
     description: frontmatter.description,
-    code,
+    createdAt: frontmatter.createdAt,
+    keywords: frontmatter.keywords ?? [],
   };
 };

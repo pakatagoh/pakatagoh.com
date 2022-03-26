@@ -20,8 +20,23 @@ import {
 import { getThemeSession } from "./utils/theme.server";
 import NavNotification from "./components/NavNotification";
 
-export const meta: MetaFunction = () => {
-  return { title: "Pakata Goh" };
+const isProduction = process.env.NODE_ENV !== "development";
+
+export const meta: MetaFunction = ({ location }) => {
+  const host = isProduction
+    ? "https://pakata-goh.com"
+    : "http://localhost:3000";
+
+  return {
+    title: "Pakata Goh",
+    description: "hello world",
+    charset: "utf-8",
+    "og:title": "Pakata Goh",
+    "og:description": "hello world",
+    "og:url": `${host}${location.pathname}`,
+    "og:image": `${host}/assets/resize/images/pakata-headshot.jpg?w=400`,
+    "og:type": "website",
+  };
 };
 
 export const links: LinksFunction = () => {
