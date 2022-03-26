@@ -20,7 +20,7 @@ export function Image({ src, width, height, fit, ...other }: ImageProps) {
   }
   return (
     <img
-      src={`/asset/resize/${src}?${query.toString()}`}
+      src={`/assets/resize/${src}?${query.toString()}`}
       {...{ width, height, ...other }}
     />
   );

@@ -12,7 +12,7 @@ import type * as U from "unified";
 
 function massageImageUrl({ slug }: { slug: string }) {
   const visitor = (node: M.Image) => {
-    const basePath = "/asset/resize";
+    const basePath = "/assets/resize";
 
     const imageUrl = node.url;
 

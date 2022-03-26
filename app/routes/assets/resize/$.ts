@@ -15,6 +15,8 @@
 import type { LoaderFunction } from "remix";
 import type { Params } from "react-router";
 import type { ReadStream } from "fs";
+import fs from "fs";
+import path from "path";
 import { PassThrough } from "stream";
 import type { FitEnum } from "sharp";
 import sharp from "sharp";
@@ -27,23 +29,24 @@ interface ResizeParams {
   fit: keyof FitEnum;
   blur?: number | null;
   slug?: string | null;
-  path?: string | null;
 }
+
+const ASSETS_ROOT = "assets";
 
 export const loader: LoaderFunction = async ({ params, request }) => {
   // extract all the parameters from the url
   const isAcceptWebp = request.headers.get("Accept")?.includes("image/webp");
 
-  const { src, width, height, fit, slug, path, blur } = extractParams(
+  const { src, width, height, fit, slug, blur } = extractParams(
     params,
     request
   );
   const imageExtension =
     src.split(".").pop() ?? (isAcceptWebp ? "webp" : "jpeg");
 
-  if (!slug && !path) {
-    throw new Error("no slug or path provided");
-  }
+  // if (!slug && !path) {
+  //   throw new Error("no slug or path provided");
+  // }
 
   try {
     if (slug) {
@@ -68,6 +71,18 @@ export const loader: LoaderFunction = async ({ params, request }) => {
           });
         }
       }
+    } else {
+      const readStream = readFileAsStream(src);
+
+      return streamingResize({
+        imageStream: readStream,
+        width,
+        height,
+        fit,
+        blur,
+        isAcceptWebp: Boolean(isAcceptWebp),
+        imageExtension,
+      });
     }
 
     // read the image as a stream of bytes
@@ -94,7 +109,6 @@ function extractParams(params: Params<string>, request: Request): ResizeParams {
     ? Number.parseInt(searchParams.get("blur") ?? "0")
     : undefined;
   const slug = searchParams.has("slug") ? searchParams.get("slug") : undefined;
-  const path = searchParams.has("path") ? searchParams.get("path") : undefined;
 
   const fitEnum = ["contain", "cover", "fill", "inside", "outside"];
   let fit: keyof FitEnum = sharp.fit.contain;
@@ -104,7 +118,21 @@ function extractParams(params: Params<string>, request: Request): ResizeParams {
       fit = fitParam as keyof FitEnum;
     }
   }
-  return { src, width, height, fit, slug, path, blur };
+  return { src, width, height, fit, slug, blur };
+}
+
+function readFileAsStream(src: string): ReadStream {
+  // Local filesystem
+
+  // check that file exists
+  const srcPath = path.join(ASSETS_ROOT, src);
+  const fileStat = fs.statSync(srcPath);
+
+  if (!fileStat.isFile()) {
+    throw new Error(`${srcPath} is not a file`);
+  }
+  // create a readable stream from the image file
+  return fs.createReadStream(srcPath);
 }
 
 function streamingResize({
