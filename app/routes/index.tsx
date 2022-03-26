@@ -1,4 +1,4 @@
-import { HeadersFunction } from "remix";
+import type { HeadersFunction } from "remix";
 import { Nav } from "../components/Nav";
 
 export const headers: HeadersFunction = () => {
