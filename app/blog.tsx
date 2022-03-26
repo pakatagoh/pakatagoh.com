@@ -53,7 +53,7 @@ export const getBlogPosts = async () => {
       return {
         slug,
         description: attributes.description,
-        createdAt: dayjs(attributes.createdAt).format("DD/MM/YYYY"),
+        createdAt: attributes.createdAt,
         isPublished: attributes.isPublished,
         title: attributes.title,
       };
@@ -61,6 +61,12 @@ export const getBlogPosts = async () => {
     .filter((contentItem) => contentItem.isPublished)
     .sort((a, b) => {
       return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    })
+    .map((contentItem) => {
+      return {
+        ...contentItem,
+        createdAt: dayjs(contentItem.createdAt).format("DD MMM YYYY"),
+      };
     });
 
   return blogPosts;
