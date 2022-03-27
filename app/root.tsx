@@ -7,7 +7,6 @@ import {
   Scripts,
   ScrollRestoration,
   useCatch,
-  useLoaderData,
 } from "remix";
 import type { MetaFunction, LoaderFunction, LinksFunction } from "remix";
 import styles from "./styles/app.css";
@@ -15,10 +14,10 @@ import {
   NonFlashOfWrongThemeEls,
   Theme,
   ThemeProvider,
-  useTheme,
 } from "./utils/theme-provider";
 import { getThemeSession } from "./utils/theme.server";
 import NavNotification from "./components/NavNotification";
+import { useMemo } from "react";
 
 const isProduction = process.env.NODE_ENV !== "development";
 
@@ -58,19 +57,16 @@ export const loader: LoaderFunction = async ({ request }) => {
 };
 
 function App() {
-  const { theme } = useTheme();
-  const isDark = theme === Theme.DARK;
-
   return (
-    <html lang="en" className={isDark ? "dark" : undefined}>
+    <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charSet="utf-8" />
         <Meta />
         <Links />
-        <NonFlashOfWrongThemeEls ssrTheme={Boolean(theme)} />
+        <NonFlashOfWrongThemeEls />
       </head>
-      <body className="dark:bg-gray-800 dark:text-white">
+      <body className={`dark:bg-gray-800 dark:text-white`}>
         <Outlet />
         <ScrollRestoration />
         <Scripts />
@@ -82,10 +78,18 @@ function App() {
 }
 
 export default function AppWithProviders() {
-  const data = useLoaderData<LoaderData>();
+  const theme = useMemo(() => {
+    if (typeof window === "undefined") {
+      return null;
+    }
+
+    const theme = window.localStorage.getItem("pakata-theme");
+
+    return theme ?? Theme.DARK;
+  }, []);
 
   return (
-    <ThemeProvider specifiedTheme={data.theme}>
+    <ThemeProvider specifiedTheme={theme as Theme}>
       <App />
     </ThemeProvider>
   );
@@ -102,7 +106,7 @@ export function CatchBoundary({ error }: { error: Error }) {
         <title>Not Found</title>
         <Meta />
         <Links />
-        <NonFlashOfWrongThemeEls ssrTheme={false} />
+        <NonFlashOfWrongThemeEls />
       </head>
       <body className="dark:bg-gray-800 dark:text-white">
         <div>
@@ -137,7 +141,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
         <title>Uh-oh!</title>
         <Meta />
         <Links />
-        <NonFlashOfWrongThemeEls ssrTheme={false} />
+        <NonFlashOfWrongThemeEls />
       </head>
       <body className="dark:bg-gray-800 dark:text-white">
         <div className="error-container">
