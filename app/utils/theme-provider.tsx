@@ -89,7 +89,6 @@ const clientThemeCode = `
 
   if(isBrowser) {
     const persistedTheme = window.localStorage.getItem('pakata-theme')
-    console.log('hello persistedTheme:', persistedTheme)
   
     const systemTheme = window.matchMedia(${JSON.stringify(
       prefersLightMQ
