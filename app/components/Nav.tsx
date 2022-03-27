@@ -2,13 +2,39 @@ import { RemixNavLinkProps } from "@remix-run/react/components";
 import { PropsWithChildren } from "react";
 import { NavLink } from "remix";
 import { Theme, useTheme } from "../utils/theme-provider";
+import { IoSunnyOutline, IoMoonOutline } from "react-icons/io5";
 
-export const Nav = () => {
-  const { setTheme } = useTheme();
+interface DarkModeToggleProps {
+  onToggle: () => void;
+  theme?: Theme | null;
+}
+
+const DarkModeToggle = (props: DarkModeToggleProps) => {
+  const { onToggle, theme } = props;
+
+  const isDarkMode = theme === Theme.DARK;
 
   return (
-    <div className="flex justify-between">
-      <nav className="mb-6">
+    <>
+      <button role="switch" aria-checked={isDarkMode} onClick={onToggle}>
+        <span className="text-2xl dark:hidden">
+          <IoSunnyOutline title="light" />
+        </span>
+        <span className="hidden text-2xl dark:inline">
+          <IoMoonOutline title="dark" />
+        </span>
+      </button>
+      <label className="sr-only">Dark Mode</label>
+    </>
+  );
+};
+
+export const Nav = () => {
+  const { setTheme, theme } = useTheme();
+
+  return (
+    <div className="mb-6 flex justify-between">
+      <nav>
         <ul className="flex gap-4">
           <li>
             <CustomLink to="/" end>
@@ -24,22 +50,12 @@ export const Nav = () => {
         </ul>
       </nav>
       <div>
-        <button
-          className="dark:hidden"
-          onClick={() => {
-            setTheme?.(Theme.DARK);
+        <DarkModeToggle
+          theme={theme}
+          onToggle={() => {
+            setTheme?.(theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
           }}
-        >
-          Make Dark
-        </button>
-        <button
-          className="hidden dark:block"
-          onClick={() => {
-            setTheme?.(Theme.LIGHT);
-          }}
-        >
-          Make Light
-        </button>
+        />
       </div>
     </div>
   );
