@@ -66,7 +66,7 @@ function App() {
         <Links />
         <NonFlashOfWrongThemeEls />
       </head>
-      <body className={`dark:bg-gray-800 dark:text-white`}>
+      <body className="transition duration-150 dark:bg-gray-800 dark:text-white">
         <Outlet />
         <ScrollRestoration />
         <Scripts />
