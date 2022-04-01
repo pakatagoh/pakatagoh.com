@@ -204,9 +204,21 @@ function streamingResize({
 
   imageStream.pipe(sharpTransforms).pipe(passthroughStream);
 
+  const getImageType = () => {
+    if (isAcceptWebp) {
+      return "webp";
+    }
+
+    return imageExtension;
+  };
+  const imageType = getImageType();
+
+  console.log("isAcceptWebp", isAcceptWebp);
+  console.log("the imageType:", imageType);
+
   return new Response(passthroughStream as any, {
     headers: {
-      "Content-Type": "image/webp",
+      "Content-Type": `image/${imageType}`,
       "Cache-Control": "public, max-age=31536000, immutable",
     },
   });
