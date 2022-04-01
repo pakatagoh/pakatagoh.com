@@ -47,6 +47,9 @@ export const Nav = () => {
           <li>
             <CustomLink to="/about">About</CustomLink>
           </li>
+          <li>
+            <CustomLink to="/uses">Uses</CustomLink>
+          </li>
         </ul>
       </nav>
       <div>
