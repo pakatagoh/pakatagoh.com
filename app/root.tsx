@@ -30,7 +30,6 @@ export const meta: MetaFunction = ({ location, data }) => {
     title: "Pakata Goh",
     description: "Software developer from sunny Singapore",
     image: `${host}/assets/resize/images/pakata-headshot.jpg?w=400`,
-    charset: "utf-8",
     //opengraph tags
     "og:title": "Pakata Goh",
     "og:description": "Software developer from sunny Singapore",
