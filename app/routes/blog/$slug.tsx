@@ -35,10 +35,17 @@ export const meta: MetaFunction = ({ data }) => {
     "og:type": "article",
     "og:article:author": "Pakata Goh",
     ...(data?.description
-      ? { description: data.description, "og:description": data.description }
+      ? {
+          description: data.description,
+          "og:description": data.description,
+          "twitter:description": data.description,
+        }
       : {}),
     ...(data?.createdAt ? { "og:article:published_time": data.createdAt } : {}),
     ...(data.keywords?.length > 0 ? { "og:article:tag": data.keywords } : {}),
+
+    // twitter tags
+    "twitter:title": data?.title ? `${data.title} - Pakata Goh` : "Not Found",
   };
 };
 

@@ -31,11 +31,18 @@ export const meta: MetaFunction = ({ location, data }) => {
     description: "Software developer from sunny Singapore",
     image: `${host}/assets/resize/images/pakata-headshot.jpg?w=400`,
     charset: "utf-8",
+    //opengraph tags
     "og:title": "Pakata Goh",
     "og:description": "Software developer from sunny Singapore",
     "og:url": `${host}${location.pathname}`,
     "og:image": `${host}/assets/resize/images/pakata-headshot.jpg?w=400`,
     "og:type": "website",
+    //twitter tags
+    "twitter:title": "Pakata Goh",
+    "twitter:description": "Software developer from sunny Singapore",
+    "twitter:image": `${host}/assets/resize/images/pakata-headshot.jpg?w=400`,
+    "twitter:card": `summary_large_image`,
+    "twitter:creator": `GohPakata`,
   };
 };
 

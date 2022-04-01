@@ -11,8 +11,12 @@ export const meta: MetaFunction = () => {
   return {
     title: `Blog - Pakata Goh`,
     description: `Blog posts`,
+    // opengraph tags
     "og:title": `Blog - Pakata Goh`,
     "og:description": `Blog posts`,
+    // twitter tags
+    "twitter:title": "Blog - Pakata Goh",
+    "twitter:description": "Blog posts",
   };
 };
 
