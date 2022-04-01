@@ -23,10 +23,9 @@ type LoaderData = {
 };
 
 export const meta: MetaFunction = ({ location, data }) => {
-  console.log("the data in meta:", data);
   const { hostname } = data as LoaderData;
   const host =
-    hostname === "localhost" ? "http://localhost:3000" : `//${hostname}`;
+    hostname === "localhost" ? "http://localhost:3000" : `https://${hostname}`;
 
   return {
     title: "Pakata Goh",
@@ -52,10 +51,7 @@ export const links: LinksFunction = () => {
 };
 
 export const loader: LoaderFunction = async ({ request }) => {
-  console.log("the request url: ", request.url);
   const url = new URL(request.url);
-
-  console.log("the url object:", url);
 
   return json({ hostname: url.hostname });
 };
