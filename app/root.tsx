@@ -17,6 +17,7 @@ import {
 } from "./utils/theme-provider";
 import NavNotification from "./components/NavNotification";
 import { useMemo } from "react";
+import Footer from "./components/Footer";
 
 type LoaderData = {
   hostname: string;
@@ -124,6 +125,7 @@ export function CatchBoundary({ error }: { error: Error }) {
             </>
           )}
         </div>
+        <Footer />
         <ScrollRestoration />
         <Scripts />
         {process.env.NODE_ENV === "development" && <LiveReload />}
@@ -148,6 +150,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
           <h1>App Error</h1>
           <pre>{error.message}</pre>
         </div>
+        <Footer />
         <ScrollRestoration />
         <Scripts />
         {process.env.NODE_ENV === "development" && <LiveReload />}
