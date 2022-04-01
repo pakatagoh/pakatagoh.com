@@ -50,6 +50,9 @@ export const Nav = () => {
           <li>
             <CustomLink to="/uses">Uses</CustomLink>
           </li>
+          <li>
+            <CustomLink to="/contact">Contact</CustomLink>
+          </li>
         </ul>
       </nav>
       <div>
