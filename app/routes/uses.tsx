@@ -6,15 +6,15 @@ export const meta: MetaFunction = () => {
   return {
     title: `Uses - Pakata Goh`,
     description:
-      "These are the stuff I use on a daily basis in my work and my personal life",
+      "A list of stuff I use on a daily basis in my work and my personal life",
     //opengraph tags
     "og:title": "Uses - Pakata Goh",
     "og:description":
-      "These are the stuff I use on a daily basis in my work and my personal life",
+      "A list of stuff I use on a daily basis in my work and my personal life",
     //twitter tags
     "twitter:title": "Uses - Pakata Goh",
     "twitter:description":
-      "These are the stuff I use on a daily basis in my work and my personal life",
+      "A list of stuff I use on a daily basis in my work and my personal life",
   };
 };
 

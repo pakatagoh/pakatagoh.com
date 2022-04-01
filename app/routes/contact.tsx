@@ -1,5 +1,4 @@
 import type { HeadersFunction, MetaFunction } from "remix";
-import { AnchorOrLink } from "../components/mdx/AnchorOrLinkComponent";
 import { Nav } from "../components/Nav";
 import { BsGithub, BsLinkedin, BsFileText } from "react-icons/bs";
 import { MdContentCopy } from "react-icons/md";
@@ -10,13 +9,16 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 export const meta: MetaFunction = () => {
   return {
     title: `Contact - Pakata Goh`,
-    description: "You can contact me through the following channels",
+    description:
+      "You can contact me through the various channels mentioned on this page",
     //opengraph tags
     "og:title": "Contact - Pakata Goh",
-    "og:description": "You can contact me through the following channels",
+    "og:description":
+      "You can contact me through the various channels mentioned on this page",
     //twitter tags
     "twitter:title": "Contact - Pakata Goh",
-    "twitter:description": "You can contact me through the following channels",
+    "twitter:description":
+      "You can contact me through the various channels mentioned on this page",
   };
 };
 
