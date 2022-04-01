@@ -12,14 +12,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl deploy --app pakatagohdotcom --remote-only
+      - name: Deploy app
+        run: flyctl deploy --app pakatagohdotcom --remote-only
   purge-cache:
     name: Purge Cache
     runs-on: ubuntu-latest
     needs: deploy
     steps:
-      - uses: actions/checkout@v2
-      - run: |
+      - name: Purge cache
+        run: |
           curl -X POST \
           'https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache' \
           --header 'Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}' \

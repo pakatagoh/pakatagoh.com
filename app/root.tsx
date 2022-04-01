@@ -28,11 +28,11 @@ export const meta: MetaFunction = ({ location, data }) => {
 
   return {
     title: "Pakata Goh",
-    description: "hello world",
+    description: "Software developer from sunny Singapore",
     image: `${host}/assets/resize/images/pakata-headshot.jpg?w=400`,
     charset: "utf-8",
     "og:title": "Pakata Goh",
-    "og:description": "hello world",
+    "og:description": "Software developer from sunny Singapore",
     "og:url": `${host}${location.pathname}`,
     "og:image": `${host}/assets/resize/images/pakata-headshot.jpg?w=400`,
     "og:type": "website",
