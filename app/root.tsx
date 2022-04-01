@@ -19,10 +19,10 @@ import { getThemeSession } from "./utils/theme.server";
 import NavNotification from "./components/NavNotification";
 import { useMemo } from "react";
 
-const isProduction = process.env.NODE_ENV !== "development";
-const isStaging = process.env.ENV === "staging";
-
 export const meta: MetaFunction = ({ location }) => {
+  const isProduction = process.env.NODE_ENV !== "development";
+  const isStaging = process.env.ENV === "staging";
+
   const host = isStaging
     ? "https://dev.pakatagoh.com"
     : isProduction
