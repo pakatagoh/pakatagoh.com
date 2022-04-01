@@ -10,6 +10,9 @@ import { getBlogPosts } from "../../blog";
 export const meta: MetaFunction = () => {
   return {
     title: `Blog - Pakata Goh`,
+    description: `Blog posts`,
+    "og:title": `Blog - Pakata Goh`,
+    "og:description": `Blog posts`,
   };
 };
 

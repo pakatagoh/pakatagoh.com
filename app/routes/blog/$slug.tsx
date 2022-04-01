@@ -31,9 +31,12 @@ export const links: LinksFunction = () => {
 export const meta: MetaFunction = ({ data }) => {
   return {
     title: data?.title ? `${data.title} - Pakata Goh` : "Not Found",
+    "og:title": data?.title ? `${data.title} - Pakata Goh` : "Not Found",
     "og:type": "article",
     "og:article:author": "Pakata Goh",
-    ...(data?.description ? { description: data.description } : {}),
+    ...(data?.description
+      ? { description: data.description, "og:description": data.description }
+      : {}),
     ...(data?.createdAt ? { "og:article:published_time": data.createdAt } : {}),
     ...(data.keywords?.length > 0 ? { "og:article:tag": data.keywords } : {}),
   };
