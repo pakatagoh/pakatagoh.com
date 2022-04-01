@@ -53,6 +53,8 @@ export const loader: LoaderFunction = async ({ request }) => {
   console.log("the request url: ", request.url);
   const url = new URL(request.url);
 
+  console.log("the url object:", url);
+
   return json({ hostname: url.hostname });
 };
 
