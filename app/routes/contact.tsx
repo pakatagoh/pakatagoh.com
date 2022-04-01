@@ -1,11 +1,10 @@
 import type { HeadersFunction, MetaFunction } from "remix";
 import { AnchorOrLink } from "../components/mdx/AnchorOrLinkComponent";
 import { Nav } from "../components/Nav";
-import { BsGithub, BsLinkedin } from "react-icons/bs";
+import { BsGithub, BsLinkedin, BsFileText } from "react-icons/bs";
 import { MdContentCopy } from "react-icons/md";
 import Footer from "../components/Footer";
-import { FunctionComponent, useEffect, useState } from "react";
-import { IconBaseProps } from "react-icons";
+import { useEffect, useState, ReactNode } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
 export const meta: MetaFunction = () => {
@@ -28,26 +27,27 @@ export const headers: HeadersFunction = () => {
   };
 };
 
-const IconLink = ({
+const ExternalIconLink = ({
   href,
   label,
-  IconComponent,
+  iconComponent,
 }: {
   href: string;
   label: string;
-  IconComponent: FunctionComponent<IconBaseProps>;
+  iconComponent: ReactNode;
 }) => {
   return (
-    <AnchorOrLink
+    <a
+      className="text-blue-700 no-underline hover:no-underline dark:text-orange-200"
       href={href}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
     >
       <div className="inline-flex items-center justify-center rounded-md p-2 shadow-md shadow-gray-500/50 transition-shadow hover:shadow-sm hover:shadow-gray-500/50 dark:shadow-black/60 dark:hover:shadow-black/90">
-        <IconComponent className="text-xl" title={label} />
+        {iconComponent}
       </div>
-    </AnchorOrLink>
+    </a>
   );
 };
 
@@ -104,17 +104,33 @@ const Contact = () => {
             </div>
             <ul className="mt-4 flex items-center gap-3">
               <li>
-                <IconLink
-                  href="https://linkedin.com/in/pakata-goh"
-                  label="linkedin"
-                  IconComponent={BsLinkedin}
+                <ExternalIconLink
+                  href="https://drive.google.com/file/d/1cOIAXVd5Pq5cPVLAa7WSWTHDj0moCTE6/view"
+                  label="Résumé"
+                  iconComponent={
+                    <div className="flex items-center gap-2">
+                      <p className="text-base">Résumé</p>{" "}
+                      <BsFileText title="Résumé" className="text-xl" />
+                    </div>
+                  }
                 />
               </li>
               <li>
-                <IconLink
+                <ExternalIconLink
+                  href="https://linkedin.com/in/pakata-goh"
+                  label="linkedin"
+                  iconComponent={
+                    <BsLinkedin title="linkedin" className="text-xl" />
+                  }
+                />
+              </li>
+              <li>
+                <ExternalIconLink
                   href="https://github.com/pakatagoh"
                   label="github"
-                  IconComponent={BsGithub}
+                  iconComponent={
+                    <BsGithub title="github" className="text-xl" />
+                  }
                 />
               </li>
             </ul>

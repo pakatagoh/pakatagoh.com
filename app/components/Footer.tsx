@@ -9,6 +9,16 @@ const Footer = () => {
       <ul className="flex list-none items-center gap-4">
         <li className="opacity-90 hover:opacity-100">
           <AnchorOrLink
+            href="https://drive.google.com/file/d/1cOIAXVd5Pq5cPVLAa7WSWTHDj0moCTE6/view"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Résumé"
+          >
+            Résumé
+          </AnchorOrLink>
+        </li>
+        <li className="opacity-90 hover:opacity-100">
+          <AnchorOrLink
             href="https://linkedin.com/in/pakata-goh"
             target="_blank"
             rel="noopener noreferrer"
