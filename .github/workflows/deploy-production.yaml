@@ -20,4 +20,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \ -H "X-Auth-Key: ${{ secrets.CLOUDFLARE_API_TOKEN }}" \ -H "Content-Type: application/json" \ --data '{"purge_everything":true}'
+          curl -X POST \  'https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache' \ --header 'Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}' \ --header 'Content-Type: application/json' \ --data-raw '{"purge_everything": true}'
