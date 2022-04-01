@@ -31,7 +31,6 @@ export const getBlogContentList = async () => {
         repo: "pakatagoh.com",
         path: `${blogContent.path}/index.mdx`,
         ref: githubRef,
-        // ref: process.env.VERCEL_GIT_COMMIT_REF,
       })) as { data: { content: string; encoding: BufferEncoding } };
 
       const blogDetail = blogDetailResponse.data;
