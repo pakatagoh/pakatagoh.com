@@ -59,7 +59,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 function App() {
   return (
-    <html lang="en">
+    <html lang="en" prefix="og: http://ogp.me/ns#">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charSet="utf-8" />
@@ -100,7 +100,7 @@ export function CatchBoundary({ error }: { error: Error }) {
 
   const isFourOhFour = caught.status === 404;
   return (
-    <html lang="en" className="dark">
+    <html lang="en" prefix="og: http://ogp.me/ns#">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charSet="utf-8" />
@@ -136,7 +136,7 @@ export function CatchBoundary({ error }: { error: Error }) {
 
 export function ErrorBoundary({ error }: { error: Error }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" prefix="og: http://ogp.me/ns#">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charSet="utf-8" />
