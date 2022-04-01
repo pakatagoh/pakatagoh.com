@@ -1,17 +1,6 @@
-import React, { useState, useRef, useLayoutEffect } from 'react';
-import styled, { css } from 'styled-components';
-import { useTransition, animated, config } from 'react-spring';
-import Button from '../../../../src/components/Button';
-import { rhythm } from '../../../../src/utils/typography';
-import useWindowSize from '../../../../src/hooks/useWindowResize';
-
-const StyledBorder = styled.div(
-  ({ theme }) => css`
-    border: 1px solid ${theme.secondary.base};
-    padding: ${rhythm(1)};
-    margin-bottom: ${rhythm(1)};
-  `
-);
+import React, { useState, useRef, useLayoutEffect } from "react";
+import { useTransition, animated, config } from "react-spring";
+import useWindowSize from "./useWindowResize";
 
 const DisappearingComponent = () => {
   const styledBorderRef = useRef();
@@ -29,15 +18,22 @@ const DisappearingComponent = () => {
   });
 
   const getComputedTranslationValue = (element) => {
-    const barsContainerWidth = parseFloat(animatedDiv.current.getBoundingClientRect().width);
+    const barsContainerWidth = parseFloat(
+      animatedDiv.current.getBoundingClientRect().width
+    );
 
     const cs = getComputedStyle(element);
 
     const paddingX = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
-    const borderX = parseFloat(cs.borderLeftWidth) + parseFloat(cs.borderRightWidth);
+    const borderX =
+      parseFloat(cs.borderLeftWidth) + parseFloat(cs.borderRightWidth);
 
     // Element width minus padding and border
-    const translationAmount = element.getBoundingClientRect().width - paddingX - borderX - barsContainerWidth;
+    const translationAmount =
+      element.getBoundingClientRect().width -
+      paddingX -
+      borderX -
+      barsContainerWidth;
     return translationAmount;
   };
 
@@ -46,26 +42,33 @@ const DisappearingComponent = () => {
   }, [size]);
 
   return (
-    <StyledBorder ref={styledBorderRef}>
-      <div style={{ width: '50px', height: '40px' }}>
+    <div
+      className="mb-3 border border-black p-3 dark:border-white"
+      ref={styledBorderRef}
+    >
+      <div style={{ width: "50px", height: "40px" }}>
         {transitions.map(
           ({ item, key, props }) =>
             item && (
-              <animated.div key={key} style={{ ...props, display: 'inline-block' }} ref={animatedDiv}>
+              <animated.div
+                key={key}
+                style={{ ...props, display: "inline-block" }}
+                ref={animatedDiv}
+              >
                 Yo
               </animated.div>
             )
         )}
       </div>
-      <Button
+      <button
         type="button"
         onClick={() => {
           setIsDisplay((prevState) => !prevState);
         }}
       >
         Click to Animate
-      </Button>
-    </StyledBorder>
+      </button>
+    </div>
   );
 };
 export default DisappearingComponent;

@@ -1,14 +1,14 @@
 ---
-title: 'Setting up ESLint and prettier with VS Code in 2019'
-description: 'Setting up ESLint and Prettier was can be confusing at first, especially with VS Code. It was for me when I first started out. Here is a short tutorial on how to get setup right away!'
-createdAt: '2019-10-12'
+title: "Setting up ESLint and prettier with VS Code in 2019"
+description: "Setting up ESLint and Prettier was can be confusing at first, especially with VS Code. It was for me when I first started out. Here is a short tutorial on how to get setup right away!"
+createdAt: "2019-10-12"
 isPublished: true
 keywords:
-  - 'eslint'
-  - 'prettier'
-  - 'lint'
-  - 'vs code'
-  - 'visual studio code'
+  - "eslint"
+  - "prettier"
+  - "lint"
+  - "vs code"
+  - "visual studio code"
 ---
 
 Setting up ESLint and prettier can be confusing at first, especially with VS Code. It was for me when I first started out. I was confused by the ESLint and prettier plugins in vscode and how they integrated with the linters, but things have been much more simplified in 2019. I was also confused by `eslint-plugin-prettier` and `eslint-config-prettier`..what is the difference? And when you setup the ESLint config file, what is being used where?
@@ -46,7 +46,7 @@ An example of an ESLint config is as below.
 ```javascript
 // Sample .eslintrc.js
 module.exports = {
-  parser: 'esprima', //default parser
+  parser: "esprima", //default parser
   parserOptions: {
     ecmaVersion: 10,
     ecmaFeatures: {
@@ -57,11 +57,11 @@ module.exports = {
     browser: true,
     jest: true,
   },
-  plugins: ['react', 'prettier'],
-  extends: ['prettier', 'react-app'],
+  plugins: ["react", "prettier"],
+  extends: ["prettier", "react-app"],
   rules: {
-    'no-unreachable': 'error',
-    'no-console': 'error',
+    "no-unreachable": "error",
+    "no-console": "error",
   },
 };
 ```
@@ -93,7 +93,7 @@ Create a `.prettierrc.js` file in the root of your directory. This is where we w
 //.prettierrc.js
 module.exports = {
   printWidth: 120,
-  trailingComma: 'es5',
+  trailingComma: "es5",
   tabWidth: 2,
   semi: false,
   singleQuote: true,
@@ -116,7 +116,7 @@ To add this, insert `prettier` into the `extends` array. Add this at the end of 
 //.eslintrc.js
 module.exports = {
   extends: [
-    'prettier', //highlight-line
+    "prettier", //highlight-line
   ],
 };
 ```
@@ -136,10 +136,11 @@ Add the prettier rule in the `rules` object
 ```javascript
 //.eslintrc.js
 module.exports = {
-  plugins: ['prettier'], //highlight-line
-  extends: ['prettier'],
-  rules: {//highlight-line
-    'prettier/prettier': 'error', //highlight-line
+  plugins: ["prettier"], //highlight-line
+  extends: ["prettier"],
+  rules: {
+    //highlight-line
+    "prettier/prettier": "error", //highlight-line
   }, //highlight-line
 };
 ```
@@ -156,14 +157,14 @@ Create a file called `ugly.js` in the root with the following content
 //ugly.js
 
 //Note all the inconsistent spacings, the semicolon and the use of console.log
-function someUglyFunction (x,y, z ) {
-  if( z) {
-    const a = x+y; 
-    return a
+function someUglyFunction(x, y, z) {
+  if (z) {
+    const a = x + y;
+    return a;
   }
-  console.log('this is bad')
+  console.log("this is bad");
 
-  return x -y
+  return x - y;
 }
 ```
 
@@ -203,22 +204,23 @@ In VS Code, we can integrate fixing linting errors like the ones in the previous
 
 To integrate ESLint and Prettier into your VS Code workflow, you should install the [Eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) VS Code extension
 
-> Note: In the past, the [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extension should also be installed to integrate with the ESLint extension. But now, it is recommended to run prettier via an ESLint configuration,  which we have already done above. If you already have the Prettier extension installed, it shouldn't cause conflicts with the configuration we have done so far. If you do have conflicts, try to update your Prettier extension
-  
+> Note: In the past, the [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extension should also be installed to integrate with the ESLint extension. But now, it is recommended to run prettier via an ESLint configuration, which we have already done above. If you already have the Prettier extension installed, it shouldn't cause conflicts with the configuration we have done so far. If you do have conflicts, try to update your Prettier extension
+
 After installing the ESLint extension, you'll start to see red wavy underlines which indicate errors
 
 ![ESLint error](./images/eslint-prettier-error.png)
 
 (`Insert '.'` means insert a space)
 
-Go to your VS Code JSON settings by using the command palette. 
+Go to your VS Code JSON settings by using the command palette.
 Press `CTRL + SHIFT + P` on windows or `⇧+⌘+P` on mac to open the command palette. Next, type in `Open Settings(JSON)` and enter. Your `settings.json` file should open.
 
-Insert the following: 
+Insert the following:
+
 ```json
 {
   "eslint.autoFixOnSave": true,
-  "eslint.run": "onSave",
+  "eslint.run": "onSave"
 }
 ```
 
@@ -230,7 +232,7 @@ Now try saving `ugly.js` again and see how the spacings in the file are fixed. I
 
 All the red wavy errors are gone except for the one at `console.log`. This is because ESLint was not able to fix that error. To fix that error, we have to manually remove that `console.log` from our file.
 
-If you wish to run the fix via the command line, you can. In your `package.json` add the following in `script`: 
+If you wish to run the fix via the command line, you can. In your `package.json` add the following in `script`:
 
 ```json
 {
@@ -270,12 +272,12 @@ The `husky` setting will create a `pre-commit` hook that runs `lint-staged`
 
 The `lint-staged` setting will run the `staging-eslint:fix` script on any staged `*.js` or `*.jsx` file. Once all the files have been fixed, the fixes will be added to staging via `git add`. Next, all staged files will be committed.
 
-Now try making some bad changes to a `.js` file (eg. add some inconsistent spaces), save it without formatting, stage it and commit. In the terminal, you will see lint-stage being executed and the file with bad changes will be fixed. 
+Now try making some bad changes to a `.js` file (eg. add some inconsistent spaces), save it without formatting, stage it and commit. In the terminal, you will see lint-stage being executed and the file with bad changes will be fixed.
 
->Tip: To save without formatting, open the command palette and search for `Save without Formatting` and press enter. This will save the file but no formatting will be made.
+> Tip: To save without formatting, open the command palette and search for `Save without Formatting` and press enter. This will save the file but no formatting will be made.
 
 ## Conclusion
 
-ESLint is an integral part of any JavaScript developer's toolkit. It helps to detect patterns that are not part of a certain guideline and helps to prevent any potential bugs that may occur before run time. With Prettier, your code base will be more organized and everyone will follow a certain style of formatting. Your git diffs will be less about spacings or single/double quotes and more about the logic. 
+ESLint is an integral part of any JavaScript developer's toolkit. It helps to detect patterns that are not part of a certain guideline and helps to prevent any potential bugs that may occur before run time. With Prettier, your code base will be more organized and everyone will follow a certain style of formatting. Your git diffs will be less about spacings or single/double quotes and more about the logic.
 
 If you're not using ESLint/Prettier already, I highly recommend it to help with the housekeeping of your code. Life will be better 😂
