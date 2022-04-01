@@ -219,7 +219,7 @@ function streamingResize({
   return new Response(passthroughStream as any, {
     headers: {
       "Content-Type": `image/${imageType}`,
-      "Cache-Control": "public, max-age=31536000, immutable",
+      "Cache-Control": "public, max-age=31536000, s-max-age=120, immutable",
     },
   });
 }
