@@ -23,8 +23,10 @@ type LoaderData = {
 };
 
 export const meta: MetaFunction = ({ location, data }) => {
+  console.log("the data in meta:", data);
   const { hostname } = data as LoaderData;
-  const host = hostname === "localhost" ? "http://localhost:3000" : hostname;
+  const host =
+    hostname === "localhost" ? "http://localhost:3000" : `//${hostname}`;
 
   return {
     title: "Pakata Goh",
