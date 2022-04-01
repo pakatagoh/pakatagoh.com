@@ -67,7 +67,7 @@ function App() {
         <Links />
         <NonFlashOfWrongThemeEls />
       </head>
-      <body className="transition duration-150 dark:bg-gray-800 dark:text-white">
+      <body className="w-full transition duration-150 dark:bg-gray-800 dark:text-white">
         <Outlet />
         <ScrollRestoration />
         <Scripts />
@@ -109,7 +109,7 @@ export function CatchBoundary({ error }: { error: Error }) {
         <Links />
         <NonFlashOfWrongThemeEls />
       </head>
-      <body className="dark:bg-gray-800 dark:text-white">
+      <body className="w-full transition duration-150 dark:bg-gray-800 dark:text-white">
         <div>
           {isFourOhFour ? (
             <>
@@ -145,7 +145,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
         <Links />
         <NonFlashOfWrongThemeEls />
       </head>
-      <body className="dark:bg-gray-800 dark:text-white">
+      <body className="w-full transition duration-150 dark:bg-gray-800 dark:text-white">
         <div className="error-container">
           <h1>App Error</h1>
           <pre>{error.message}</pre>
