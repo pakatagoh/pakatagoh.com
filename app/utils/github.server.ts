@@ -2,19 +2,20 @@ import { Octokit } from "@octokit/rest";
 import { json } from "remix";
 
 const authToken = process.env.GITHUB_PERSONAL_ACCESS_TOKEN ?? "";
+const isStaging = process.env.ENV === "staging" ?? "";
+
+const githubRef = isStaging ? "staging" : "master";
 
 export const getOctokit = () => new Octokit({ auth: authToken });
 
 const octokit = getOctokit();
-
-const isProduction = process.env.NODE_ENV === "production";
 
 export const getBlogContentList = async () => {
   const foundBlogContentList = await octokit.repos.getContent({
     owner: "pakatagoh",
     repo: "pakatagoh.com",
     path: "content/blog",
-    ref: "pakatagoh-dot-com/v2", // TODO: remove for after first deployment
+    ref: githubRef,
   });
 
   if (!Array.isArray(foundBlogContentList.data)) {
@@ -29,7 +30,7 @@ export const getBlogContentList = async () => {
         owner: "pakatagoh",
         repo: "pakatagoh.com",
         path: `${blogContent.path}/index.mdx`,
-        ref: "pakatagoh-dot-com/v2", // TODO: remove for after first deployment
+        ref: githubRef,
         // ref: process.env.VERCEL_GIT_COMMIT_REF,
       })) as { data: { content: string; encoding: BufferEncoding } };
 
@@ -56,7 +57,7 @@ export const getOneBlogContent = async (slug: string) => {
       owner: "pakatagoh",
       repo: "pakatagoh.com",
       path: `content/blog/${slug}/index.mdx`,
-      ref: "pakatagoh-dot-com/v2", // TODO: remove for after first deployment
+      ref: githubRef,
     });
 
     if (!foundBlogIndex.data) {
@@ -91,7 +92,7 @@ export const getOneBlogComponentContent = async (slug: string) => {
       owner: "pakatagoh",
       repo: "pakatagoh.com",
       path: `content/blog/${slug}/components`,
-      ref: "pakatagoh-dot-com/v2", // TODO: remove for after first deployment
+      ref: githubRef,
     });
 
     if (!Array.isArray(foundBlogComponentContentList.data)) {
@@ -104,8 +105,7 @@ export const getOneBlogComponentContent = async (slug: string) => {
           owner: "pakatagoh",
           repo: "pakatagoh.com",
           path: `${blogContent.path}`,
-          ref: "pakatagoh-dot-com/v2", // TODO: remove for after first deployment
-          // ref: process.env.VERCEL_GIT_COMMIT_REF,
+          ref: githubRef,
         })) as { data: { content: string; encoding: BufferEncoding } };
 
         const blogDetail = blogDetailResponse.data;
@@ -148,8 +148,7 @@ export const getOneBlogImages = async ({
       owner: "pakatagoh",
       repo: "pakatagoh.com",
       path: `content/blog/${slug}/images/${fileName}`,
-      ref: "pakatagoh-dot-com/v2", // TODO: remove for after first deployment
-      // ref: process.env.VERCEL_GIT_COMMIT_REF,
+      ref: githubRef,
     });
 
     if (!foundBlogImage.data) {

@@ -20,15 +20,19 @@ import NavNotification from "./components/NavNotification";
 import { useMemo } from "react";
 
 const isProduction = process.env.NODE_ENV !== "development";
+const isStaging = process.env.ENV === "staging";
 
 export const meta: MetaFunction = ({ location }) => {
-  const host = isProduction
-    ? "https://dev.pakatagoh.com" // TODO: change this to https://pakatagoh.com when live
+  const host = isStaging
+    ? "https://dev.pakatagoh.com"
+    : isProduction
+    ? "https://pakatagoh.com"
     : "http://localhost:3000";
 
   return {
     title: "Pakata Goh",
     description: "hello world",
+    image: `${host}/assets/resize/images/pakata-headshot.jpg?w=400`,
     charset: "utf-8",
     "og:title": "Pakata Goh",
     "og:description": "hello world",
