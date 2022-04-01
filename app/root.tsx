@@ -15,19 +15,16 @@ import {
   Theme,
   ThemeProvider,
 } from "./utils/theme-provider";
-import { getThemeSession } from "./utils/theme.server";
 import NavNotification from "./components/NavNotification";
 import { useMemo } from "react";
 
-export const meta: MetaFunction = ({ location }) => {
-  const isProduction = process.env.NODE_ENV !== "development";
-  const isStaging = process.env.ENV === "staging";
+type LoaderData = {
+  hostname: string;
+};
 
-  const host = isStaging
-    ? "https://dev.pakatagoh.com"
-    : isProduction
-    ? "https://pakatagoh.com"
-    : "http://localhost:3000";
+export const meta: MetaFunction = ({ location, data }) => {
+  const { hostname } = data as LoaderData;
+  const host = hostname === "localhost" ? "http://localhost:3000" : hostname;
 
   return {
     title: "Pakata Goh",
@@ -46,18 +43,10 @@ export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles }];
 };
 
-type LoaderData = {
-  theme: Theme;
-};
-
 export const loader: LoaderFunction = async ({ request }) => {
-  const themeSession = await getThemeSession(request);
+  const url = new URL(request.url);
 
-  const data: LoaderData = {
-    theme: themeSession.getTheme(),
-  };
-
-  return json(data);
+  return json({ hostname: url.hostname });
 };
 
 function App() {
