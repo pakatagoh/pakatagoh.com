@@ -26,7 +26,7 @@ export const headers: HeadersFunction = () => {
   // BUG: loader headers aren't working
   return {
     "cache-control":
-      "max-age=1800, s-maxage=86400, stale-while-revalidate=31536000",
+      "max-age=86400, s-maxage=604800, stale-while-revalidate=31536000", // 1 day, 1 week, 1 year
   };
 };
 

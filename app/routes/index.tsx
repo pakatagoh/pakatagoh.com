@@ -5,7 +5,7 @@ import { Nav } from "../components/Nav";
 export const headers: HeadersFunction = () => {
   return {
     "Cache-Control":
-      "max-age=43200, s-maxage=86400, stale-while-revalidate=31536000",
+      "max-age=43200, s-maxage=604800, stale-while-revalidate=31536000",
   };
 };
 
