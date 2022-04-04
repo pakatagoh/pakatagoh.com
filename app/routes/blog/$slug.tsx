@@ -21,7 +21,7 @@ type LoaderData = {
 export const headers: HeadersFunction = () => {
   return {
     "cache-control":
-      "max-age=86400, s-maxage=432000, stale-while-revalidate=31536000", // 1 day, 5 days, 1 year
+      "max-age=7200, s-maxage=432000, stale-while-revalidate=31536000", // 2hours, 5 days, 1 year
   };
 };
 
