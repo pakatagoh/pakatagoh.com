@@ -18,6 +18,8 @@ import {
 import NavNotification from "./components/NavNotification";
 import { useMemo } from "react";
 import Footer from "./components/Footer";
+import faviconIco from "../public/favicon.ico";
+import faviconSvg from "../public/favicon.svg";
 
 type LoaderData = {
   hostname: string;
@@ -48,7 +50,11 @@ export const meta: MetaFunction = ({ location, data }) => {
 };
 
 export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: styles }];
+  return [
+    { rel: "stylesheet", href: styles },
+    { rel: "icon", href: faviconIco },
+    { rel: "icon", href: faviconSvg, type: "image/svg+xml" },
+  ];
 };
 
 export const loader: LoaderFunction = async ({ request }) => {
