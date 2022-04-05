@@ -3,8 +3,9 @@ import { json } from "remix";
 
 const authToken = process.env.GITHUB_PERSONAL_ACCESS_TOKEN ?? "";
 const isStaging = process.env.ENV === "staging" ?? "";
+const isDevelopment = process.env.NODE_ENV === "development";
 
-const githubRef = isStaging ? "staging" : "master";
+const githubRef = isStaging || isDevelopment ? "staging" : "master";
 
 export const getOctokit = () => new Octokit({ auth: authToken });
 
@@ -72,6 +73,8 @@ export const getOneBlogContent = async (slug: string) => {
       blogDetail.content,
       blogDetail.encoding
     ).toString();
+
+    console.log("blogContentString: ", blogContentString);
 
     return {
       rawString: blogContentString,
