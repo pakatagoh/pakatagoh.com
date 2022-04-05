@@ -5,6 +5,7 @@ import {
   importRehypeHighlight,
   importUnistUtilVisit,
   importRemarkUnwrapImages,
+  importRemarkGfm,
   // @ts-ignore
 } from "../es-modules";
 import type * as M from "mdast";
@@ -48,6 +49,7 @@ export const getBundleMdx = async ({
   const { default: rehypeSlug } = await importRehypeSlug();
   const { default: rehypeHighlight } = await importRehypeHighlight();
   const { default: remarkUnwrapImages } = await importRemarkUnwrapImages();
+  const { default: remarkGfm } = await importRemarkGfm();
 
   const bundleResult = await bundleMDX({
     source: rawString,
@@ -56,7 +58,7 @@ export const getBundleMdx = async ({
       options.target = ["es2020", "chrome58", "firefox57", "safari11"];
       return options;
     },
-    xdmOptions(options) {
+    mdxOptions(options) {
       const myRehypePlugins = [
         rehypeSlug,
         [rehypeAutolinkHeadings, { behavior: "wrap" }],
@@ -65,6 +67,7 @@ export const getBundleMdx = async ({
       const myRemarkPlugins: U.PluggableList = [
         [massageImageUrl, { slug }],
         remarkUnwrapImages,
+        remarkGfm,
       ];
 
       options.remarkPlugins = [
