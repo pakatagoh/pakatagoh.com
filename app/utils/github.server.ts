@@ -74,8 +74,6 @@ export const getOneBlogContent = async (slug: string) => {
       blogDetail.encoding
     ).toString();
 
-    console.log("blogContentString: ", blogContentString);
-
     return {
       rawString: blogContentString,
     };
