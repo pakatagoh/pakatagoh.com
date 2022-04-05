@@ -45,6 +45,8 @@ export const AnchorOrLink = forwardRef<HTMLAnchorElement, AnchorProps>(
         href={href}
         {...rest}
         ref={ref}
+        target="_blank"
+        rel="noopener noreferrer"
       >
         {children}
       </a>
