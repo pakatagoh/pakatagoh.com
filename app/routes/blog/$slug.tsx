@@ -85,7 +85,7 @@ const BlogDetail = () => {
   const Component = useMdxComponent({ code });
 
   return (
-    <div className="prose w-full max-w-none dark:prose-invert">
+    <div className="prose w-full max-w-none break-words dark:prose-invert">
       <h1>{title}</h1>
       <Component />
     </div>
