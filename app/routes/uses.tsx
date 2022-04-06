@@ -1,20 +1,28 @@
-import type { HeadersFunction, MetaFunction } from "remix";
+import type { HeadersFunction, MetaFunction, LoaderFunction } from "remix";
+import { json } from "remix";
 import { Layout } from "../components/layout/Layout";
 import { Nav } from "../components/Nav";
 
-export const meta: MetaFunction = () => {
+export const meta: MetaFunction = ({ data }) => {
+  const { hostname } = data as LoaderData;
+  const host =
+    hostname === "localhost" ? "http://localhost:3000" : `https://${hostname}`;
+
   return {
     title: `Uses - Pakata Goh`,
     description:
       "A list of stuff I use on a daily basis in my work and my personal life",
+    image: `${host}/assets/resize/images/overhead-shot.jpg?w=400`,
     //opengraph tags
     "og:title": "Uses - Pakata Goh",
     "og:description":
       "A list of stuff I use on a daily basis in my work and my personal life",
+    "og:image": `${host}/assets/resize/images/overhead-shot.jpg?w=400`,
     //twitter tags
     "twitter:title": "Uses - Pakata Goh",
     "twitter:description":
       "A list of stuff I use on a daily basis in my work and my personal life",
+    "twitter:image": `${host}/assets/resize/images/overhead-shot.jpg?w=400`,
   };
 };
 
@@ -31,6 +39,16 @@ const UseItem = (props: { category: string; content: string }) => {
       <span className="font-bold">{props.category}:</span> {props.content}
     </>
   );
+};
+
+type LoaderData = {
+  hostname: string;
+};
+
+export const loader: LoaderFunction = ({ request }) => {
+  const url = new URL(request.url);
+
+  return json({ hostname: url.hostname });
 };
 
 const Uses = () => {
