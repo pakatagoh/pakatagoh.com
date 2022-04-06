@@ -1,5 +1,5 @@
-import { AnchorOrLink } from "./AnchorOrLinkComponent";
-import { ImageComponentMdx } from "./ImageComponent";
+import { AnchorOrLink } from "../AnchorOrLinkComponent";
+import { ImageComponentMdx } from "./ImageComponentMdx";
 
 export const components = {
   a: AnchorOrLink,

@@ -1,4 +1,4 @@
-import { AnchorOrLink } from "./mdx/AnchorOrLinkComponent";
+import { AnchorOrLink } from "./AnchorOrLinkComponent";
 
 const Footer = () => {
   return (
