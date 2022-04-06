@@ -7,14 +7,21 @@ import type {
 } from "remix";
 import { getBlogPosts } from "../../blog";
 
-export const meta: MetaFunction = () => {
+export const meta: MetaFunction = ({ data }) => {
+  const { hostname } = data as LoaderData;
+  const host =
+    hostname === "localhost" ? "http://localhost:3000" : `https://${hostname}`;
+
   return {
     title: `Blog - Pakata Goh`,
+    image: `${host}/assets/resize/images/writing-article.jpg?w=400`,
     description: `Blog posts`,
     // opengraph tags
+    "og:image": `${host}/assets/resize/images/writing-article.jpg?w=400`,
     "og:title": `Blog - Pakata Goh`,
     "og:description": `Blog posts`,
     // twitter tags
+    "twitter:image": `${host}/assets/resize/images/writing-article.jpg?w=400`,
     "twitter:title": "Blog - Pakata Goh",
     "twitter:description": "Blog posts",
   };
@@ -30,33 +37,42 @@ export const headers: HeadersFunction = () => {
   };
 };
 
-type LoaderData = {
+type Post = {
   slug: string;
   title: string;
   description?: string;
   createdAt: string;
 };
+type LoaderData = {
+  posts: Post[];
+  hostname: string;
+};
 
-export const loader: LoaderFunction = async () => {
+export const loader: LoaderFunction = async ({ request }) => {
+  const url = new URL(request.url);
+
   const posts = await getBlogPosts();
 
-  return json(posts, {
-    status: 200,
-    headers: {
-      "cache-control":
-        "max-age=1800, s-maxage=86400, stale-while-revalidate=31536000",
-    },
-  });
+  return json(
+    { posts, hostname: url.hostname },
+    {
+      status: 200,
+      headers: {
+        "cache-control":
+          "max-age=1800, s-maxage=86400, stale-while-revalidate=31536000",
+      },
+    }
+  );
 };
 
 const BlogIndex = () => {
-  const data = useLoaderData<LoaderData[]>();
+  const data = useLoaderData<LoaderData>();
 
   return (
     <main>
       <h1 className="text-3xl font-bold">Blog</h1>
       <div className="mt-6 flex flex-col gap-6">
-        {data.map((postItem) => {
+        {data.posts.map((postItem) => {
           return (
             <Link
               prefetch="intent"

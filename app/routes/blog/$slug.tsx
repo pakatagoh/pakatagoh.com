@@ -16,6 +16,7 @@ type LoaderData = {
   description?: string;
   keywords?: string[];
   code: string;
+  hostname: string;
 };
 
 export const headers: HeadersFunction = () => {
@@ -29,8 +30,14 @@ export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: highlightStyles }];
 };
 export const meta: MetaFunction = ({ data }) => {
+  const { hostname } = data as LoaderData;
+  const host =
+    hostname === "localhost" ? "http://localhost:3000" : `https://${hostname}`;
+
   return {
     title: data?.title ? `${data.title} - Pakata Goh` : "Not Found",
+    image: `${host}/assets/resize/images/writing-article.jpg?w=400`,
+    "og:image": `${host}/assets/resize/images/writing-article.jpg?w=400`,
     "og:title": data?.title ? `${data.title} - Pakata Goh` : "Not Found",
     "og:type": "article",
     "og:article:author": "Pakata Goh",
@@ -45,11 +52,14 @@ export const meta: MetaFunction = ({ data }) => {
     ...(data.keywords?.length > 0 ? { "og:article:tag": data.keywords } : {}),
 
     // twitter tags
+    "twitter:image": `${host}/assets/resize/images/writing-article.jpg?w=400`,
     "twitter:title": data?.title ? `${data.title} - Pakata Goh` : "Not Found",
   };
 };
 
-export const loader: LoaderFunction = async ({ params }) => {
+export const loader: LoaderFunction = async ({ request, params }) => {
+  const url = new URL(request.url);
+
   const slug = params.slug;
 
   if (!slug) {
@@ -68,6 +78,7 @@ export const loader: LoaderFunction = async ({ params }) => {
       description: blogPostData.description,
       createdAt: blogPostData.createdAt,
       keywords: blogPostData.keywords,
+      hostname: url.hostname,
     },
     {
       status: 200,

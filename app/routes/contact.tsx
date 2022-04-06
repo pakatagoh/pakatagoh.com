@@ -1,4 +1,5 @@
-import type { HeadersFunction, MetaFunction } from "remix";
+import type { HeadersFunction, LoaderFunction, MetaFunction } from "remix";
+import { json } from "remix";
 import { Nav } from "../components/Nav";
 import { BsGithub, BsLinkedin, BsFileText } from "react-icons/bs";
 import { MdContentCopy } from "react-icons/md";
@@ -6,16 +7,27 @@ import Footer from "../components/Footer";
 import { useEffect, useState, ReactNode } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
-export const meta: MetaFunction = () => {
+type LoaderData = {
+  hostname: string;
+};
+
+export const meta: MetaFunction = ({ data }) => {
+  const { hostname } = data as LoaderData;
+  const host =
+    hostname === "localhost" ? "http://localhost:3000" : `https://${hostname}`;
+
   return {
     title: `Contact - Pakata Goh`,
     description:
       "You can contact me through the various channels mentioned on this page",
+    image: `${host}/assets/resize/images/typing-hands.jpg?w=400`,
     //opengraph tags
+    "og:image": `${host}/assets/resize/images/typing-hands.jpg?w=400`,
     "og:title": "Contact - Pakata Goh",
     "og:description":
       "You can contact me through the various channels mentioned on this page",
     //twitter tags
+    "twitter:image": `${host}/assets/resize/images/typing-hands.jpg?w=400`,
     "twitter:title": "Contact - Pakata Goh",
     "twitter:description":
       "You can contact me through the various channels mentioned on this page",
@@ -51,6 +63,12 @@ const ExternalIconLink = ({
       </div>
     </a>
   );
+};
+
+export const loader: LoaderFunction = async ({ request }) => {
+  const url = new URL(request.url);
+
+  return json({ hostname: url.hostname });
 };
 
 const Contact = () => {
