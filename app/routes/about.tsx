@@ -1,7 +1,11 @@
-import type { HeadersFunction, MetaFunction } from "remix";
+import type { HeadersFunction, LoaderFunction, MetaFunction } from "remix";
+import { useLoaderData } from "remix";
 import { Layout } from "../components/layout/Layout";
-import { AnchorOrLink } from "../components/mdx/AnchorOrLinkComponent";
+import { AnchorOrLink } from "../components/AnchorOrLinkComponent";
 import { Nav } from "../components/Nav";
+import { BlurrableImage } from "../components/Image";
+import { getResizedBlurredBase64EcondedImage } from "../utils/image.server";
+import { resolve } from "path";
 
 export const meta: MetaFunction = () => {
   return {
@@ -26,7 +30,60 @@ export const headers: HeadersFunction = () => {
   };
 };
 
+type LoaderData = {
+  fsae: {
+    imageUrl: string;
+    blurDataImageUrl: string;
+    srcSet: string;
+  };
+  photography: {
+    imageUrl: string;
+    blurDataImageUrl: string;
+    srcSet: string;
+  };
+};
+
+export const loader: LoaderFunction = async () => {
+  const pathToFsaeImage = resolve(__dirname, "../assets/images/pg-fsae.jpg");
+  const pathToPhotographyImage = resolve(
+    __dirname,
+    "../assets/images/pg-photography.jpg"
+  );
+
+  const [fsaeEncodedResizedImage, photographyEncodedResizedImage] =
+    await Promise.all([
+      getResizedBlurredBase64EcondedImage({
+        input: pathToFsaeImage,
+      }),
+      getResizedBlurredBase64EcondedImage({
+        input: pathToPhotographyImage,
+      }),
+    ]);
+
+  const baseSrcFsae = `/assets/resize/images/pg-fsae.jpg`;
+  const baseSrcPhotography = `/assets/resize/images/pg-photography.jpg`;
+
+  return {
+    fsae: {
+      imageUrl: `${baseSrcFsae}?w=600`,
+      blurDataImageUrl: `data:image/png;base64,${fsaeEncodedResizedImage}`,
+      srcSet: [400, 500, 900]
+        .map((item) => `${baseSrcFsae}?w=${item} ${item}w`)
+        .join(", "),
+    },
+    photography: {
+      imageUrl: `${baseSrcPhotography}?w=600`,
+      blurDataImageUrl: `data:image/png;base64,${photographyEncodedResizedImage}`,
+      srcSet: [400, 500, 900]
+        .map((item) => `${baseSrcPhotography}?w=${item} ${item}w`)
+        .join(", "),
+    },
+  };
+};
+
 const About = () => {
+  const data = useLoaderData<LoaderData>();
+
   return (
     <Layout>
       <Nav />
@@ -62,6 +119,42 @@ const About = () => {
               In my free time, I dabble in a little photography. I love cars and
               I keep up with Formula 1 during race weekends.
             </p>
+            <div className="flex flex-col items-stretch gap-8 sm:flex-row sm:justify-between sm:gap-10">
+              <div className="sm:flex-1">
+                <div className="aspect-w-3 aspect-h-3">
+                  <BlurrableImage
+                    blurDataUrl={data.fsae.blurDataImageUrl}
+                    alt="nus formula student"
+                    img={
+                      <img
+                        className="m-0 object-cover object-center"
+                        alt="nus formula student"
+                        src={data.fsae.imageUrl}
+                        sizes="(min-width: 820px) 348px, (min-width: 640px) calc(40vw + 28px), calc(100vw - 32px)"
+                        srcSet={data.fsae.srcSet}
+                      />
+                    }
+                  />
+                </div>
+              </div>
+              <div className="hidden sm:block sm:flex-1">
+                <div className="aspect-w-3 aspect-h-3">
+                  <BlurrableImage
+                    blurDataUrl={data.photography.blurDataImageUrl}
+                    img={
+                      <img
+                        className="m-0 object-cover object-center"
+                        alt="photography"
+                        src={data.photography.imageUrl}
+                        sizes="(min-width: 820px) 348px, calc(40vw + 28px)"
+                        srcSet={data.photography.srcSet}
+                      />
+                    }
+                    alt="photography"
+                  />
+                </div>
+              </div>
+            </div>
           </section>
 
           <section>
