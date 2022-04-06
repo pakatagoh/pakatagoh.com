@@ -5,6 +5,9 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 module.exports = {
   content: ["./app/**/*.{js,ts,jsx,tsx}", "./content/**/*.{js,ts,jsx,tsx}"],
   darkMode: "class",
+  corePlugins: {
+    aspectRatio: false,
+  },
   theme: {
     extend: {
       fontFamily: {
@@ -37,5 +40,8 @@ module.exports = {
       }),
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/aspect-ratio"),
+  ],
 };
