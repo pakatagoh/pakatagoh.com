@@ -21,6 +21,7 @@ import { PassThrough } from "stream";
 import type { FitEnum } from "sharp";
 import sharp from "sharp";
 import { getOneBlogImages } from "../../../utils/github.server";
+import { getSharpTransformForPipe } from "../../../utils/image.server";
 
 interface ResizeParams {
   src: string;
@@ -155,47 +156,14 @@ function streamingResize({
   // create the sharp transform pipline
   // https://sharp.pixelplumbing.com/api-resize
   // you can also add watermarks, sharpen, blur, etc.
-
-  const defaultSharpTransforms = sharp().resize({
+  const sharpTransforms = getSharpTransformForPipe({
     width,
     height,
     fit,
-    // position: sharp.strategy.attention, // will try to crop the image and keep the most interesting parts
+    blur,
+    isAcceptWebp,
+    imageExtension,
   });
-  // .jpeg({
-  //   mozjpeg: true, // use mozjpeg defaults, = smaller images
-  //   quality: 80,
-  // });
-  // sharp also has other image formats, just comment out .jpeg and make sure to change the Content-Type header below
-  // .avif({
-  //   quality: 80,
-  // })
-  // .png({
-  //   quality: 80,
-  // });
-
-  // .webp({
-  //   quality: 80,
-  // })
-
-  let sharpTransforms = defaultSharpTransforms;
-
-  if (isAcceptWebp) {
-    sharpTransforms = sharpTransforms.toFormat("webp");
-  } else {
-    switch (imageExtension) {
-      case "png":
-        sharpTransforms = sharpTransforms.png({ quality: 80 });
-        break;
-      case "jpeg":
-      default:
-        sharpTransforms = sharpTransforms.jpeg({ mozjpeg: true, quality: 80 });
-    }
-  }
-
-  if (blur) {
-    sharpTransforms = sharpTransforms.blur(blur);
-  }
 
   // create a pass through stream that will take the input image
   // stream it through the sharp pipeline and then output it to the response
@@ -212,9 +180,6 @@ function streamingResize({
     return imageExtension;
   };
   const imageType = getImageType();
-
-  console.log("isAcceptWebp", isAcceptWebp);
-  console.log("the imageType:", imageType);
 
   return new Response(passthroughStream as any, {
     headers: {
