@@ -36,7 +36,7 @@ const NavNotification = () => {
     <>
       {isShowNavSpinner ? (
         <div className="fixed bottom-8 z-50 w-full px-4">
-          <div className="flex w-full justify-end sm:max-w-sm">
+          <div className="flex w-full justify-end sm:ml-auto sm:max-w-sm">
             <div className="w-full rounded-lg bg-gray-100 p-4 shadow-lg shadow-gray-500/50 dark:prose-invert dark:bg-gray-700 dark:shadow-gray-900/80 sm:max-w-sm ">
               <div className="flex justify-end">
                 <button
