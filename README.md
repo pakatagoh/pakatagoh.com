@@ -1,39 +1,41 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/e34a2279-b6a3-459f-980c-12727cfdb58d/deploy-status)](https://app.netlify.com/sites/pakatagoh/deploys)
+# Welcome to Remix!
 
-# Pakata Goh 😎
+- [Remix Docs](https://remix.run/docs)
 
-Site: https://pakatagoh.com
+## Fly Setup
 
-Hello! I'm is a software developer from Singapore specializing in JavaScript. In this personal site, I'm documenting what I've learnt during my software development journey and hopefully you'll find it useful.
+1. [Install `flyctl`](https://fly.io/docs/getting-started/installing-flyctl/)
 
-Learn more about me: https://pakatagoh.com/about
+2. Sign up and log in to Fly
 
-## The Tech Behind the Site
+```sh
+flyctl auth signup
+```
 
-This site is built using [Gatsby](https://www.gatsbyjs.org) with the help of the [gatsby-default-starter](https://www.gatsbyjs.org/starters/gatsbyjs/gatsby-starter-default/)
+3. Setup Fly. It might ask if you want to deploy, say no since you haven't built the app yet.
 
-- Styling with [styled-components](https://www.styled-components.com) (CSS-in-JS)
+```sh
+flyctl launch
+```
 
-- Code sytax highlighting with [gatsby-remark-prismjs](https://www.gatsbyjs.org/packages/gatsby-remark-prismjs/).
+## Development
 
-  - Syntax theme is a customized version of the [tomorrow-night theme](https://github.com/PrismJS/prism/blob/master/themes/prism-tomorrow.css)
+From your terminal:
 
-- Posts made with MDX (JSX embedded in Markdown! 🤯) and ❤.
-  - [Getting started with MDX in Gatsby](https://www.gatsbyjs.org/docs/mdx/)
-  - [MDX](https://mdxjs.com/)
+```sh
+npm run dev
+```
 
-## Issues/Contributions
+This starts your app in development mode, rebuilding assets on file changes.
 
-I'm already flattered if you're reading this.
+## Deployment
 
-I'll be even more flattered if you'd like to help amend any errors or contribute. Just put up a PR or issue and I'll look through it! 🙏🏻
+If you've followed the setup instructions already, all you need to do is run this:
 
-## Get In Touch
+```sh
+npm run deploy
+```
 
-- [LinkedIn](https://www.linkedin.com/in/pakata-goh/)
+You can run `flyctl info` to get the url and ip address of your server.
 
-- [Instagram](https://www.instagram.com/paka.codes/)
-
-- [Twitter](https://twitter.com/gohpakata)
-
-- [My Resume](https://drive.google.com/open?id=185fdbe4ubRIuHuuCR_AtKHV7p7Zbrpvo)
+Check out the [fly docs](https://fly.io/docs/getting-started/node/) for more information.
