@@ -7,6 +7,7 @@ import {
   Scripts,
   ScrollRestoration,
   useCatch,
+  useLoaderData,
 } from "remix";
 import type { MetaFunction, LoaderFunction, LinksFunction } from "remix";
 import styles from "./styles/app.css";
@@ -23,6 +24,7 @@ import faviconSvg from "../public/favicon.svg";
 
 type LoaderData = {
   hostname: string;
+  gaId: string;
 };
 
 export const meta: MetaFunction = ({ location, data }) => {
@@ -59,13 +61,17 @@ export const links: LinksFunction = () => {
 
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
+  const gaId = process.env.GA_ID ?? "";
 
-  return json({ hostname: url.hostname });
+  return json({ hostname: url.hostname, gaId });
 };
 
 function App() {
+  const data = useLoaderData<LoaderData>();
+  const gaId = data.gaId;
+
   return (
-    <html lang="en" prefix="og: http://ogp.me/ns#">
+    <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charSet="utf-8" />
@@ -75,10 +81,29 @@ function App() {
       </head>
       <body className="w-full transition duration-150 dark:bg-gray-800 dark:text-white">
         <Outlet />
+        <NavNotification />
         <ScrollRestoration />
         <Scripts />
         {process.env.NODE_ENV === "development" && <LiveReload />}
-        <NavNotification />
+        {gaId ? (
+          <>
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+            ></script>
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', '${gaId}');
+  `,
+              }}
+            ></script>
+          </>
+        ) : null}
       </body>
     </html>
   );
@@ -106,7 +131,7 @@ export function CatchBoundary({ error }: { error: Error }) {
 
   const isFourOhFour = caught.status === 404;
   return (
-    <html lang="en" prefix="og: http://ogp.me/ns#">
+    <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charSet="utf-8" />
@@ -142,7 +167,7 @@ export function CatchBoundary({ error }: { error: Error }) {
 
 export function ErrorBoundary({ error }: { error: Error }) {
   return (
-    <html lang="en" prefix="og: http://ogp.me/ns#">
+    <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charSet="utf-8" />
