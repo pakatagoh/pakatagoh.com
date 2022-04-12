@@ -1,41 +1,25 @@
-# Welcome to Remix!
+# Pakata Goh 😎
 
-- [Remix Docs](https://remix.run/docs)
+Site: https://pakatagoh.com
 
-## Fly Setup
+Hello! I'm is a software developer from Singapore specializing in JavaScript. In this personal site, I'm documenting what I've learnt during my software development journey and hopefully you'll find it useful.
 
-1. [Install `flyctl`](https://fly.io/docs/getting-started/installing-flyctl/)
+Learn more about me: https://pakatagoh.com/about
 
-2. Sign up and log in to Fly
+## The Tech
 
-```sh
-flyctl auth signup
-```
+- [Remix](https://remix.run) framework
+- Styled with [tailwindcss](https://tailwindcss.com)
+- Blog posts made with [MDX](https://mdxjs.com/) (JSX embedded in Markdown! 🤯) and bundled with [MDX-bundler](https://github.com/kentcdodds/mdx-bundler)
 
-3. Setup Fly. It might ask if you want to deploy, say no since you haven't built the app yet.
+## Issues/Contributions
 
-```sh
-flyctl launch
-```
+I'm already flattered if you're reading this.
 
-## Development
+I'll be even more flattered if you'd like to help amend any errors or contribute. Just put up a PR or issue and I'll look through it! 🙏🏻
 
-From your terminal:
+## Get In Touch
 
-```sh
-npm run dev
-```
+- [LinkedIn](https://www.linkedin.com/in/pakata-goh/)
 
-This starts your app in development mode, rebuilding assets on file changes.
-
-## Deployment
-
-If you've followed the setup instructions already, all you need to do is run this:
-
-```sh
-npm run deploy
-```
-
-You can run `flyctl info` to get the url and ip address of your server.
-
-Check out the [fly docs](https://fly.io/docs/getting-started/node/) for more information.
+- [Résumé](https://drive.google.com/file/d/1cOIAXVd5Pq5cPVLAa7WSWTHDj0moCTE6/view)
