@@ -9,6 +9,7 @@ import type {
 import { getOneBlogPost } from "../../blog";
 import highlightStyles from "highlight.js/styles/nord.css";
 import { useMdxComponent } from "../../hooks/useMdxComponent";
+import { getHostByHostname } from "../../utils/misc";
 
 type LoaderData = {
   slug: string;
@@ -30,14 +31,18 @@ export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: highlightStyles }];
 };
 export const meta: MetaFunction = ({ data }) => {
-  const { hostname } = data as LoaderData;
-  const host =
-    hostname === "localhost" ? "http://localhost:3000" : `https://${hostname}`;
+  const hostname = (data as LoaderData)?.hostname;
+  const host = getHostByHostname(hostname);
 
   return {
     title: data?.title ? `${data.title} - Pakata Goh` : "Not Found",
-    image: `${host}/assets/resize/images/writing-article.jpg?w=400`,
-    "og:image": `${host}/assets/resize/images/writing-article.jpg?w=400`,
+    ...(host
+      ? {
+          image: `${host}/assets/resize/images/writing-article.jpg?w=400`,
+          "og:image": `${host}/assets/resize/images/writing-article.jpg?w=400`,
+          "twitter:image": `${host}/assets/resize/images/writing-article.jpg?w=400`,
+        }
+      : {}),
     "og:title": data?.title ? `${data.title} - Pakata Goh` : "Not Found",
     "og:type": "article",
     "og:article:author": "Pakata Goh",
@@ -49,10 +54,9 @@ export const meta: MetaFunction = ({ data }) => {
         }
       : {}),
     ...(data?.createdAt ? { "og:article:published_time": data.createdAt } : {}),
-    ...(data.keywords?.length > 0 ? { "og:article:tag": data.keywords } : {}),
+    ...(data?.keywords?.length > 0 ? { "og:article:tag": data.keywords } : {}),
 
     // twitter tags
-    "twitter:image": `${host}/assets/resize/images/writing-article.jpg?w=400`,
     "twitter:title": data?.title ? `${data.title} - Pakata Goh` : "Not Found",
   };
 };
@@ -113,7 +117,7 @@ export const CatchBoundary = () => {
     case 404:
       return (
         <div className="prose dark:prose-invert">
-          <h1>Not Found</h1>
+          <h1 className="text-3xl">Not Found</h1>
           <p>Unfortunately, /blog/{caught.data} doesn&apos;t exist</p>
         </div>
       );
@@ -125,8 +129,8 @@ export const CatchBoundary = () => {
 export const ErrorBoundary: ErrorBoundaryComponent = ({ error }) => {
   console.error(error);
   return (
-    <div>
-      <h1>Something went wrong</h1>
+    <div className="prose dark:prose-invert">
+      <h1 className="text-3xl">Something went wrong</h1>
       <p>{error.message}</p>
     </div>
   );

@@ -6,28 +6,32 @@ import { MdContentCopy } from "react-icons/md";
 import Footer from "../components/Footer";
 import { useEffect, useState, ReactNode } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { getHostByHostname } from "../utils/misc";
 
 type LoaderData = {
   hostname: string;
 };
 
 export const meta: MetaFunction = ({ data }) => {
-  const { hostname } = data as LoaderData;
-  const host =
-    hostname === "localhost" ? "http://localhost:3000" : `https://${hostname}`;
+  const hostname = (data as LoaderData)?.hostname;
+  const host = getHostByHostname(hostname);
 
   return {
     title: `Contact - Pakata Goh`,
     description:
       "You can contact me through the various channels mentioned on this page",
-    image: `${host}/assets/resize/images/typing-hands.jpg?w=400`,
+    ...(host
+      ? {
+          image: `${host}/assets/resize/images/typing-hands.jpg?w=400`,
+          "og:image": `${host}/assets/resize/images/typing-hands.jpg?w=400`,
+          "twitter:image": `${host}/assets/resize/images/typing-hands.jpg?w=400`,
+        }
+      : {}),
     //opengraph tags
-    "og:image": `${host}/assets/resize/images/typing-hands.jpg?w=400`,
     "og:title": "Contact - Pakata Goh",
     "og:description":
       "You can contact me through the various channels mentioned on this page",
     //twitter tags
-    "twitter:image": `${host}/assets/resize/images/typing-hands.jpg?w=400`,
     "twitter:title": "Contact - Pakata Goh",
     "twitter:description":
       "You can contact me through the various channels mentioned on this page",

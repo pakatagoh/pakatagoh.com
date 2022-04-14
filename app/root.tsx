@@ -15,12 +15,15 @@ import {
   NonFlashOfWrongThemeEls,
   Theme,
   ThemeProvider,
+  useTheme,
 } from "./utils/theme-provider";
 import NavNotification from "./components/NavNotification";
-import { useMemo } from "react";
-import Footer from "./components/Footer";
 import faviconIco from "../public/favicon.ico";
 import faviconSvg from "../public/favicon.svg";
+import { getHostByHostname } from "./utils/misc";
+import { Layout } from "./components/layout/Layout";
+import { Nav } from "./components/Nav";
+import { useLocalStorageTheme } from "./hooks/useLocalStorageTheme";
 
 type LoaderData = {
   hostname: string;
@@ -28,24 +31,27 @@ type LoaderData = {
 };
 
 export const meta: MetaFunction = ({ location, data }) => {
-  const { hostname } = data as LoaderData;
-  const host =
-    hostname === "localhost" ? "http://localhost:3000" : `https://${hostname}`;
+  const hostname = (data as LoaderData)?.hostname;
+  const host = getHostByHostname(hostname);
 
   return {
     title: "Pakata Goh",
     description: "Software developer from sunny Singapore",
-    image: `${host}/assets/resize/images/pakata-headshot.jpg?w=400`,
+    ...(host
+      ? {
+          image: `${host}/assets/resize/images/pakata-headshot.jpg?w=400`,
+          "og:url": `${host}${location.pathname}`,
+          "og:image": `${host}/assets/resize/images/pakata-headshot.jpg?w=400`,
+          "twitter:image": `${host}/assets/resize/images/pakata-headshot.jpg?w=400`,
+        }
+      : {}),
     //opengraph tags
     "og:title": "Pakata Goh",
     "og:description": "Software developer from sunny Singapore",
-    "og:url": `${host}${location.pathname}`,
-    "og:image": `${host}/assets/resize/images/pakata-headshot.jpg?w=400`,
     "og:type": "website",
     //twitter tags
     "twitter:title": "Pakata Goh",
     "twitter:description": "Software developer from sunny Singapore",
-    "twitter:image": `${host}/assets/resize/images/pakata-headshot.jpg?w=400`,
     "twitter:card": `summary_large_image`,
     "twitter:creator": `GohPakata`,
   };
@@ -70,8 +76,10 @@ function App() {
   const data = useLoaderData<LoaderData>();
   const gaId = data.gaId;
 
+  const { theme } = useTheme();
+  const isDarkTheme = theme === Theme.DARK;
   return (
-    <html lang="en">
+    <html lang="en" className={isDarkTheme ? "dark" : undefined}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charSet="utf-8" />
@@ -110,15 +118,7 @@ function App() {
 }
 
 export default function AppWithProviders() {
-  const theme = useMemo(() => {
-    if (typeof window === "undefined") {
-      return null;
-    }
-
-    const theme = window.localStorage.getItem("pakata-theme");
-
-    return theme ?? Theme.DARK;
-  }, []);
+  const theme = useLocalStorageTheme();
 
   return (
     <ThemeProvider specifiedTheme={theme as Theme}>
@@ -126,66 +126,100 @@ export default function AppWithProviders() {
     </ThemeProvider>
   );
 }
-export function CatchBoundary({ error }: { error: Error }) {
+export function CatchBoundary(data: { error: Error }) {
   const caught = useCatch();
 
   const isFourOhFour = caught.status === 404;
+
+  const theme = useLocalStorageTheme();
   return (
-    <html lang="en">
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charSet="utf-8" />
-        <title>Not Found</title>
-        <Meta />
-        <Links />
-        <NonFlashOfWrongThemeEls />
-      </head>
-      <body className="w-full transition duration-150 dark:bg-gray-800 dark:text-white">
-        <div>
-          {isFourOhFour ? (
-            <>
-              <h1>Resource not found</h1>
-              <p>
-                Oops! We are not able to find the resource you were looking for
-              </p>
-            </>
-          ) : (
-            <>
-              <h1>App Error</h1>
-              <pre>{error.message}</pre>
-            </>
-          )}
-        </div>
-        <Footer />
-        <ScrollRestoration />
-        <Scripts />
-        {process.env.NODE_ENV === "development" && <LiveReload />}
-      </body>
-    </html>
+    <ThemeProvider specifiedTheme={theme as Theme}>
+      <html lang="en">
+        <head>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+          <meta charSet="utf-8" />
+          <title>Not Found</title>
+          <Meta />
+          <Links />
+          <NonFlashOfWrongThemeEls />
+        </head>
+        <body className="w-full transition duration-150 dark:bg-gray-800 dark:text-white">
+          <Layout>
+            <Nav />
+            <div className="prose dark:prose-invert">
+              {isFourOhFour ? (
+                <>
+                  <h1 className="text-3xl">Not Found</h1>
+                  <p>
+                    Oops! We are not able to find the resource you were looking
+                    for
+                  </p>
+                </>
+              ) : (
+                <>
+                  <h1 className="text-3xl">App Error</h1>
+                  <section>
+                    <h2>Error Message</h2>
+                    <pre className="p-3">
+                      {data?.error?.message ?? "Something went wrong"}
+                    </pre>
+                  </section>
+                </>
+              )}
+            </div>
+          </Layout>
+          <NavNotification />
+          <ScrollRestoration />
+          <Scripts />
+          {process.env.NODE_ENV === "development" && <LiveReload />}
+        </body>
+      </html>
+    </ThemeProvider>
   );
 }
 
 export function ErrorBoundary({ error }: { error: Error }) {
+  const theme = useLocalStorageTheme();
   return (
-    <html lang="en">
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charSet="utf-8" />
-        <title>Uh-oh!</title>
-        <Meta />
-        <Links />
-        <NonFlashOfWrongThemeEls />
-      </head>
-      <body className="w-full transition duration-150 dark:bg-gray-800 dark:text-white">
-        <div className="error-container">
-          <h1>App Error</h1>
-          <pre>{error.message}</pre>
-        </div>
-        <Footer />
-        <ScrollRestoration />
-        <Scripts />
-        {process.env.NODE_ENV === "development" && <LiveReload />}
-      </body>
-    </html>
+    <ThemeProvider specifiedTheme={theme as Theme}>
+      <html lang="en">
+        <head>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+          <meta charSet="utf-8" />
+          <title>Uh-oh!</title>
+          <Meta />
+          <Links />
+          <NonFlashOfWrongThemeEls />
+        </head>
+        <body className="w-full transition duration-150 dark:bg-gray-800 dark:text-white">
+          <Layout>
+            <Nav />
+            <div className="prose dark:prose-invert">
+              <h1 className="text-3xl">App Error</h1>
+              <p>
+                This shouldn&apos;t be your fault. Kindly refresh and try again
+                or open an issue on Github
+              </p>
+              <section>
+                <h2>Error Message</h2>
+                <pre className="p-3">
+                  {error?.message ?? "Something went wrong"}
+                </pre>
+              </section>
+            </div>
+          </Layout>
+          <NavNotification />
+          <ScrollRestoration />
+          <Scripts />
+          {process.env.NODE_ENV === "development" && <LiveReload />}
+        </body>
+      </html>
+    </ThemeProvider>
   );
 }

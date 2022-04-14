@@ -6,22 +6,26 @@ import type {
   MetaFunction,
 } from "remix";
 import { getBlogPosts } from "../../blog";
+import { getHostByHostname } from "../../utils/misc";
 
 export const meta: MetaFunction = ({ data }) => {
-  const { hostname } = data as LoaderData;
-  const host =
-    hostname === "localhost" ? "http://localhost:3000" : `https://${hostname}`;
+  const hostname = (data as LoaderData)?.hostname;
+  const host = getHostByHostname(hostname);
 
   return {
     title: `Blog - Pakata Goh`,
-    image: `${host}/assets/resize/images/writing-article.jpg?w=400`,
+    ...(host
+      ? {
+          image: `${host}/assets/resize/images/writing-article.jpg?w=400`,
+          "og:image": `${host}/assets/resize/images/writing-article.jpg?w=400`,
+          "twitter:image": `${host}/assets/resize/images/writing-article.jpg?w=400`,
+        }
+      : {}),
     description: `Blog posts`,
     // opengraph tags
-    "og:image": `${host}/assets/resize/images/writing-article.jpg?w=400`,
     "og:title": `Blog - Pakata Goh`,
     "og:description": `Blog posts`,
     // twitter tags
-    "twitter:image": `${host}/assets/resize/images/writing-article.jpg?w=400`,
     "twitter:title": "Blog - Pakata Goh",
     "twitter:description": "Blog posts",
   };
@@ -103,11 +107,14 @@ export default BlogIndex;
 export const ErrorBoundary: ErrorBoundaryComponent = ({ error }) => {
   console.error(error);
   return (
-    <main>
-      <h1 className="text-bold text-xl">
-        Something went wrong retreiving blog posts
-      </h1>
-      <p>{error.message}</p>
+    <main className="prose dark:prose-invert">
+      <h1 className="text-3xl">App Error</h1>
+      <p>Something went wrong when retrieving blog posts.</p>
+      <p>Kindly refresh and try again or open an issue on Github</p>
+      <section>
+        <h2>Error Message</h2>
+        <pre className="p-3">{error?.message ?? "Something went wrong"}</pre>
+      </section>
     </main>
   );
 };
