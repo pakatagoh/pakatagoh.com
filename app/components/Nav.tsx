@@ -1,6 +1,6 @@
 import { RemixNavLinkProps } from "@remix-run/react/components";
 import { PropsWithChildren } from "react";
-import { NavLink } from "remix";
+import { NavLink } from "@remix-run/react";
 import { Theme, useTheme } from "../utils/theme-provider";
 import { IoSunnyOutline, IoMoonOutline } from "react-icons/io5";
 

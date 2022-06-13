@@ -1,5 +1,9 @@
-import type { HeadersFunction, LoaderFunction, MetaFunction } from "remix";
-import { json } from "remix";
+import type {
+  HeadersFunction,
+  LoaderFunction,
+  MetaFunction,
+} from "@remix-run/node";
+import { json } from "@remix-run/node";
 import { Nav } from "../components/Nav";
 import { BsGithub, BsLinkedin, BsFileText } from "react-icons/bs";
 import { MdContentCopy } from "react-icons/md";

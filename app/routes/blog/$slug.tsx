@@ -1,11 +1,13 @@
-import { useCatch, useLoaderData, json } from "remix";
 import type {
   ErrorBoundaryComponent,
   HeadersFunction,
+  LinksFunction,
   LoaderFunction,
   MetaFunction,
-  LinksFunction,
-} from "remix";
+} from "@remix-run/node";
+
+import { json } from "@remix-run/node";
+import { useCatch, useLoaderData } from "@remix-run/react";
 import { getOneBlogPost } from "../../blog";
 import highlightStyles from "highlight.js/styles/nord.css";
 import { useMdxComponent } from "../../hooks/useMdxComponent";

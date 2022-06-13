@@ -1,10 +1,6 @@
-import { json, useLoaderData, Link } from "remix";
-import type {
-  HeadersFunction,
-  LoaderFunction,
-  ErrorBoundaryComponent,
-  MetaFunction,
-} from "remix";
+import type { ErrorBoundaryComponent, HeadersFunction, LoaderFunction, MetaFunction } from "@remix-run/node";
+import { json } from "@remix-run/node";
+import { Link, useLoaderData } from "@remix-run/react";
 import { getBlogPosts } from "../../blog";
 import { getHostByHostname } from "../../utils/misc";
 

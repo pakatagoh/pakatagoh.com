@@ -1,5 +1,11 @@
+import type {
+  LinksFunction,
+  LoaderFunction,
+  MetaFunction,
+} from "@remix-run/node";
+import { json } from "@remix-run/node";
+
 import {
-  json,
   Links,
   LiveReload,
   Meta,
@@ -8,8 +14,8 @@ import {
   ScrollRestoration,
   useCatch,
   useLoaderData,
-} from "remix";
-import type { MetaFunction, LoaderFunction, LinksFunction } from "remix";
+} from "@remix-run/react";
+
 import styles from "./styles/app.css";
 import {
   NonFlashOfWrongThemeEls,

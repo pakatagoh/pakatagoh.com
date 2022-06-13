@@ -1,5 +1,5 @@
 import { Octokit } from "@octokit/rest";
-import { json } from "remix";
+import { json } from "@remix-run/node";
 
 const authToken = process.env.GITHUB_PERSONAL_ACCESS_TOKEN ?? "";
 const isStaging = process.env.ENV === "staging" ?? "";

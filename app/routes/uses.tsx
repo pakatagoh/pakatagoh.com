@@ -1,5 +1,9 @@
-import type { HeadersFunction, MetaFunction, LoaderFunction } from "remix";
-import { json } from "remix";
+import type {
+  HeadersFunction,
+  LoaderFunction,
+  MetaFunction,
+} from "@remix-run/node";
+import { json } from "@remix-run/node";
 import { Layout } from "../components/layout/Layout";
 import { Nav } from "../components/Nav";
 import { getHostByHostname } from "../utils/misc";

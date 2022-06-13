@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { CgSpinner } from "react-icons/cg";
-import { useTransition } from "remix";
+import { useTransition } from "@remix-run/react";
 import { useSpinDelay } from "spin-delay";
 
 const NavNotification = () => {

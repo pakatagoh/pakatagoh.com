@@ -1,4 +1,4 @@
-import { Outlet } from "remix";
+import { Outlet } from "@remix-run/react";
 import { Layout } from "../components/layout/Layout";
 import { Nav } from "../components/Nav";
 
