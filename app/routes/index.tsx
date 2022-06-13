@@ -1,4 +1,4 @@
-import type { HeadersFunction } from "remix";
+import type { HeadersFunction } from "@remix-run/node";
 import Footer from "../components/Footer";
 import { Nav } from "../components/Nav";
 

@@ -1,5 +1,5 @@
 import { AnchorHTMLAttributes, DetailedHTMLProps, forwardRef } from "react";
-import { Link } from "remix";
+import { Link } from "@remix-run/react";
 
 type AnchorProps = DetailedHTMLProps<
   AnchorHTMLAttributes<HTMLAnchorElement>,

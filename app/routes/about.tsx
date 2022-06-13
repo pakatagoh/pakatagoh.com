@@ -1,5 +1,9 @@
-import type { HeadersFunction, LoaderFunction, MetaFunction } from "remix";
-import { useLoaderData } from "remix";
+import type {
+  HeadersFunction,
+  LoaderFunction,
+  MetaFunction,
+} from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
 import { Layout } from "../components/layout/Layout";
 import { AnchorOrLink } from "../components/AnchorOrLinkComponent";
 import { Nav } from "../components/Nav";
