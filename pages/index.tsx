@@ -1,7 +1,5 @@
 import type { NextPage } from "next"
-import Footer from "../components/Footer"
-import { HeadWithMetaTags } from "../components/HeadWithMetaTags"
-import { Nav } from "../components/Nav"
+import { Footer, HeadWithMetaTags, Nav } from "../components"
 
 const HomePage: NextPage = () => {
   return (

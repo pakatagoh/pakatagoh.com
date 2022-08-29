@@ -1,9 +1,7 @@
-import { PropsWithChildren, useEffect, useState } from "react"
-import Link from "next/link"
-import { useRouter } from "next/router"
+import { useEffect, useState } from "react"
 import { useTheme } from "next-themes"
 import { IoSunnyOutline, IoMoonOutline } from "react-icons/io5"
-import ActiveLink from "./ActiveLink"
+import { ActiveLink } from "./ActiveLink"
 
 export enum Theme {
   DARK = "dark",

@@ -7,7 +7,7 @@ type ActiveLinkProps = LinkProps & {
   activeClassName: string
 }
 
-const ActiveLink = ({
+export const ActiveLink = ({
   children,
   activeClassName,
   ...props
@@ -59,5 +59,3 @@ const ActiveLink = ({
     </Link>
   )
 }
-
-export default ActiveLink

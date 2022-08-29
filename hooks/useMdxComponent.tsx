@@ -1,6 +1,6 @@
 import { getMDXComponent } from "mdx-bundler/client"
 import { useMemo } from "react"
-import { components } from "../components/mdx"
+import { components } from "../components"
 
 export const useMdxComponent = ({ code }: { code: string }) => {
   const Component = useMemo(() => getMDXComponent(code), [code])

@@ -1,10 +1,8 @@
 import { ReactNode, useEffect, useState } from "react"
-import Footer from "../components/Footer"
-import { Nav } from "../components/Nav"
 import { CopyToClipboard } from "react-copy-to-clipboard"
 import { BsGithub, BsLinkedin, BsFileText } from "react-icons/bs"
 import { MdContentCopy } from "react-icons/md"
-import { HeadWithMetaTags } from "../components/HeadWithMetaTags"
+import { Footer, Nav, HeadWithMetaTags } from "../components"
 
 const ExternalIconLink = ({
   href,
