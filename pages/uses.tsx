@@ -1,7 +1,4 @@
-import Head from "next/head"
-import { HeadWithMetaTags } from "../components/HeadWithMetaTags"
-import { Layout } from "../components/Layout"
-import { Nav } from "../components/Nav"
+import { HeadWithMetaTags, Layout, Nav } from "../components"
 
 const UseItem = (props: { category: string; content: string }) => {
   return (

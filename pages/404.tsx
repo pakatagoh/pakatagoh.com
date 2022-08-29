@@ -1,7 +1,6 @@
 import Head from "next/head"
 import React from "react"
-import { Layout } from "../components/Layout"
-import { Nav } from "../components/Nav"
+import { Layout, Nav } from "../components"
 
 const CustomNotFoundPage = () => {
   return (

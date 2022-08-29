@@ -1,9 +1,6 @@
 import React from "react"
 import Image from "next/image"
-import { AnchorOrLink } from "../components/AnchorOrLink"
-import { Layout } from "../components/Layout"
-import { Nav } from "../components/Nav"
-import { HeadWithMetaTags } from "../components/HeadWithMetaTags"
+import { AnchorOrLink, Layout, Nav, HeadWithMetaTags } from "../components"
 
 const AboutPage = () => {
   return (

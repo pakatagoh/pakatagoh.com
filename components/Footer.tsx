@@ -1,6 +1,6 @@
 import { AnchorOrLink } from "./AnchorOrLink"
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <footer className="absolute bottom-0 flex h-[90px] flex-col-reverse justify-center gap-3 pb-6 pt-6 text-sm md:mx-auto md:max-w-3xl md:flex-row md:items-center md:justify-start md:gap-10">
       <p className="dark:text-gray-400">
@@ -51,5 +51,3 @@ const Footer = () => {
     </footer>
   )
 }
-
-export default Footer

@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react"
-import Footer from "./Footer"
+import { Footer } from "./Footer"
 
 export const Layout = (props: PropsWithChildren<any>) => {
   return (
