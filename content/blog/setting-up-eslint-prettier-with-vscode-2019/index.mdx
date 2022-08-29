@@ -63,7 +63,7 @@ module.exports = {
     "no-unreachable": "error",
     "no-console": "error",
   },
-};
+}
 ```
 
 The most common configuration keys you'll use are:
@@ -97,7 +97,7 @@ module.exports = {
   tabWidth: 2,
   semi: false,
   singleQuote: true,
-};
+}
 ```
 
 See more configuration options at [Prettier's site](https://prettier.io/docs/en/options.html)
@@ -118,7 +118,7 @@ module.exports = {
   extends: [
     "prettier", //highlight-line
   ],
-};
+}
 ```
 
 We can use `prettier` in the `extends` field because ESLint recognizes the `eslint-config-` prefix automatically.
@@ -142,7 +142,7 @@ module.exports = {
     //highlight-line
     "prettier/prettier": "error", //highlight-line
   }, //highlight-line
-};
+}
 ```
 
 Just like the `eslint-config-` prefix, the reason why we use `prettier` here and not `eslint-plugin-prettier` is because ESLint recognizes the `eslint-plugin-` prefix automatically.
@@ -159,12 +159,12 @@ Create a file called `ugly.js` in the root with the following content
 //Note all the inconsistent spacings, the semicolon and the use of console.log
 function someUglyFunction(x, y, z) {
   if (z) {
-    const a = x + y;
-    return a;
+    const a = x + y
+    return a
   }
-  console.log("this is bad");
+  console.log("this is bad")
 
-  return x - y;
+  return x - y
 }
 ```
 
@@ -208,10 +208,15 @@ To integrate ESLint and Prettier into your VS Code workflow, you should install 
 
 After installing the ESLint extension, you'll start to see red wavy underlines which indicate errors
 
-![ESLint error](./images/eslint-prettier-error.png)
+<Image
+  src="/images/setting-up-eslint-prettier-with-vscode-2019/eslint-prettier-error.png"
+  width={1670}
+  height={945}
+  alt="ESLint error"
+/>
 
 (`Insert '.'` means insert a space)
-
+w
 Go to your VS Code JSON settings by using the command palette.
 Press `CTRL + SHIFT + P` on windows or `⇧+⌘+P` on mac to open the command palette. Next, type in `Open Settings(JSON)` and enter. Your `settings.json` file should open.
 
@@ -228,7 +233,12 @@ When you save your file, the ESLint extension will run with the config we have s
 
 Now try saving `ugly.js` again and see how the spacings in the file are fixed. It should look something like below:
 
-![ESLint fix](./images/eslint-fix.png)
+<Image
+  src="/images/setting-up-eslint-prettier-with-vscode-2019/eslint-fix.png"
+  width={1453}
+  height={658}
+  alt="Eslint fix"
+/>
 
 All the red wavy errors are gone except for the one at `console.log`. This is because ESLint was not able to fix that error. To fix that error, we have to manually remove that `console.log` from our file.
 

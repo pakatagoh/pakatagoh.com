@@ -1,59 +1,59 @@
-import React, { useState, useRef, useLayoutEffect } from "react";
-import { useTrail, animated, useSpring, useChain, config } from "react-spring";
-import useWindowSize from "./useWindowResize";
+import React, { useState, useRef, useLayoutEffect } from "react"
+import { useTrail, animated, useSpring, useChain, config } from "react-spring"
+import useWindowSize from "./useWindowResize"
 
-const colors = ["red", "green", "blue", "orange", "purple", "yellow"];
+const colors = ["red", "green", "blue", "orange", "purple", "yellow"]
 
 const TranslateStaggeredBars = () => {
-  const styledBorderRef = useRef();
-  const animatedBarsContainerRef = useRef();
-  const size = useWindowSize();
+  const styledBorderRef = useRef()
+  const animatedBarsContainerRef = useRef()
+  const size = useWindowSize()
 
-  const [translationValue, setTranslationValue] = useState(0);
-  const [expanded, setExpanded] = useState(false);
+  const [translationValue, setTranslationValue] = useState(0)
+  const [expanded, setExpanded] = useState(false)
 
-  const springRef = useRef();
+  const springRef = useRef()
   const spring = useSpring({
     from: { transform: `translateX(${translationValue}px)` },
     to: { transform: `translateX(0px)` },
     ref: springRef,
     config: config.stiff,
     reverse: expanded,
-  });
+  })
 
-  const trailRef = useRef();
+  const trailRef = useRef()
   const trailSprings = useTrail(colors.length, {
     from: { height: "5px" },
     to: { height: "80px" },
     ref: trailRef,
     reverse: !expanded,
-  });
+  })
 
   const getComputedTranslationValue = (element) => {
     const barsContainerWidth = parseFloat(
       animatedBarsContainerRef.current.getBoundingClientRect().width
-    );
+    )
 
-    const cs = getComputedStyle(element);
+    const cs = getComputedStyle(element)
 
-    const paddingX = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
+    const paddingX = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight)
     const borderX =
-      parseFloat(cs.borderLeftWidth) + parseFloat(cs.borderRightWidth);
+      parseFloat(cs.borderLeftWidth) + parseFloat(cs.borderRightWidth)
 
     // Element width minus padding and border
     const translationAmount =
       element.getBoundingClientRect().width -
       paddingX -
       borderX -
-      barsContainerWidth;
-    return translationAmount;
-  };
+      barsContainerWidth
+    return translationAmount
+  }
 
   useLayoutEffect(() => {
-    setTranslationValue(getComputedTranslationValue(styledBorderRef.current));
-  }, [size]);
+    setTranslationValue(getComputedTranslationValue(styledBorderRef.current))
+  }, [size])
 
-  useChain(expanded ? [springRef, trailRef] : [trailRef, springRef]);
+  useChain(expanded ? [springRef, trailRef] : [trailRef, springRef])
 
   return (
     <div
@@ -83,14 +83,14 @@ const TranslateStaggeredBars = () => {
         <button
           type="button"
           onClick={() => {
-            setExpanded((prevState) => !prevState);
+            setExpanded((prevState) => !prevState)
           }}
         >
           Click to Animate
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default TranslateStaggeredBars;
+export default TranslateStaggeredBars

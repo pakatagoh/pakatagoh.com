@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { useSprings, animated } from "react-spring";
+import React, { useState } from "react"
+import { useSprings, animated } from "react-spring"
 
 const BarGraph = () => {
-  const [expanded, setExpanded] = useState(true);
+  const [expanded, setExpanded] = useState(true)
   const bars = [
     {
       key: "bar1",
@@ -46,11 +46,11 @@ const BarGraph = () => {
         clamp: expanded,
       },
     },
-  ];
+  ]
   const springs = useSprings(
     bars.length,
     bars.map(({ color, key, ...config }) => config)
-  );
+  )
 
   return (
     <div className="mb-3 border border-black p-3 dark:border-white">
@@ -68,13 +68,13 @@ const BarGraph = () => {
       <button
         type="button"
         onClick={() => {
-          setExpanded((prevState) => !prevState);
+          setExpanded((prevState) => !prevState)
         }}
       >
         Click to Animate
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default BarGraph;
+export default BarGraph
