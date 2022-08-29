@@ -1,20 +1,22 @@
 ---
-title: 'Getting started with react-spring'
-description: 'As a front end developer, you will inevitably run into animations and transitions. React spring is a great library that helps you build your animations. In this post we see how to get started with some simple examples'
-createdAt: '2020-02-09'
+title: "Getting started with react-spring"
+description: "As a front end developer, you will inevitably run into animations and transitions. React spring is a great library that helps you build your animations. In this post we see how to get started with some simple examples"
+createdAt: "2020-02-09"
 isPublished: true
 keywords:
-  - 'react'
-  - 'react-spring'
-  - 'animations'
-  - 'transitions'
+  - "react"
+  - "react-spring"
+  - "animations"
+  - "transitions"
 ---
 
-import Translate from './components/Translate.jsx';
-import BarGraph from './components/BarGraph.jsx';
-import StaggeredBars from './components/StaggeredBars.jsx';
-import DisappearingComponent from './components/DisappearingComponent.jsx';
-import TranslateStaggeredBars from './components/TranslateStaggeredBars.jsx';
+import Translate from "./components/Translate.jsx"
+import BarGraph from "./components/BarGraph.jsx"
+import StaggeredBars from "./components/StaggeredBars.jsx"
+import DisappearingComponent from "./components/DisappearingComponent.jsx"
+import TranslateStaggeredBars from "./components/TranslateStaggeredBars.jsx"
+
+_Last updated: 28 Aug 2022_
 
 As a front end developer, you will inevitably run into animations and transitions. If you're in the React ecosystem and your application has many complex animations, [react-spring](https://www.react-spring.io/) is a great library that helps to build your animations. In this post we will see how to get started with some simple examples.
 
@@ -72,8 +74,8 @@ Create a file in the `src` folder called `Translate.js` and insert the following
 
 ```javascript
 //Translate.js
-import React from 'react';
-import { useSpring, animated } from 'react-spring';
+import React from "react"
+import { useSpring, animated } from "react-spring"
 
 const Translate = () => {
   const spring = useSpring({
@@ -86,30 +88,34 @@ const Translate = () => {
     config: {
       mass: 6,
     },
-  });
+  })
 
-  return <animated.div style={{ ...spring, display: 'inline-block' }}>Translated Div</animated.div>;
-};
+  return (
+    <animated.div style={{ ...spring, display: "inline-block" }}>
+      Translated Div
+    </animated.div>
+  )
+}
 
-export default Translate;
+export default Translate
 ```
 
 Replace the contents of `App.js` with the code below
 
 ```javascript
 // App.js
-import React from 'react';
-import Translate from './Translate';
+import React from "react"
+import Translate from "./Translate"
 
 function App() {
   return (
     <div>
       <Translate />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
 ```
 
 If you have your server running, you should see the `Translated Div` text being translated across the screen on page load. If so, you've created your first animated component! 🥳
@@ -127,7 +133,7 @@ const spring = useSpring({
   config: {
     mass: 6,
   },
-});
+})
 ```
 
 `useSpring` accepts an object with a `from` and `to` property. There's an optional `config` property which allows you to fine tune the animation settings.
@@ -152,19 +158,21 @@ const Translate = () => {
     config: {
       mass: 6,
     },
-  });
+  })
 
   return (
     <animated.div
       style={{
-        transform: spring.myXTranslateValue.interpolate(myXTranslateValue => `translate(${myXTranslateValue}px)`),
-        display: 'inline-block',
+        transform: spring.myXTranslateValue.interpolate(
+          (myXTranslateValue) => `translate(${myXTranslateValue}px)`
+        ),
+        display: "inline-block",
       }}
     >
       Translated Div
     </animated.div>
-  );
-};
+  )
+}
 ```
 
 The `config` in our example changes the `mass` property to 6. The default value for the `mass` property is 1. Increasing the mass will increase the inertia of the spring/animation. Just imagine what would happen if you have a large weight on a spring compared to a lighter weight. The heavier one will bob about longer.
@@ -187,9 +195,9 @@ In `App.js`, comment out `<Translate/>` and import and use `<BarGraph/>`
 
 ```javascript
 // App.js
-import React from 'react';
-import Translate from './Translate';
-import BarGraph from './BarGraph';
+import React from "react"
+import Translate from "./Translate"
+import BarGraph from "./BarGraph"
 
 function App() {
   return (
@@ -197,80 +205,80 @@ function App() {
       {/* <Translate /> */}
       <BarGraph />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
 ```
 
 Create a new file in the `src` folder called `BarGraph.js` and insert the following code
 
 ```javascript
 // BarGraph.js
-import React from 'react';
-import { useSprings, animated } from 'react-spring';
+import React from "react"
+import { useSprings, animated } from "react-spring"
 
 const bars = [
   {
-    key: 'bar1',
-    color: 'green',
+    key: "bar1",
+    color: "green",
     from: {
-      width: '0px',
+      width: "0px",
     },
     to: {
-      width: '100px',
+      width: "100px",
     },
     config: {
       mass: 20,
     },
   },
   {
-    key: 'bar2',
-    color: 'blue',
+    key: "bar2",
+    color: "blue",
     from: {
-      width: '0px',
+      width: "0px",
     },
     to: {
-      width: '250px',
+      width: "250px",
     },
     config: {
       mass: 30,
     },
   },
   {
-    key: 'bar3',
-    color: 'red',
+    key: "bar3",
+    color: "red",
     from: {
-      width: '0px',
+      width: "0px",
     },
     to: {
-      width: '150px',
+      width: "150px",
     },
     config: {
       mass: 13,
     },
   },
-];
+]
 
 const BarGraph = () => {
   const springs = useSprings(
     bars.length,
     bars.map(({ color, key, ...config }) => config)
-  );
+  )
 
   return springs.map((spring, index) => (
     <animated.div
       style={{
         ...spring,
-        height: '20px',
-        marginBottom: '10px',
+        height: "20px",
+        marginBottom: "10px",
         backgroundColor: bars[index].color,
       }}
     />
-  ));
-};
+  ))
+}
 
-export default BarGraph;
+export default BarGraph
 ```
 
 Let's go through what we have in `BarGraph.js`
@@ -312,7 +320,7 @@ and we insert `bars` into `useSprings` accordingly
 const springs = useSprings(
   bars.length,
   bars.map(({ color, key, ...config }) => config) // we are omitting color and key prop as we are not animating them
-);
+)
 ```
 
 We then iterate over `springs` to generate a list of horizontal bars, each with a specific animation defined in `bars`
@@ -323,12 +331,12 @@ return springs.map((spring, index) => (
     key={bars[index].key}
     style={{
       ...spring,
-      height: '20px',
-      marginBottom: '10px',
+      height: "20px",
+      marginBottom: "10px",
       backgroundColor: bars[index].color,
     }}
   />
-));
+))
 ```
 
 ### useTrail
@@ -340,10 +348,10 @@ We will build a trailing animation with a set of vertical bars. Each vertical ba
 In `App.js` comment out `<BarGraph/>` and insert `<StaggeredBars/>`
 
 ```javascript
-import React from 'react';
-import Translate from './Translate';
-import BarGraph from './BarGraph';
-import StaggeredBars from './StaggeredBars'; //import StaggeredBars
+import React from "react"
+import Translate from "./Translate"
+import BarGraph from "./BarGraph"
+import StaggeredBars from "./StaggeredBars" //import StaggeredBars
 
 function App() {
   return (
@@ -352,45 +360,45 @@ function App() {
       {/* <BarGraph /> */}
       <StaggeredBars /> // Use StaggeredBars
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
 ```
 
 Create a new file called `StaggeredBars.js` and insert the following code
 
 ```javascript
-import React from 'react';
-import { useTrail, animated } from 'react-spring';
+import React from "react"
+import { useTrail, animated } from "react-spring"
 
-const colors = ['red', 'green', 'blue', 'orange', 'purple', 'yellow'];
+const colors = ["red", "green", "blue", "orange", "purple", "yellow"]
 
 const StaggeredBars = () => {
   const trailSprings = useTrail(colors.length, {
-    from: { height: '0px' },
-    to: { height: '80px' },
-  });
+    from: { height: "0px" },
+    to: { height: "80px" },
+  })
 
   return (
-    <div style={{ display: 'flex', alignItems: 'flex-end', height: '500px' }}>
+    <div style={{ display: "flex", alignItems: "flex-end", height: "500px" }}>
       {trailSprings.map((spring, index) => (
         <animated.div
           key={colors[index]}
           style={{
             ...spring,
-            width: '20px',
-            marginRight: '10px',
-            transformOrigin: 'bottom',
+            width: "20px",
+            marginRight: "10px",
+            transformOrigin: "bottom",
             backgroundColor: colors[index],
           }}
         />
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default StaggeredBars;
+export default StaggeredBars
 ```
 
 Just like the `useSprings` api, it accepts 2 arguments. However, the 2nd argument this time only accepts a single spring configuration.
@@ -402,16 +410,16 @@ Click on the button below to see how the component will animate when we are moun
 
 I don't think the api/documentation for `useTransition` is really clear about what type of arugments it accepts and what they do. However, this comment on github helps to clear things up a little: https://github.com/react-spring/react-spring/issues/606#issuecomment-476311041
 
-<DisappearingComponent />
+> **UPDATE**: The demo has been removed as it is causing an error on the page
 
 In `App.js` comment out `<StaggeredBars/>` and insert `<DisappearingComponent/>`
 
 ```javascript
-import React from 'react';
-import Translate from './Translate';
-import BarGraph from './BarGraph';
-import StaggeredBars from './StaggeredBars';
-import DisappearingComponent from './DisappearingComponent';
+import React from "react"
+import Translate from "./Translate"
+import BarGraph from "./BarGraph"
+import StaggeredBars from "./StaggeredBars"
+import DisappearingComponent from "./DisappearingComponent"
 
 function App() {
   return (
@@ -421,33 +429,36 @@ function App() {
       {/* <StaggeredBars /> */}
       <DisappearingComponent />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
 ```
 
 Create a new file called `DisappearingComponent.js` and insert the following code
 
 ```javascript
-import React, { useState } from 'react';
-import { useTransition, animated } from 'react-spring';
+import React, { useState } from "react"
+import { useTransition, animated } from "react-spring"
 
 const DisappearingComponent = () => {
-  const [isDisplay, setIsDisplay] = useState(true);
+  const [isDisplay, setIsDisplay] = useState(true)
   const transitions = useTransition(isDisplay, null, {
     from: { transform: `translateX(50px)`, opacity: 0 },
     enter: { transform: `translateX(0px)`, opacity: 1 },
     leave: { transform: `translateX(50px)`, opacity: 0 },
-  });
+  })
 
   return (
     <>
-      <div style={{ width: '50px', height: '20px' }}>
+      <div style={{ width: "50px", height: "20px" }}>
         {transitions.map(
           ({ item, key, props }) =>
             item && (
-              <animated.div key={key} style={{ ...props, display: 'inline-block' }}>
+              <animated.div
+                key={key}
+                style={{ ...props, display: "inline-block" }}
+              >
                 Yo
               </animated.div>
             )
@@ -455,27 +466,27 @@ const DisappearingComponent = () => {
       </div>
       <button
         onClick={() => {
-          setIsDisplay(prevState => !prevState);
+          setIsDisplay((prevState) => !prevState)
         }}
       >
         click
       </button>
     </>
-  );
-};
+  )
+}
 
-export default DisappearingComponent;
+export default DisappearingComponent
 ```
 
 Let's checkout what's going here.
 
 ```javascript
-const [isDisplay, setIsDisplay] = useState(true);
+const [isDisplay, setIsDisplay] = useState(true)
 const transitions = useTransition(isDisplay, null, {
   from: { transform: `translateX(50px)`, opacity: 0 },
   enter: { transform: `translateX(0px)`, opacity: 1 },
   leave: { transform: `translateX(50px)`, opacity: 0 },
-});
+})
 ```
 
 `useTransition` accepts 3 arguments. The 1st argument is a changing state and in this case, the state is a boolean value. The 2nd argument is a function that receives the 1st argument as a parameter and you are supposed to return a value to act as a key. However, in our example above, since our 1st argument is just a boolean, we can just declare a `null` value instead of a function. The last argument is an object describing the transition lifecycles
@@ -491,11 +502,11 @@ For more info on other properties that can be configured, head to https://www.re
   transitions.map(
     ({ item, key, props }) =>
       item && (
-        <animated.div key={key} style={{ ...props, display: 'inline-block' }}>
+        <animated.div key={key} style={{ ...props, display: "inline-block" }}>
           Yo
         </animated.div>
       )
-  );
+  )
 }
 ```
 
@@ -509,17 +520,17 @@ When we click animate, we are toggling the `isDisplay` state and we can see the 
 
 `useChain` allows us to set the order of declared spring animations. In our example, we will chain a `useSpring` together with a `useTrail` animation. Click animate below to see the example in action.
 
-<TranslateStaggeredBars />
+> **UPDATE**: The demo has been removed as it is causing an error on the page
 
 In `App.js` comment out `<DisappearingComponent/>` and insert `<TranslateStaggeredBars/>`
 
 ```javascript
-import React from 'react';
-import Translate from './Translate';
-import BarGraph from './BarGraph';
-import StaggeredBars from './StaggeredBars';
-import DisappearingComponent from './DisappearingComponent';
-import TranslateStaggeredBars from './TranslateStaggeredBars';
+import React from "react"
+import Translate from "./Translate"
+import BarGraph from "./BarGraph"
+import StaggeredBars from "./StaggeredBars"
+import DisappearingComponent from "./DisappearingComponent"
+import TranslateStaggeredBars from "./TranslateStaggeredBars"
 
 function App() {
   return (
@@ -530,51 +541,51 @@ function App() {
       {/* <DisappearingComponent /> */}
       <TranslateStaggeredBars />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
 ```
 
 Create a new file called `TranslateStaggeredBars.js` and insert the following code:
 
 ```javascript
-import React, { useState, useRef } from 'react';
-import { useTrail, animated, useSpring, useChain, config } from 'react-spring';
+import React, { useState, useRef } from "react"
+import { useTrail, animated, useSpring, useChain, config } from "react-spring"
 
-const colors = ['red', 'green', 'blue', 'orange', 'purple', 'yellow'];
+const colors = ["red", "green", "blue", "orange", "purple", "yellow"]
 
 const TranslateStaggeredBars = () => {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(false)
 
-  const springRef = useRef();
+  const springRef = useRef()
   const spring = useSpring({
     from: { transform: `translateX(80px)` },
     to: { transform: `translateX(0px)` },
     ref: springRef,
     config: config.stiff,
     reverse: expanded,
-  });
+  })
 
-  const trailRef = useRef();
+  const trailRef = useRef()
   const trailSprings = useTrail(colors.length, {
-    from: { height: '5px' },
-    to: { height: '80px' },
+    from: { height: "5px" },
+    to: { height: "80px" },
     ref: trailRef,
     reverse: !expanded,
-  });
+  })
 
-  useChain(expanded ? [springRef, trailRef] : [trailRef, springRef]);
+  useChain(expanded ? [springRef, trailRef] : [trailRef, springRef])
 
   return (
-    <div style={{ height: '500px' }}>
+    <div style={{ height: "500px" }}>
       <animated.div
         style={{
           ...spring,
-          height: '100px',
-          display: 'inline-flex',
-          alignItems: 'flex-end',
-          marginBottom: '15px',
+          height: "100px",
+          display: "inline-flex",
+          alignItems: "flex-end",
+          marginBottom: "15px",
         }}
       >
         {trailSprings.map((trailSpring, index) => (
@@ -582,9 +593,9 @@ const TranslateStaggeredBars = () => {
             key={colors[index]}
             style={{
               ...trailSpring,
-              width: '20px',
-              marginRight: '10px',
-              transformOrigin: 'bottom',
+              width: "20px",
+              marginRight: "10px",
+              transformOrigin: "bottom",
               backgroundColor: colors[index],
             }}
           />
@@ -594,40 +605,40 @@ const TranslateStaggeredBars = () => {
         <button
           type="button"
           onClick={() => {
-            setExpanded(prevState => !prevState);
+            setExpanded((prevState) => !prevState)
           }}
         >
           Click to Animate
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default TranslateStaggeredBars;
+export default TranslateStaggeredBars
 ```
 
 We are using the same `colors` array from our example in `useTrail` section. We also introduced `ref` and the `reverse` keys
 
 ```javascript
-const springRef = useRef();
+const springRef = useRef()
 const spring = useSpring({
   from: { transform: `translateX(80px)` },
   to: { transform: `translateX(0px)` },
   ref: springRef,
   config: config.stiff, // this is a preset from react-spring
   reverse: expanded,
-});
+})
 
-const trailRef = useRef();
+const trailRef = useRef()
 const trailSprings = useTrail(colors.length, {
-  from: { height: '5px' },
-  to: { height: '80px' },
+  from: { height: "5px" },
+  to: { height: "80px" },
   ref: trailRef,
   reverse: !expanded,
-});
+})
 
-useChain(expanded ? [springRef, trailRef] : [trailRef, springRef]);
+useChain(expanded ? [springRef, trailRef] : [trailRef, springRef])
 ```
 
 `useChain` takes an array of `ref`s to determine the order of execution. The `ref`s that are created (`springRef` and `trailRef`) are included in the animation configuration.

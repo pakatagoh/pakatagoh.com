@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { useTrail, animated } from "react-spring";
+import React, { useState } from "react"
+import { useTrail, animated } from "react-spring"
 
-const colors = ["red", "green", "blue", "orange", "purple", "yellow"];
+const colors = ["red", "green", "blue", "orange", "purple", "yellow"]
 
 const StaggeredBars = () => {
-  const [expanded, setExpanded] = useState(true);
+  const [expanded, setExpanded] = useState(true)
   const trailSprings = useTrail(colors.length, {
     from: { height: expanded ? "80px" : "5px" },
     to: { height: expanded ? "5px" : "80px" },
-  });
+  })
 
   return (
     <div className="mb-3 border border-black p-3 dark:border-white">
@@ -29,13 +29,13 @@ const StaggeredBars = () => {
       <button
         type="button"
         onClick={() => {
-          setExpanded((prevState) => !prevState);
+          setExpanded((prevState) => !prevState)
         }}
       >
         Click to Animate
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default StaggeredBars;
+export default StaggeredBars
