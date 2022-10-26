@@ -3,50 +3,50 @@
 const defaultTheme = require("tailwindcss/defaultTheme")
 
 module.exports = {
-    content: [
-        "./pages/**/*.{js,ts,jsx,tsx}",
-        "./components/**/*.{js,ts,jsx,tsx}",
-        ,
-        "./content/**/*.{js,ts,jsx,tsx}",
-    ],
-    darkMode: "class",
-    corePlugins: {
-        aspectRatio: false,
-    },
-    theme: {
-        extend: {
-            fontFamily: {
-                sans: ["Helvetica", ...defaultTheme.fontFamily.sans],
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+    ,
+    "./content/**/*.{js,ts,jsx,tsx}",
+  ],
+  darkMode: "class",
+  corePlugins: {
+    aspectRatio: false,
+  },
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ["Helvetica", ...defaultTheme.fontFamily.sans],
+      },
+      typography: (theme) => ({
+        DEFAULT: {
+          css: [
+            {
+              "blockquote p:first-of-type::before": {
+                content: "",
+              },
+              "blockquote p:last-of-type::after": {
+                content: "",
+              },
+              "code::before": {
+                content: '""',
+              },
+              "code::after": {
+                content: '""',
+              },
+              pre: {
+                padding: 0,
+                boxShadow: theme("boxShadow.md"),
+                borderRadius: theme("borderRadius.lg"),
+              },
             },
-            typography: (theme) => ({
-                DEFAULT: {
-                    css: [
-                        {
-                            "blockquote p:first-of-type::before": {
-                                content: "",
-                            },
-                            "blockquote p:last-of-type::after": {
-                                content: "",
-                            },
-                            "code::before": {
-                                content: '""',
-                            },
-                            "code::after": {
-                                content: '""',
-                            },
-                            pre: {
-                                padding: 0,
-                                boxShadow: theme("boxShadow.md"),
-                                borderRadius: theme("borderRadius.lg"),
-                            },
-                        },
-                    ],
-                },
-            }),
+          ],
         },
+      }),
     },
-    plugins: [
-        require("@tailwindcss/typography"),
-        require("@tailwindcss/aspect-ratio"),
-    ],
+  },
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/aspect-ratio"),
+  ],
 }
