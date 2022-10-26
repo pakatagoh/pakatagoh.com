@@ -1,6 +1,8 @@
 import React from "react"
-import Image from "next/legacy/image"
+import Image from "next/image"
 import { AnchorOrLink, Layout, Nav, HeadWithMetaTags } from "../components"
+import pgFsaeImage from "../public/images/about/pg-fsae.jpg"
+import pgPhotographyImage from "../public/images/about/pg-photography.jpg"
 
 const AboutPage = () => {
   return (
@@ -46,26 +48,25 @@ const AboutPage = () => {
               </p>
               <div className="flex flex-col items-stretch gap-8 sm:flex-row sm:justify-between sm:gap-10">
                 <div className="sm:flex-1">
-                  <div className="aspect-w-3 aspect-h-3 relative">
+                  <div className="aspect-w-3 aspect-h-3 relative overflow-hidden">
                     <Image
-                      src="/images/about/pg-fsae.jpg"
+                      src={pgFsaeImage}
                       alt="nus formula student"
-                      layout="fill"
+                      fill
                       priority
-                      objectFit="cover"
-                      objectPosition="center"
+                      placeholder="blur"
+                      className="m-0"
                     />
                   </div>
                 </div>
                 <div className="hidden sm:block sm:flex-1">
-                  <div className="aspect-w-3 aspect-h-3 relative">
+                  <div className="aspect-w-3 aspect-h-3 relative overflow-hidden">
                     <Image
-                      src="/images/about/pg-photography.jpg"
+                      src={pgPhotographyImage}
                       alt="photography"
-                      layout="fill"
                       priority
-                      objectFit="cover"
-                      objectPosition="center"
+                      placeholder="blur"
+                      className="m-0"
                     />
                   </div>
                 </div>
