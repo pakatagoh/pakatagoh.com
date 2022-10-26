@@ -1,5 +1,5 @@
 import { AnchorOrLink } from "./AnchorOrLink"
-import Image, { ImageProps } from "next/image"
+import Image, { ImageProps } from "next/legacy/image"
 
 const ResponsiveImage = (props: ImageProps) => {
   return <Image {...props} alt={props.alt} layout="responsive" />
