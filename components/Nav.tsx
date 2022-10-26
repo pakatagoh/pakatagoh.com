@@ -44,28 +44,48 @@ export const Nav = () => {
       <nav>
         <ul className="flex gap-4">
           <li>
-            <ActiveLink href="/" activeClassName="opacity-100">
-              <a className="opacity-60 hover:opacity-100">Home</a>
+            <ActiveLink
+              href="/"
+              activeClassName="opacity-100"
+              className="opacity-60 hover:opacity-100"
+            >
+              Home
             </ActiveLink>
           </li>
           <li>
-            <ActiveLink href="/blog" activeClassName="opacity-100">
-              <a className="opacity-60 hover:opacity-100">Blog</a>
+            <ActiveLink
+              href="/blog"
+              activeClassName="opacity-100"
+              className="opacity-60 hover:opacity-100"
+            >
+              Blog
             </ActiveLink>
           </li>
           <li>
-            <ActiveLink href="/about" activeClassName="opacity-100">
-              <a className="opacity-60 hover:opacity-100">About</a>
+            <ActiveLink
+              href="/about"
+              activeClassName="opacity-100"
+              className="opacity-60 hover:opacity-100"
+            >
+              About
             </ActiveLink>
           </li>
           <li>
-            <ActiveLink href="/uses" activeClassName="opacity-100">
-              <a className="opacity-60 hover:opacity-100">Uses</a>
+            <ActiveLink
+              href="/uses"
+              activeClassName="opacity-100"
+              className="opacity-60 hover:opacity-100"
+            >
+              Uses
             </ActiveLink>
           </li>
           <li>
-            <ActiveLink href="/contact" activeClassName="opacity-100">
-              <a className="opacity-60 hover:opacity-100">Contact</a>
+            <ActiveLink
+              href="/contact"
+              activeClassName="opacity-100"
+              className="opacity-60 hover:opacity-100"
+            >
+              Contact
             </ActiveLink>
           </li>
         </ul>

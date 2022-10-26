@@ -42,19 +42,21 @@ const BlogListingPage = (
           <div className="mt-6 flex flex-col gap-6">
             {props.posts.map((post) => {
               return (
-                <Link key={post.slug} href={`/blog/${post.slug}`}>
-                  <a className="rounded-lg border border-gray-200 border-opacity-40 py-3 px-4 shadow-lg transition-shadow hover:shadow-md dark:border-gray-700 dark:border-opacity-30 dark:shadow-gray-900 sm:py-3 sm:px-4">
-                    <div className="mb-3 flex flex-wrap items-center gap-1 sm:mb-2 sm:flex-nowrap sm:gap-3">
-                      <h4 className="font-medium ">{post.title}</h4>
-                      <div className="flex w-full items-center gap-1 text-sm text-gray-700 dark:text-gray-400 sm:w-auto sm:gap-3">
-                        <span> - </span>
-                        <span>{post.createdAt}</span>
-                      </div>
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className="rounded-lg border border-gray-200 border-opacity-40 py-3 px-4 shadow-lg transition-shadow hover:shadow-md dark:border-gray-700 dark:border-opacity-30 dark:shadow-gray-900 sm:py-3 sm:px-4"
+                >
+                  <div className="mb-3 flex flex-wrap items-center gap-1 sm:mb-2 sm:flex-nowrap sm:gap-3">
+                    <h4 className="font-medium ">{post.title}</h4>
+                    <div className="flex w-full items-center gap-1 text-sm text-gray-700 dark:text-gray-400 sm:w-auto sm:gap-3">
+                      <span> - </span>
+                      <span>{post.createdAt}</span>
                     </div>
-                    <p className="mt-1 text-sm text-gray-700 dark:text-gray-400">
-                      {post.description}
-                    </p>
-                  </a>
+                  </div>
+                  <p className="mt-1 text-sm text-gray-700 dark:text-gray-400">
+                    {post.description}
+                  </p>
                 </Link>
               )
             })}
