@@ -5,6 +5,7 @@ import { Layout } from "../../components/Layout"
 import { Nav } from "../../components/Nav"
 import { useMdxComponent } from "../../hooks/useMdxComponent"
 import { getAllPublishedPosts, getPostBySlug, Post } from "../../service/posts"
+import "highlight.js/styles/github-dark.css"
 
 interface PostDetailsProps extends Post {
   code: string
