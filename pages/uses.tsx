@@ -15,7 +15,7 @@ const UsesPage = () => {
         title="Uses - Pakata Goh"
         description="A list of stuff I use on a daily basis in my work and my
                     personal life"
-        imageUrl="/images/uses/overhead-shot.jpeg"
+        imagePath="/images/uses/overhead-shot.jpeg"
       />
       <Layout>
         <Nav />

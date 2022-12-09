@@ -7,7 +7,7 @@ const HomePage: NextPage = () => {
       <HeadWithMetaTags
         title="Pakata Goh"
         description="Software developer from sunny Singapore"
-        imageUrl="/images/meta/pakata-headshot.jpeg"
+        imagePath="/images/meta/pakata-headshot.jpeg"
       >
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:creator" content="GohPakata" />

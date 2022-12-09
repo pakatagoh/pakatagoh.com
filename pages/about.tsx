@@ -10,7 +10,7 @@ const AboutPage = () => {
       <HeadWithMetaTags
         title="Pakata Goh"
         description="Software developer from sunny Singapore. Find out more about me here!"
-        imageUrl="/images/meta/pakata-headshot.jpeg"
+        imagePath="/images/meta/pakata-headshot.jpeg"
       ></HeadWithMetaTags>
       <Layout>
         <Nav />

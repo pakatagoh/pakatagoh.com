@@ -1,16 +1,20 @@
 import Head from "next/head"
 import { PropsWithChildren } from "react"
 
+const PAGE_ORIGIN = process.env.NEXT_PUBLIC_ORIGIN ?? ""
+
 export const HeadWithMetaTags = ({
   title,
   description,
-  imageUrl,
+  imagePath,
   children,
 }: PropsWithChildren<{
   title: string
   description?: string
-  imageUrl?: string
+  imagePath?: string
 }>) => {
+  const imageUrl = imagePath && PAGE_ORIGIN ? `${PAGE_ORIGIN}${imagePath}` : ""
+
   return (
     <Head>
       <title>{title}</title>

@@ -33,7 +33,7 @@ const BlogListingPage = (
       <HeadWithMetaTags
         title="Blog - Pakata Goh"
         description="Blog posts"
-        imageUrl="/images/blog/writing-article.jpeg"
+        imagePath="/images/blog/writing-article.jpeg"
       />
       <Layout>
         <Nav />

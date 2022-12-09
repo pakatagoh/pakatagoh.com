@@ -50,7 +50,7 @@ const BlogDetailPage = (
       <HeadWithMetaTags
         title={title ? `${title} - Pakata Goh` : "Not Found"}
         description={description}
-        imageUrl="/images/blog/writing-article.jpeg"
+        imagePath="/images/blog/writing-article.jpeg"
       >
         <meta property="og:type" content="article" />
         <meta property="og:article:author" content="Pakata Goh" />
