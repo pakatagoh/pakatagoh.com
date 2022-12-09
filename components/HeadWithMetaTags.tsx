@@ -1,8 +1,14 @@
 import Head from "next/head"
 import { PropsWithChildren } from "react"
 
-const PAGE_ORIGIN =
-  process.env.NEXT_PUBLIC_ORIGIN ?? process.env.NEXT_PUBLIC_VERCEL_URL ?? ""
+const PAGE_HOSTNAME =
+  process.env.NEXT_PUBLIC_HOSTNAME ?? process.env.NEXT_PUBLIC_VERCEL_URL ?? ""
+
+const getImageUrl = (path?: string) => {
+  const protocol = PAGE_HOSTNAME.includes("localhost") ? "http://" : "https://"
+
+  return path ? `${protocol}${PAGE_HOSTNAME}${path}` : ""
+}
 
 export const HeadWithMetaTags = ({
   title,
@@ -14,8 +20,7 @@ export const HeadWithMetaTags = ({
   description?: string
   imagePath?: string
 }>) => {
-  const imageUrl = imagePath && PAGE_ORIGIN ? `${PAGE_ORIGIN}${imagePath}` : ""
-
+  const imageUrl = getImageUrl(imagePath)
   return (
     <Head>
       <title>{title}</title>
