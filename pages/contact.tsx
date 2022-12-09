@@ -65,7 +65,7 @@ const ContactPage = () => {
       <HeadWithMetaTags
         title="Contact - Pakata Goh"
         description="You can contact me through the various channels mentioned on this page"
-        imageUrl="/images/contact/typing-hands.jpeg"
+        imagePath="/images/contact/typing-hands.jpeg"
       />
       <div className="relative flex min-h-screen flex-col items-stretch px-4 py-3 md:mx-auto md:max-w-3xl">
         <div className="flex flex-1 flex-col items-stretch pb-[90px]">
