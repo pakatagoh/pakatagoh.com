@@ -2,7 +2,7 @@ import Head from "next/head"
 import { PropsWithChildren } from "react"
 
 const PAGE_ORIGIN =
-  process.env.NEXT_PUBLIC_ORIGIN ?? process.env.VERCEL_URL ?? ""
+  process.env.NEXT_PUBLIC_ORIGIN ?? process.env.NEXT_PUBLIC_VERCEL_URL ?? ""
 
 export const HeadWithMetaTags = ({
   title,
