@@ -24,7 +24,7 @@ const HomePage: NextPage = () => {
             <p>Software developer from sunny Singapore</p>
             <p>Currently working as a Frontend Engineer at foodpanda</p>
             <button onClick={() => setCount((prev) => prev + 1)}>
-              count {0}
+              count {count}
             </button>
           </main>
         </div>
