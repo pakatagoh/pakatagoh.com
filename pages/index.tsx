@@ -1,7 +1,9 @@
 import type { NextPage } from "next"
 import { Footer, HeadWithMetaTags, Nav } from "../components"
+import { useState } from "react"
 
 const HomePage: NextPage = () => {
+  const [count, setCount] = useState(0)
   return (
     <>
       <HeadWithMetaTags
@@ -21,6 +23,9 @@ const HomePage: NextPage = () => {
             </h1>
             <p>Software developer from sunny Singapore</p>
             <p>Currently working as a Frontend Engineer at foodpanda</p>
+            <button onClick={() => setCount((prev) => prev + 1)}>
+              count {0}
+            </button>
           </main>
         </div>
         <div className="w-full">
