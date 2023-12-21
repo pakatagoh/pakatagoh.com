@@ -17,6 +17,7 @@ const { title, description = "", imageUrl } = Astro.props;
 const optimizedImage = await getImage({
   src: imageUrl ?? defaultWritingArticleImage,
 });
+console.log("hello");
 ---
 
 <!-- Experimental -->
