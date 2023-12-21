@@ -1,0 +1,126 @@
+---
+const currentPathname = Astro.url.pathname;
+---
+
+<header class="mb-6 flex items-center justify-between">
+  <nav>
+    <ul class="flex gap-4">
+      <li>
+        <a
+          data-astro-prefetch
+          href="/"
+          class={currentPathname === "/"
+            ? "opacity-100"
+            : "opacity-60 hover:opacity-100"}
+        >
+          Home
+        </a>
+      </li>
+      <li>
+        <a
+          data-astro-prefetch
+          href="/blog"
+          class={currentPathname === "/blog"
+            ? "opacity-100"
+            : "opacity-60 hover:opacity-100"}
+        >
+          Blog
+        </a>
+      </li>
+      <li>
+        <a
+          data-astro-prefetch
+          href="/about"
+          class={currentPathname === "/about"
+            ? "opacity-100"
+            : "opacity-60 hover:opacity-100"}
+        >
+          About
+        </a>
+      </li>
+      <li>
+        <a
+          data-astro-prefetch
+          href="/uses"
+          class={currentPathname === "/uses"
+            ? "opacity-100"
+            : "opacity-60 hover:opacity-100"}
+        >
+          Uses
+        </a>
+      </li>
+      <li>
+        <a
+          data-astro-prefetch
+          href="/contact"
+          class={currentPathname === "/contact"
+            ? "opacity-100"
+            : "opacity-60 hover:opacity-100"}
+        >
+          Contact
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div class="flex items-center">
+    <button
+      class="hidden items-center justify-center"
+      id="theme-toggle"
+      role="switch"
+      aria-label="switch to light theme"
+      data-theme="dark"
+      aria-checked="true"
+    >
+      <div class="w-6 h-6 dark:hidden" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15"
+          ><path
+            fill="currentColor"
+            fill-rule="evenodd"
+            d="M7.5 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2a.5.5 0 0 1 .5-.5ZM2.197 2.197a.5.5 0 0 1 .707 0L4.318 3.61a.5.5 0 0 1-.707.707L2.197 2.904a.5.5 0 0 1 0-.707ZM.5 7a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2Zm1.697 5.803a.5.5 0 0 1 0-.707l1.414-1.414a.5.5 0 1 1 .707.707l-1.414 1.414a.5.5 0 0 1-.707 0ZM12.5 7a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2Zm-1.818-2.682a.5.5 0 0 1 0-.707l1.414-1.414a.5.5 0 1 1 .707.707L11.39 4.318a.5.5 0 0 1-.707 0ZM8 12.5a.5.5 0 0 0-1 0v2a.5.5 0 0 0 1 0v-2Zm2.682-1.818a.5.5 0 0 1 .707 0l1.414 1.414a.5.5 0 1 1-.707.707l-1.414-1.414a.5.5 0 0 1 0-.707ZM5.5 7.5a2 2 0 1 1 4 0a2 2 0 0 1-4 0Zm2-3a3 3 0 1 0 0 6a3 3 0 0 0 0-6Z"
+            clip-rule="evenodd"></path></svg
+        >
+      </div>
+      <div class="hidden w-6 h-6 dark:inline-block" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+          ><path
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="32"
+            d="M160 136c0-30.62 4.51-61.61 16-88C99.57 81.27 48 159.32 48 248c0 119.29 96.71 216 216 216c88.68 0 166.73-51.57 200-128c-26.39 11.49-57.38 16-88 16c-119.29 0-216-96.71-216-216Z"
+          ></path></svg
+        >
+      </div>
+    </button>
+  </div>
+</header>
+
+<script>
+  const themeToggle = document.getElementById("theme-toggle");
+
+  themeToggle?.classList.remove("hidden");
+  themeToggle?.classList.add("flex");
+
+  themeToggle?.addEventListener("click", (e) => {
+    const element = e.currentTarget as HTMLButtonElement;
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+
+    const isCurrentThemeDark = currentTheme === "dark";
+
+    const targetTheme = isCurrentThemeDark ? "light" : "dark";
+
+    document.documentElement.setAttribute("data-theme", targetTheme);
+
+    if (isCurrentThemeDark) {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+
+      element.setAttribute("aria-label", "switch to dark theme");
+    } else {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+      element.setAttribute("aria-label", "switch to light theme");
+    }
+  });
+</script>
