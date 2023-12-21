@@ -9,8 +9,8 @@ import react from "@astrojs/react";
 const env = process.env.ENVIRONMENT ?? "DEV";
 const envToSiteMapping = {
   DEV: "http://localhost:4321",
-  STAGING: "https://astro.pakatagoh.com",
-  PRODUCTION: "https://astro.pakatagoh.com",
+  STAGING: "https://dev.pakatagoh.com",
+  PRODUCTION: "https://pakatagoh.com",
 };
 const site = envToSiteMapping[env];
 
