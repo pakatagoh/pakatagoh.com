@@ -1,0 +1,71 @@
+---
+import GeneralLayout from "../layouts/GeneralLayout.astro";
+import overheadshotImage from "../assets/images/overhead-shot.jpg";
+---
+
+<GeneralLayout
+  title="Uses - Pakata Goh"
+  description="A list of stuff I use on a daily basis in my work and my personal life"
+  imageUrl={overheadshotImage}
+>
+  <main>
+    <h1 class="mb-6 text-3xl font-bold">Uses</h1>
+    <div class="prose w-full max-w-none space-y-4 dark:prose-invert">
+      <section class="text-gray-700 dark:text-gray-300">
+        <ul>
+          <li>
+            <span class="font-bold">Computer:</span> 14" Macbook Pro - M1 Pro,
+            32GB RAM
+          </li>
+          <li>
+            <span class="font-bold">Monitors:</span> LG 27UD88-W (4k 16:9 aspect
+            ratio) and LG Dualup (16:18 aspect ratio)
+          </li>
+          <li>
+            <span class="font-bold">Keyboard:&nbsp;</span>
+            <a
+              href="https://tokyokeyboard.com/tokyo60/"
+              target="_blank"
+              class="text-blue-600 no-underline hover:underline dark:text-orange-300"
+              >Tokyo60</a
+            >
+             HHKB layout custom keyboard
+          </li>
+          <li>
+            <span class="font-bold">External Trackpad:</span> Magic Trackpad 2 -
+            Space Grey
+          </li>
+          <li>
+            <span class="font-bold">Camera:</span> Fujifilm X100V - Black
+          </li>
+          <li>
+            <span class="font-bold">Phone:</span> iPhone 13 Pro - Sierra Blue
+          </li>
+          <li>
+            <span class="font-bold">Watch:</span> Apple Watch Series 8
+          </li>
+          <li>
+            <span class="font-bold">Code Editor:</span> Neovim or <a
+              href="https://helix-editor.com"
+              target="_blank"
+              class="text-blue-600 no-underline hover:underline dark:text-orange-300"
+              >Helix</a
+            > or VS Code
+          </li>
+          <li>
+            <span class="font-bold">Font:</span> Fira Code
+          </li>
+          <li>
+            <span class="font-bold">Terminal:</span>
+             Alacritty with <a
+              href="https://zellij.dev/"
+              target="_blank"
+              class="text-blue-600 no-underline hover:underline dark:text-orange-300"
+              >Zellij</a
+            > (terminal multiplexer)
+          </li>
+        </ul>
+      </section>
+    </div>
+  </main>
+</GeneralLayout>

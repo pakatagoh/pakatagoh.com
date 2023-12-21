@@ -1,0 +1,24 @@
+---
+const props = Astro.props;
+const isHeaderLink = props.href?.startsWith("#");
+---
+
+{
+  isHeaderLink ? (
+    <a
+      class="text-blue-700 no-underline hover:underline dark:text-orange-200"
+      {...props}
+    >
+      <slot />
+    </a>
+  ) : (
+    <a
+      class="text-blue-700 no-underline hover:underline dark:text-orange-300"
+      target="_blank"
+      rel="noopener noreferrer"
+      {...props}
+    >
+      <slot />
+    </a>
+  )
+}
