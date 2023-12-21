@@ -6,10 +6,31 @@ import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import react from "@astrojs/react";
 
-const env = process.env.ENVIRONMENT ?? "DEV";
+// VERCEL SPECIFIC CODE START
+const VERCEL_STAGING_BRANCH_URL = "pakatagoh-com-git-staging-pakata.vercel.app";
+
+const getEnv = () => {
+  if (process.env.VERCEL_ENV === "production") {
+    return "PRODUCTION";
+  }
+
+  if (process.env.VERCEL_BRANCH_URL === VERCEL_STAGING_BRANCH_URL) {
+    return "STAGING";
+  }
+
+  if (process.env.VERCEL_URL) {
+    return "PREVIEW";
+  }
+
+  return "DEV";
+};
+// VERCEL SPECIFIC CODE END
+
+const env = getEnv();
 const envToSiteMapping = {
   DEV: "http://localhost:4321",
-  STAGING: "https://dev.pakatagoh.com",
+  PREVIEW: process.env.VERCEL_URL ?? "",
+  STAGING: `https://dev.pakatagoh.com`,
   PRODUCTION: "https://pakatagoh.com",
 };
 const site = envToSiteMapping[env];
