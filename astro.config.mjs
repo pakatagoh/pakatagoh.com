@@ -29,7 +29,7 @@ const getEnv = () => {
 const env = getEnv();
 const envToSiteMapping = {
   DEV: "http://localhost:4321",
-  PREVIEW: process.env.VERCEL_URL ?? "",
+  PREVIEW: `https://${process.env.VERCEL_URL ?? "dev.pakatagoh.com"}`,
   STAGING: `https://dev.pakatagoh.com`,
   PRODUCTION: "https://pakatagoh.com",
 };
