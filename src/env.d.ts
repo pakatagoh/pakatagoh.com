@@ -4,4 +4,6 @@
 interface Window {
   si: any;
   siq: any;
+  va: any;
+  vaq: any;
 }
