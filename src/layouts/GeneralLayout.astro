@@ -1,0 +1,45 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import type { Props as BaseHeadProps } from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+type Props = BaseHeadProps;
+
+const { title, description, imageUrl } = Astro.props;
+---
+
+<html lang="en" data-theme="dark" class="dark">
+  <head>
+    <BaseHead title={title} description={description} imageUrl={imageUrl} />
+  </head>
+
+  <body
+    class="transition duration-150 dark:bg-gray-800 dark:text-white relative flex min-h-screen flex-col items-stretch px-4 py-3 md:mx-auto md:max-w-3xl"
+  >
+    <Header />
+    <div class="flex-grow">
+      <slot />
+    </div>
+    <div class="mt-auto">
+      <Footer />
+    </div>
+    <script>
+      // speed insights
+      window.si =
+        window.si ||
+        function () {
+          (window.siq = window.siq || []).push(arguments);
+        };
+
+      // analytics
+      window.va =
+        window.va ||
+        function () {
+          (window.vaq = window.vaq || []).push(arguments);
+        };
+    </script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
+  </body>
+</html>

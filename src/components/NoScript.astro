@@ -1,0 +1,15 @@
+---
+interface Props {
+  message?: string;
+}
+
+const { message = "Please enable javascript" } = Astro.props;
+---
+
+<noscript>
+  <div class="border dark:border-red-600 p-4 border-red-800 rounded-md">
+    <p class="m-0 italic text-md">
+      {message}
+    </p>
+  </div>
+</noscript>

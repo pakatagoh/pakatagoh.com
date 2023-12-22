@@ -1,0 +1,44 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import BlogPostLayout from "../../layouts/BlogPostLayout.astro";
+import Anchor from "../../components/Anchor.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
+}
+type Props = CollectionEntry<"blog">;
+
+const post = Astro.props;
+
+const createdAt = new Date(post.data.isoCreatedAt);
+const createdAtFormatted = `${createdAt.getDate()} ${createdAt.toLocaleString(
+  "default",
+  { month: "short" },
+)} ${createdAt.getFullYear()}`;
+
+const { Content } = await post.render();
+---
+
+<BlogPostLayout {...post.data}>
+  <main class="prose w-full max-w-none break-words dark:prose-invert">
+    <article>
+      <h1 style={`view-transition-name: post-title-${post.slug}`}>
+        {post.data.title}
+      </h1>
+      <p class="text-sm text-gray-500 dark:text-gray-400">
+        Published -
+        <time
+          datetime={post.data.isoCreatedAt}
+          style={`view-transition-name: post-date-${post.slug};`}
+        >
+          {createdAtFormatted}
+        </time>
+      </p>
+      <Content components={{ a: Anchor }} />
+    </article>
+  </main>
+</BlogPostLayout>
