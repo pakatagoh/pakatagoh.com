@@ -9,12 +9,12 @@ type Props = BaseHeadProps;
 const { title, description, imageUrl } = Astro.props;
 ---
 
-<html lang="en" data-theme="dark" class="dark">
+<html lang="en" data-theme="dark" class="dark h-full">
   <head>
     <BaseHead title={title} description={description} imageUrl={imageUrl} />
   </head>
   <body
-    class="transition duration-150 dark:bg-gray-800 dark:text-white relative flex min-h-screen flex-col items-stretch px-4 py-3 md:mx-auto md:max-w-3xl"
+    class="transition duration-150 dark:bg-gray-800 dark:text-white relative flex h-full flex-col items-stretch px-4 py-3 md:mx-auto md:max-w-3xl"
   >
     <Header />
     <div class="flex-grow flex">
