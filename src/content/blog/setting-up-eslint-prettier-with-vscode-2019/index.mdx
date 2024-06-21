@@ -12,9 +12,10 @@ keywords:
   - 'visual studio code'
 ---
 
-import { Image } from 'astro:assets';
-import eslintFix from './images/eslint-fix.png';
-import eslintPrettierError from './images/eslint-prettier-error.png';
+import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
+import eslintFix from "./images/eslint-fix.png";
+import eslintPrettierError from "./images/eslint-prettier-error.png";
 
 Setting up ESLint and prettier can be confusing at first, especially with VS Code. It was for me when I first started out. I was confused by the ESLint and prettier plugins in vscode and how they integrated with the linters, but things have been much more simplified in 2019. I was also confused by `eslint-plugin-prettier` and `eslint-config-prettier`..what is the difference? And when you setup the ESLint config file, what is being used where?
 
@@ -213,7 +214,7 @@ To integrate ESLint and Prettier into your VS Code workflow, you should install 
 
 After installing the ESLint extension, you'll start to see red wavy underlines which indicate errors
 
-<Image src={eslintPrettierError} alt="ESLint error" quality={80} />
+<Picture src={eslintPrettierError} alt="ESLint error" quality={80} />
 
 (`Insert '.'` means insert a space)
 w
@@ -233,7 +234,7 @@ When you save your file, the ESLint extension will run with the config we have s
 
 Now try saving `ugly.js` again and see how the spacings in the file are fixed. It should look something like below:
 
-<Image src={eslintFix} alt="ESLint fix" quality={80} />
+<Picture src={eslintFix} alt="ESLint fix" quality={80} />
 
 All the red wavy errors are gone except for the one at `console.log`. This is because ESLint was not able to fix that error. To fix that error, we have to manually remove that `console.log` from our file.
 

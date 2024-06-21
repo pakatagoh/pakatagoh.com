@@ -1,6 +1,6 @@
 ---
 import GeneralLayout from "../layouts/GeneralLayout.astro";
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 import pgFsaeImage from "../assets/images/pg-fsae.jpg";
 import pgPhotographyImage from "../assets/images/pg-photography.jpg";
 import pakataHeadshotImage from "../assets/images/pakata-headshot.jpg";
@@ -44,19 +44,25 @@ import pakataHeadshotImage from "../assets/images/pakata-headshot.jpg";
           class="flex flex-col items-stretch gap-8 sm:flex-row sm:justify-between sm:gap-10"
         >
           <div class="sm:flex-1">
-            <div class="aspect-w-3 aspect-h-3 relative overflow-hidden">
-              <Image
-                src={pgFsaeImage}
-                alt="nus formula student"
-                class="m-0"
-                loading="eager"
-              />
-            </div>
+            <Picture
+              pictureAttributes={{
+                class: "aspect-w-3 aspect-h-3 relative m-0",
+              }}
+              src={pgFsaeImage}
+              alt="nus formula student"
+              class="m-0"
+              loading="eager"
+            />
           </div>
           <div class="hidden sm:block sm:flex-1">
-            <div class="aspect-w-3 aspect-h-3 relative overflow-hidden">
-              <Image src={pgPhotographyImage} alt="photography" class="m-0" />
-            </div>
+            <Picture
+              pictureAttributes={{
+                class: "aspect-w-3 aspect-h-3 relative m-0",
+              }}
+              src={pgPhotographyImage}
+              alt="photography"
+              class="m-0"
+            />
           </div>
         </div>
       </section>
