@@ -1,15 +1,15 @@
 ---
-title: 'Setting up ESLint and prettier with VS Code in 2019'
-description: 'Setting up ESLint and Prettier was can be confusing at first, especially with VS Code. It was for me when I first started out. Here is a short tutorial on how to get setup right away!'
-createdAt: '2019-10-12'
-isoCreatedAt: '2019-10-12T00:00:00.000Z'
+title: "Setting up ESLint and prettier with VS Code in 2019"
+description: "Setting up ESLint and Prettier was can be confusing at first, especially with VS Code. It was for me when I first started out. Here is a short tutorial on how to get setup right away!"
+createdAt: "2019-10-12"
+isoCreatedAt: "2019-10-12T00:00:00.000Z"
 isPublished: true
 keywords:
-  - 'eslint'
-  - 'prettier'
-  - 'lint'
-  - 'vs code'
-  - 'visual studio code'
+  - "eslint"
+  - "prettier"
+  - "lint"
+  - "vs code"
+  - "visual studio code"
 ---
 
 import { Image } from "astro:assets";
@@ -52,7 +52,7 @@ An example of an ESLint config is as below.
 ```javascript
 // Sample .eslintrc.js
 module.exports = {
-  parser: 'esprima', //default parser
+  parser: "esprima", //default parser
   parserOptions: {
     ecmaVersion: 10,
     ecmaFeatures: {
@@ -63,11 +63,11 @@ module.exports = {
     browser: true,
     jest: true,
   },
-  plugins: ['react', 'prettier'],
-  extends: ['prettier', 'react-app'],
+  plugins: ["react", "prettier"],
+  extends: ["prettier", "react-app"],
   rules: {
-    'no-unreachable': 'error',
-    'no-console': 'error',
+    "no-unreachable": "error",
+    "no-console": "error",
   },
 };
 ```
@@ -99,7 +99,7 @@ Create a `.prettierrc.js` file in the root of your directory. This is where we w
 //.prettierrc.js
 module.exports = {
   printWidth: 120,
-  trailingComma: 'es5',
+  trailingComma: "es5",
   tabWidth: 2,
   semi: false,
   singleQuote: true,
@@ -122,7 +122,7 @@ To add this, insert `prettier` into the `extends` array. Add this at the end of 
 //.eslintrc.js
 module.exports = {
   extends: [
-    'prettier', //highlight-line
+    "prettier", //highlight-line
   ],
 };
 ```
@@ -142,11 +142,11 @@ Add the prettier rule in the `rules` object
 ```javascript
 //.eslintrc.js
 module.exports = {
-  plugins: ['prettier'], //highlight-line
-  extends: ['prettier'],
+  plugins: ["prettier"], //highlight-line
+  extends: ["prettier"],
   rules: {
     //highlight-line
-    'prettier/prettier': 'error', //highlight-line
+    "prettier/prettier": "error", //highlight-line
   }, //highlight-line
 };
 ```
@@ -168,7 +168,7 @@ function someUglyFunction(x, y, z) {
     const a = x + y;
     return a;
   }
-  console.log('this is bad');
+  console.log("this is bad");
 
   return x - y;
 }
