@@ -66,7 +66,7 @@ The `useSpring` API serves as the basis for learning how to use the other 4 APIs
 
 We will build the following animated component below
 
-<NoScript message="Please enable javascript to experience the demo"/>
+<NoScript message="Please enable javascript to experience the demo" />
 <Translate client:only="react" />
 
 Create a file in the `src` folder called `Translate.js` and insert the following code
@@ -188,7 +188,7 @@ To demonstrate useSprings, let's create a horizontal bar graph shown below. Clic
 
 Note: The animation below is not staggered. The appear to be staggered because each bar has a different mass and expand at different rates. Hence it looks like they are staggered. We will do staggederd animations in the useTrail section.
 
-<NoScript message="Please enable javascript to experience the demo"/>
+<NoScript message="Please enable javascript to experience the demo" />
 <BarGraph client:only="react" />
 
 In `App.js`, comment out `<Translate/>` and import and use `<BarGraph/>`
@@ -343,7 +343,7 @@ return springs.map((spring, index) => (
 
 We will build a trailing animation with a set of vertical bars. Each vertical bar will animate after the previous one with the help of `useTrail`. Click on the animate button below to see how it'll look like on page load.
 
-<NoScript message="Please enable javascript to experience the demo"/>
+<NoScript message="Please enable javascript to experience the demo" />
 <StaggeredBars client:only="react" />
 
 In `App.js` comment out `<BarGraph/>` and insert `<StaggeredBars/>`
@@ -409,7 +409,7 @@ Just like the `useSprings` api, it accepts 2 arguments. However, the 2nd argumen
 The useTransition api is useful when you want to animate components that are mounting/unmounting from the page.
 Click on the button below to see how the component will animate when we are mounting/unmounting it.
 
-<NoScript message="Please enable javascript to experience the demo"/>
+<NoScript message="Please enable javascript to experience the demo" />
 <DisappearingComponent client:only="react" />
 
 In `App.js` comment out `<StaggeredBars/>` and insert `<DisappearingComponent/>`
@@ -517,7 +517,7 @@ When we click animate, we are toggling the `isDisplay` state and we can see the 
 
 `useChain` allows us to set the order of declared spring animations. In our example, we will chain a `useSpring` together with a `useTrail` animation. Click animate below to see the example in action.
 
-<NoScript message="Please enable javascript to experience the demo"/>
+<NoScript message="Please enable javascript to experience the demo" />
 <TranslateStaggeredBars client:only="react" />
 
 In `App.js` comment out `<DisappearingComponent/>` and insert `<TranslateStaggeredBars/>`
