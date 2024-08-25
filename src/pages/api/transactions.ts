@@ -8,12 +8,15 @@ export const POST: APIRoute = async ({ request }) => {
       const body = await request.json();
 
       const name = body.name;
+      const email = body.email;
 
       console.log("the name: ", name);
+      console.log("the email: ", email);
 
       return new Response(
         JSON.stringify({
           greeting: "Hello " + name ?? "No name",
+          email: email ?? "No email data",
         }),
       );
     } catch (error) {
