@@ -9,7 +9,7 @@ export const POST: APIRoute = async ({ request }) => {
 
       return new Response(
         JSON.stringify({
-          greeting: "Hello" + name ?? "No name",
+          greeting: "Hello " + name ?? "No name",
         }),
       );
     } catch (error) {
