@@ -9,9 +9,15 @@ export const POST: APIRoute = async ({ request }) => {
 
       const name = body.name;
       const email = body.email;
+      const content = body.content;
+      const sender = body.sender;
+      const subject = body.subject;
 
       console.log("the name: ", name);
       console.log("the email: ", email);
+      console.log("the content: ", content);
+      console.log("the sender: ", sender);
+      console.log("the subject: ", subject);
 
       return new Response(
         JSON.stringify({
