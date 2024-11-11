@@ -68,7 +68,6 @@ const currentPathname = Astro.url.pathname;
       id="theme-toggle"
       role="switch"
       aria-label="switch to light theme"
-      data-theme="dark"
       aria-checked="true"
     >
       <div class="w-6 h-6 dark:hidden" aria-hidden="true">
@@ -117,10 +116,12 @@ const currentPathname = Astro.url.pathname;
       localStorage.setItem("theme", "light");
 
       element.setAttribute("aria-label", "switch to dark theme");
+      element.setAttribute("aria-checked", "false");
     } else {
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
       element.setAttribute("aria-label", "switch to light theme");
+      element.setAttribute("aria-checked", "true");
     }
   });
 </script>
