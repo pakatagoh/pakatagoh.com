@@ -55,6 +55,10 @@ export default defineConfig({
       ],
     ],
     shikiConfig: {
+      themes: {
+        dark: "houston",
+        light: "light-plus",
+      },
       langs: [
         "json",
         "javascript",
