@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
-import GeneralLayout from "../../layouts/GeneralLayout.astro";
 import writingArticleImage from "../../assets/images/writing-article.jpg";
+import GeneralLayout from "../../layouts/GeneralLayout.astro";
 
 const posts = await getCollection("blog");
 
@@ -44,7 +44,7 @@ const formattedPosts = posts
               aria-label={`${post.data.title} - ${post.data.createdAtFormatted}`}
               aria-describedby={`${post.data.title} - description`}
               href={`/blog/${post.slug}`}
-              class="rounded-lg border border-gray-200 border-opacity-40 py-3 px-4 shadow-lg transition-shadow hover:shadow-md dark:border-gray-700 dark:border-opacity-30 dark:shadow-gray-900 sm:py-3 sm:px-4"
+              class="border-opacity-40 dark:border-opacity-30 rounded-lg border border-gray-200 px-4 py-3 shadow-lg transition-shadow hover:shadow-md sm:px-4 sm:py-3 dark:border-gray-700 dark:shadow-gray-900"
             >
               <div class="mb-3 flex flex-wrap items-center gap-1 sm:mb-2 sm:flex-nowrap sm:gap-3">
                 <h2
@@ -53,7 +53,7 @@ const formattedPosts = posts
                 >
                   {post.data.title}
                 </h2>
-                <div class="flex w-full items-center gap-1 text-sm text-gray-700 dark:text-gray-400 sm:w-auto sm:gap-3">
+                <div class="flex w-full items-center gap-1 text-sm text-gray-700 sm:w-auto sm:gap-3 dark:text-gray-400">
                   <span> - </span>
                   <time
                     datetime={post.data.isoCreatedAt}
