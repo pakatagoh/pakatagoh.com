@@ -1,19 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 
-const defaultTheme = require("tailwindcss/defaultTheme");
-
 module.exports = {
-  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
-  darkMode: "class",
-  corePlugins: {
-    aspectRatio: false,
-  },
   theme: {
     extend: {
-      fontFamily: {
-        sans: ["Helvetica", ...defaultTheme.fontFamily.sans],
-      },
-      typography: (theme) => ({
+      typography: ({ theme }) => ({
         DEFAULT: {
           css: [
             {
@@ -31,11 +21,12 @@ module.exports = {
               },
               ".dark pre": {
                 borderWidth: theme("borderWidth.DEFAULT"),
-                borderColor: theme("colors.neutral.700"),
+                borderColor: "var(--color-neutral-700)",
               },
               pre: {
-                boxShadow: theme("boxShadow.md"),
-                borderRadius: theme("borderRadius.lg"),
+                borderRadius: "var(--radius-lg)",
+                borderWidth: theme("borderWidth.DEFAULT"),
+                borderColor: "var(--color-gray-300)",
               },
             },
           ],
@@ -43,8 +34,5 @@ module.exports = {
       }),
     },
   },
-  plugins: [
-    require("@tailwindcss/typography"),
-    require("@tailwindcss/aspect-ratio"),
-  ],
+  plugins: [require("@tailwindcss/typography")],
 };
