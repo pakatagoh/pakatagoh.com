@@ -1,5 +1,0 @@
-localhost:443 {
-    tls internal
-    reverse_proxy localhost:4321
-}
-
