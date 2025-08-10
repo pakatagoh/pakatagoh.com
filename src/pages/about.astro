@@ -1,9 +1,9 @@
 ---
-import GeneralLayout from "../layouts/GeneralLayout.astro";
 import { Picture } from "astro:assets";
+import pakataHeadshotImage from "../assets/images/pakata-headshot.jpg";
 import pgFsaeImage from "../assets/images/pg-fsae.jpg";
 import pgPhotographyImage from "../assets/images/pg-photography.jpg";
-import pakataHeadshotImage from "../assets/images/pakata-headshot.jpg";
+import GeneralLayout from "../layouts/GeneralLayout.astro";
 ---
 
 <GeneralLayout
@@ -13,7 +13,7 @@ import pakataHeadshotImage from "../assets/images/pakata-headshot.jpg";
 >
   <main>
     <h1 class="mb-6 text-3xl font-bold">About me</h1>
-    <div class="prose w-full max-w-none space-y-4 dark:prose-invert">
+    <div class="prose dark:prose-invert w-full max-w-none space-y-4">
       <section class="text-gray-700 dark:text-gray-300">
         <h2 class="">Pakata Goh</h2>
         <p>
@@ -46,7 +46,7 @@ import pakataHeadshotImage from "../assets/images/pakata-headshot.jpg";
           <div class="sm:flex-1">
             <Picture
               pictureAttributes={{
-                class: "aspect-w-3 aspect-h-3 relative m-0",
+                class: "aspect-square relative m-0 not-prose",
               }}
               src={pgFsaeImage}
               alt="nus formula student"
@@ -57,7 +57,7 @@ import pakataHeadshotImage from "../assets/images/pakata-headshot.jpg";
           <div class="hidden sm:block sm:flex-1">
             <Picture
               pictureAttributes={{
-                class: "aspect-w-3 aspect-h-3 relative m-0",
+                class: "aspect-square relative m-0 not-prose",
               }}
               src={pgPhotographyImage}
               alt="photography"
