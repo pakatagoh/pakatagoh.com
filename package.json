@@ -29,7 +29,6 @@
     "typescript": "^5.9.2"
   },
   "devDependencies": {
-    "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/typography": "^0.5.16",
     "@typescript-eslint/parser": "^8.39.0",
     "eslint": "^9.33.0",
