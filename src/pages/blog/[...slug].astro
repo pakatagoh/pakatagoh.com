@@ -1,7 +1,7 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
-import BlogPostLayout from "../../layouts/BlogPostLayout.astro";
 import Anchor from "../../components/Anchor.astro";
+import BlogPostLayout from "../../layouts/BlogPostLayout.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -24,7 +24,7 @@ const { Content } = await post.render();
 ---
 
 <BlogPostLayout {...post.data}>
-  <main class="prose w-full max-w-none break-words dark:prose-invert">
+  <main class="prose dark:prose-invert w-full max-w-none break-words">
     <article>
       <h1 style={`view-transition-name: post-title-${post.slug}`}>
         {post.data.title}
