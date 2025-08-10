@@ -1,11 +1,11 @@
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import tailwind from "@astrojs/tailwind";
 import rehypeSlug from "rehype-slug";
-import vercel from "@astrojs/vercel/serverless";
+import vercel from "@astrojs/vercel";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import react from "@astrojs/react";
+import tailwindcss from "@tailwindcss/vite";
 
 // VERCEL SPECIFIC CODE START
 const VERCEL_STAGING_BRANCH_URL = "pakatagoh-com-git-staging-pakata.vercel.app";
@@ -38,7 +38,7 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap(),
-    tailwind(),
+    tailwindcss(),
     react({
       include: ["**/react/*"],
     }),
@@ -82,6 +82,11 @@ export default defineConfig({
       ],
     },
   },
-  output: "hybrid",
+
+  output: "static",
   adapter: vercel(),
+
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });

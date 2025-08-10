@@ -1,8 +1,9 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
 import type { Props as BaseHeadProps } from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
+import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import "../styles/global.css";
 
 type Props = BaseHeadProps;
 
@@ -14,10 +15,10 @@ const { title, description, imageUrl } = Astro.props;
     <BaseHead title={title} description={description} imageUrl={imageUrl} />
   </head>
   <body
-    class="transition duration-150 dark:bg-gray-800 dark:text-white relative flex h-full flex-col items-stretch px-4 py-3 md:mx-auto md:max-w-3xl"
+    class="relative flex h-full flex-col items-stretch px-4 py-3 transition duration-150 md:mx-auto md:max-w-3xl dark:bg-gray-800 dark:text-white"
   >
     <Header />
-    <div class="flex-grow flex">
+    <div class="flex grow">
       <slot />
     </div>
     <div class="mt-auto">
