@@ -1,0 +1,14 @@
+---
+import CenteredLayout from "../../layouts/CenteredLayout.astro";
+
+export const prerender = false;
+
+Astro.response.status = 410;
+Astro.response.statusText = "Gone";
+---
+
+<CenteredLayout title="Not Found">
+  <main class="flex flex-1 flex-col justify-center">
+    <h1 class="mb-3 text-5xl leading-tight font-bold md:text-6xl">Not Found</h1>
+  </main>
+</CenteredLayout>
