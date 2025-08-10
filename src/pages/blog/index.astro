@@ -43,13 +43,13 @@ const formattedPosts = posts
               data-astro-prefetch
               aria-label={`${post.data.title} - ${post.data.createdAtFormatted}`}
               aria-describedby={`${post.data.title} - description`}
-              href={`/blog/${post.slug}`}
+              href={`/blog/${post.id}`}
               class="border-opacity-40 dark:border-opacity-30 rounded-lg border border-gray-200 px-4 py-3 shadow-lg transition-shadow hover:shadow-md sm:px-4 sm:py-3 dark:border-gray-700 dark:shadow-gray-900"
             >
               <div class="mb-3 flex flex-wrap items-center gap-1 sm:mb-2 sm:flex-nowrap sm:gap-3">
                 <h2
                   class="font-medium"
-                  style={`view-transition-name: post-title-${post.slug};`}
+                  style={`view-transition-name: post-title-${post.id};`}
                 >
                   {post.data.title}
                 </h2>
@@ -57,7 +57,7 @@ const formattedPosts = posts
                   <span> - </span>
                   <time
                     datetime={post.data.isoCreatedAt}
-                    style={`view-transition-name: post-date-${post.slug};`}
+                    style={`view-transition-name: post-date-${post.id};`}
                   >
                     {post.data.createdAtFormatted}
                   </time>
