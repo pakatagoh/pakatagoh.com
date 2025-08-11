@@ -1,5 +1,5 @@
 ---
-import { Picture } from "astro:assets";
+import { Image } from "astro:assets";
 import pakataHeadshotImage from "../assets/images/pakata-headshot.jpg";
 import pgFsaeImage from "../assets/images/pg-fsae.jpg";
 import pgPhotographyImage from "../assets/images/pg-photography.jpg";
@@ -44,24 +44,20 @@ import GeneralLayout from "../layouts/GeneralLayout.astro";
           class="flex flex-col items-stretch gap-8 sm:flex-row sm:justify-between sm:gap-10"
         >
           <div class="sm:flex-1">
-            <Picture
-              pictureAttributes={{
-                class: "aspect-square relative m-0 not-prose",
-              }}
+            <Image
               src={pgFsaeImage}
               alt="nus formula student"
-              class="m-0"
+              class="not-prose relative m-0 aspect-square"
+              layout="constrained"
               loading="eager"
             />
           </div>
           <div class="hidden sm:block sm:flex-1">
-            <Picture
-              pictureAttributes={{
-                class: "aspect-square relative m-0 not-prose",
-              }}
+            <Image
               src={pgPhotographyImage}
               alt="photography"
-              class="m-0"
+              class="not-prose relative m-0 aspect-square"
+              layout="constrained"
             />
           </div>
         </div>
