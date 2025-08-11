@@ -51,7 +51,7 @@ console.log("Current pathname:", currentPathname);
   </nav>
   <div class="flex items-center">
     <button
-      class="items-center justify-center"
+      class="flex items-center justify-center"
       id="theme-toggle"
       role="switch"
       aria-label="switch to light theme"
@@ -84,8 +84,6 @@ console.log("Current pathname:", currentPathname);
 
 <script>
   const themeToggle = document.getElementById("theme-toggle");
-
-  themeToggle?.classList.add("flex");
 
   themeToggle?.addEventListener("click", (e) => {
     const element = e.currentTarget as HTMLButtonElement;
