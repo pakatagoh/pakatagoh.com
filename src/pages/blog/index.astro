@@ -44,7 +44,7 @@ const formattedPosts = posts
               aria-label={`${post.data.title} - ${post.data.createdAtFormatted}`}
               aria-describedby={`${post.data.title} - description`}
               href={`/blog/${post.id}`}
-              class="border-opacity-40 dark:border-opacity-30 rounded-lg border border-gray-200 px-4 py-3 shadow-lg transition-shadow hover:shadow-md sm:px-4 sm:py-3 dark:border-gray-700 dark:shadow-gray-900"
+              class="border-opacity-40 dark:border-opacity-30 rounded-lg border border-gray-200 px-4 py-3 shadow-lg transition-shadow hover:shadow-md sm:px-4 sm:py-3 dark:border-neutral-800 dark:shadow-neutral-950"
             >
               <div class="mb-3 flex flex-wrap items-center gap-1 sm:mb-2 sm:flex-nowrap sm:gap-3">
                 <h2
@@ -53,7 +53,7 @@ const formattedPosts = posts
                 >
                   {post.data.title}
                 </h2>
-                <div class="flex w-full items-center gap-1 text-sm text-gray-700 sm:w-auto sm:gap-3 dark:text-gray-400">
+                <div class="flex w-full items-center gap-1 text-sm text-gray-700 sm:w-auto sm:gap-3 dark:text-neutral-400">
                   <span> - </span>
                   <time
                     datetime={post.data.isoCreatedAt}
@@ -64,7 +64,7 @@ const formattedPosts = posts
                 </div>
               </div>
               <p
-                class="mt-1 text-sm text-gray-700 dark:text-gray-400"
+                class="mt-1 text-sm text-gray-700 dark:text-neutral-400"
                 id={`${post.data.title} - description`}
               >
                 {post.data.description}

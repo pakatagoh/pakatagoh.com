@@ -20,7 +20,7 @@ const currentPathname = Astro.url.pathname;
         <a
           data-astro-prefetch
           href="/blog"
-          class={currentPathname === "/blog"
+          class={currentPathname.match(/^\/blog(\/|$)/)
             ? "opacity-100"
             : "opacity-60 hover:opacity-100"}
         >

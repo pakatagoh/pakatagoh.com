@@ -24,12 +24,17 @@ const { Content } = await render(post);
 ---
 
 <BlogPostLayout {...post.data}>
-  <main class="prose dark:prose-invert w-full max-w-none break-words">
+  <main
+    class="prose prose-article dark:prose-invert w-full max-w-none break-words dark:text-gray-300"
+  >
     <article>
-      <h1 style={`view-transition-name: post-title-${post.id}`}>
+      <h1
+        style={`view-transition-name: post-title-${post.id}`}
+        class="dark:text-neutral-200"
+      >
         {post.data.title}
       </h1>
-      <p class="text-sm text-gray-500 dark:text-gray-400">
+      <p class="text-sm text-gray-500 dark:text-neutral-400">
         Published -
         <time
           datetime={post.data.isoCreatedAt}
