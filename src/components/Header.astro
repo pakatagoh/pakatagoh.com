@@ -1,18 +1,13 @@
 ---
 const currentPathname = Astro.url.pathname;
+console.log("Current pathname:", currentPathname);
 ---
 
 <header class="mb-6 flex items-center justify-between">
   <nav>
     <ul class="flex gap-4">
       <li>
-        <a
-          data-astro-prefetch
-          href="/"
-          class={currentPathname === "/"
-            ? "opacity-100"
-            : "opacity-60 hover:opacity-100"}
-        >
+        <a data-astro-prefetch href="/" class="opacity-60 hover:opacity-100">
           Home
         </a>
       </li>
@@ -20,9 +15,7 @@ const currentPathname = Astro.url.pathname;
         <a
           data-astro-prefetch
           href="/blog"
-          class={currentPathname.match(/^\/blog(\/|$)/)
-            ? "opacity-100"
-            : "opacity-60 hover:opacity-100"}
+          class="opacity-60 hover:opacity-100"
         >
           Blog
         </a>
@@ -31,9 +24,7 @@ const currentPathname = Astro.url.pathname;
         <a
           data-astro-prefetch
           href="/about"
-          class={currentPathname === "/about"
-            ? "opacity-100"
-            : "opacity-60 hover:opacity-100"}
+          class="opacity-60 hover:opacity-100"
         >
           About
         </a>
@@ -42,9 +33,7 @@ const currentPathname = Astro.url.pathname;
         <a
           data-astro-prefetch
           href="/uses"
-          class={currentPathname === "/uses"
-            ? "opacity-100"
-            : "opacity-60 hover:opacity-100"}
+          class="opacity-60 hover:opacity-100"
         >
           Uses
         </a>
@@ -53,9 +42,7 @@ const currentPathname = Astro.url.pathname;
         <a
           data-astro-prefetch
           href="/contact"
-          class={currentPathname === "/contact"
-            ? "opacity-100"
-            : "opacity-60 hover:opacity-100"}
+          class="opacity-60 hover:opacity-100"
         >
           Contact
         </a>
@@ -64,7 +51,7 @@ const currentPathname = Astro.url.pathname;
   </nav>
   <div class="flex items-center">
     <button
-      class="hidden items-center justify-center"
+      class="items-center justify-center"
       id="theme-toggle"
       role="switch"
       aria-label="switch to light theme"
@@ -98,7 +85,6 @@ const currentPathname = Astro.url.pathname;
 <script>
   const themeToggle = document.getElementById("theme-toggle");
 
-  themeToggle?.classList.remove("hidden");
   themeToggle?.classList.add("flex");
 
   themeToggle?.addEventListener("click", (e) => {
