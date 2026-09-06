@@ -23,18 +23,6 @@
 @config "../../tailwind.config.cjs";
 /* to be deprecated */
 
-@view-transition {
-  navigation: auto;
-}
-
-@media (prefers-reduced-motion) {
-  *::view-transition-group(*),
-  *::view-transition-old(*),
-  *::view-transition-new(*) {
-    animation: none !important;
-  }
-}
-
 html.dark .astro-code,
 html.dark .astro-code span {
   color: var(--shiki-dark) !important;

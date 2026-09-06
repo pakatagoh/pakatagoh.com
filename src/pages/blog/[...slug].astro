@@ -28,18 +28,12 @@ const { Content } = await render(post);
     class="prose prose-article dark:prose-invert w-full max-w-none break-words dark:text-gray-300"
   >
     <article>
-      <h1
-        style={`view-transition-name: post-title-${post.id}`}
-        class="dark:text-neutral-200"
-      >
+      <h1 class="dark:text-neutral-200">
         {post.data.title}
       </h1>
       <p class="text-sm text-gray-500 dark:text-neutral-400">
         Published -
-        <time
-          datetime={post.data.isoCreatedAt}
-          style={`view-transition-name: post-date-${post.id};`}
-        >
+        <time datetime={post.data.isoCreatedAt}>
           {createdAtFormatted}
         </time>
       </p>
