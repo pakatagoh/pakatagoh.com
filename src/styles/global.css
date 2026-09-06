@@ -10,7 +10,12 @@
 /* setting default font-family */
 @layer base {
   html {
+    background-color: var(--color-white);
     font-family: var(--font-display);
+  }
+
+  html.dark {
+    background-color: var(--color-neutral-900);
   }
 }
 
