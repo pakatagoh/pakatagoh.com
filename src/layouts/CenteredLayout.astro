@@ -1,6 +1,8 @@
 ---
 import type { Props as BaseHeadProps } from "../components/BaseHead.astro";
+import Analytics from "@vercel/analytics/astro";
 import BaseHead from "../components/BaseHead.astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import "../styles/global.css";
@@ -13,6 +15,7 @@ const { title, description, imageUrl } = Astro.props;
 <html lang="en" data-theme="dark" class="dark h-full">
   <head>
     <BaseHead title={title} description={description} imageUrl={imageUrl} />
+    <Analytics />
   </head>
   <body
     class="relative flex h-full flex-col items-stretch px-4 py-3 transition duration-150 md:mx-auto md:max-w-3xl dark:text-neutral-200"
@@ -24,22 +27,6 @@ const { title, description, imageUrl } = Astro.props;
     <div class="mt-auto">
       <Footer />
     </div>
-    <script>
-      // speed insights
-      window.si =
-        window.si ||
-        function () {
-          (window.siq = window.siq || []).push(arguments);
-        };
-
-      // analytics
-      window.va =
-        window.va ||
-        function () {
-          (window.vaq = window.vaq || []).push(arguments);
-        };
-    </script>
-    <script is:inline defer src="/_vercel/speed-insights/script.js"></script>
-    <script is:inline defer src="/_vercel/insights/script.js"></script>
+    <SpeedInsights />
   </body>
 </html>
