@@ -10,12 +10,13 @@ import "../styles/global.css";
 type Props = BaseHeadProps;
 
 const { title, description, imageUrl } = Astro.props;
+const isVercelDeployment = process.env.VERCEL === "1";
 ---
 
 <html lang="en" data-theme="dark" class="dark">
   <head>
     <BaseHead title={title} description={description} imageUrl={imageUrl} />
-    <Analytics />
+    {isVercelDeployment && <Analytics />}
   </head>
 
   <body
@@ -28,6 +29,6 @@ const { title, description, imageUrl } = Astro.props;
     <div class="mt-auto">
       <Footer />
     </div>
-    <SpeedInsights />
+    {isVercelDeployment && <SpeedInsights />}
   </body>
 </html>
