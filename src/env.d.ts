@@ -1,9 +1,12 @@
-/// <reference path="../.astro/types.d.ts" />
+import "../.astro/types.d.ts";
+
 /// <reference types="astro/client" />
 
-interface Window {
-  si: any;
-  siq: any;
-  va: any;
-  vaq: any;
+declare global {
+  interface Window {
+    si: any;
+    siq: any;
+    va: any;
+    vaq: any;
+  }
 }

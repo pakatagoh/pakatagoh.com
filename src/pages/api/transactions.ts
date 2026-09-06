@@ -25,7 +25,7 @@ export const POST: APIRoute = async ({ request }) => {
           email: email ?? "No email data",
         }),
       );
-    } catch (error) {
+    } catch {
       return new Response(null, { status: 400 });
     }
   }
