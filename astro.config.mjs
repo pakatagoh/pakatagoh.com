@@ -1,5 +1,6 @@
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
+import { unified } from "@astrojs/markdown-remark";
 import sitemap from "@astrojs/sitemap";
 import rehypeSlug from "rehype-slug";
 import vercel from "@astrojs/vercel";
@@ -38,22 +39,23 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap(),
-    tailwindcss(),
     react({
       include: ["**/react/*"],
     }),
   ],
   prefetch: true,
   markdown: {
-    rehypePlugins: [
-      rehypeSlug,
-      [
-        rehypeAutolinkHeadings,
-        {
-          behavior: "wrap",
-        },
+    processor: unified({
+      rehypePlugins: [
+        rehypeSlug,
+        [
+          rehypeAutolinkHeadings,
+          {
+            behavior: "wrap",
+          },
+        ],
       ],
-    ],
+    }),
     shikiConfig: {
       themes: {
         dark: "houston",
