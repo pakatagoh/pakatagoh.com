@@ -4,7 +4,7 @@ Built with [Astro](https://docs.astro.build/en/getting-started) and Tailwind CSS
 
 ## Toolchain
 
-[Mise](https://mise.jdx.dev/) pins Node.js 24.22.1 (LTS) and pnpm 10.14.0 in
+[Mise](https://mise.jdx.dev/) pins Node.js 24.22.1 (LTS) and pnpm 12.16.1 in
 `mise.toml`. Run `mise trust` and `mise install`, then prefix the commands below
 with `mise exec --` if Mise is not activated in your shell. The `.nvmrc` pin is
 kept in sync for nvm users. `package.json` selects Node 24 for Vercel builds and

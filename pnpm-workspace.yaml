@@ -1,11 +1,24 @@
-onlyBuiltDependencies:
-  - "@tailwindcss/oxide"
-  - esbuild
-  - sharp
+allowBuilds:
+  "@tailwindcss/oxide": true
+  esbuild: true
+  sharp: true
+
+# Explicitly requested latest Astro releases; keep the default release-age
+# protection for all other packages. Remove after these releases are 24h old.
+minimumReleaseAgeExclude:
+  - "@astrojs/markdown-remark@7.3.5"
+  - "@astrojs/markdown-satteri@0.4.6"
+  - "@astrojs/mdx@8.1.2"
+  - "@astrojs/prism@4.1.2"
+  - "@astrojs/react@7.1.2"
+  - "@astrojs/telemetry@3.4.2"
+  - "@astrojs/vercel@11.0.17"
+  - "astro@7.4.3"
 
 # Temporary same-major security floors for pinned transitive dependencies.
 # Remove as upstream packages adopt patched releases.
 overrides:
+  "path-to-regexp@>=6.0.0 <6.3.0": "^6.3.0"
   "rollup@>=4.0.0 <4.59.0": "^4.59.0"
   "zod@>=4.0.0 <4.6.6": "^4.6.6"
   "postcss-selector-parser@>=6.0.0 <6.1.5": "^6.1.5"
