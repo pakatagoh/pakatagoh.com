@@ -1,0 +1,7 @@
+[tools]
+node = "24.22.1"
+pnpm = "10.14.0"
+
+[settings]
+# Do not prune tool versions used by other projects.
+upgrade.auto_prune = false

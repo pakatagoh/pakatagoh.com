@@ -1,0 +1,17 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 80,
+  "sortPackageJson": false,
+  "sortTailwindcss": {
+    "stylesheet": "./src/styles/global.css"
+  },
+  "astro": true,
+  "ignorePatterns": [
+    ".astro/**",
+    ".vercel/**",
+    "dist/**",
+    "pnpm-lock.yaml",
+    "yarn-lock.yaml",
+    "package-lock.yaml"
+  ]
+}

@@ -1,4 +1,11 @@
 onlyBuiltDependencies:
-  - '@tailwindcss/oxide'
+  - "@tailwindcss/oxide"
   - esbuild
   - sharp
+
+# Temporary same-major security floors for pinned transitive dependencies.
+# Remove as upstream packages adopt patched releases.
+overrides:
+  "rollup@>=4.0.0 <4.59.0": "^4.59.0"
+  "zod@>=4.0.0 <4.6.6": "^4.6.6"
+  "postcss-selector-parser@>=6.0.0 <6.1.5": "^6.1.5"
