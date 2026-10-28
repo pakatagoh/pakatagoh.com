@@ -1,5 +1,6 @@
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
+import { unified } from "@astrojs/markdown-remark";
 import sitemap from "@astrojs/sitemap";
 import rehypeSlug from "rehype-slug";
 import vercel from "@astrojs/vercel";
@@ -13,7 +14,10 @@ const getEnv = () => {
   if (process.env.VERCEL_ENV === "production") {
     return "PRODUCTION";
   }
-  if (process.env.VERCEL_BRANCH_URL === VERCEL_STAGING_BRANCH_URL) {
+  if (
+    process.env.VERCEL_GIT_COMMIT_REF === "staging" ||
+    process.env.VERCEL_BRANCH_URL === VERCEL_STAGING_BRANCH_URL
+  ) {
     return "STAGING";
   }
   if (process.env.VERCEL_URL) {
@@ -38,22 +42,23 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap(),
-    tailwindcss(),
     react({
       include: ["**/react/*"],
     }),
   ],
   prefetch: true,
   markdown: {
-    rehypePlugins: [
-      rehypeSlug,
-      [
-        rehypeAutolinkHeadings,
-        {
-          behavior: "wrap",
-        },
+    processor: unified({
+      rehypePlugins: [
+        rehypeSlug,
+        [
+          rehypeAutolinkHeadings,
+          {
+            behavior: "wrap",
+          },
+        ],
       ],
-    ],
+    }),
     shikiConfig: {
       themes: {
         dark: "houston",

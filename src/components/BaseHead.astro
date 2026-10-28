@@ -52,4 +52,15 @@ const optimizedImage = await getImage({
   content={new URL(optimizedImage.src, Astro.url)}
 />
 
+<!-- Keep the page background dark before the external stylesheet is ready. -->
+<style is:inline>
+  html {
+    background-color: #fff;
+  }
+
+  html.dark {
+    background-color: #171717;
+  }
+</style>
+
 <ThemeSelectorInitScript />

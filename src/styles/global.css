@@ -10,25 +10,18 @@
 /* setting default font-family */
 @layer base {
   html {
+    background-color: var(--color-white);
     font-family: var(--font-display);
+  }
+
+  html.dark {
+    background-color: var(--color-neutral-900);
   }
 }
 
 /* to be deprecated */
 @config "../../tailwind.config.cjs";
 /* to be deprecated */
-
-@view-transition {
-  navigation: auto;
-}
-
-@media (prefers-reduced-motion) {
-  *::view-transition-group(*),
-  *::view-transition-old(*),
-  *::view-transition-new(*) {
-    animation: none !important;
-  }
-}
 
 html.dark .astro-code,
 html.dark .astro-code span {
