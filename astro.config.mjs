@@ -14,7 +14,10 @@ const getEnv = () => {
   if (process.env.VERCEL_ENV === "production") {
     return "PRODUCTION";
   }
-  if (process.env.VERCEL_BRANCH_URL === VERCEL_STAGING_BRANCH_URL) {
+  if (
+    process.env.VERCEL_GIT_COMMIT_REF === "staging" ||
+    process.env.VERCEL_BRANCH_URL === VERCEL_STAGING_BRANCH_URL
+  ) {
     return "STAGING";
   }
   if (process.env.VERCEL_URL) {

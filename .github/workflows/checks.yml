@@ -1,0 +1,28 @@
+name: Checks
+
+on:
+  pull_request:
+    branches: [staging, master]
+  push:
+    branches: [staging]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: jdx/mise-action@v3
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint --deny-warnings
+      - run: pnpm format:check
+      - run: pnpm build
+      - run: pnpm test
+      - name: Verify staging canonical URLs
+        run: pnpm build && pnpm test
+        env:
+          VERCEL_ENV: preview
+          VERCEL_GIT_COMMIT_REF: staging
+          EXPECTED_SITE_ORIGIN: https://dev.pakatagoh.com

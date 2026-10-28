@@ -21,16 +21,12 @@ const isVercelDeployment = process.env.VERCEL === "1";
     <meta property="og:type" content="article" />
     <meta property="og:article:author" content="Pakata Goh" />
     <meta property="og:article:published_time" content={isoCreatedAt} />
-    {
-      keywords?.map((keyword) => (
-        <meta property="og:article:tag" content={keyword} />
-      ))
-    }
+    {keywords?.map((keyword) => (
+      <meta property="og:article:tag" content={keyword} />
+    ))}
   </head>
 
-  <body
-    class="relative min-h-screen px-4 py-3 transition duration-150 md:mx-auto md:max-w-3xl dark:bg-neutral-900 dark:text-neutral-200"
-  >
+  <body class="relative min-h-screen px-4 py-3 transition duration-150 md:mx-auto md:max-w-3xl dark:bg-neutral-900 dark:text-neutral-200">
     <Header />
     <div class="grow">
       <slot />

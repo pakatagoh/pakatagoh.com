@@ -13,7 +13,7 @@ import GeneralLayout from "../layouts/GeneralLayout.astro";
 >
   <main>
     <h1 class="mb-6 text-3xl font-bold">About me</h1>
-    <div class="prose dark:prose-invert w-full max-w-none space-y-4">
+    <div class="prose w-full max-w-none space-y-4 dark:prose-invert">
       <section class="text-gray-700 dark:text-gray-300">
         <h2 class="dark:text-gray-300">Pakata Goh</h2>
         <p>
@@ -40,9 +40,7 @@ import GeneralLayout from "../layouts/GeneralLayout.astro";
           In my free time, I dabble in a little photography and keep up with
           Formula 1 during race weekends.
         </p>
-        <div
-          class="flex flex-col items-stretch gap-8 sm:flex-row sm:justify-between sm:gap-10"
-        >
+        <div class="flex flex-col items-stretch gap-8 sm:flex-row sm:justify-between sm:gap-10">
           <div class="sm:flex-1">
             <Image
               src={pgFsaeImage}
